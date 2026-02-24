@@ -159,7 +159,33 @@ epstein-pipeline search "query text here"       # Semantic search (pgvector)
 # ── Utilities ───────────────────────────────────────────────────
 epstein-pipeline validate ./out/                # Data quality checks
 epstein-pipeline stats ./out/                   # Show statistics
+
+# ── Person Integrity Auditor ──────────────────────────────────
+epstein-pipeline audit-persons                  # Full 5-phase audit
+epstein-pipeline audit-persons --phases dedup   # Dedup scan only
+epstein-pipeline audit-persons --person bill-clinton --dry-run
+epstein-pipeline audit-persons --min-severity 40 -o report.json
 ```
+
+## Person Integrity Auditor
+
+Automated 5-phase data quality pipeline that scans all person records against the Neon database, Wikidata, Wikipedia, and Claude to detect issues before they reach users.
+
+| Phase | What It Does | Cost |
+|-------|-------------|------|
+| **Dedup** | rapidfuzz name similarity + alias cross-check for duplicate entries | Free |
+| **Wikidata** | Cross-reference occupation, dates, nationality against Wikidata + Wikipedia | Free |
+| **Fact-Check** | Decompose bios into atomic claims, verify against 2M+ documents via FTS | ~$1-2 |
+| **Coherence** | Sample linked documents, detect merged identities (one record = two people) | ~$0.50 |
+| **Score** | Calculate composite severity (0-100), create ai_leads for admin review | Free |
+
+**Severity Tiers**: Critical (70-100), High (40-69), Medium (20-39), Low (0-19)
+
+Issues detected: duplicate entries, merged identities, wrong categories, bio contradictions, ungrounded claims, stale data, external contradictions with Wikidata/Wikipedia.
+
+Requires: `pip install "epstein-pipeline[audit]"` + `EPSTEIN_AUDITOR_ANTHROPIC_API_KEY` + `EPSTEIN_NEON_DATABASE_URL`
+
+Optional: `EPSTEIN_AUDITOR_VOYAGE_API_KEY` (semantic search), `EPSTEIN_AUDITOR_COHERE_API_KEY` (reranking)
 
 ## Key Features
 
@@ -171,6 +197,7 @@ epstein-pipeline stats ./out/                   # Show statistics
 - **Document classification** using zero-shot BART into 12 legal categories
 - **Knowledge graph** with co-occurrence edges and opt-in LLM relationship extraction
 - **Idempotent Neon schema migration** with pgvector, pg_trgm, and IVFFlat indexes
+- **Person Integrity Auditor** — 5-phase automated data quality pipeline (see below)
 
 ## Data Sources
 
