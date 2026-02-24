@@ -28,7 +28,7 @@ from datetime import datetime, timezone
 
 import httpx
 from rapidfuzz import fuzz
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, MofNCompleteColumn
+from rich.progress import Progress, TextColumn, BarColumn, MofNCompleteColumn
 
 from epstein_pipeline.config import Settings
 from epstein_pipeline.models.audit import (
@@ -260,7 +260,7 @@ class PersonIntegrityAuditor:
         threshold = self.settings.auditor_name_fuzzy_threshold
         checked = set()
 
-        with Progress(SpinnerColumn(), TextColumn("[progress.description]{task.description}"),
+        with Progress(TextColumn("[progress.description]{task.description}"),
                       BarColumn(), MofNCompleteColumn()) as progress:
             task = progress.add_task("Dedup scan", total=len(persons))
 
@@ -280,11 +280,11 @@ class PersonIntegrityAuditor:
                     if name_sim < threshold:
                         # Also check aliases
                         alias_match = False
-                        for a1 in p1.get("aliases", []):
+                        for a1 in (p1.get("aliases") or []):
                             if fuzz.ratio(a1.lower(), p2["name"].lower()) >= threshold:
                                 alias_match = True
                                 break
-                        for a2 in p2.get("aliases", []):
+                        for a2 in (p2.get("aliases") or []):
                             if fuzz.ratio(p1["name"].lower(), a2.lower()) >= threshold:
                                 alias_match = True
                                 break
@@ -325,7 +325,7 @@ class PersonIntegrityAuditor:
         http = self._get_http()
         rate_limit = self.settings.auditor_wikidata_rate_limit
 
-        with Progress(SpinnerColumn(), TextColumn("[progress.description]{task.description}"),
+        with Progress(TextColumn("[progress.description]{task.description}"),
                       BarColumn(), MofNCompleteColumn()) as progress:
             task = progress.add_task("Wikidata check", total=len(persons))
 
@@ -607,7 +607,7 @@ Output ONLY valid JSON, nothing else."""
         conn = self._get_neon()
         client = self._get_anthropic()
 
-        with Progress(SpinnerColumn(), TextColumn("[progress.description]{task.description}"),
+        with Progress(TextColumn("[progress.description]{task.description}"),
                       BarColumn(), MofNCompleteColumn()) as progress:
             task = progress.add_task("Fact-checking bios", total=len(persons))
 
@@ -804,7 +804,7 @@ Output ONLY valid JSON."""
         client = self._get_anthropic()
 
         # Only check persons with significant document counts
-        with Progress(SpinnerColumn(), TextColumn("[progress.description]{task.description}"),
+        with Progress(TextColumn("[progress.description]{task.description}"),
                       BarColumn(), MofNCompleteColumn()) as progress:
             task = progress.add_task("Coherence check", total=len(persons))
 
