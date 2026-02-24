@@ -4,20 +4,23 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-World-class document processing pipeline for the [Epstein case files](https://epsteinexposed.com). Download, OCR, extract entities, deduplicate, embed, and export 140,000+ documents to Neon Postgres with pgvector semantic search.
+Open-source document processing pipeline for the Jeffrey Epstein case files. Downloads, OCRs, extracts entities, deduplicates, embeds, and exports **2.1 million+ documents** to Neon Postgres with pgvector semantic search.
 
-**This is the data processing engine behind [epsteinexposed.com](https://epsteinexposed.com)** — the most comprehensive searchable database of the Epstein files.
+**This is the data engine behind [epsteinexposed.com](https://epsteinexposed.com)** -- the most comprehensive searchable database of the Epstein files.
 
-## Architecture
+## What It Does
 
 ```
-Raw DOJ PDFs
-    │
-    ▼
+DOJ EFTA Releases (DS1-DS12)  ─┐
+Kaggle Datasets                ─┤
+HuggingFace Collections        ─┼──► Download
+Archive.org Mirrors            ─┘
+        │
+        ▼
 ┌──────────────────────────────────────────────────────────┐
-│  OCR (multi-backend)                                     │
+│  OCR (multi-backend fallback chain)                      │
 │  PyMuPDF → Surya → olmOCR 2 → Docling                   │
-│  Per-page confidence scoring, fallback chain             │
+│  Per-page confidence scoring, automatic backend selection│
 └──────────────────────┬───────────────────────────────────┘
                        │
     ┌──────────────────┼──────────────────┐
@@ -27,6 +30,12 @@ Raw DOJ PDFs
 │ spaCy trf  │  │ Hash →     │  │ Zero-shot BART   │
 │ + GLiNER   │  │ MinHash →  │  │ 12 doc categories│
 │ + regex    │  │ Semantic   │  │                  │
+└─────┬──────┘  └─────┬──────┘  └────────┬─────────┘
+      │               │                  │
+      ▼               ▼                  ▼
+┌────────────┐  ┌────────────┐  ┌──────────────────┐
+│ Summarizer │  │ Redaction  │  │ Image Extractor  │
+│ LLM-based  │  │ Analysis   │  │ + AI description │
 └─────┬──────┘  └─────┬──────┘  └────────┬─────────┘
       │               │                  │
       └───────────────┼──────────────────┘
@@ -45,6 +54,17 @@ Raw DOJ PDFs
 └────────────┘  └────────────┘  └──────────────────┘
 ```
 
+## Current Scale
+
+| Metric | Count |
+|--------|-------|
+| Documents ingested | 2,145,000+ |
+| OCR texts extracted | 2,014,000+ |
+| Persons identified | 1,723 |
+| Document-person links | 2,443,000+ |
+| SHA-256 integrity hashes | 1,380,000+ |
+| DOJ datasets processed | 12 of 12 (DS1-DS12) |
+
 ## Quickstart
 
 ```bash
@@ -52,8 +72,8 @@ Raw DOJ PDFs
 pip install "epstein-pipeline[all]"
 python -m spacy download en_core_web_sm
 
-# Download a dataset
-epstein-pipeline download kaggle
+# Download a DOJ dataset
+epstein-pipeline download doj --dataset 9
 
 # OCR with automatic backend selection
 epstein-pipeline ocr ./raw-pdfs/ --output ./processed/
@@ -103,10 +123,10 @@ epstein-pipeline search "financial transactions offshore accounts"
 # Core only (no ML models)
 pip install epstein-pipeline
 
-# With OCR (CPU — Surya)
+# With OCR (CPU -- Surya)
 pip install "epstein-pipeline[ocr-surya]"
 
-# With OCR (GPU — olmOCR 2, requires CUDA)
+# With OCR (GPU -- olmOCR 2, requires CUDA)
 pip install "epstein-pipeline[ocr-gpu]"
 
 # With NLP (spaCy + GLiNER)
@@ -130,46 +150,88 @@ docker compose run pipeline ocr ./raw-pdfs/ --output ./output/
 docker compose run pipeline migrate
 ```
 
-## CLI Commands
+## CLI Reference
 
 ```bash
-# ── Data Ingestion ──────────────────────────────────────────────
-epstein-pipeline download doj --dataset 9       # Download DOJ dataset
+# -- Data Ingestion ------------------------------------------------
+epstein-pipeline download doj --dataset 9       # Download DOJ EFTA dataset (1-12)
 epstein-pipeline download kaggle                # Download Kaggle dataset
 epstein-pipeline download huggingface           # Download HuggingFace datasets
+epstein-pipeline download archive               # Download from Archive.org mirrors
 
-# ── Processing ──────────────────────────────────────────────────
-epstein-pipeline ocr ./pdfs/ -o ./out/          # OCR (auto backend)
+# -- Processing ----------------------------------------------------
+epstein-pipeline ocr ./pdfs/ -o ./out/          # OCR (auto backend selection)
 epstein-pipeline ocr ./pdfs/ --backend surya    # OCR with specific backend
-epstein-pipeline extract-entities ./out/ -o ./e/ # NER extraction
-epstein-pipeline classify --input-dir ./out/    # Document classification
+epstein-pipeline extract-entities ./out/ -o ./e/ # NER extraction (spaCy + GLiNER)
+epstein-pipeline classify --input-dir ./out/    # Zero-shot document classification
 epstein-pipeline dedup ./out/ --mode all        # 3-pass deduplication
 epstein-pipeline embed ./out/ -o ./emb/         # Generate embeddings
 
-# ── Export ──────────────────────────────────────────────────────
+# -- Export --------------------------------------------------------
 epstein-pipeline export json ./out/ -o ./site/  # JSON for website
-epstein-pipeline export csv ./out/ -o docs.csv  # CSV for research
+epstein-pipeline export csv ./out/ -o docs.csv  # CSV for researchers
 epstein-pipeline export sqlite ./out/ -o ep.db  # SQLite database
 epstein-pipeline export neon --input-dir ./out/ # Push to Neon Postgres
 
-# ── Database ────────────────────────────────────────────────────
+# -- Database ------------------------------------------------------
 epstein-pipeline migrate                        # Run Neon schema migration
 epstein-pipeline search "query text here"       # Semantic search (pgvector)
 
-# ── Utilities ───────────────────────────────────────────────────
+# -- Quality -------------------------------------------------------
 epstein-pipeline validate ./out/                # Data quality checks
-epstein-pipeline stats ./out/                   # Show statistics
+epstein-pipeline stats ./out/                   # Show processing statistics
 
-# ── Person Integrity Auditor ──────────────────────────────────
+# -- Person Integrity Auditor -------------------------------------
 epstein-pipeline audit-persons                  # Full 5-phase audit
-epstein-pipeline audit-persons --phases dedup   # Dedup scan only
+epstein-pipeline audit-persons --phases dedup   # Single phase only
 epstein-pipeline audit-persons --person bill-clinton --dry-run
 epstein-pipeline audit-persons --min-severity 40 -o report.json
 ```
 
+## Processors
+
+### OCR (`processors/ocr.py`)
+Multi-backend OCR with automatic fallback. Tries PyMuPDF (text extraction) first, falls back through Surya, olmOCR 2, and Docling based on per-page confidence scores. Handles scanned PDFs, image-only pages, and mixed documents.
+
+### Entity Extraction (`processors/entities.py`)
+Hybrid NER using spaCy transformer models + GLiNER zero-shot extraction + regex patterns. Extracts people, organizations, locations, dates, case numbers, flight IDs, financial amounts, and Bates numbers from legal documents.
+
+### Deduplication (`processors/dedup.py`)
+Three-pass deduplication pipeline:
+1. **Exact hash** -- SHA-256 content hash for identical files
+2. **MinHash/LSH** -- O(n) near-duplicate detection for OCR variants
+3. **Semantic similarity** -- Embedding cosine similarity for reformatted duplicates
+
+### Document Classification (`processors/classifier.py`)
+Zero-shot classification using BART-large-mnli into 12 legal document categories (court filings, depositions, correspondence, financial records, flight logs, etc.).
+
+### Semantic Chunking (`processors/chunker.py`)
+Paragraph-aware text splitting with OCR noise cleaning. Respects sentence and paragraph boundaries, targets 450 tokens per chunk with 50-token overlap. Includes contextual prefixes (document title + source) per chunk.
+
+### Embeddings (`processors/embeddings.py`)
+Generates vector embeddings using nomic-embed-text-v2-moe (768-dim, Matryoshka to 256-dim). Used for semantic deduplication and search indexing.
+
+### Redaction Analysis (`processors/redaction.py`)
+Detects redacted regions in PDFs and attempts text recovery where redactions are improperly applied (transparent overlays, recoverable text layers).
+
+### Image Extraction (`processors/image_extractor.py`)
+Extracts embedded images from PDFs with optional AI-powered description via vision models.
+
+### Summarization (`processors/summarizer.py`)
+LLM-based document summarization for generating concise descriptions of legal documents.
+
+### Person Linking (`processors/person_linker.py`)
+Links extracted entity mentions to known persons in the database using fuzzy name matching with word boundary safety (multi-word names only to prevent false positives).
+
+### Knowledge Graph (`processors/knowledge_graph.py`)
+Builds entity relationship graphs from co-occurrence analysis and optional LLM-based relationship extraction. Exports to GEXF and JSON formats.
+
+### Plist Forensics (`processors/plist_forensics.py`)
+Parses Apple plist files found in the Epstein device data for contact and metadata extraction.
+
 ## Person Integrity Auditor
 
-Automated 5-phase data quality pipeline that scans all person records against the Neon database, Wikidata, Wikipedia, and Claude to detect issues before they reach users.
+Automated 5-phase data quality pipeline that scans all person records against the Neon database, Wikidata, Wikipedia, and Claude AI to detect issues before they reach users.
 
 | Phase | What It Does | Cost |
 |-------|-------------|------|
@@ -183,33 +245,46 @@ Automated 5-phase data quality pipeline that scans all person records against th
 
 Issues detected: duplicate entries, merged identities, wrong categories, bio contradictions, ungrounded claims, stale data, external contradictions with Wikidata/Wikipedia.
 
-Requires: `pip install "epstein-pipeline[audit]"` + `EPSTEIN_AUDITOR_ANTHROPIC_API_KEY` + `EPSTEIN_NEON_DATABASE_URL`
+Requires: `EPSTEIN_AUDITOR_ANTHROPIC_API_KEY` + `EPSTEIN_NEON_DATABASE_URL`
 
 Optional: `EPSTEIN_AUDITOR_VOYAGE_API_KEY` (semantic search), `EPSTEIN_AUDITOR_COHERE_API_KEY` (reranking)
 
-## Key Features
+## Environment Variables
 
-- **Multi-backend OCR** with automatic fallback chain and per-page confidence scoring
-- **Three-pass deduplication**: exact hash → MinHash/LSH (O(n)) → semantic similarity
-- **GLiNER zero-shot NER** for custom legal entity types (case numbers, flight IDs, financial amounts)
-- **Semantic chunking** that respects paragraph and sentence boundaries
-- **pgvector embeddings** with cosine similarity search via Neon Postgres
-- **Document classification** using zero-shot BART into 12 legal categories
-- **Knowledge graph** with co-occurrence edges and opt-in LLM relationship extraction
-- **Idempotent Neon schema migration** with pgvector, pg_trgm, and IVFFlat indexes
-- **Person Integrity Auditor** — 5-phase automated data quality pipeline (see below)
+All configuration is via environment variables prefixed with `EPSTEIN_`. No credentials are ever stored in code or config files.
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `EPSTEIN_NEON_DATABASE_URL` | For DB export/search | Neon Postgres connection string |
+| `EPSTEIN_AUDITOR_ANTHROPIC_API_KEY` | For person audit | Claude API key (fact-checking) |
+| `EPSTEIN_AUDITOR_VOYAGE_API_KEY` | Optional | Voyage AI (semantic search in auditor) |
+| `EPSTEIN_AUDITOR_COHERE_API_KEY` | Optional | Cohere (reranking in auditor) |
+
+## Export Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Neon Postgres** | Production website, semantic search | `export neon` |
+| **JSON** | Static site generation, API consumption | `export json` |
+| **CSV** | Research, spreadsheet analysis | `export csv` |
+| **SQLite** | Local querying, offline research | `export sqlite` |
+| **NDJSON** | Streaming, log-style processing | `export json --format ndjson` |
 
 ## Data Sources
 
-See [DATA_SOURCES.md](docs/DATA_SOURCES.md) for all known public data sources.
+All source data comes from publicly released government records and court documents:
 
-## Contributing
+| Source | URL | Content |
+|--------|-----|---------|
+| DOJ EFTA Library | https://www.justice.gov/epstein | 12 datasets, 2M+ files |
+| FBI Vault | https://vault.fbi.gov/jeffrey-epstein | FBI records |
+| CourtListener | https://www.courtlistener.com/docket/4355835/giuffre-v-maxwell/ | Court filings |
+| House Oversight | https://oversight.house.gov | Congressional releases |
+| DocumentCloud | https://www.documentcloud.org | Searchable court docs |
+| Archive.org | https://archive.org/details/epstein-flight-logs-unredacted_202304 | Flight logs, mirrors |
+| Kaggle | Various | Community-compiled datasets |
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
-
-**No coding required:** Report data quality issues, suggest sources, review processed data.
-
-**Code contributions:** Add downloaders, improve extraction, add export formats, fix bugs.
+See [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) for the complete list.
 
 ## Documentation
 
@@ -221,15 +296,24 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for the full gu
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture and design decisions |
 | [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) | All known public data sources |
 | [docs/PROCESSORS.md](docs/PROCESSORS.md) | Processor reference (OCR, NER, dedup, etc.) |
-| [docs/SITE_SYNC.md](docs/SITE_SYNC.md) | Syncing output to epsteinexposed.com |
+| [docs/SITE_SYNC.md](docs/SITE_SYNC.md) | Syncing processed data to epsteinexposed.com |
 | [docs/SEA_DOUGHNUT.md](docs/SEA_DOUGHNUT.md) | Sea_Doughnut research data integration |
+
+## Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+
+**No coding required:** Report data quality issues, suggest new data sources, review processed data.
+
+**Code contributions:** Add downloaders, improve extraction accuracy, add export formats, fix bugs.
 
 ## Related Projects
 
-- [epsteinexposed.com](https://epsteinexposed.com) — The live website powered by this pipeline
-- [Epstein-Files](https://github.com/WikiLeaksLookup/Epstein-Files) — DOJ file mirrors
-- [Epstein-doc-explorer](https://github.com/nicholasgasior/Epstein-doc-explorer) — Email graph explorer
-- [Epstein-research-data](https://github.com/rhowardstone/Epstein-research-data) — Community research dataset
+- [epsteinexposed.com](https://epsteinexposed.com) -- The live website powered by this pipeline
+- [rodrigopolo/epstein-doj-library-sha256](https://github.com/rodrigopolo/epstein-doj-library-sha256) -- SHA-256 integrity hashes for DOJ files
+- [Epstein-Files](https://github.com/WikiLeaksLookup/Epstein-Files) -- DOJ file mirrors
+- [Epstein-doc-explorer](https://github.com/nicholasgasior/Epstein-doc-explorer) -- Email graph explorer
+- [Epstein-research-data](https://github.com/rhowardstone/Epstein-research-data) -- Community research dataset
 
 ## License
 
