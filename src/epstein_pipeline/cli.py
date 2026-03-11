@@ -1416,6 +1416,232 @@ def import_sanctions(results_path: Path, database_url: str, min_score: float) ->
     import_opensanctions(results_path, database_url, min_score=min_score)
 
 
+# ── ICIJ Offshore Leaks ──────────────────────────────────────────────────
+
+
+@cli.command("check-icij")
+@click.option("--output", "-o", type=click.Path(path_type=Path), default=None,
+              help="Output directory for results JSON (default: output/icij/)")
+@click.option("--icij-data-dir", type=click.Path(exists=True, path_type=Path), default=None,
+              help="Path to extracted ICIJ CSV files (or set EPSTEIN_ICIJ_DATA_DIR)")
+@click.option("--registry", type=click.Path(exists=True, path_type=Path), default=None,
+              help="Path to persons-registry.json")
+@click.option("--threshold", type=int, default=85,
+              help="Minimum rapidfuzz score for fuzzy matching (0-100, default 85)")
+@click.option("--no-relationships", is_flag=True,
+              help="Skip relationship traversal (faster)")
+def check_icij(
+    output: Path | None,
+    icij_data_dir: Path | None,
+    registry: Path | None,
+    threshold: int,
+    no_relationships: bool,
+) -> None:
+    """Cross-reference all persons against ICIJ Offshore Leaks.
+
+    Matches persons against entities, officers, and intermediaries from
+    Panama Papers, Paradise Papers, Pandora Papers, and Bahamas Leaks.
+
+    \b
+    Examples:
+      epstein-pipeline check-icij
+      epstein-pipeline check-icij --icij-data-dir ./data/icij/extracted
+      epstein-pipeline check-icij --threshold 90 --no-relationships
+    """
+    settings = _load_settings()
+    data_dir = icij_data_dir or settings.icij_data_dir
+    out_dir = output or settings.output_dir / "icij"
+    reg_path = registry or settings.persons_registry_path
+
+    from epstein_pipeline.downloaders.icij import download_icij
+
+    download_icij(
+        out_dir,
+        icij_data_dir=data_dir,
+        persons_registry_path=reg_path,
+        fuzzy_threshold=threshold,
+        min_name_length=settings.icij_min_name_length,
+        traverse_relationships=not no_relationships,
+    )
+
+
+@cli.command("import-icij")
+@click.argument("results_path", type=click.Path(exists=True, path_type=Path))
+@click.option("--database-url", envvar="EPSTEIN_NEON_DATABASE_URL", required=True,
+              help="Neon Postgres URL")
+@click.option("--min-score", type=float, default=0.75,
+              help="Minimum match score to import (default 0.75)")
+@click.option("--clear-existing", is_flag=True,
+              help="Truncate existing ICIJ data before importing")
+def import_icij_cmd(results_path: Path, database_url: str, min_score: float, clear_existing: bool) -> None:
+    """Import ICIJ cross-reference results into Neon Postgres.
+
+    Reads icij-crossref-results.json and writes matches and relationship
+    chains to the icij_matches and icij_relationships tables.
+
+    \b
+    Examples:
+      epstein-pipeline import-icij ./output/icij/icij-crossref-results.json
+      epstein-pipeline import-icij results.json --min-score 0.8
+      epstein-pipeline import-icij results.json --clear-existing
+    """
+    from epstein_pipeline.importers.icij import import_icij
+
+    import_icij(results_path, database_url, min_score=min_score, clear_existing=clear_existing)
+
+
+# ── FEC Political Donations ──────────────────────────────────────────────
+
+
+@cli.command("check-fec")
+@click.option("--output", "-o", type=click.Path(path_type=Path), default=None,
+              help="Output directory for results JSON (default: output/fec/)")
+@click.option("--api-key", envvar="EPSTEIN_FEC_API_KEY", default=None,
+              help="FEC API key (or set EPSTEIN_FEC_API_KEY)")
+@click.option("--registry", type=click.Path(exists=True, path_type=Path), default=None,
+              help="Path to persons-registry.json")
+@click.option("--min-amount", type=int, default=200,
+              help="Minimum contribution in dollars (default 200)")
+@click.option("--max-persons", type=int, default=None,
+              help="Limit persons to check (for testing)")
+@click.option("--no-resume", is_flag=True,
+              help="Don't resume from cached results")
+def check_fec(
+    output: Path | None,
+    api_key: str | None,
+    registry: Path | None,
+    min_amount: int,
+    max_persons: int | None,
+    no_resume: bool,
+) -> None:
+    """Cross-reference all persons against FEC political donations.
+
+    Searches FEC Schedule A (individual contributions) for each person
+    and records matches with party, amount, and candidate information.
+
+    \b
+    Examples:
+      epstein-pipeline check-fec --api-key YOUR_KEY
+      epstein-pipeline check-fec --max-persons 20
+      epstein-pipeline check-fec --min-amount 500 --no-resume
+    """
+    settings = _load_settings()
+    key = api_key or settings.fec_api_key
+    if not key:
+        console.print("[red]FEC API key required.[/red]")
+        console.print("Set EPSTEIN_FEC_API_KEY or use --api-key")
+        raise SystemExit(1)
+
+    out_dir = output or settings.output_dir / "fec"
+    reg_path = registry or settings.persons_registry_path
+
+    from epstein_pipeline.downloaders.fec import download_fec
+
+    download_fec(
+        out_dir,
+        api_key=key,
+        persons_registry_path=reg_path,
+        min_amount=min_amount,
+        max_pages=settings.fec_max_pages,
+        max_persons=max_persons,
+        resume=not no_resume,
+    )
+
+
+@cli.command("import-fec")
+@click.argument("results_path", type=click.Path(exists=True, path_type=Path))
+@click.option("--database-url", envvar="EPSTEIN_NEON_DATABASE_URL", required=True,
+              help="Neon Postgres URL")
+@click.option("--min-score", type=float, default=0.85,
+              help="Minimum match score to import (default 0.85)")
+@click.option("--min-amount", type=int, default=200,
+              help="Minimum contribution in cents to import (default 200)")
+def import_fec_cmd(results_path: Path, database_url: str, min_score: float, min_amount: int) -> None:
+    """Import FEC political donation results into Neon Postgres.
+
+    Reads fec-results.json and writes donation records to the
+    political_donations table and updates person records.
+
+    \b
+    Examples:
+      epstein-pipeline import-fec ./output/fec/fec-results.json
+      epstein-pipeline import-fec results.json --min-score 0.9
+      epstein-pipeline import-fec results.json --min-amount 1000
+    """
+    from epstein_pipeline.importers.fec import import_fec
+
+    import_fec(results_path, database_url, min_score=min_score, min_amount=min_amount)
+
+
+@cli.command("clean-fec")
+@click.option("--database-url", envvar="EPSTEIN_NEON_DATABASE_URL",
+              help="Neon Postgres connection string")
+@click.option("--dry-run", is_flag=True, help="Preview without deleting")
+def clean_fec(database_url: str, dry_run: bool) -> None:
+    """Remove false positive donation records (generic names like 'Mr. Johnson').
+
+    \b
+    Examples:
+      epstein-pipeline clean-fec --dry-run
+      epstein-pipeline clean-fec
+    """
+    if not database_url:
+        click.echo("Database URL required. Set EPSTEIN_NEON_DATABASE_URL or use --database-url")
+        return
+    from epstein_pipeline.downloaders.fec_enrich import clean_false_positives
+    clean_false_positives(database_url, dry_run=dry_run)
+
+
+@cli.command("enrich-fec")
+@click.option("--database-url", envvar="EPSTEIN_NEON_DATABASE_URL",
+              help="Neon Postgres connection string")
+@click.option("--api-key", envvar="EPSTEIN_FEC_API_KEY",
+              help="FEC API key")
+@click.option("--cache-dir", type=click.Path(path_type=Path), default=None,
+              help="Directory for committee cache (default: ./output/fec/fec-cache)")
+def enrich_fec(database_url: str, api_key: str, cache_dir: Path | None) -> None:
+    """Enrich donation records with candidate names from FEC committee API.
+
+    Resolves committee IDs to candidate name, party, and office info
+    for donations with missing candidate data.
+
+    \b
+    Examples:
+      epstein-pipeline enrich-fec --api-key YOUR_KEY
+      epstein-pipeline enrich-fec
+    """
+    if not database_url:
+        click.echo("Database URL required. Set EPSTEIN_NEON_DATABASE_URL or use --database-url")
+        return
+    if not api_key:
+        click.echo("FEC API key required. Set EPSTEIN_FEC_API_KEY or use --api-key")
+        return
+    from epstein_pipeline.downloaders.fec_enrich import enrich_candidate_names
+    enrich_candidate_names(database_url, api_key=api_key, cache_dir=cache_dir)
+
+
+@cli.command("link-fec-donors")
+@click.option("--database-url", envvar="EPSTEIN_NEON_DATABASE_URL",
+              help="Neon Postgres connection string")
+@click.option("--dry-run", is_flag=True, help="Preview matches without updating")
+def link_fec_donors(database_url: str, dry_run: bool) -> None:
+    """Link unmatched donation records to persons in the Neon DB.
+
+    Uses fuzzy name matching to find persons table entries for
+    donors that have pipeline registry IDs but no Neon person.
+
+    \b
+    Examples:
+      epstein-pipeline link-fec-donors --dry-run
+      epstein-pipeline link-fec-donors
+    """
+    if not database_url:
+        click.echo("Database URL required. Set EPSTEIN_NEON_DATABASE_URL or use --database-url")
+        return
+    from epstein_pipeline.downloaders.fec_enrich import link_unmatched_donors
+    link_unmatched_donors(database_url, dry_run=dry_run)
+
+
 @cli.command("audit-persons")
 @click.option("--phases", "-p", default="all",
               help="Comma-separated phases: dedup,wikidata,factcheck,coherence,score (default: all)")

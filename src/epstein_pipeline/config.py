@@ -123,6 +123,18 @@ class Settings(BaseSettings):
     opensanctions_api_key: str | None = None
     opensanctions_match_threshold: float = 0.5  # minimum score to flag
 
+    # ── ICIJ Offshore Leaks settings ─────────────────────────────────
+    icij_data_dir: Path | None = None  # Path to extracted ICIJ CSVs
+    icij_fuzzy_threshold: int = 85  # rapidfuzz token_sort_ratio minimum
+    icij_min_name_length: int = 5  # skip names shorter than this
+    icij_traverse_relationships: bool = True  # follow officer→entity edges
+
+    # ── FEC Political Donations settings ─────────────────────────────
+    fec_api_key: str | None = None  # FEC API key from api.data.gov
+    fec_min_amount: int = 200  # minimum contribution in dollars
+    fec_max_pages: int = 5  # max API pages per person search
+    fec_rate_limit: int = 120  # requests per minute
+
     # ── Person Auditor settings ────────────────────────────────────────
     auditor_anthropic_api_key: str | None = None
     auditor_anthropic_model: str = "claude-sonnet-4-6"  # Primary model for verification
