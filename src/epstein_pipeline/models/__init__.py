@@ -24,11 +24,35 @@ from epstein_pipeline.models.forensics import (
     Transcript,
     TranscriptSegment,
 )
+from epstein_pipeline.models.fec import (
+    FECContribution,
+    FECPersonResult,
+    FECSearchResult,
+)
+from epstein_pipeline.models.icij import (
+    ICIJCrossRefResult,
+    ICIJEntity,
+    ICIJIntermediary,
+    ICIJMatch,
+    ICIJOfficer,
+    ICIJRelationship,
+    ICIJRelationshipChain,
+)
 from epstein_pipeline.models.registry import PersonRegistry
 
 __all__ = [
     "ConcordanceSummary",
     "Document",
+    "FECContribution",
+    "FECPersonResult",
+    "FECSearchResult",
+    "ICIJCrossRefResult",
+    "ICIJEntity",
+    "ICIJIntermediary",
+    "ICIJMatch",
+    "ICIJOfficer",
+    "ICIJRelationship",
+    "ICIJRelationshipChain",
     "DocumentCategory",
     "DocumentSource",
     "Email",

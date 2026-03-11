@@ -1,0 +1,187 @@
+name: Monthly Data Enrichment
+
+on:
+  schedule:
+    # 1st of each month at 2 AM UTC
+    - cron: "0 2 1 * *"
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "Which enrichment to run"
+        type: choice
+        options:
+          - both
+          - fec
+          - icij
+          - enrich-only
+        default: both
+
+env:
+  EPSTEIN_FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+  EPSTEIN_NEON_DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+
+jobs:
+  # ---------------------------------------------------------------
+  # ICIJ Offshore Leaks cross-reference (~2 minutes)
+  # ---------------------------------------------------------------
+  icij:
+    if: >-
+      github.event_name == 'schedule' ||
+      github.event.inputs.job == 'both' ||
+      github.event.inputs.job == 'icij'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -e ".[neon]"
+
+      - name: Restore ICIJ CSV cache
+        uses: actions/cache@v4
+        with:
+          path: data/icij/
+          key: icij-csvs-v1
+
+      - name: Check ICIJ data exists
+        id: icij-data
+        run: |
+          if [ -d "data/icij/extracted" ] && [ "$(ls data/icij/extracted/*.csv 2>/dev/null | wc -l)" -gt 0 ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::ICIJ CSV data not cached. Skipping ICIJ check. Manually upload CSVs to data/icij/extracted/ or run locally first."
+          fi
+
+      - name: Run ICIJ cross-reference
+        if: steps.icij-data.outputs.exists == 'true'
+        run: |
+          epstein-pipeline check-icij \
+            --output ./output/icij/ \
+            --icij-data-dir data/icij/extracted/
+
+      - name: Import ICIJ results
+        if: steps.icij-data.outputs.exists == 'true'
+        run: |
+          epstein-pipeline import-icij \
+            ./output/icij/icij-crossref-results.json \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL"
+
+      - name: Upload ICIJ results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: icij-results
+          path: output/icij/
+          retention-days: 30
+
+  # ---------------------------------------------------------------
+  # FEC Political Donations cross-reference (~3-4 hours)
+  # ---------------------------------------------------------------
+  fec:
+    if: >-
+      github.event_name == 'schedule' ||
+      github.event.inputs.job == 'both' ||
+      github.event.inputs.job == 'fec'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -e ".[neon]"
+
+      - name: Restore FEC cache
+        uses: actions/cache@v4
+        with:
+          path: output/fec/fec-cache/
+          key: fec-cache-${{ hashFiles('data/persons-registry.json') }}
+          restore-keys: |
+            fec-cache-
+
+      - name: Run FEC cross-reference
+        run: |
+          epstein-pipeline check-fec \
+            --output ./output/fec/
+
+      - name: Import FEC results
+        run: |
+          epstein-pipeline import-fec \
+            ./output/fec/fec-results.json \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL" \
+            --min-score 0.90
+
+      - name: Clean false positives
+        run: |
+          epstein-pipeline clean-fec \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL"
+
+      - name: Link unmatched donors
+        run: |
+          epstein-pipeline link-fec-donors \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL"
+
+      - name: Enrich candidate names
+        run: |
+          epstein-pipeline enrich-fec \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL" \
+            --cache-dir ./output/fec/fec-cache/
+
+      - name: Upload FEC results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fec-results
+          path: |
+            output/fec/fec-results.json
+            output/fec/fec-cache/committees.json
+          retention-days: 30
+
+  # ---------------------------------------------------------------
+  # Enrich-only: just run enrichment on existing data
+  # ---------------------------------------------------------------
+  enrich-only:
+    if: github.event.inputs.job == 'enrich-only'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -e ".[neon]"
+
+      - name: Restore committee cache
+        uses: actions/cache@v4
+        with:
+          path: output/fec/fec-cache/
+          key: fec-cache-${{ hashFiles('data/persons-registry.json') }}
+          restore-keys: |
+            fec-cache-
+
+      - name: Clean false positives
+        run: |
+          epstein-pipeline clean-fec \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL"
+
+      - name: Link unmatched donors
+        run: |
+          epstein-pipeline link-fec-donors \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL"
+
+      - name: Enrich candidate names
+        run: |
+          epstein-pipeline enrich-fec \
+            --database-url "$EPSTEIN_NEON_DATABASE_URL" \
+            --cache-dir ./output/fec/fec-cache/
