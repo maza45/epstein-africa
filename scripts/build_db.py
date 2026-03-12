@@ -129,6 +129,7 @@ def main():
             countries         TEXT,
             release_batch     INTEGER,
             epstein_is_sender INTEGER,
+            is_promotional    INTEGER,
             all_participants  TEXT
         );
         CREATE INDEX idx_sent_at  ON emails(sent_at);
@@ -147,11 +148,12 @@ def main():
             r.get("countries", ""),
             r.get("release_batch"),
             int(bool(r.get("epstein_is_sender"))),
+            int(bool(r.get("is_promotional"))),
             r.get("all_participants"),
         ))
 
     cur.executemany(
-        "INSERT INTO emails VALUES (?,?,?,?,?,?,?,?,?,?)", rows
+        "INSERT INTO emails VALUES (?,?,?,?,?,?,?,?,?,?,?)", rows
     )
     conn.commit()
     conn.close()
