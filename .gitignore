@@ -28,6 +28,7 @@ env/
 # Output
 output/
 *.db
+!web/data/epstein_africa.db
 
 # OS
 .DS_Store
