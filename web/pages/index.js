@@ -91,7 +91,7 @@ export default function Home() {
           <h1>Epstein Africa</h1>
           <p className="subtitle">
             Searchable database of Jeffrey Epstein&apos;s documented connections
-            to Africa.{" "}
+            to Africa — 752 verified emails, excluding promotional mail.{" "}
             <span className="source">
               Source: DOJ Epstein Files Transparency Act.
             </span>

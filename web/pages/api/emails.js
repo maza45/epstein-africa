@@ -16,7 +16,7 @@ export default function handler(req, res) {
   const q = (req.query.q || "").trim();
   const country = (req.query.country || "").trim();
 
-  const conditions = [];
+  const conditions = ["is_promotional = 0"];
   const params = [];
 
   if (q) {
@@ -32,7 +32,7 @@ export default function handler(req, res) {
     params.push(`%${country}%`);
   }
 
-  const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
+  const where = `WHERE ${conditions.join(" AND ")}`;
 
   const total = db
     .prepare(`SELECT COUNT(*) AS n FROM emails ${where}`)
