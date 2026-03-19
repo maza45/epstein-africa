@@ -13,7 +13,7 @@ export const PEOPLE = [
     title: "Financier (subject of investigation)",
     countries: ["Kenya", "Nigeria", "South Africa", "Senegal", "Somalia", "Zimbabwe", "Africa"],
     bio: "Jeffrey Epstein is the central subject of this database. His Africa-related correspondence includes visa arrangements for Kenya trips (2009), discussions of African business ventures, and forwarded materials on African political affairs. He was arrested in 2019 and died in federal custody the same year.",
-    searchTerms: ["jeffrey epstein", "j. epstein", "jeeproject"],
+    searchTerms: ["jeffrey epstein", "j. epstein", "jeeproject", "jeevacation", "jeffrey e."],
   },
   {
     slug: "peggy-siegal",
