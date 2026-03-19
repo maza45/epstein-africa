@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Nav from "../../components/Nav";
 
 function formatDate(d) {
   if (!d) return "Unknown";
@@ -83,9 +84,7 @@ export default function EmailDetail() {
       </Head>
 
       <div className="container">
-        <nav className="breadcrumb">
-          <Link href="/">← Back to emails</Link>
-        </nav>
+        <Nav />
 
         {error && <p className="error-msg">{error}</p>}
 

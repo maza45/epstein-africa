@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import Script from "next/script";
 import { useRouter } from "next/router";
+import Nav from "../components/Nav";
 
 export default function GraphPage() {
   const containerRef = useRef(null);
@@ -198,11 +198,9 @@ export default function GraphPage() {
 
       <div className="graph-page">
         <div className="graph-nav">
-          <Link href="/">← Emails</Link>
-          <Link href="/people">Persons</Link>
-          <Link href="/about">About</Link>
-          <span className="graph-nav-title">Network Graph</span>
+          <Nav />
         </div>
+
 
         {error && <p className="error-msg" style={{ padding: "1rem" }}>{error}</p>}
 

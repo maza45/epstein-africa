@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Nav from "../../components/Nav";
 import { PEOPLE } from "../../lib/people";
 
 export default function PeopleIndex() {
@@ -14,10 +15,7 @@ export default function PeopleIndex() {
       </Head>
 
       <div className="container">
-        <nav className="breadcrumb">
-          <Link href="/">← Back to emails</Link>
-        </nav>
-
+        <Nav />
         <header className="site-header">
           <h1>Key Persons</h1>
           <p className="subtitle">

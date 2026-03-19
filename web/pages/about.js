@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Link from "next/link";
+import Nav from "../components/Nav";
 
 export default function About() {
   return (
@@ -13,10 +13,7 @@ export default function About() {
       </Head>
 
       <div className="container">
-        <nav className="breadcrumb">
-          <Link href="/">← Back to emails</Link>
-        </nav>
-
+        <Nav />
         <header className="site-header">
           <h1>About</h1>
         </header>

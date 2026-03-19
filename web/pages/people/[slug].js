@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Nav from "../../components/Nav";
 
 function formatDate(d) {
   if (!d) return "—";
@@ -49,9 +50,7 @@ export default function PersonProfile() {
       </Head>
 
       <div className="container">
-        <nav className="breadcrumb">
-          <Link href="/people">← All persons</Link>
-        </nav>
+        <Nav />
 
         {error && <p className="error-msg">{error}</p>}
         {!data && !error && <p className="loading-msg">Loading…</p>}
