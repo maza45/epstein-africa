@@ -78,6 +78,19 @@ export default function GraphPage() {
 
     simulationRef.current = simulation;
 
+    // ── Debug: confirm weight values and strokeWidth calc ─────────────────
+    const sample = links
+      .slice()
+      .sort((a, b) => b.weight - a.weight)
+      .slice(0, 5)
+      .map((l) => ({
+        src: typeof l.source === "object" ? l.source.id : l.source,
+        tgt: typeof l.target === "object" ? l.target.id : l.target,
+        weight: l.weight,
+        strokeWidth: +(Math.log(l.weight + 1) * 1.5).toFixed(2),
+      }));
+    console.log("[graph] top 5 edges by weight:", sample);
+
     // ── Edges ─────────────────────────────────────────────────────────────
     const link = g
       .append("g")
@@ -86,7 +99,7 @@ export default function GraphPage() {
       .data(links)
       .join("line")
       .attr("stroke", "#555")
-      .attr("stroke-width", (d) => (d.type === "person-person" ? 1.5 : 1))
+      .attr("stroke-width", (d) => Math.log(d.weight + 1) * 1.5)
       .attr("stroke-opacity", (d) => opacityScale(d.weight));
 
     // ── Drag behaviour ────────────────────────────────────────────────────
