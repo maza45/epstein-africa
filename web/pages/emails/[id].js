@@ -26,6 +26,25 @@ function parseParticipants(raw) {
   return [...parts].filter(Boolean);
 }
 
+const SENDER_SLUGS = [
+  { fragments: ["jeffrey epstein", "j. epstein", "jeeproject"], slug: "jeffrey-epstein" },
+  { fragments: ["sultan bin sulaye"], slug: "sultan-bin-sulayem" },
+  { fragments: ["peggy siegal"], slug: "peggy-siegal" },
+  { fragments: ["jide zeitlin"], slug: "jide-zeitlin" },
+  { fragments: ["lesley groff"], slug: "lesley-groff" },
+  { fragments: ["miasha"], slug: "miasha" },
+  { fragments: ["ghislaine maxwell", "gmax"], slug: "ghislaine-maxwell" },
+];
+
+function senderSlug(sender) {
+  if (!sender) return null;
+  const lower = sender.toLowerCase();
+  for (const { fragments, slug } of SENDER_SLUGS) {
+    if (fragments.some((f) => lower.includes(f))) return slug;
+  }
+  return null;
+}
+
 function Field({ label, value, mono }) {
   if (!value && value !== 0) return null;
   return (
@@ -87,7 +106,20 @@ export default function EmailDetail() {
             </header>
 
             <div className="detail-fields">
-              <Field label="From" value={email.sender} />
+              {email.sender && (
+                <div className="field">
+                  <div className="field-label">From</div>
+                  <div className="field-value">
+                    {senderSlug(email.sender) ? (
+                      <Link href={`/people/${senderSlug(email.sender)}`}>
+                        {email.sender}
+                      </Link>
+                    ) : (
+                      email.sender
+                    )}
+                  </div>
+                </div>
+              )}
               <Field label="To" value={email.to_recipients} />
 
               {participants.length > 0 && (
