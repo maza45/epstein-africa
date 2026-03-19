@@ -173,21 +173,44 @@ export default function handler(req, res) {
   }
 
   // ── 5. Assemble response ─────────────────────────────────────────────────
-  const nodes = [...personMap.values(), ...countryNodes];
-
   const edges = [...edgeMap.entries()].map(([key, weight]) => {
     const [source, target, type] = key.split("||");
     return { source, target, weight, type };
   });
 
+  // For each country, collect the distinct person nodes it connects to
+  const countryPersons = new Map(); // countryId → Set<personId>
+  for (const e of edges.filter((e) => e.type === "person-country")) {
+    const cId = e.source.startsWith("country-") ? e.source : e.target;
+    const pId = e.source.startsWith("country-") ? e.target : e.source;
+    if (!countryPersons.has(cId)) countryPersons.set(cId, new Set());
+    countryPersons.get(cId).add(pId);
+  }
+
+  // Keep countries that: (1) are not the catch-all "Africa" tag,
+  // (2) connect to at least 2 distinct person nodes
+  const filteredCountryNodes = countryNodes.filter(
+    (n) => n.label !== "Africa" && (countryPersons.get(n.id)?.size ?? 0) >= 2
+  );
+
+  // Drop edges that reference filtered-out country nodes
+  const keptCountryIds = new Set(filteredCountryNodes.map((n) => n.id));
+  const filteredEdges = edges.filter((e) => {
+    if (e.type !== "person-country") return true;
+    const cId = e.source.startsWith("country-") ? e.source : e.target;
+    return keptCountryIds.has(cId);
+  });
+
+  const nodes = [...personMap.values(), ...filteredCountryNodes];
+
   res.setHeader("Cache-Control", "public, max-age=3600");
   res.status(200).json({
     nodes,
-    edges,
+    edges: filteredEdges,
     meta: {
       personCount: personMap.size,
-      countryCount: countryNodes.length,
-      edgeCount: edges.length,
+      countryCount: filteredCountryNodes.length,
+      edgeCount: filteredEdges.length,
     },
   });
 }
