@@ -62,6 +62,10 @@ export default function GraphPage() {
     );
 
     // ── Simulation ────────────────────────────────────────────────────────
+    // forceX/forceY with weak strength gently recentres without collapsing.
+    // forceCenter is NOT used — it overrides repulsion and causes collapse.
+    // forceLink strength uses D3 default (scales by node connectivity),
+    // preventing over-pulling on high-degree nodes like Epstein.
     const simulation = d3
       .forceSimulation(nodes)
       .force(
@@ -69,12 +73,14 @@ export default function GraphPage() {
         d3
           .forceLink(links)
           .id((d) => d.id)
-          .distance((d) => (d.type === "person-person" ? 120 : 160))
-          .strength(0.4)
+          .distance((d) => (d.type === "person-person" ? 180 : 140))
+        // no .strength() override — D3 default scales by 1/sqrt(degree)
       )
-      .force("charge", d3.forceManyBody().strength(-280))
-      .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collide", d3.forceCollide((d) => (d.type === "person" ? 28 : 36)));
+      .force("charge", d3.forceManyBody().strength(-600).distanceMax(600))
+      .force("x", d3.forceX(width / 2).strength(0.05))
+      .force("y", d3.forceY(height / 2).strength(0.05))
+      .force("collide", d3.forceCollide((d) => (d.type === "person" ? 32 : 42)))
+      .alphaDecay(0.015); // slower cooling → more time to spread out
 
     simulationRef.current = simulation;
 
