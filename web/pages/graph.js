@@ -85,7 +85,7 @@ export default function GraphPage() {
     simulationRef.current = simulation;
 
     // ── Edges ─────────────────────────────────────────────────────────────
-    let _logged = 0;
+    const maxWeight = Math.max(...links.map((e) => e.weight));
     const link = g
       .append("g")
       .attr("class", "links")
@@ -93,15 +93,7 @@ export default function GraphPage() {
       .data(links)
       .join("line")
       .attr("stroke", "#555")
-      .attr("stroke-width", (d) => {
-        const w = d.weight;
-        const sw = Math.max(1, Math.log(w + 1) * 2);
-        if (_logged < 6) {
-          console.log(`[graph] edge weight=${w} → strokeWidth=${sw.toFixed(2)}`);
-          _logged++;
-        }
-        return sw;
-      })
+      .attr("stroke-width", (d) => (d.weight / maxWeight) * 8)
       .attr("stroke-opacity", (d) => opacityScale(d.weight));
 
     // ── Drag behaviour ────────────────────────────────────────────────────
