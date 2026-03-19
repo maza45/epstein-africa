@@ -43,7 +43,7 @@ export default function handler(req, res) {
       `SELECT id, sender, subject, sent_at, countries, epstein_is_sender
        FROM emails
        ${where}
-       ORDER BY sent_at DESC
+       ORDER BY COALESCE(sent_at, '9999-99-99') ASC
        LIMIT ? OFFSET ?`
     )
     .all(...params, limit, offset);
