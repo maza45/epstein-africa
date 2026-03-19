@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const COUNTRIES = [
   "Africa",
@@ -45,6 +47,7 @@ export default function Home() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   // Debounce search input — also resets page
   useEffect(() => {
@@ -170,7 +173,8 @@ export default function Home() {
                 emails.map((email) => (
                   <tr
                     key={email.id}
-                    className={email.epstein_is_sender ? "epstein-row" : ""}
+                    className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
+                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}`)}
                   >
                     <td className="col-date">{formatDate(email.sent_at)}</td>
                     <td className="col-sender">{cleanSender(email.sender)}</td>
@@ -217,6 +221,8 @@ export default function Home() {
 
         <footer className="site-footer">
           <p>
+            <Link href="/people">Key Persons</Link>
+            {" · "}
             Public interest journalism. Free, ad-free, open source.{" "}
             <a
               href="https://github.com/maza45/epstein-africa"
