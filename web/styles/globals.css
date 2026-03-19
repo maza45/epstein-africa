@@ -261,7 +261,32 @@ a:hover {
   font-size: 0.78rem;
 }
 
+/* ── Site nav ── */
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.6rem 0;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+
+.site-nav a {
+  color: var(--text-dim);
+}
+
+.site-nav a:hover {
+  color: var(--accent-hover);
+  text-decoration: none;
+}
+
 /* ── Graph page ── */
+.graph-nav .site-nav {
+  margin-bottom: 0;
+  padding: 0 0.5rem;
+  border-bottom: none;
+}
+
 .graph-page {
   display: flex;
   flex-direction: column;

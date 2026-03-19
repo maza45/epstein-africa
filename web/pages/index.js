@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Nav from "../components/Nav";
 
 const COUNTRIES = [
   "Africa",
@@ -90,6 +91,7 @@ export default function Home() {
       </Head>
 
       <div className="container">
+        <Nav />
         <header className="site-header">
           <h1>Epstein Africa</h1>
           <p className="subtitle">
@@ -221,12 +223,6 @@ export default function Home() {
 
         <footer className="site-footer">
           <p>
-            <Link href="/people">Key Persons</Link>
-            {" · "}
-            <Link href="/graph">Network Graph</Link>
-            {" · "}
-            <Link href="/about">About</Link>
-            {" · "}
             Public interest journalism. Free, ad-free, open source.{" "}
             <a
               href="https://github.com/Iskanenani/epstein-africa"
