@@ -188,9 +188,9 @@ export default function handler(req, res) {
   }
 
   // Keep countries that: (1) are not the catch-all "Africa" tag,
-  // (2) connect to at least 2 distinct person nodes
+  // (2) connect to at least 1 person node
   const filteredCountryNodes = countryNodes.filter(
-    (n) => n.label !== "Africa" && (countryPersons.get(n.id)?.size ?? 0) >= 2
+    (n) => n.label !== "Africa" && (countryPersons.get(n.id)?.size ?? 0) >= 1
   );
 
   // Drop edges that reference filtered-out country nodes
