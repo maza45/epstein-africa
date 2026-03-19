@@ -229,7 +229,7 @@ export default function Home() {
             {" · "}
             Public interest journalism. Free, ad-free, open source.{" "}
             <a
-              href="https://github.com/maza45/epstein-africa"
+              href="https://github.com/Iskanenani/epstein-africa"
               target="_blank"
               rel="noreferrer"
             >
