@@ -93,7 +93,7 @@ export default function GraphPage() {
       .data(links)
       .join("line")
       .attr("stroke", "#555")
-      .attr("stroke-width", (d) => (d.weight / maxWeight) * 8)
+      .attr("stroke-width", (d) => Math.max(0.8, (d.weight / maxWeight) * 8))
       .attr("stroke-opacity", (d) => opacityScale(d.weight));
 
     // ── Drag behaviour ────────────────────────────────────────────────────
