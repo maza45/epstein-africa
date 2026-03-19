@@ -225,6 +225,8 @@ export default function Home() {
             {" · "}
             <Link href="/graph">Network Graph</Link>
             {" · "}
+            <Link href="/about">About</Link>
+            {" · "}
             Public interest journalism. Free, ad-free, open source.{" "}
             <a
               href="https://github.com/maza45/epstein-africa"

@@ -338,6 +338,17 @@ a:hover {
   margin-top: 0.25rem;
 }
 
+/* ── About page ── */
+.about-body {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
 /* ── People grid ── */
 .people-grid {
   display: grid;

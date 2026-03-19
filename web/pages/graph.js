@@ -200,6 +200,7 @@ export default function GraphPage() {
         <div className="graph-nav">
           <Link href="/">← Emails</Link>
           <Link href="/people">Persons</Link>
+          <Link href="/about">About</Link>
           <span className="graph-nav-title">Network Graph</span>
         </div>
 
