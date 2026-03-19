@@ -223,6 +223,8 @@ export default function Home() {
           <p>
             <Link href="/people">Key Persons</Link>
             {" · "}
+            <Link href="/graph">Network Graph</Link>
+            {" · "}
             Public interest journalism. Free, ad-free, open source.{" "}
             <a
               href="https://github.com/maza45/epstein-africa"
