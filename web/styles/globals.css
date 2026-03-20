@@ -280,6 +280,131 @@ a:hover {
   text-decoration: none;
 }
 
+/* ── Stories index ── */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.story-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.1rem 1.25rem;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+
+.story-card:hover {
+  border-color: var(--accent-hover);
+  text-decoration: none;
+}
+
+.story-date-range {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.story-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.story-summary {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.story-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+/* ── Story detail ── */
+.story-article {
+  max-width: 740px;
+}
+
+.story-header {
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.story-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.story-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.story-lede {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.story-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+}
+
+.story-section {
+  margin-top: 2.5rem;
+}
+
+.news-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.news-links li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.news-source {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.news-links a {
+  font-size: 0.85rem;
+}
+
 /* ── Graph page ── */
 .graph-nav .site-nav {
   margin-bottom: 0;
