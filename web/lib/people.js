@@ -64,6 +64,14 @@ export const PEOPLE = [
     searchTerms: ["sidi", "sidi tiemoko", "sidi toure", "sidi tiémoko"],
   },
   {
+    slug: "ghislaine-maxwell",
+    name: "Ghislaine Maxwell",
+    title: "Epstein associate, convicted sex trafficker",
+    countries: ["Kenya", "Ethiopia", "Rwanda", "Africa"],
+    bio: "Ghislaine Maxwell was Jeffrey Epstein's longtime companion and associate. She was convicted in 2021 of sex trafficking and related offences and is serving a 20-year federal prison sentence. She appears in Epstein's Africa-related archive in a small number of emails touching on Kenya safari travel, Ethiopia logistics, and a Rwanda scholarship forwarding. She corresponded under her own name and the alias 'Gmax'.",
+    searchTerms: ["ghislaine maxwell", "ghislaine", "gmax"],
+  },
+  {
     slug: "karim-wade",
     name: "Karim Wade",
     title: "Former Minister of State, Senegal",
