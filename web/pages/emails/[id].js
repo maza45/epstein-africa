@@ -85,6 +85,7 @@ export default function EmailDetail() {
 
       <div className="container">
         <Nav />
+        <button className="back-btn" onClick={() => router.back()}>← Back</button>
 
         {error && <p className="error-msg">{error}</p>}
 
