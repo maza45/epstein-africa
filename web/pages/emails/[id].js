@@ -87,7 +87,10 @@ export default function EmailDetail() {
         <Nav />
         <a
           className="back-btn"
-          href={`/?page=${parseInt(router.query.from?.replace("page=", "")) || 1}`}
+          href={(() => {
+            const raw = router.query.from ? decodeURIComponent(router.query.from) : "/";
+            return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
+          })()}
         >
           ← Back
         </a>
