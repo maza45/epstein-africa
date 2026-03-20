@@ -6,11 +6,16 @@ Safe to re-run: skips download if file exists, skips rows that already have a bo
 """
 
 import sqlite3
+import sys
 import urllib.request
 from pathlib import Path
 import subprocess
 
 import pandas as pd
+
+# Import country detection from build_db so the logic stays in one place
+sys.path.insert(0, str(Path(__file__).parent))
+from build_db import detect_countries, _HTML_TAG
 
 FULL_PARQUET = Path("data/jmail/emails-full.parquet")
 DB_PATH = Path("web/data/epstein_africa.db")
@@ -104,6 +109,27 @@ def main():
     print(f"  No body:   {len(unmatched)} doc_ids had no body in full parquet")
     if unmatched:
         print(f"  Sample unmatched: {list(unmatched)[:5]}")
+
+    # ── 6. Re-run country detection on all rows now that body is populated ─────
+    print("\n  Re-running country detection on body+metadata ...")
+    all_rows = conn.execute(
+        "SELECT id, subject, sender, all_participants, body FROM emails"
+    ).fetchall()
+
+    country_updates = []
+    for row_id, subject, sender, all_participants, body in all_rows:
+        text = " ".join(filter(None, [
+            _HTML_TAG.sub(" ", str(subject or "")),
+            str(sender or ""),
+            str(all_participants or ""),
+            str(body or ""),
+        ]))
+        countries = detect_countries(text)
+        country_updates.append((countries, row_id))
+
+    conn.executemany("UPDATE emails SET countries = ? WHERE id = ?", country_updates)
+    conn.commit()
+    print(f"  Updated countries for {len(country_updates)} rows.")
 
     conn.close()
 
