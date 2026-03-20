@@ -88,6 +88,14 @@ export const PEOPLE = [
     searchTerms: ["sarah kellen", "sarah k", "kellen", "kensington"],
   },
   {
+    slug: "ramata-sall-fall",
+    name: "Ramata Sall Fall",
+    title: "Personal Assistant to Karim Wade, Senegal",
+    countries: ["Senegal", "Africa"],
+    bio: "Ramata Sall Fall served as personal assistant to Karim Wade, son of former Senegalese President Abdoulaye Wade. She appears in Epstein's archive scheduling Wade's international meetings with Epstein, including a 2013 meeting in Beijing at the Westin Chaoyang hotel. Her emails also reference coordination with \"M. Shum\" — likely Desmond Shum, the Chinese-Kazakhstani businessman who met Karim Wade in Beijing in May 2011 at Epstein's introduction, to discuss offshore banking. Her correspondence reveals that Epstein's meetings with Wade were internationally choreographed and involved third-party business figures beyond the Senegal political circle.",
+    searchTerms: ["ramata", "ramata sall", "ramata fall"],
+  },
+  {
     slug: "karim-wade",
     name: "Karim Wade",
     title: "Former Minister of State, Senegal",
