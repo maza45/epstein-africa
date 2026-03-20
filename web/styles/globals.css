@@ -550,6 +550,22 @@ a:hover {
   border-radius: 3px;
 }
 
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: var(--font);
+  font-size: 0.82rem;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.back-btn:hover {
+  color: var(--accent-hover);
+}
+
 .error-msg,
 .loading-msg {
   color: var(--text-dim);
