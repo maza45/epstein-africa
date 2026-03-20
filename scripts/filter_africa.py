@@ -34,6 +34,7 @@ AFRICA_KEYWORDS = [
     "mali", "bamako", "mansa musa",
     "cameroon", "yaounde", "douala",
     "liberia",
+    "sierra leone", "freetown",
     # Central Africa
     "congo", "kinshasa", "kabila", "brazzaville",
     "gabon", "libreville",
