@@ -25,6 +25,7 @@ const COUNTRIES = [
   "Rwanda",
   "Senegal",
   "Seychelles",
+  "Sierra Leone",
   "Somalia",
   "South Africa",
   "Sudan",
