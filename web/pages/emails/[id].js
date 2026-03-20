@@ -144,6 +144,13 @@ export default function EmailDetail() {
                 </div>
               )}
 
+              {email.body && (
+                <div className="field">
+                  <div className="field-label">Body</div>
+                  <pre className="email-body">{email.body}</pre>
+                </div>
+              )}
+
               <Field label="Release batch" value={email.release_batch} />
               <Field label="Document ID" value={email.doc_id} mono />
               <Field label="Record ID" value={email.id} mono />

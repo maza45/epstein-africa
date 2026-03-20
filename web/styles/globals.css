@@ -550,6 +550,21 @@ a:hover {
   border-radius: 3px;
 }
 
+.email-body {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
 .back-btn {
   background: none;
   border: none;
