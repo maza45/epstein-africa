@@ -51,6 +51,7 @@ export default function PersonProfile() {
 
       <div className="container">
         <Nav />
+        <button className="back-btn" onClick={() => router.back()}>← Back</button>
 
         {error && <p className="error-msg">{error}</p>}
         {!data && !error && <p className="loading-msg">Loading…</p>}
