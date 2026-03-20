@@ -57,6 +57,8 @@ COUNTRY_KEYWORDS = {
     "cairo": "Egypt",
     "alexandria": "Egypt",
     "liberia": "Liberia",
+    "sierra leone": "Sierra Leone",
+    "freetown": "Sierra Leone",
     "sudan": "Sudan",
     "khartoum": "Sudan",
     "congo": "Congo",
