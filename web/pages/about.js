@@ -26,10 +26,10 @@ export default function About() {
           </p>
 
           <p>
-            The archive has 1.7 million emails. We filtered it down to 752 that
-            reference African countries, cities, or people with documented
-            African ties — by keyword search on subjects, senders, and
-            participant lists.
+            The archive has 1.7 million emails. We filtered it down to 2,030
+            that reference African countries, cities, or people with documented
+            African ties — by keyword search on subjects, senders, participant
+            lists, and email body text.
           </p>
 
           <p>
