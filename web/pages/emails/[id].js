@@ -146,6 +146,28 @@ export default function EmailDetail() {
               <Field label="Release batch" value={email.release_batch} />
               <Field label="Document ID" value={email.doc_id} mono />
               <Field label="Record ID" value={email.id} mono />
+
+              {email.doc_id && (
+                <div className="field">
+                  <div className="field-label">Source</div>
+                  <div className="field-value source-links">
+                    <a
+                      href={`https://jmail.world/thread/${email.doc_id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      View on Jmail ↗
+                    </a>
+                    <a
+                      href={`https://epstein-emails.sfo3.digitaloceanspaces.com/docs/${email.doc_id}.pdf`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      View PDF ↗
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </article>
         )}

@@ -550,6 +550,11 @@ a:hover {
   border-radius: 3px;
 }
 
+.source-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
 .error-msg,
 .loading-msg {
   color: var(--text-dim);
