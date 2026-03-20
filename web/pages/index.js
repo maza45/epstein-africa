@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -56,28 +56,47 @@ function formatDate(d) {
 export default function Home() {
   const [emails, setEmails] = useState([]);
   const [total, setTotal] = useState(0);
-  const [searchInput, setSearchInput] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
 
+  // All filter state derived from URL
   const currentPage = parseInt(router.query.page) || 1;
+  const currentCountry = router.query.country || "";
+  const currentSearch = router.query.search || "";
 
-  // Debounce search input — reset to page 1 via URL
+  // Initialize search input from URL once router is ready (e.g. on back navigation)
+  const initializedRef = useRef(false);
   useEffect(() => {
-    const t = setTimeout(() => {
-      setDebouncedSearch(searchInput);
-      if (currentPage !== 1) router.push("/?page=1", undefined, { shallow: true });
-    }, 300);
+    if (router.isReady && !initializedRef.current) {
+      initializedRef.current = true;
+      setSearchInput(router.query.search || "");
+    }
+  }, [router.isReady]);
+
+  // Push all filter state to URL as a single operation
+  const pushFilters = useCallback(({ page = 1, country = currentCountry, search = searchInput } = {}) => {
+    const query = { page };
+    if (country) query.country = country;
+    if (search) query.search = search;
+    router.push({ pathname: "/", query }, undefined, { shallow: true });
+  }, [router, currentCountry, searchInput]);
+
+  // Debounce search input → URL (skip if unchanged to avoid init loop)
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (searchInput === currentSearch) return;
+    const t = setTimeout(() => pushFilters({ page: 1, search: searchInput }), 300);
     return () => clearTimeout(t);
   }, [searchInput]);
 
+  // Fetch whenever URL-derived state changes
   const fetchEmails = useCallback(async () => {
+    if (!router.isReady) return;
     setLoading(true);
     const params = new URLSearchParams({ page: currentPage, limit: LIMIT });
-    if (debouncedSearch) params.set("q", debouncedSearch);
-    if (country) params.set("country", country);
+    if (currentSearch) params.set("q", currentSearch);
+    if (currentCountry) params.set("country", currentCountry);
     try {
       const res = await fetch(`/api/emails?${params}`);
       const data = await res.json();
@@ -86,7 +105,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }, [currentPage, debouncedSearch, country]);
+  }, [router.isReady, currentPage, currentSearch, currentCountry]);
 
   useEffect(() => {
     fetchEmails();
@@ -128,11 +147,8 @@ export default function Home() {
           />
           <select
             className="country-select"
-            value={country}
-            onChange={(e) => {
-              setCountry(e.target.value);
-              router.push("/?page=1", undefined, { shallow: true });
-            }}
+            value={currentCountry}
+            onChange={(e) => pushFilters({ page: 1, country: e.target.value })}
             aria-label="Filter by country"
           >
             <option value="">All countries</option>
@@ -148,13 +164,12 @@ export default function Home() {
           <span className="result-count">
             {loading ? "Loading…" : `${total.toLocaleString()} emails`}
           </span>
-          {(debouncedSearch || country) && (
+          {(currentSearch || currentCountry) && (
             <button
               className="clear-btn"
               onClick={() => {
                 setSearchInput("");
-                setCountry("");
-                router.push("/?page=1", undefined, { shallow: true });
+                pushFilters({ page: 1, country: "", search: "" });
               }}
             >
               Clear filters
@@ -190,7 +205,7 @@ export default function Home() {
                   <tr
                     key={email.id}
                     className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
-                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}?from=page=${currentPage}`)}
+                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}?from=${encodeURIComponent(router.asPath)}`)}
                   >
                     <td className="col-date">{formatDate(email.sent_at)}</td>
                     <td className="col-sender">{cleanSender(email.sender)}</td>
@@ -217,7 +232,7 @@ export default function Home() {
           <div className="pagination">
             <button
               disabled={currentPage === 1}
-              onClick={() => router.push(`/?page=${currentPage - 1}`, undefined, { shallow: true })}
+              onClick={() => pushFilters({ page: currentPage - 1 })}
               aria-label="Previous page"
             >
               ← Prev
@@ -227,7 +242,7 @@ export default function Home() {
             </span>
             <button
               disabled={currentPage >= totalPages}
-              onClick={() => router.push(`/?page=${currentPage + 1}`, undefined, { shallow: true })}
+              onClick={() => pushFilters({ page: currentPage + 1 })}
               aria-label="Next page"
             >
               Next →
