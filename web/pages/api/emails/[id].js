@@ -11,7 +11,7 @@ export default function handler(req, res) {
   const email = db
     .prepare(
       `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
-              countries, release_batch, epstein_is_sender, all_participants
+              countries, release_batch, epstein_is_sender, all_participants, body
        FROM emails
        WHERE id = ?`
     )
