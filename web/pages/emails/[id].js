@@ -38,6 +38,8 @@ const SENDER_SLUGS = [
   { fragments: ["nina keita", "nina k."], slug: "nina-keita" },
   { fragments: ["sidi tiemoko", "sidi toure", "sidi tiémoko", "sidi"], slug: "sidi-tiemoko-toure" },
   { fragments: ["karim wade"], slug: "karim-wade" },
+  { fragments: ["terje rod-larsen", "terje", "rod-larsen", "ipinst"], slug: "terje-rod-larsen" },
+  { fragments: ["sarah kellen", "sarah k", "kensington"], slug: "sarah-kellen" },
 ];
 
 function senderSlug(sender) {
