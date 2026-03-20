@@ -72,6 +72,22 @@ export const PEOPLE = [
     searchTerms: ["ghislaine maxwell", "ghislaine", "gmax"],
   },
   {
+    slug: "terje-rod-larsen",
+    name: "Terje Rød-Larsen",
+    title: "Former UN Special Envoy; President, International Peace Institute",
+    countries: ["Nigeria", "Somalia", "Sudan", "Egypt", "Mali", "Libya", "Senegal", "Africa"],
+    bio: "Terje Rød-Larsen is a Norwegian diplomat best known for brokering the 1993 Oslo Accords between Israel and the PLO. From 2004 to 2020 he served as president of the International Peace Institute in New York, a think tank that received approximately $650,000 in donations from Epstein foundations. Rød-Larsen described Epstein as \"my best friend.\" He took a personal loan of $130,000 from Epstein in 2013, and Epstein's 2019 will bequeathed $5 million each to his two children. He resigned from the IPI in 2020 after the financial ties became public. In the Epstein archive's Africa emails, Rød-Larsen appears routing Nigeria and Somalia security intelligence briefings through Epstein, including a report on the shooting of a Somali polio worker. As of 2026 he is under criminal investigation by Norway's economic crimes authority Okokrim.",
+    searchTerms: ["terje rod-larsen", "terje", "rod-larsen", "ipinst"],
+  },
+  {
+    slug: "sarah-kellen",
+    name: "Sarah Kellen",
+    title: "Personal Assistant to Jeffrey Epstein",
+    countries: ["Kenya", "Nigeria", "Ivory Coast", "Senegal", "Gabon", "Mali", "Morocco", "Tanzania", "Uganda", "Africa"],
+    bio: "Sarah Kellen served as Jeffrey Epstein's primary personal assistant and day-to-day scheduler. She was named as an unindicted co-conspirator in the 2007 Palm Beach investigation and received immunity under Epstein's 2008 non-prosecution agreement. A federal judge described her as a \"criminally responsible participant\" in Epstein's operation. She has never been criminally charged. In the Africa emails she appears coordinating Epstein's Africa tour itinerary, messaging Karim Wade on Epstein's behalf, and obtaining visas for Gabon, Sierra Leone, and Mali. She also used the alias Sarah Kensington professionally. She has stated through a spokesperson that she herself was a victim of Epstein's abuse.",
+    searchTerms: ["sarah kellen", "sarah k", "kellen", "kensington"],
+  },
+  {
     slug: "karim-wade",
     name: "Karim Wade",
     title: "Former Minister of State, Senegal",
