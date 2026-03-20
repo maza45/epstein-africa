@@ -47,6 +47,30 @@ export const PEOPLE = [
     bio: "An individual identified only as 'Miasha' appears in Epstein's Africa-related email archive. Full identity has not been confirmed from available documents.",
     searchTerms: ["miasha"],
   },
+  {
+    slug: "nina-keita",
+    name: "Nina Keita",
+    title: "Niece of President Alassane Ouattara, Ivory Coast",
+    countries: ["Ivory Coast", "Senegal", "Africa"],
+    bio: "Nina Keita is the niece of Alassane Ouattara, President of Ivory Coast since 2011. A former model who worked in France before returning to Abidjan, she appears hundreds of times in Epstein's archive — one of the most significant Africa-connected figures in the full dataset. Between 2011 and 2018 she acted as a direct intermediary between Epstein and the Ivorian presidency, introducing him to her uncle and arranging his 2012 Abidjan visit where he met sitting ministers. She also connected Epstein with Sidi Tiémoko Touré, Chef de Cabinet to President Ouattara, and played a central role in efforts to secure the release of Karim Wade from prison in 2015 — emails indicate Epstein sent $100,000 toward lobbying efforts, and when Wade was freed in 2016 she wrote to Epstein: \"Thank you for everything you have done for him.\" She later served as advisor to the Budget Minister, and since 2019 has been Deputy General Director of GESTOCI, the state oil storage company. She is married to Employment Minister Adama Kamara. She has not publicly responded to the disclosures.",
+    searchTerms: ["nina keita", "nina k"],
+  },
+  {
+    slug: "sidi-tiemoko-toure",
+    name: "Sidi Tiémoko Touré",
+    title: "Chef de Cabinet to President Ouattara, Ivory Coast",
+    countries: ["Ivory Coast", "Africa"],
+    bio: "Sidi Tiémoko Touré served as Chef de Cabinet — chief of staff — to President Alassane Ouattara of Ivory Coast. He appears in Epstein's archive connected directly to the Ivory Coast political thread. In September 2013, Epstein emailed Israeli Defence Minister Ehud Barak with Touré's personal email address, describing him as \"chief of staff of Ouattara\" and arranging a meeting. The introduction was coordinated through Nina Keita. The meeting was part of broader efforts by Epstein and Barak to broker a mass surveillance deal between Israel and Ivory Coast, which culminated in a formal security agreement signed in 2014. He later served as Minister of Animal and Fishery Resources under Ouattara.",
+    searchTerms: ["sidi", "sidi tiemoko", "sidi toure", "sidi tiémoko"],
+  },
+  {
+    slug: "karim-wade",
+    name: "Karim Wade",
+    title: "Former Minister of State, Senegal",
+    countries: ["Senegal", "Africa"],
+    bio: "Karim Wade is the son of Abdoulaye Wade, President of Senegal from 2000 to 2012. He served as Minister of State under his father and was widely expected to succeed him. Wade and Epstein first met in 2010 through Sultan Bin Sulayem. After his father's defeat, Karim Wade was arrested in 2013 and convicted of illicit enrichment in 2015, sentenced to six years in prison. Epstein became involved in efforts to secure his release, with emails indicating he sent $100,000 toward lobbying efforts. Nina Keita acted as intermediary during Wade's imprisonment. Wade was released in 2016 through a presidential pardon and subsequently went into exile in Qatar. He appears in over 100 emails in Epstein's archive across this period.",
+    searchTerms: ["karim wade", "karim", "wade"],
+  },
 ];
 
 export function getPersonBySlug(slug) {

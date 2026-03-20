@@ -35,6 +35,9 @@ const SENDER_SLUGS = [
   { fragments: ["lesley groff"], slug: "lesley-groff" },
   { fragments: ["miasha"], slug: "miasha" },
   { fragments: ["ghislaine maxwell", "gmax"], slug: "ghislaine-maxwell" },
+  { fragments: ["nina keita", "nina k."], slug: "nina-keita" },
+  { fragments: ["sidi tiemoko", "sidi toure", "sidi tiémoko", "sidi"], slug: "sidi-tiemoko-toure" },
+  { fragments: ["karim wade"], slug: "karim-wade" },
 ];
 
 function senderSlug(sender) {
