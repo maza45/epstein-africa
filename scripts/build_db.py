@@ -10,6 +10,8 @@ from pathlib import Path
 
 import pandas as pd
 
+_HTML_TAG = re.compile(r'<[^>]+'+'>')
+
 PARQUET = Path("data/jmail/africa.parquet")
 DB_PATH = Path("web/data/epstein_africa.db")
 
@@ -45,7 +47,6 @@ COUNTRY_KEYWORDS = {
     "ghana": "Ghana",
     "accra": "Ghana",
     "morocco": "Morocco",
-    "casablanca": "Morocco",
     "marrakech": "Morocco",
     "rabat": "Morocco",
     "rwanda": "Rwanda",
@@ -54,21 +55,43 @@ COUNTRY_KEYWORDS = {
     "kampala": "Uganda",
     "egypt": "Egypt",
     "cairo": "Egypt",
+    "alexandria": "Egypt",
     "liberia": "Liberia",
     "sudan": "Sudan",
+    "khartoum": "Sudan",
     "congo": "Congo",
+    "kinshasa": "Congo",
+    "congo kinshasa": "Congo",
+    "kabila": "Congo",
+    "brazzaville": "Congo",
+    "gabon": "Gabon",
+    "libreville": "Gabon",
     "madagascar": "Madagascar",
     "mozambique": "Mozambique",
+    "maputo": "Mozambique",
     "zambia": "Zambia",
+    "lusaka": "Zambia",
     "botswana": "Botswana",
+    "gaborone": "Botswana",
     "cameroon": "Cameroon",
     "angola": "Angola",
+    "luanda": "Angola",
     "mauritius": "Mauritius",
     "seychelles": "Seychelles",
     "mali": "Mali",
-    "chad": "Chad",
+    "bamako": "Mali",
+    "mansa musa": "Mali",
+    "libya": "Libya",
+    "tripoli": "Libya",
+    "tunisia": "Tunisia",
+    "tunis": "Tunisia",
     "africa": "Africa",
     "dangote": "Nigeria",
+    "sol kerzner": "South Africa",
+    "kerzner": "South Africa",
+    "sun city": "South Africa",
+    "africadevelop": "South Africa",
+    "karim wade": "Senegal",
 }
 
 # Compile word-boundary patterns for each keyword
@@ -94,12 +117,13 @@ def main():
     df = pd.read_parquet(PARQUET)
     print(f"  {len(df)} rows, {df['id'].nunique()} unique ids")
 
-    # Build search text: subject + sender + all_participants
+    # Build search text: strip HTML, then join subject + sender + participants + body
     def combined(row):
         parts = [
-            str(row.get("subject") or ""),
+            _HTML_TAG.sub(" ", str(row.get("subject") or "")),
             str(row.get("sender") or ""),
             str(row.get("all_participants") or ""),
+            str(row.get("body") or "") if "body" in row else "",
         ]
         return " ".join(parts)
 
