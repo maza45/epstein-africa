@@ -43,12 +43,20 @@ function formatDate(d) {
 export default function Home() {
   const [emails, setEmails] = useState([]);
   const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
   const [searchInput, setSearchInput] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  // Initialise page from URL query param (e.g. when returning from detail page)
+  const [page, setPage] = useState(() => {
+    if (typeof window !== "undefined") {
+      const p = parseInt(new URLSearchParams(window.location.search).get("page"));
+      return p > 0 ? p : 1;
+    }
+    return 1;
+  });
 
   // Debounce search input — also resets page
   useEffect(() => {
