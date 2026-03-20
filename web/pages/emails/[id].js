@@ -150,20 +150,13 @@ export default function EmailDetail() {
               {email.doc_id && (
                 <div className="field">
                   <div className="field-label">Source</div>
-                  <div className="field-value source-links">
+                  <div className="field-value">
                     <a
                       href={`https://jmail.world/thread/${email.doc_id}`}
                       target="_blank"
                       rel="noreferrer"
                     >
                       View on Jmail ↗
-                    </a>
-                    <a
-                      href={`https://epstein-emails.sfo3.digitaloceanspaces.com/docs/${email.doc_id}.pdf`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      View PDF ↗
                     </a>
                   </div>
                 </div>
