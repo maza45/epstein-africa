@@ -49,27 +49,20 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Initialise page from URL query param (e.g. when returning from detail page)
-  const [page, setPage] = useState(() => {
-    if (typeof window !== "undefined") {
-      const p = parseInt(new URLSearchParams(window.location.search).get("page"));
-      return p > 0 ? p : 1;
-    }
-    return 1;
-  });
+  const currentPage = parseInt(router.query.page) || 1;
 
-  // Debounce search input — also resets page
+  // Debounce search input — reset to page 1 via URL
   useEffect(() => {
     const t = setTimeout(() => {
       setDebouncedSearch(searchInput);
-      setPage(1);
+      if (currentPage !== 1) router.push("/?page=1", undefined, { shallow: true });
     }, 300);
     return () => clearTimeout(t);
   }, [searchInput]);
 
   const fetchEmails = useCallback(async () => {
     setLoading(true);
-    const params = new URLSearchParams({ page, limit: LIMIT });
+    const params = new URLSearchParams({ page: currentPage, limit: LIMIT });
     if (debouncedSearch) params.set("q", debouncedSearch);
     if (country) params.set("country", country);
     try {
@@ -80,7 +73,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }, [page, debouncedSearch, country]);
+  }, [currentPage, debouncedSearch, country]);
 
   useEffect(() => {
     fetchEmails();
@@ -125,7 +118,7 @@ export default function Home() {
             value={country}
             onChange={(e) => {
               setCountry(e.target.value);
-              setPage(1);
+              router.push("/?page=1", undefined, { shallow: true });
             }}
             aria-label="Filter by country"
           >
@@ -148,7 +141,7 @@ export default function Home() {
               onClick={() => {
                 setSearchInput("");
                 setCountry("");
-                setPage(1);
+                router.push("/?page=1", undefined, { shallow: true });
               }}
             >
               Clear filters
@@ -184,7 +177,7 @@ export default function Home() {
                   <tr
                     key={email.id}
                     className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
-                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}?from=page=${page}`)}
+                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}?from=page=${currentPage}`)}
                   >
                     <td className="col-date">{formatDate(email.sent_at)}</td>
                     <td className="col-sender">{cleanSender(email.sender)}</td>
@@ -210,18 +203,18 @@ export default function Home() {
         {totalPages > 1 && (
           <div className="pagination">
             <button
-              disabled={page === 1}
-              onClick={() => setPage((p) => p - 1)}
+              disabled={currentPage === 1}
+              onClick={() => router.push(`/?page=${currentPage - 1}`, undefined, { shallow: true })}
               aria-label="Previous page"
             >
               ← Prev
             </button>
             <span>
-              Page {page} / {totalPages}
+              Page {currentPage} / {totalPages}
             </span>
             <button
-              disabled={page >= totalPages}
-              onClick={() => setPage((p) => p + 1)}
+              disabled={currentPage >= totalPages}
+              onClick={() => router.push(`/?page=${currentPage + 1}`, undefined, { shallow: true })}
               aria-label="Next page"
             >
               Next →
