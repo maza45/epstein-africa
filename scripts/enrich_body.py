@@ -8,6 +8,7 @@ Safe to re-run: skips download if file exists, skips rows that already have a bo
 import sqlite3
 import urllib.request
 from pathlib import Path
+import subprocess
 
 import pandas as pd
 
@@ -26,12 +27,18 @@ def download_if_missing():
     print(f"  Downloading {DOWNLOAD_URL} → {FULL_PARQUET} ...")
     print("  (334 MB — this will take a while)")
 
-    def _progress(count, block_size, total_size):
-        pct = min(count * block_size / total_size * 100, 100)
-        print(f"\r  {pct:.1f}%", end="", flush=True)
+    result = subprocess.run([
+        "curl", "-L", "--progress-bar",
+        "-H", "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+        "-o", str(FULL_PARQUET),
+        DOWNLOAD_URL,
+    ])
 
-    urllib.request.urlretrieve(DOWNLOAD_URL, FULL_PARQUET, _progress)
-    print(f"\r  Done. {FULL_PARQUET.stat().st_size / 1_000_000:.0f} MB written.")
+    if result.returncode != 0:
+        FULL_PARQUET.unlink(missing_ok=True)
+        raise RuntimeError(f"Download failed (curl exit {result.returncode})")
+
+    print(f"  Done. {FULL_PARQUET.stat().st_size / 1_000_000:.0f} MB written.")
 
 
 def main():
@@ -68,23 +75,17 @@ def main():
 
     # ── 3. Load only matching rows from full parquet ───────────────────────────
     print(f"  Reading {FULL_PARQUET} (filtering to target doc_ids) ...")
-    # Read in chunks to avoid loading all 334 MB into RAM at once
+    pf = pd.read_parquet(FULL_PARQUET, columns=["doc_id", "content_markdown"])
+    hits = pf[pf["doc_id"].isin(target_doc_ids)]
+
     matched: dict[str, str] = {}  # doc_id → body
-    chunk_size = 100_000
-    pf = pd.read_parquet(FULL_PARQUET, columns=["doc_id", "body"])
+    for _, row in hits.iterrows():
+        doc_id = row["doc_id"]
+        body = row.get("content_markdown")
+        if doc_id not in matched and body and str(body).strip():
+            matched[doc_id] = str(body).strip()
 
-    for i in range(0, len(pf), chunk_size):
-        chunk = pf.iloc[i : i + chunk_size]
-        hits = chunk[chunk["doc_id"].isin(target_doc_ids)]
-        for _, row in hits.iterrows():
-            doc_id = row["doc_id"]
-            body = row.get("body")
-            if doc_id not in matched and body and str(body).strip():
-                matched[doc_id] = str(body).strip()
-        if (i // chunk_size) % 5 == 0:
-            print(f"\r  Scanned {min(i + chunk_size, len(pf)):,} / {len(pf):,} rows ...", end="", flush=True)
-
-    print(f"\r  Scan complete. {len(matched)} doc_ids matched out of {len(target_doc_ids)}.   ")
+    print(f"  Scan complete. {len(matched)} doc_ids matched out of {len(target_doc_ids)}.")
 
     # ── 4. Write matched bodies back to DB ────────────────────────────────────
     updates = []
