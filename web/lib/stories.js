@@ -494,6 +494,40 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "mandelson-south-africa",
+    title: "Do We Like South Africa? Peter Mandelson, Epstein, and the Global Counsel Africa Push",
+    summary:
+      "In March 2010, Peter Mandelson texted Epstein after being summoned to a private meeting with South African President Jacob Zuma: 'Do we like South Africa??' Five months later he sent Epstein the business framework for his new advisory firm, Global Counsel LLP, listing South Africa as an explicit Category 1 client target. The archive shows Mandelson using Epstein as a confidant and deal conduit as he built Global Counsel's Africa practice, culminating in a plan to introduce Epstein to a senior Congo Brazzaville Finance Ministry official.",
+    countries: ["South Africa"],
+    date_range: "2010–2011",
+    body: [
+      "On the night of March 5, 2010, Mark Lloyd sent a dinner invitation on behalf of Jeffrey Epstein to Russian models in London. The occasion was a private dinner for South African President Jacob Zuma at the Ritz Hotel. Lloyd told the invitees that Jeffrey had suggested them personally: \"A friend of Jeffrey's is a friend of mine, so I have no hesitation inviting you to join us\" (vol00009-efta00763363-pdf). One of them, a model named Vera represented by Select Model Agency, accepted. Epstein texted Peter Mandelson the same afternoon: \"mark lloyd is havign dinner for zuma tomorrow night at the ritz, i have invited a beautiful russina named vera to attend\" (EFTA02429722).",
+      "Mandelson was not going to the Ritz dinner. He was attending a separate meeting. The following day he texted Epstein from his BlackBerry: \"Went well this afternoon. Ben booked for trip. I am also summoned to see Presdt Zuma tomorrow for private meeting. Do we like South Africa ??\" (EFTA02528640). Epstein replied: \"verymuch.\" Post-dinner, Lloyd wrote to Epstein: \"[Vera] was a delight last night and enchanted all those she met. Her beauty apart, she displayed an elegance and natural charm that is a rare combination to find anywhere these days. So a very big thank you for the introduction... By the way, Jacob Zuma was much more impressive and engaging than I thought he would be!\" (EFTA02427499).",
+      "Five months after the dinner, Mandelson sent Epstein the business framework for his new advisory firm, Global Counsel LLP, with the subject line \"My first shot at crystallising business venture\" (EFTA02408255). The document set out a two-category model: political advice to governments in Category 1, commercial advice with a political dimension in Category 2. Under Category 1, Mandelson listed his target clients explicitly: \"South Africa, Qatar, China, in time.\" Epstein read the document and replied: \"I have always suggested that the key is for you to follow the money trail. I m not sure reading this who pays you, and how much and for how long\" (vol00009-efta00735721-pdf). Mandelson answered: \"Of course I want to follow the money trail (if someone helps put me on it) but I also need a parallel business platform\" (vol00009-efta00735628-pdf).",
+      "In September 2010, Epstein asked Mandelson for his schedule. Mandelson replied: \"Here til 2am Monday, then south africa and congo til oct 5\" (vol00009-efta00756307-pdf). Two months later, Epstein told Mandelson he was planning his own Africa trip: \"im scheduling an africa trip. dec 17.\" Mandelson asked where. Epstein's answer: \"mali guinea senegal mozamique south africa\" (EFTA01979393).",
+      "By January 2011, a specific deal had appeared. Philippe Jonnart, whose email domain was africadevelop.co.za, wrote to Mandelson with a business plan for a new private bank in Congo Brazzaville. The bank was designed to focus on oil and mining project financing, public oil fund management, and government debt transactions. Jonnart and Rigobert Andely, the Congolese co-author of the plan, were in Johannesburg meeting with Nedbank and ABSA to establish South African banking partnerships. The plan was to be pitched to Mandelson's \"Qatari interlocutor\" (vol00009-efta00901993-pdf). Mandelson forwarded the Jonnart email to Epstein: \"J, can you cast your eye and tell me what you think of this business plan.\" He sent a second email the same day with the full Nedbank meeting notes: \"further info re bank\" (EFTA01834155).",
+      "Andely was not just a business contact. Mandelson arranged for Epstein's Paris assistant to contact Andely directly and invite him to meet Epstein at his apartment at 22 Avenue Foch. In his introduction of Epstein to Andely, Mandelson wrote: \"knows more about finance than anyone I know, is a good friend and totally trustworthy. You can be open with him\" (vol00009-efta00560664-pdf). The meeting was set for January 25, 2011. Andely cancelled the same afternoon. His explanation: \"I have been instructed by my Big Boss in Brazzaville to travel this afternoon to Brussels with a view of giving some support to the Ministry of Finance Team as to they have been negotiating a LT Loan with Belgian bankers.\" He added: \"I will also report to Jean-Yves Ollivier and Peter Mandelson about this appointment cancellation\" (EFTA02323024). Jean-Yves Ollivier is a French businessman who spent decades brokering deals between Paris and Francophone African governments, including the 1988 Angola peace process.",
+      "Two months later, Mandelson texted Epstein: \"Now in Cape Town for a day...\" (EFTA01779396). Whether the Congo bank project or the South Africa client mandate progressed is not documented in the archive.",
+    ],
+    email_ids: [
+      "vol00009-efta00763363-pdf-0",
+      "EFTA02429722-0",
+      "EFTA02528640-0",
+      "EFTA02427499-0",
+      "EFTA02408255-0",
+      "vol00009-efta00735721-pdf-0",
+      "vol00009-efta00735628-pdf-0",
+      "vol00009-efta00756307-pdf-1",
+      "EFTA01979393-0",
+      "vol00009-efta00901993-pdf-3",
+      "EFTA01834155-0",
+      "vol00009-efta00560664-pdf-3",
+      "EFTA02323024-0",
+      "EFTA01779396-1",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
