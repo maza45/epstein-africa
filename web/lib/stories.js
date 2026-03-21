@@ -428,7 +428,7 @@ export const STORIES = [
     news_links: [],
   },
   {
-    slug: "rod-larsen-profile",
+    slug: "rod-larsen-epstein-intelligence",
     title: "Terje Rød-Larsen: The Diplomat Who Fed Epstein Intelligence",
     summary:
       "The architect of the Oslo Accords and President of the International Peace Institute was one of Epstein's closest contacts — visiting his island, brokering his meetings with Sultan, and using him as a relay channel to Bill Gates for UN field intelligence from Nigeria, Somalia, and Pakistan.",
