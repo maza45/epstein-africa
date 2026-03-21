@@ -118,6 +118,33 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "wade-beijing",
+    title: "From Dakar to Beijing: How Epstein Triangulated Wade into China",
+    summary:
+      "Six months after Sultan brokered the Wade introduction, Epstein connected Senegal's power heir with Chinese billionaire Desmond Shum — and flew to Beijing himself to close the loop.",
+    countries: ["Senegal"],
+    date_range: "2011",
+    body: [
+      "Six months after Sultan Bin Sulayem made the introduction, Karim Wade was no longer just an Epstein contact. He was an asset being routed into a second network entirely.",
+      "April 26, 2011. Epstein sent a two-line email: \"desmond, meet karem. karem, meet desmond.\" Desmond Shum was a Chinese billionaire whose connections ran through the upper reaches of the Communist Party — his memoir Red Roulette, published a decade later, would expose just how deep those ties went. He was based in Beijing. Wade was in Dakar, theoretically. Shum immediately offered to fly to Shanghai to meet him.",
+      "Ten days later Epstein himself was heading to Beijing — arriving Monday, staying through Friday, back through Paris. He forwarded Shum's contact details directly to Wade. The Africa introduction had become a China introduction.",
+      "What exactly was being discussed isn't spelled out in the emails. Offshore banking appears in the context — Epstein had been pitching Wade on financial infrastructure for Senegal since their first meeting in November 2010. Shum had the relationships in Beijing that could make something like that real. Wade had the political access in Dakar. Epstein was in the middle, connecting both.",
+      "The DOJ documents confirm Shum and Wade met in Beijing on May 9, 2011. What came of that meeting isn't in the archive. What is in the archive is the infrastructure Epstein built to make it happen — Dubai to New York to Senegal to Beijing, in six months, through a chain of introductions that started with a gate code and a Monday 5:30pm appointment.",
+    ],
+    email_ids: [
+      "EFTA02538527-0",
+      "EFTA01865779-0",
+      "EFTA01809435-0",
+    ],
+    news_links: [
+      {
+        title: "Epstein files reveal links to cash, women, power in Africa",
+        url: "https://www.yahoo.com/news/articles/epstein-files-reveal-links-cash-025719741.html",
+        source: "AFP / Yahoo News",
+      },
+    ],
+  },
 ];
 
 export function getStoryBySlug(slug) {
