@@ -368,6 +368,7 @@ export const STORIES = [
       "Zeitlin replied the next day — to Epstein, not Sultan: \"this back and forth has value as part of learning about Sultan. How his brain is wired. Why he has struggled to get things done on the continent.\" Then: \"unbeknownst to Sultan, I was otherwise looking at being in Abu Dhabi this coming Sunday and Monday — related to our mutual friend.\" The mutual friend is unnamed. Zeitlin was running a separate Abu Dhabi track simultaneously, connected to someone both he and Epstein knew, while telling Sultan he was still evaluating the relationship.",
       "The deal didn't close. DP World visited Nigeria in March 2019 and proposed industrial parks — the same offer Sultan had rejected in January 2018. Never approved.",
       "What the emails show is the structure: Zeitlin as the access into Nigerian government, Sultan as the capital, Epstein as the room they both passed through. Not a broker in any formal sense. Just the person without whom the meeting doesn't happen — and who knew it.",
+      "Three months later, Djibouti nationalized DP World's main East Africa hub. Zeitlin wrote to Epstein: \"I hope your pal's sojourn in Tel Aviv was more effective than his efforts on the African continent.\" The Nigeria deal never closed. Sultan Ahmed bin Sulayem resigned as chairman of DP World on February 13, 2026 — five days after the Epstein files became public. DP World acquired a controlling stake in a Nigerian logistics provider in 2022 and began expanding in Lagos. The ports Epstein tried to broker in 2018 are now being built without him.",
     ],
     email_ids: [
       "EFTA01975675-0",
@@ -380,9 +381,14 @@ export const STORIES = [
     ],
     news_links: [
       {
-        title: "Epstein & Africa: Did sex offender push Israel-Ivory Coast security deal?",
-        url: "https://www.aljazeera.com/news/2026/2/27/did-epstein-help-israel-push-for-a-security-deal-with-ivory-coast",
-        source: "Al Jazeera",
+        title: "Epstein Flipped Israel's Gaza-Tested Biometric Scanners Into Nigeria Ports Deal for UAE",
+        url: "https://www.dropsitenews.com/p/epstein-ehud-barak-sultan-sulayem-nigeria-ports-israel-dp-world",
+        source: "Drop Site News",
+      },
+      {
+        title: "Badagry Deep Seaport Developer Sultan bin Sulayem Resigns Amid Jeffrey Epstein Revelations",
+        url: "https://www.newspeddlers.com/2026/02/badagry-deep-seaport-developer-sultan.html",
+        source: "News Peddlers",
       },
     ],
   },
