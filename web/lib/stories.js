@@ -264,56 +264,6 @@ export const STORIES = [
       },
     ],
   },
-  {
-    slug: "wade-prison-operation",
-    title: "How Epstein Ran a DC Lobbying Operation to Free Karim Wade from Prison",
-    summary:
-      "After Wade was jailed for corruption in 2013, Epstein coordinated his defense lawyers, funded a DC lobbying firm, briefed Congressional staff, and pressured the State Department — until Qatar flew Wade to Doha on the night of his release.",
-    countries: ["Senegal"],
-    date_range: "2013–2016",
-    body: [
-      "Karim Wade went to prison in April 2013. By November 2016, Epstein was still pitching him to new contacts: \"He is the son of the president of Senegal... one of the most important figures in west africa... put in jail to remove him from running.\" That email explains everything that happened in between.",
-      "The first problem was physical access. Wade was in Rebeuss prison, Dakar. Epstein routed the request through Rasseck Bourgi — in the emails he appears as \"Ute Bourgi,\" brother of Robert Bourgi, the French lawyer who for decades served as the quiet connector between the Élysée and Francophone African governments. Epstein's message: Nina Keita, Ouattara's niece, wants to visit. Can she? Rasseck replied with the mechanics: she needs authorization from the judge, contact Maître Seydou Diagne or Maître Demba Bathily. Nina wrote back to Epstein the next morning: \"I'll contact them tomorrow.\"",
-      "Five months later Epstein was talking directly to Diagne on Viber. \"Karim asked that we connect.\" In May 2014, Diagne sent his banking details — Attijariwafa Bank, routing through Casablanca. Epstein told Nina he'd sent the transfer twice. Diagne confirmed with a voucher. Wade's prison assistant came back months later asking if Epstein could send another transfer for the lawyers' fees.",
-      "The DC operation started quietly in October 2015. An internal Nelson Mullins memo recorded: \"We were contacted by one of Mr. Wade's business associates in the U.S. who happens to be old friends with Bob Crowe. He said he would handle the payment details and contract.\" Epstein was the unnamed associate. The retainer was $50,000. By December 15, Crowe was chasing it: \"We did not get the $50,000 promised by 11-30.\" Wire instructions followed in January. Epstein paid.",
-      "What Nelson Mullins ran from that retainer was a five-track pressure campaign. Crowe worked State Department contacts directly — a meeting at State in April 2016, pressure applied on Macky Sall behind the scenes. On the Hill, lobbyist Vinoda Basnayake briefed Yebbie Watkins, chief of staff to House Democratic Whip Jim Clyburn. A Ron Dellums op-ed was placed in The Hill — Crowe's note said keep it \"highly confidential.\" Amnesty International was approached to take up the detention. The State Department's FY17 human rights report on Senegal was identified as a target. And Macky Sall's own vulnerability was tracked as leverage — February 2016, Crowe to Epstein: \"We feel that the development of Macky extending his term limits from 5 to 7 years helps us.\"",
-      "June 16, 2016. Crowe to Epstein: \"He has told my friends high up at State that he was going to do it. They have been putting pressure on him!\" Eight days later, Sultan emailed Epstein: \"Karim was released from jail last night.\" The next morning Sultan followed up: \"Qatar acted as mediator for his release and he was flown directly to Doha on the night of his release.\"",
-      "Wade in exile, August: \"Yes Sir, really enjoy Qatar.\" By November, Epstein was still working him: \"He is in Qatar awaiting his political return to power which is almost guaranteed.\"",
-    ],
-    email_ids: [
-      "EFTA01963508-0",
-      "vol00009-efta00966541-pdf-2",
-      "EFTA01945668-0",
-      "EFTA01927653-0",
-      "EFTA02705431-0",
-      "EFTA01924121-0",
-      "vol00009-efta00838871-pdf-5",
-      "vol00009-efta00707609-pdf",
-      "vol00009-efta00698508-pdf-2",
-      "EFTA01742150-0",
-      "EFTA02394840-0",
-      "EFTA02459411-0",
-      "EFTA02339435-0",
-      "vol00009-efta01060422-pdf-1",
-    ],
-    news_links: [
-      {
-        title: "Epstein Made Efforts to Free the Son of Senegal's Former President After Corruption Conviction",
-        url: "https://www.occrp.org/en/scoop/epstein-made-efforts-to-free-the-son-of-senegals-former-president-after-corruption-conviction",
-        source: "OCCRP",
-      },
-      {
-        title: "Epstein files reveal links to cash, women, power in Africa",
-        url: "https://www.yahoo.com/news/articles/epstein-files-reveal-links-cash-025719741.html",
-        source: "AFP",
-      },
-      {
-        title: "Lobbying diplomatique autour de Karim Wade",
-        url: "https://senego.com/moyennant-finances-et-lobbying-diplomatique-des-correspondances-devoilent-lintrusion-inattendue-de-jeffrey-epstein-dans-une-affaire-judiciaire-majeure-a-dakar_1920486.html",
-        source: "Senego",
-      },
-    ],
-  },
 ];
 
 export function getStoryBySlug(slug) {
