@@ -34,6 +34,16 @@ export const STORIES = [
         url: "https://www.dropsitenews.com/p/jeffrey-epstein-israel-surveillance-state-cote-d-ivoire-ehud-barak-leaked-emails",
         source: "Drop Site News",
       },
+      {
+        title: "Quand Jeffrey Epstein vendait la Côte d'Ivoire à l'espionnage israélien",
+        url: "https://akramkhariefmenadefense.substack.com/p/quand-jeffrey-epstein-vendait-la",
+        source: "Akram Kharief / Substack",
+      },
+      {
+        title: "Affaire Epstein : le PDCI-RDA demande des explications au gouvernement ivoirien",
+        url: "https://www.pulse.ci/article/affaire-epstein-le-pdci-rda-demande-des-explications-au-gouvernement-ivoirien-et-exige-la-transparence-2026021801422117419",
+        source: "Pulse Côte d'Ivoire",
+      },
     ],
   },
 ];
