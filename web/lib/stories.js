@@ -194,7 +194,7 @@ export const STORIES = [
   },
   {
     slug: "wade-prison-access",
-    title: "How Epstein Got Inside Rebeuss Prison",
+    title: "Operation Saving Soldier Wade: How Epstein Got Inside Rebeuss Prison",
     summary:
       "After Karim Wade's arrest in 2013, Epstein coordinated prison access through Nina Keita, brokered by Paris fixer Rasseck Bourgi, and began paying Wade's defense lawyers through a Moroccan bank routing.",
     countries: ["Senegal"],
