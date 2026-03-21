@@ -206,7 +206,7 @@ export default function Home() {
                   <tr
                     key={email.id}
                     className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
-                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}?from=${encodeURIComponent(router.asPath)}`)}
+                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`)}
                   >
                     <td className="col-date">{formatDate(email.sent_at)}</td>
                     <td className="col-sender">{cleanSender(email.sender)}</td>
