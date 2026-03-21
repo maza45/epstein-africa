@@ -551,6 +551,29 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "wade-summers-doha",
+    title: "\"Reputations Converge\": How Epstein Introduced Larry Summers to Karim Wade in Doha",
+    summary:
+      "On November 29, 2016, six months after Karim Wade walked out of Rebeuss prison and flew to Qatar, Epstein sent a two-line email: 'larry, karim, karim - larry.' Summers agreed to the Wednesday call before asking who Wade was. Then he told Epstein to stay discreet.",
+    countries: ["Senegal"],
+    date_range: "2011–2016",
+    body: [
+      "Larry Summers agreed to meet Karim Wade before he asked who Wade was. On November 29, 2016, Epstein sent a two-line introduction email to both men: \"larry, karim, karim - larry, larry will be in doha on wed, i think you two would enjoy meeting\" (HOUSE_OVERSIGHT_026028-0). Wade, writing from the Afri zp account he had used since leaving Dakar, replied the same morning: \"I'll be very please to meet or take you for diner. My mobile in Doha is [redacted]\" (HOUSE_OVERSIGHT_026028-2).",
+      "Summers wrote to Epstein separately: \"Who is the guy you have set me up with?\" (HOUSE_OVERSIGHT_026028-1). He had already said yes to the call. Epstein responded with a full brief: \"Karim Wade. is the son of the president of Senegal. ( they just found GAS offshore ). He is well educated and one of the most important figures in west africa. however full disclosure, he was put in jail to remove him from running against the current president He is in qatar awaiting his political return to power which is almost guaranteed. He is the most charismatic ,and rational of all the africans and has theire respect\" (HOUSE_OVERSIGHT_026028-3).",
+      "Summers' reply came that evening: \"Always quiet advice to anybody who can use it. Try always discreet. If u become associated publicly w something the reputations converge. Looking fwd to meeting Karim\" (HOUSE_OVERSIGHT_026028-4). The same email, sent from his iPad, included his Twitter handle and a line directing all scheduling inquiries to his office.",
+      "Epstein had been trying to make this introduction for five years. In September 2011, a member of his staff wrote to colleagues: \"JE just said Karim will be coming Friday and has me asking Larry Summers if he can come as well...this could become an initimate dinner!\" (EFTA02182743). Lesley Groff had already confirmed Ehud Barak and his wife for 7pm the same evening. The archive does not confirm whether Summers attended. By November 2016 the dinner was in Doha.",
+    ],
+    email_ids: [
+      "HOUSE_OVERSIGHT_026028-0",
+      "HOUSE_OVERSIGHT_026028-1",
+      "HOUSE_OVERSIGHT_026028-2",
+      "HOUSE_OVERSIGHT_026028-3",
+      "HOUSE_OVERSIGHT_026028-4",
+      "EFTA02182743-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
