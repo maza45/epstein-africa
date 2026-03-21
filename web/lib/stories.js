@@ -168,6 +168,30 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "senegal-banking-investor-meeting",
+    title: "The Senegal Banking Project: Epstein, Sultan, Gates, and Karim Wade",
+    summary:
+      "In the summer of 2011, Epstein coordinated an investor meeting for Karim Wade's Senegal banking project — with Sultan Bin Sulayem lined up to attend, JPMorgan consulted on high-frequency trading infrastructure, and the Gates Foundation sending a team for municipal finance.",
+    countries: ["Senegal"],
+    date_range: "2011",
+    body: [
+      "The banking pitch had been running since November 2010. Epstein's first substantive email to Karim Wade after their meeting was a list of ideas for Senegal: internet banking, server infrastructure, mobile-phone-as-bank-account, high-frequency trading, nuclear power. He'd already spoken to the Gates group about it.",
+      "By May 2011, the project had institutional traction. Epstein told Wade he'd spoken to JPMorgan — they recommended adding high-frequency sophisticated trading to the bank. Wade asked who JPM was. Epstein pointed him to Infinium, a Chicago HFT firm, as the model. Wade agreed it was \"a huge competitive advantage\" and asked for technical details.",
+      "On May 31, Epstein offered to set up the investor meeting: Paris the following weekend, or New York — \"on the 20th Sultan will come Friday night to stay, it will be fun.\" Wade introduced a contact named Rasseck — in Paris until Thursday — as his man on the ground. By June 4, Wade was apologising for a missed call: \"Sorry was in a cabinet meeting and run to meetings with donors.\"",
+      "On June 13, Epstein updated Wade: \"Gates now wants to send a team to you to organize municipal finance for poor related projects.\" The same email contained an unusual line: \"I really appreciate our new friendship. There is so much to do.\" Epstein had known Wade for seven months.",
+      "Three weeks later, Epstein was in New Mexico with Sultan. \"Sultan will be here tomorrow and Wednesday,\" he wrote to Wade on July 12. \"Call me when you're with him.\" Epstein replied the next day: \"Sultan and I are having great fun — wish you were here.\" He included a phone number. Wade replied: \"Miss u guys.\" By August, Epstein was heading to Dubai to see Sultan and \"HH\" — His Highness — and was invited to Saudi Arabia, but wanted to wait and go when Wade was going.",
+      "The investor meeting itself doesn't appear to be documented in the archive as having taken place. What the emails show is the scaffolding: JPMorgan for the trading infrastructure, Gates for the development side, Sultan as the Gulf anchor investor, and Wade as the political vehicle — Senegal's budget minister, son of the sitting president, and Epstein's personal project.",
+    ],
+    email_ids: [
+      "EFTA01865356-0",
+      "EFTA01864665-0",
+      "EFTA01863799-0",
+      "EFTA01776670-1",
+      "EFTA01776385-1",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {

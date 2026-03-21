@@ -101,7 +101,7 @@ export const PEOPLE = [
     title: "Former Minister of State, Senegal",
     countries: ["Senegal", "Africa"],
     bio: "Karim Wade is the son of Abdoulaye Wade, President of Senegal from 2000 to 2012. He served as Minister of State under his father and was widely expected to succeed him. Wade and Epstein first met in 2010 through Sultan Bin Sulayem. After his father's defeat, Karim Wade was arrested in 2013 and convicted of illicit enrichment in 2015, sentenced to six years in prison. Epstein became involved in efforts to secure his release, with emails indicating he sent $100,000 toward lobbying efforts. Nina Keita acted as intermediary during Wade's imprisonment. Wade was released in 2016 through a presidential pardon and subsequently went into exile in Qatar. He appears in over 100 emails in Epstein's archive across this period.",
-    searchTerms: ["karim wade", "karim", "wade"],
+    searchTerms: ["karim wade", "karim", "wade", "afri xp", "afrixp"],
   },
 ];
 
