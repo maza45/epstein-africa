@@ -48,7 +48,7 @@ export const STORIES = [
   },
   {
     slug: "libya-sovereign-wealth",
-    title: "Royalty Before the Fall, Intelligence After: Epstein's Libya Operation",
+    title: "Epstein, Prince Andrew, and the Race to Control Libya's Billions",
     summary:
       "In October 2010, Epstein emailed a royal aide about flying to Tripoli with Prince Andrew to access Gaddafi's billions. Nine months later Gaddafi was dead — and a new intermediary was pitching Epstein on the same prize, now frozen in Western banks.",
     countries: ["Libya"],
