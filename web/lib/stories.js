@@ -528,6 +528,27 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "south-africa-victim-fbi",
+    title: "Recruited in South Africa: The FBI Documents on Epstein's International Reach",
+    summary:
+      "In October 2019, two months after Epstein's arrest, the FBI's Victim Services Division in New York learned that one of his victims was in South Africa. The FBI VCAC/Human Trafficking unit wrote to the Johannesburg Consular team that she had been recruited in South Africa and had traveled to Epstein's residences in New York, Florida, and the Virgin Islands. The documents show the FBI coordinating across three agencies to bring her to a victims briefing in New York.",
+    countries: ["South Africa"],
+    date_range: "2019",
+    body: [
+      "On October 3, 2019, the FBI's Victim Services Division in New York learned that one of Jeffrey Epstein's victims was in South Africa. Angela Jackson, a Victim Specialist at the New York field office, wrote to Jennifer Dent at the same office: \"We are currently working with victims of the Jeffrey Epstein case; and just found out this week that one is located in South Africa. Victim Services Division is hosting a briefing for these victims in New York on October 23rd. This individual's attorney contacted us regarding her attendance and assistance with travel here. She does have a new born baby and is asking for assistance with Visa's\" (EFTA01650226-0). The attorney was Sigrid McCawley of Boies Schiller Flexner, the firm that represented multiple Epstein victims in civil proceedings.",
+      "The FBI's New York VCAC/Human Trafficking unit subsequently wrote to the Johannesburg Consular team at the US Embassy in Pretoria. Their letter stated: \"We have reason to believe that she was an Epstein victim who was recruited in South Africa and traveled to Epstein's residences in New York, Florida, and the Virgin Islands. We were planning to interview her in depth if she was able to attend the conference. She has a lawyer who has stated that she may have information that can help in our ongoing investigation\" (vol00009-efta00152997-pdf). The victim was not a US citizen.",
+      "Getting her to New York required coordination across the FBI's New York field office, the FBI's legal attache at the US Embassy in Pretoria, and the State Department's consular team in Johannesburg. The victim had a son, eight months old. McCawley wrote to the consular team: \"my client is very interested in coming to NY for the victims meeting on October 23rd but she needs to travel with her infant son who is 8 months old and needs to get an expedited passport/visa if that is possible. She has a passport meeting for her baby scheduled for tomorrow in South Africa\" (vol00009-efta00152997-pdf). The FBI's initial contact note copied case agent Mandy Young and listed the consular assistance needed as urgent given the October 23 date (EFTA01650004-5).",
+      "Whether the visa was expedited and whether she attended the New York briefing is not documented in the archive.",
+    ],
+    email_ids: [
+      "EFTA01650004-5",
+      "EFTA01650226-0",
+      "EFTA01650004-1",
+      "vol00009-efta00152997-pdf",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
