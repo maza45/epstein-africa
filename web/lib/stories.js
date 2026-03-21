@@ -264,6 +264,42 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "wade-qatar-exile",
+    title: "From Rebeuss to Doha: Epstein Was Still Pitching Wade the Day He Died",
+    summary:
+      "Hours after walking out of prison in June 2016, Karim Wade was on a plane to Qatar. Within weeks he and Epstein had revived the Norwegian LNG deal. Epstein was still pitching him to investors in 2018.",
+    countries: ["Senegal"],
+    date_range: "2016–2018",
+    body: [
+      "June 25, 2016. Sultan emailed Epstein with the official version: Wade had been granted a presidential pardon — though he remained liable for a $200 million fine. French media and Al Jazeera were reporting that Qatar had acted as mediator. He was flown to Doha the same night he walked out.",
+      "Two months later, first contact from exile. Epstein: \"Any fun?\" Wade: \"Yes Sir, really enjoy Qatar.\"",
+      "By September he was already back to business. \"Yes still in Doha. Are u still in contact with ur LNG friend?\" The LNG friend was Morits Skaugen — owner of Norway's largest LNG fleet, whom Epstein had introduced to Wade in July 2012, a year before the arrest. Epstein confirmed: \"you mean moritz the lng norwegian?\" Wade: \"Yep the norwegian guy with the fleet of LNG ships.\" Four years in prison. First week of real contact. Back to the Norwegian LNG deal.",
+      "November 2 — Epstein was flying to Qatar. Wade confirmed he'd be there: \"Just met with J'aborde who told me that you are coming.\" J'aborde is an unidentified contact who already knew Epstein was en route — Wade had a network running in Doha.",
+      "November 29 — Epstein pitching Wade to a new contact, identity unconfirmed in the documents: \"Karim Wade is the son of the president of Senegal (they just found GAS offshore). He was put in jail to remove him from running against the current president. He is in Qatar awaiting his political return to power which is almost guaranteed. He is the most charismatic and rational of all the Africans.\"",
+      "Epstein died in August 2019. The last Wade emails in the archive are from 2018 — still in Doha, still in contact. Wade did return to Senegal eventually, running for president in 2024. He lost. The gas is still offshore.",
+    ],
+    email_ids: [
+      "EFTA02339435-0",
+      "vol00009-efta00820017-pdf",
+      "EFTA01744455-0",
+      "vol00009-efta00817072-pdf",
+      "EFTA01738729-0",
+      "vol00009-efta01060422-pdf-1",
+    ],
+    news_links: [
+      {
+        title: "Epstein Made Efforts to Free the Son of Senegal's Former President",
+        url: "https://www.occrp.org/en/scoop/epstein-made-efforts-to-free-the-son-of-senegals-former-president-after-corruption-conviction",
+        source: "OCCRP",
+      },
+      {
+        title: "Epstein files reveal links to cash, women, power in Africa",
+        url: "https://www.yahoo.com/news/articles/epstein-files-reveal-links-cash-025719741.html",
+        source: "AFP",
+      },
+    ],
+  },
 ];
 
 export function getStoryBySlug(slug) {
