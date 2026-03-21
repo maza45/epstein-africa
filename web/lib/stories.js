@@ -330,6 +330,36 @@ export const STORIES = [
     news_links: [],
   },
   {
+    slug: "nigeria-ports-deal",
+    title: "The Nigeria Ports Deal: Sultan, Zeitlin, and Epstein's Room",
+    summary:
+      "In June 2018, Epstein brokered negotiations between DP World chairman Sultan Bin Sulayem and Nigeria sovereign wealth fund chair Jide Zeitlin over port acquisitions in Lagos and Badagry — name-dropping Obama's White House Counsel mid-negotiation.",
+    countries: ["Nigeria"],
+    date_range: "2018",
+    body: [
+      "June 5, 2018. Sultan Bin Sulayem emailed Jide Zeitlin — Goldman partner, chair of Nigeria's sovereign wealth fund, just back from Abuja: \"Jeffrey introduced us a while ago. We are very interested in Nigeria.\" He laid out two targets: Badagry, where Maersk had signed three years earlier but never broken ground, and Lekki, already given to an Indian company a decade ago. He wanted Bolloré's portfolio. He wanted a proposal.",
+      "Zeitlin didn't give him one. \"I am recently back from Abuja and Paris. We should meet.\" Sultan replied with thirteen years of context. DP World had been trying to enter Nigerian ports since 2005. He'd met the previous two presidents. He'd met the current Lagos governor. Every attempt had collapsed — dollar dividends versus naira earnings, an industrial park offer he'd declined because \"there is no benefit for us to create an industrial zone to produce cargo for someone else's port.\" His position was clear: greenfield at Badagry or brownfield acquisition in Lagos. Nothing else.",
+      "Zeitlin wrote back to Sultan, then forwarded the thread to Epstein with a different message: \"Your pal does not get it. I am not a shopkeeper in a souk or on Old Bond Street trying to sell him a trinket. His 'give me a proposal approach' doesn't work in Nigeria. I need to get a better sense of him, his team, and their long-term objectives. Once I better understand him, I will then determine if I want to work with him. I am not simply for sale.\"",
+      "Epstein's response to Zeitlin, June 8: \"you do know that kathy ruemmler is my close buddy.\" Kathy Ruemmler was Barack Obama's White House Counsel. Sultan's reply to Epstein: \"Who do you not know!\"",
+      "The deal didn't close. DP World visited Nigeria in March 2019 and proposed industrial parks at Nigerian ports — the same offer Sultan had rejected in January 2018. It was never approved.",
+      "What the emails document is the structure of the attempt: Zeitlin as the access into the Nigerian government, Sultan as the capital, and Epstein as the room they both passed through — name-dropping Obama's counsel mid-negotiation as social proof.",
+    ],
+    email_ids: [
+      "EFTA02644673-2",
+      "EFTA02640944-3",
+      "vol00009-efta01041715-pdf",
+      "vol00009-efta01038589-pdf-1",
+      "vol00009-efta01038627-pdf-7",
+    ],
+    news_links: [
+      {
+        title: "Epstein & Africa: Did sex offender push Israel-Ivory Coast security deal?",
+        url: "https://www.aljazeera.com/news/2026/2/27/did-epstein-help-israel-push-for-a-security-deal-with-ivory-coast",
+        source: "Al Jazeera",
+      },
+    ],
+  },
+  {
     slug: "kenya-safari-2009",
     title: "The Kenya Safari: What Epstein Asked of Miasha Fisher Before She Left",
     summary:
