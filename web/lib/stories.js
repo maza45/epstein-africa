@@ -496,7 +496,7 @@ export const STORIES = [
   },
   {
     slug: "mandelson-south-africa",
-    title: "Do We Like South Africa? Peter Mandelson, Epstein, and the Global Counsel Africa Push",
+    title: "\"Follow the Money Trail\": Peter Mandelson, Epstein, and the South Africa Push",
     summary:
       "In March 2010, Peter Mandelson texted Epstein after being summoned to a private meeting with South African President Jacob Zuma: 'Do we like South Africa??' Five months later he sent Epstein the business framework for his new advisory firm, Global Counsel LLP, listing South Africa as an explicit Category 1 client target. The archive shows Mandelson using Epstein as a confidant and deal conduit as he built Global Counsel's Africa practice, culminating in a plan to introduce Epstein to a senior Congo Brazzaville Finance Ministry official.",
     countries: ["South Africa"],
