@@ -329,6 +329,35 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "kenya-safari-2009",
+    title: "The Kenya Safari: What Epstein Asked of Miasha Fisher Before She Left",
+    summary:
+      "In 2009, Epstein and Peggy Siegal planned a Kenya safari for 21-year-old Miasha Fisher. Ghislaine Maxwell reviewed the full visa and itinerary package and asked what 'the work portion' was. The documents don't answer that question.",
+    countries: ["Kenya"],
+    date_range: "2009",
+    body: [
+      "April 9, 2009. Paula — Miasha Fisher's mother — sent Epstein photos of a performer called TORA, asking him to pass them to someone named Tommy. Epstein replied: \"Put Miasha in a sexy outfit and meet Tommy.\" The next day, more specific: \"white button down shirt with white bra if miasha has it - hair - ponytail see you soon.\" Miasha Fisher was 21 years old.",
+      "Peggy Siegal launched the Kenya plan on April 17 — an \"African Equestrian safari and internship\" for her daughter Mattie and Miasha. Three days later Epstein made first direct contact with Miasha: \"call.\" Then: \"you should record your current voice and take photos of your current physique.\"",
+      "April 27, Epstein to Peggy about Paula: \"treat her like you would any other client.. 10k per month for six months? your call.\"",
+      "May 28 — the trip was fully documented. Epstein capped the gift at $13,000 per person, exactly the IRS annual gift tax exclusion limit. He forwarded the full package to Ghislaine Maxwell: visa documents, itinerary, insurance. Maxwell replied the next morning: \"Wow..what is the work portion of this..it looks like a holiday camp..i am v jealous.\"",
+      "June 11, Epstein to Miasha: \"have you started pills and shots?\" She confirmed. Epstein: \"great --- Israeli?\"",
+      "Miasha didn't go. By late June Mattie had dropped out of the summer leg. The December trip that happened was Peggy's own — Mattie and CNN anchor Felicia Taylor, departing Amsterdam, Cottar's Camp in the Masai Mara, Sasaab, Lamu. Epstein's send-off: \"you will be amazed by the aroma.\"",
+      "Maxwell asked what the work portion was. The documents don't answer that. They show the structure, who signed off on it, and what Epstein asked of a 21-year-old in the weeks before she was meant to leave. Read individually, each exchange has an innocent explanation. Read in sequence — the outfit instructions, the physique photos, the gift structured to the legal limit, Maxwell reviewing the visa package, the medical clearance questions — they describe a preparation process. The Kenya trip was the destination. The documents show what happened before departure.",
+    ],
+    email_ids: [
+      "EFTA02412701",
+      "EFTA01782176",
+      "vol00009-efta00748701-pdf",
+      "EFTA01827283",
+      "EFTA01829651",
+      "EFTA01829799",
+      "vol00009-efta00749876-pdf",
+      "EFTA02443081-0",
+      "EFTA02443211-1",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
