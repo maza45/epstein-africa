@@ -361,6 +361,8 @@ export const STORIES = [
     countries: ["Nigeria"],
     date_range: "2018",
     body: [
+      "The deal started a month earlier than the emails suggest. May 3, 2018 — President Buhari was at the White House meeting Trump. Sultan Bin Sulayem was also in Washington that day. Zeitlin tried to arrange a face-to-face but Sultan left for Cyprus before it could happen. That evening, Nigeria's trade minister Okey Enelamah stopped by Zeitlin's home, fresh from the Buhari/Trump summit. He mentioned his discussions with Sultan at Davos. Zeitlin also noted he'd spoken with Vice President Pence earlier that day. He forwarded all of it to Epstein: \"No worry both problem and solution will still be there.\"",
+      "The next morning Zeitlin had another question for Epstein: \"do you know Oleg Deripaska or Ivan Glasenberg?\" Deripaska was the sanctioned Russian aluminum oligarch. Glasenberg was the CEO of Glencore — the world's largest commodity trader, with operations across Nigeria and central Africa. Epstein replied: \"Easy. Does 11 work.\" The Nigeria ports conversation and the Russian/commodity access conversation were happening in the same exchange, one day apart.",
       "June 5, 2018. Sultan Bin Sulayem emailed Jide Zeitlin — Goldman partner, chair of Nigeria's sovereign wealth fund, just back from Abuja: \"Jeffrey introduced us a while ago. We are very interested in Nigeria.\" He laid out two targets: Badagry, where Maersk had signed three years earlier but never broken ground, and Lekki, already given to an Indian company a decade ago. He wanted Bolloré's portfolio. He wanted a proposal.",
       "Zeitlin didn't give him one. \"I am recently back from Abuja and Paris. We should meet.\" Sultan replied with thirteen years of context. DP World had been trying to enter Nigerian ports since 2005. He'd met the previous two presidents. He'd met the current Lagos governor. Every attempt had collapsed — dollar dividends versus naira earnings, an industrial park offer he'd declined because \"there is no benefit for us to create an industrial zone to produce cargo for someone else's port.\" His position was clear: greenfield at Badagry or brownfield acquisition in Lagos. Nothing else.",
       "Zeitlin wrote back to Sultan, then forwarded the thread to Epstein with a different message: \"Your pal does not get it. I am not a shopkeeper in a souk or on Old Bond Street trying to sell him a trinket. His 'give me a proposal approach' doesn't work in Nigeria. I need to get a better sense of him, his team, and their long-term objectives. Once I better understand him, I will then determine if I want to work with him. I am not simply for sale.\"",
@@ -371,6 +373,10 @@ export const STORIES = [
       "Three months later, Djibouti nationalized DP World's main East Africa hub. Zeitlin wrote to Epstein: \"I hope your pal's sojourn in Tel Aviv was more effective than his efforts on the African continent.\" The Nigeria deal never closed. Sultan Ahmed bin Sulayem resigned as chairman of DP World on February 13, 2026 — five days after the Epstein files became public. DP World acquired a controlling stake in a Nigerian logistics provider in 2022 and began expanding in Lagos. The ports Epstein tried to broker in 2018 are now being built without him.",
     ],
     email_ids: [
+      "EFTA02449325-0",
+      "EFTA02447106-0",
+      "vol00009-efta00815378-pdf",
+      "vol00009-efta00816624-pdf",
       "EFTA01975675-0",
       "EFTA01975388-0",
       "EFTA01975232-0",
