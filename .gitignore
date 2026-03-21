@@ -36,7 +36,12 @@ Thumbs.db
 
 # Data files (large, local-only)
 data/jmail/
+data/ds4/
+data/archive_manifest.json
 *.parquet
+
+# Nested directory (prevents git add -A accidents)
+Epstein-Pipeline/
 
 # Test artifacts
 .coverage
