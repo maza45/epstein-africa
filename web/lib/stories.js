@@ -190,7 +190,28 @@ export const STORIES = [
       "EFTA01776670-1",
       "EFTA01776385-1",
     ],
-    news_links: [],
+    news_links: [
+      {
+        title: "Epstein files reveal links to cash, women, power in Africa",
+        url: "https://www.yahoo.com/news/articles/epstein-files-reveal-links-cash-025719741.html",
+        source: "AFP / Yahoo News",
+      },
+      {
+        title: "Epstein Made Efforts to Free the Son of Senegal's Former President After Corruption Conviction",
+        url: "https://www.occrp.org/en/scoop/epstein-made-efforts-to-free-the-son-of-senegals-former-president-after-corruption-conviction",
+        source: "OCCRP",
+      },
+      {
+        title: "Lobbying diplomatique autour de Karim Wade",
+        url: "https://senego.com/moyennant-finances-et-lobbying-diplomatique-des-correspondances-devoilent-lintrusion-inattendue-de-jeffrey-epstein-dans-une-affaire-judiciaire-majeure-a-dakar_1920486.html",
+        source: "Senego",
+      },
+      {
+        title: "Epstein to Karim Wade, June 2011: \"Gates now wants to send a team to you to organize municipal finance\"",
+        url: "/emails/EFTA01863799-0",
+        source: "DOJ email archive",
+      },
+    ],
   },
   {
     slug: "wade-prison-access",
