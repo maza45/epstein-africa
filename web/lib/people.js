@@ -96,6 +96,14 @@ export const PEOPLE = [
     searchTerms: ["ramata", "ramata sall", "ramata fall"],
   },
   {
+    slug: "rasseck-bourgi",
+    name: "Rasseck Bourgi",
+    title: "French intermediary; brother of Robert Bourgi",
+    countries: ["Senegal", "Africa"],
+    bio: "Rasseck Bourgi is a Paris-based intermediary who appears in Epstein's archive as a node between Epstein and the Francophone African political world. He is the brother of Robert Bourgi, the French Gaullist lawyer who for decades served as the quiet connector between the Élysée and Francophone African heads of state. In the archive Rasseck corresponds under the email account of 'Ute Bourgi.' His most significant appearance is in August 2013, when Epstein asked him whether Nina Keita — niece of Ivory Coast President Ouattara — could visit Karim Wade in Rebeuss prison in Dakar. Rasseck replied with the procedural mechanics: she would need authorisation from the judge, and provided the contact details for Wade's defence lawyers Maître Seydou Diagne and Maître Demba Bathily. He was also present at Epstein's Paris dinners during the period when the Senegal banking project and the LNG deals were being discussed. In a November 2011 email, Epstein wrote: 'I did not know that the trouble maker Bourgi was Rasseck's brother' — suggesting the two family connections were distinct in his mind and that Robert Bourgi had caused some friction in a separate thread.",
+    searchTerms: ["rasseck", "rasseck bourgi", "ute bourgi", "bourgi"],
+  },
+  {
     slug: "karim-wade",
     name: "Karim Wade",
     title: "Former Minister of State, Senegal",
