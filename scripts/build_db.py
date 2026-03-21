@@ -156,7 +156,8 @@ def main():
             release_batch     INTEGER,
             epstein_is_sender INTEGER,
             is_promotional    INTEGER,
-            all_participants  TEXT
+            all_participants  TEXT,
+            body              TEXT
         );
         CREATE INDEX idx_sent_at  ON emails(sent_at);
         CREATE INDEX idx_sender   ON emails(sender);
@@ -176,11 +177,27 @@ def main():
             int(bool(r.get("epstein_is_sender"))),
             int(bool(r.get("is_promotional"))),
             r.get("all_participants"),
+            None,  # body — populated later by enrich_body.py
         ))
 
     cur.executemany(
-        "INSERT INTO emails VALUES (?,?,?,?,?,?,?,?,?,?,?)", rows
+        "INSERT INTO emails VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", rows
     )
+    conn.commit()
+
+    # ── FTS5 virtual table ───────────────────────────────────────────────────
+    print("  Building FTS5 index ...")
+    cur.executescript("""
+        CREATE VIRTUAL TABLE IF NOT EXISTS emails_fts USING fts5(
+            id UNINDEXED,
+            sender,
+            subject,
+            body,
+            content='emails',
+            content_rowid='rowid'
+        );
+        INSERT INTO emails_fts(emails_fts) VALUES('rebuild');
+    """)
     conn.commit()
     conn.close()
 

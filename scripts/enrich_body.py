@@ -54,13 +54,6 @@ def main():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
-    # Add body column if it doesn't exist yet
-    existing_cols = {row[1] for row in cur.execute("PRAGMA table_info(emails)")}
-    if "body" not in existing_cols:
-        print("  Adding body column to emails table ...")
-        cur.execute("ALTER TABLE emails ADD COLUMN body TEXT")
-        conn.commit()
-
     rows = cur.execute(
         "SELECT id, doc_id FROM emails WHERE body IS NULL AND doc_id IS NOT NULL"
     ).fetchall()
@@ -130,6 +123,12 @@ def main():
     conn.executemany("UPDATE emails SET countries = ? WHERE id = ?", country_updates)
     conn.commit()
     print(f"  Updated countries for {len(country_updates)} rows.")
+
+    # ── 7. Rebuild FTS5 index now that body text is populated ─────────────────
+    print("\n  Rebuilding FTS5 index with body text ...")
+    conn.execute("INSERT INTO emails_fts(emails_fts) VALUES('rebuild')")
+    conn.commit()
+    print("  FTS5 index rebuilt.")
 
     conn.close()
 
