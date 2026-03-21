@@ -90,6 +90,34 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "wade-introduction",
+    title: "How Sultan Bin Sulayem Brought Karim Wade to Epstein",
+    summary:
+      "In November 2010, Sultan Bin Sulayem brokered a meeting between Epstein and Karim Wade, son of Senegal's president. Within 48 hours Epstein was pitching an offshore digital economy for Senegal.",
+    countries: ["Senegal"],
+    date_range: "2010",
+    body: [
+      "November 13, 2010. A cold email arrives at Epstein's office. Karim Wade — son of Senegal's president, minister controlling 46% of the state budget — introduces himself. Sultan Bin Sulayem of Dubai World had asked him to make contact. Epstein's assistant replied within hours: apartment address, gate code, Monday at 5:30pm.",
+      "Two days later Wade wrote again: \"I was very happy to meet you. Have no doubt that we will have fun.\" Epstein was already on a flight back. He replied mid-air with a pitch for Senegal — make it a banking centre and internet server hub, use technology five to ten years ahead of what exists now, internet gambling, hosting servers so companies can operate \"in Senegal without actually being there,\" mobile phone as bank account, nuclear power — he'd already spoken to \"the Gates group\" about it.",
+      "It wasn't small talk. It was a sales meeting disguised as a first conversation. Wade had just become one of the most powerful men in Senegal. Epstein wanted to be indispensable before anyone else got there first.",
+      "Sultan's role in this is explicit in the emails. He didn't just know both men — he brokered the introduction deliberately. The same man sending Epstein photos with Dangote and African heads of state, forwarding Somaliland recognition documents, running Nigeria port deals — Sultan was also quietly routing Epstein into Senegal's political succession.",
+    ],
+    email_ids: [
+      "EFTA02318552-1",
+      "vol00009-efta00559607-pdf",
+      "EFTA02416717-0",
+      "EFTA01980734-0",
+      "vol00009-efta00899072-pdf-1",
+    ],
+    news_links: [
+      {
+        title: "Epstein files reveal links to cash, women, power in Africa",
+        url: "https://www.yahoo.com/news/articles/epstein-files-reveal-links-cash-025719741.html",
+        source: "AFP / Yahoo News",
+      },
+    ],
+  },
 ];
 
 export function getStoryBySlug(slug) {
