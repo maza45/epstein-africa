@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
-import { getStoryBySlug } from "../../lib/stories";
+import { STORIES, getStoryBySlug } from "../../lib/stories";
 
 function formatDate(d) {
   if (!d) return "—";
@@ -22,30 +22,29 @@ function cleanSender(sender) {
   return sender.replace(/[<>]/g, "").trim();
 }
 
-export default function StoryPage() {
-  const router = useRouter();
-  const { slug } = router.query;
-  const [emails, setEmails] = useState([]);
+export async function getStaticPaths() {
+  return {
+    paths: STORIES.map((s) => ({ params: { slug: s.slug } })),
+    fallback: false,
+  };
+}
 
-  const story = slug ? getStoryBySlug(slug) : null;
+export async function getStaticProps({ params }) {
+  const story = getStoryBySlug(params.slug);
+  if (!story) return { notFound: true };
+  return { props: { story } };
+}
+
+export default function StoryPage({ story }) {
+  const router = useRouter();
+  const [emails, setEmails] = useState([]);
 
   useEffect(() => {
     if (!story || story.email_ids.length === 0) return;
     fetch(`/api/stories/emails?ids=${story.email_ids.join(",")}`)
       .then((r) => r.json())
       .then(setEmails);
-  }, [slug]);
-
-  if (router.isReady && !story) {
-    return (
-      <div className="container">
-        <Nav />
-        <p className="error-msg">Story not found.</p>
-      </div>
-    );
-  }
-
-  if (!story) return null;
+  }, [story]);
 
   return (
     <>
