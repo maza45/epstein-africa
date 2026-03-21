@@ -31,7 +31,7 @@ export default function About({ emailCount }) {
           <p>
             This site documents Jeffrey Epstein&apos;s connections to Africa as
             recorded in his email archive, released by the U.S. Department of
-            Justice in January 2025.
+            Justice in January 2026.
           </p>
 
           <p>
@@ -42,10 +42,16 @@ export default function About({ emailCount }) {
           </p>
 
           <p>
-            This is not investigative journalism. It is a structured view of
-            public records. The emails show who Epstein was talking to, about
-            what, and where. We don&apos;t add interpretation beyond what&apos;s
-            in the data.
+            Beyond the raw emails, the site includes documented profiles of key
+            correspondents and narrative investigations into the major threads —
+            the Ivory Coast surveillance deal, the Libya operation, the Senegal
+            political network, the Kenya safari.
+          </p>
+
+          <p>
+            The site combines a searchable archive with original investigations
+            into the major threads. The emails are the evidence. The stories
+            don&apos;t go beyond what they show.
           </p>
 
           <p>
