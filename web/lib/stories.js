@@ -427,6 +427,42 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "rod-larsen-profile",
+    title: "Terje Rød-Larsen: The Diplomat Who Fed Epstein Intelligence",
+    summary:
+      "The architect of the Oslo Accords and President of the International Peace Institute was one of Epstein's closest contacts — visiting his island, brokering his meetings with Sultan, and using him as a relay channel to Bill Gates for UN field intelligence from Nigeria, Somalia, and Pakistan.",
+    countries: ["Nigeria", "Somalia"],
+    date_range: "2011–2015",
+    body: [
+      "On March 28, 2011, Terje Rød-Larsen sent Epstein a thank-you note: \"Thanks, Jeff, for a great day on a wonderful and totally unique place! We all loved it. Emma and Edward are ecstatic (think the four wheel drives made the strongest impression!). My mind is working on further ideas for creative development. Warmest Terje. Ps Mona blows a kiss.\" Emma and Edward were his children. Mona was his wife. The family had spent the day on Little Saint James, Epstein's private island in the US Virgin Islands. Rød-Larsen was the President of the International Peace Institute, the UN-affiliated think tank he had led since 2005. Before that he had served as UN Special Envoy for Lebanon, and before that he had been the Norwegian diplomat who designed and brokered the Oslo Accords. He was not a peripheral contact.",
+      "The friendship had started in Dubai. January 2011: \"Back in NY. Thanks for lunch in Dubai! Was great. When are you back?\" By April he was asking Epstein: \"Do you want me to invite Sultan to breakfast on Sunday? Or would you prefer more private time?\" Sultan Bin Sulayem — chairman of DP World, Epstein's most active Africa operator — and Rød-Larsen were both in the same city. Rød-Larsen was offering to put them in the same room. The man who spent his career mediating between heads of state was also, informally, managing Epstein's social schedule.",
+      "The more substantive link was the International Peace Institute's polio operation. IPI had a team running field intelligence on polio eradication in conflict zones — Pakistan, Afghanistan, Nigeria, Somalia — through a researcher named Nasra Hassan. The intelligence fed from Hassan to Rød-Larsen's IPI team, and from Rød-Larsen directly to Epstein. The Gates Foundation was the funder. The relay ran: field operative → IPI Vienna → Rød-Larsen → Epstein → Gates. A September 2013 IPI meeting with the Gates Foundation was reported back to Rød-Larsen, and he forwarded the report to Epstein. By February 2015 the chain was explicit: Nasra Hassan sent Rød-Larsen a Pakistan polio update marked \"Urgent, Confi\" with the instruction \"plz pass on to Bill Gates.\" It went to Epstein.",
+      "Nigeria was the most active African thread. November 2013: Nasra Hassan sent Rød-Larsen a news report — Boko Haram had attacked polio immunization workers in Kano State, and a northern Nigerian group was calling on President Goodluck Jonathan to suspend Bill Gates's planned visit. Rød-Larsen forwarded it to Epstein. December 2013: IPI researcher Mark Shaw sent a two-page intelligence brief — \"what we are hearing at multiple levels\" about polio obstruction in Nigeria. It went to Rød-Larsen's IPI director Andrea Pfanzelter, then to Rød-Larsen, then to Epstein. June 2014: the final versions of IPI's formal reports on \"Barriers to Polio Eradication in Nigeria\" and Somalia were forwarded to Epstein. IPI was producing classified research on Nigerian security conditions and routing it through a convicted sex offender to the world's largest private foundation.",
+      "The other flows were less structured but no less significant. In August 2011 Rød-Larsen forwarded Epstein the UN Secretary-General's telephone conversation with the Foreign Minister of Turkey — a document marked for internal UN circulation. In April 2013 Epstein asked Rød-Larsen to find out who ran the UN's Special Drawing Rights program, in connection with a Gulf contact named Jabor who was coming to see him. In July 2014 Rød-Larsen forwarded a document he had shared with Lawrence Summers — IPI economic advice for Kazakhstan, mildly edited by the former US Treasury Secretary — to Epstein. \"I've edited mildly what was sent below. Now good w me,\" Summers wrote. The chain ended at Epstein.",
+      "The emails don't show money moving from Epstein to IPI directly. What they show is that IPI's most sensitive intelligence products — field reports on Boko Haram activity, assessments of government obstruction of polio workers in northern Nigeria, classified UN communications — were being shared with Epstein as a matter of routine. Rød-Larsen was also using Epstein to chase a separate payment dispute with media mogul Mort Zuckerman, forwarding a message about the outstanding amount through Epstein's network. He was at the Cayman Islands offering to fly to New York for dinner. He was visiting the island with his family. The relationship was personal, operational, and sustained across four years of the archive. Rød-Larsen was removed as IPI president in 2021 following a New York Times investigation into a $130,000 payment he had received from Epstein.",
+    ],
+    email_ids: [
+      "EFTA02025540",
+      "vol00009-efta00690095-pdf",
+      "EFTA01868773",
+      "EFTA01755599-1",
+      "EFTA01959363-1",
+      "EFTA01947451-0",
+      "vol00009-efta00990564-pdf",
+      "vol00009-efta00864113-pdf",
+      "EFTA01913108",
+      "vol00009-efta00874786-pdf",
+      "EFTA01950846",
+    ],
+    news_links: [
+      {
+        title: "Head of U.N.-Affiliated Research Group Resigns After Disclosing Epstein Payment",
+        url: "https://www.nytimes.com/2021/08/12/us/politics/epstein-terje-rod-larsen-international-peace-institute.html",
+        source: "New York Times",
+      },
+    ],
+  },
 ];
 
 export function getStoryBySlug(slug) {
