@@ -1,7 +1,16 @@
 import Head from "next/head";
 import Nav from "../components/Nav";
+import { getDb } from "../lib/db";
 
-export default function About() {
+export async function getServerSideProps() {
+  const db = getDb();
+  const emailCount = db
+    .prepare("SELECT COUNT(*) AS n FROM emails WHERE is_promotional = 0")
+    .get().n;
+  return { props: { emailCount } };
+}
+
+export default function About({ emailCount }) {
   return (
     <>
       <Head>
@@ -26,10 +35,10 @@ export default function About() {
           </p>
 
           <p>
-            The archive has 1.7 million emails. We filtered it down to 2,030
-            that reference African countries, cities, or people with documented
-            African ties — by keyword search on subjects, senders, participant
-            lists, and email body text.
+            The archive has 1.7 million emails. We filtered it down to{" "}
+            {emailCount.toLocaleString()} that reference African countries,
+            cities, or people with documented African ties — by keyword search
+            on subjects, senders, participant lists, and email body text.
           </p>
 
           <p>

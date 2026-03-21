@@ -3,38 +3,38 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Nav from "../components/Nav";
+import { getDb } from "../lib/db";
 
-const COUNTRIES = [
-  "Africa",
-  "Angola",
-  "Botswana",
-  "Cameroon",
-  "Congo",
-  "Egypt",
-  "Ethiopia",
-  "Gabon",
-  "Ghana",
-  "Ivory Coast",
-  "Kenya",
-  "Liberia",
-  "Libya",
-  "Mali",
-  "Morocco",
-  "Mozambique",
-  "Nigeria",
-  "Rwanda",
-  "Senegal",
-  "Seychelles",
-  "Sierra Leone",
-  "Somalia",
-  "South Africa",
-  "Sudan",
-  "Tanzania",
-  "Tunisia",
-  "Uganda",
-  "Zambia",
-  "Zimbabwe",
-];
+export async function getServerSideProps() {
+  const db = getDb();
+
+  const emailCount = db
+    .prepare("SELECT COUNT(*) AS n FROM emails WHERE is_promotional = 0")
+    .get().n;
+
+  const rows = db
+    .prepare(
+      "SELECT DISTINCT countries FROM emails WHERE is_promotional = 0 AND countries IS NOT NULL"
+    )
+    .all();
+
+  const countrySet = new Set();
+  for (const row of rows) {
+    for (const c of row.countries.split(",")) {
+      const t = c.trim();
+      if (t) countrySet.add(t);
+    }
+  }
+  // "Africa" pinned first, rest alphabetical
+  const countries = [
+    "Africa",
+    ...Array.from(countrySet)
+      .filter((c) => c !== "Africa")
+      .sort(),
+  ];
+
+  return { props: { emailCount, countries } };
+}
 
 const LIMIT = 25;
 
@@ -54,7 +54,7 @@ function formatDate(d) {
   });
 }
 
-export default function Home() {
+export default function Home({ emailCount, countries }) {
   const [emails, setEmails] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -130,7 +130,7 @@ export default function Home() {
           <h1>Epstein Africa</h1>
           <p className="subtitle">
             Searchable database of Jeffrey Epstein&apos;s documented connections
-            to Africa — 2,030 verified emails, excluding promotional mail.{" "}
+            to Africa — {emailCount.toLocaleString()} verified emails, excluding promotional mail.{" "}
             <span className="source">
               Source: DOJ Epstein Files Transparency Act.
             </span>
@@ -153,7 +153,7 @@ export default function Home() {
             aria-label="Filter by country"
           >
             <option value="">All countries</option>
-            {COUNTRIES.map((c) => (
+            {countries.map((c) => (
               <option key={c} value={c}>
                 {c}
               </option>
