@@ -145,6 +145,29 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "harem-marrakech",
+    title: "Eunuchs Only: Epstein's Moroccan Palace and the Harem Offer",
+    summary:
+      "In November 2011, a contact in Sultan Bin Sulayem's orbit offered to manage a harem in Epstein's planned Moroccan palace. Epstein replied with architectural specifications and said he was copying Prince Bandar's Marrakech house plans.",
+    countries: ["Morocco"],
+    date_range: "2011",
+    body: [
+      "November 11, 2011. Epstein emails a contact: \"perfect.. I will leave time. also free in the evening. Im working on moroccan house plans.\" The reply comes the next morning from someone logged as \"afri xp\": \"Do not forget in the house the harem part. Happy to manage it...\"",
+      "Epstein wrote back: \"eunuchs only. I want it to have a separate house for the women. I am getting the house plans of Bandar in Marrakech.\"",
+      "Bandar is Prince Bandar bin Sultan — Saudi Arabia's former ambassador to the US, former director of Saudi intelligence. Epstein wasn't sketching a holiday villa. He was copying a Saudi prince's palace.",
+      "The \"afri xp\" account is masked — sent from a BlackBerry via Orange, a French-African carrier. The thread identifies them as \"friend of sultan,\" a reference to Sultan Bin Sulayem, the DP World chairman who had already spent a year routing Epstein through African political networks, co-planning the Africa trip, and sending photos from meetings with Dangote and multiple heads of state.",
+      "The email doesn't appear in the Africa-filtered dataset. No country keywords. It surfaced only through a direct quote search of the full 1.7 million email archive. The identity of \"afri xp\" is not established by the documents. What the documents do show is the offer, and the answer.",
+    ],
+    email_ids: ["EFTA01852132-0"],
+    news_links: [
+      {
+        title: "Epstein Made Efforts to Free the Son of Senegal's Former President After Corruption Conviction",
+        url: "https://www.occrp.org/en/scoop/epstein-made-efforts-to-free-the-son-of-senegals-former-president-after-corruption-conviction",
+        source: "OCCRP",
+      },
+    ],
+  },
 ];
 
 export function getStoryBySlug(slug) {
