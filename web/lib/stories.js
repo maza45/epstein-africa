@@ -159,7 +159,7 @@ export const STORIES = [
       "The identity of \"afri xp\" is confirmed by the documents. Six months earlier, on May 22, 2011, the same account had emailed Epstein asking him to switch to a new private address. Epstein replied: \"im sorry, who is this.\" The response: \"This is Karim sorry better use this email adr. Cu. Karim.\" The account resolves to afrixp@hotmail.com. \"Afri xp\" is Karim Wade — son of Senegal's president, the man Sultan Bin Sulayem had introduced to Epstein in November 2010.",
       "The harem email doesn't appear in the Africa-filtered dataset — no country keywords triggered it. It surfaced only through a direct quote search of the full 1.7 million email archive. What the documents show is the offer, the confirmation of who made it, and the answer.",
     ],
-    email_ids: ["EFTA01852132-0", "EFTA01864579-0"],
+    email_ids: ["EFTA01852132", "EFTA01864579-0", "EFTA01864579-2"],
     news_links: [
       {
         title: "Epstein Made Efforts to Free the Son of Senegal's Former President After Corruption Conviction",
@@ -184,10 +184,13 @@ export const STORIES = [
       "The Senegal bank never materialised. Wade's father lost the election in March 2012. Wade himself was arrested thirteen months later. What the emails document is the year before that — JPMorgan for trading infrastructure, Gates for the development angle, Sultan as the Gulf anchor, Wade as the political vehicle. Epstein in the middle, building something that didn't survive the election.",
     ],
     email_ids: [
-      "EFTA01865356-0",
+      "EFTA01865356",
       "EFTA01864665-0",
-      "EFTA01863799-0",
+      "EFTA01864665-1",
+      "EFTA01863799",
+      "EFTA01776670-0",
       "EFTA01776670-1",
+      "EFTA01776385-0",
       "EFTA01776385-1",
     ],
     news_links: [
