@@ -96,6 +96,14 @@ export const PEOPLE = [
     searchTerms: ["ramata", "ramata sall", "ramata fall"],
   },
   {
+    slug: "elisabeth-feliho",
+    name: "Elisabeth Feliho",
+    title: "Assistant to Karim Wade (prison period)",
+    countries: ["Senegal", "Africa"],
+    bio: "Elisabeth Feliho served as Karim Wade's primary point of contact with the outside world during his imprisonment in Rebeuss prison from 2013 to 2016. She corresponded with Epstein from two addresses — afrief@gmail.com and a Université de Lorraine email — signing variously as 'Elisabeth Feliho' and 'Elisabeth Karim's assistant.' Her role was operational: relaying Wade's messages to Epstein, chasing outstanding payments to his defence lawyers, and coordinating the engagement of the Nelson Mullins lobbying firm. In April 2014 she wrote to Epstein: 'I am writing on behalf of Karim who sends his regards. Nina visited him this weekend and he passed on a message for you.' In October 2015 she introduced Vinoda Basnayake of Nelson Mullins Riley & Scarborough to Epstein on Wade's instruction, forwarding the firm's DC Government Relations contact and adding: 'Please let us know before you contact them so we can advise them in advance so they expect your call.' She also made multiple requests to Epstein on Wade's behalf for transfers to cover legal fees. After Wade's release in June 2016 she continued to act as a liaison between Wade's circle and Epstein's network.",
+    searchTerms: ["feliho", "elisabeth feliho", "afrief"],
+  },
+  {
     slug: "rasseck-bourgi",
     name: "Rasseck Bourgi",
     title: "French intermediary; brother of Robert Bourgi",
