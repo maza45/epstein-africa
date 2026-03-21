@@ -300,6 +300,35 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "sultan-scouting-operation",
+    title: "Sultan's Scouting Operation: How Epstein Mapped a Continent",
+    summary:
+      "Between 2012 and 2013, Sultan Bin Sulayem moved through Africa and Central Asia — Angola, Gabon, Congo, Kazakhstan — briefing Epstein from helicopters and energy summits while Epstein identified the financial angles and asked who to call.",
+    countries: ["Angola", "Gabon", "Ivory Coast"],
+    date_range: "2012–2013",
+    body: [
+      "By mid-2012 the network had a method. Sultan Bin Sulayem would move first — state visits, energy summits, presidential meetings — and brief Epstein afterward. Epstein would identify the financial angle and ask who to call.",
+      "July 2012: Sultan to Epstein, planning an October trip — Angola, Gabon, Ivory Coast. Epstein's response was immediate: \"I can set up Standard Bank and you for Ivory Coast, check if the IC government is interested in the service.\" He already had the Standard Bank contact. He was proposing to sell a financial service to a government he'd never visited, through a man who was planning to be there in three months.",
+      "October 2012: Sultan hosted a Dubai energy summit. The guest list was a map of where Epstein wanted to be — presidents of Rwanda, Gabon, Djibouti attended. Sultan was building the relationships. Epstein was watching the list.",
+      "November 2, 2012 — Wade from Angola: \"Angola is a big target for our project. Meeting with my friend the daughter of the PR 3rd week of november. If ur around Paris or London, I can introduce u to her.\" The daughter of the PR — President dos Santos — was Isabel dos Santos, then Africa's wealthiest woman and her father's designated heir to Angola's state energy sector. Three days later Epstein to Wade: \"will dos cantos be in paris on the 29th?\" Wade offered to introduce Epstein to Isabel dos Santos in November 2012. Epstein asked if she'd be in Paris on the 29th. Nothing in the archive confirms any meeting took place.",
+      "By March 2013, Sultan had a new Africa trip planned — South Africa, Angola, Zambia, Ethiopia — with Sheikh Abdullah, a Gulf royal. He was in contact with Ali Bongo in Gabon, met President Kabila in Congo Kinshasa, and was referencing an \"American fund manager\" for the next visit. The American fund manager was Epstein.",
+      "May 11, 2013. Sultan emailed Epstein from a helicopter. He was flying over Kazakhstan with the country's president, watching the inauguration of a China-CIS rail link. He was briefing Epstein on a $400 billion Chinese industrial city deal being built on the Kazakhstan-China border. Epstein replied: \"I will be with Bill Gates Paris, 9-10 June then free.\"",
+      "The same man. One week: Kazakhstan by helicopter with a Central Asian president. The next: Paris with Bill Gates. Epstein at the center, connecting both.",
+    ],
+    email_ids: [
+      "EFTA01876197",
+      "EFTA02379031",
+      "EFTA01765205",
+      "EFTA01978629",
+      "EFTA01976871",
+      "vol00009-efta01143801-pdf",
+      "EFTA01759560",
+      "EFTA01975989",
+      "EFTA01975812",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
