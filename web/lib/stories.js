@@ -223,6 +223,48 @@ export const STORIES = [
     ],
   },
   {
+    slug: "wade-dc-lobbying",
+    title: "The DC Machine Epstein Built to Free Karim Wade",
+    summary:
+      "From October 2015, Epstein funded a five-track Washington lobbying campaign — State Department pressure, Congressional briefings, a planted op-ed, Amnesty International outreach, and a human rights report target — until Wade walked out of prison in June 2016.",
+    countries: ["Senegal"],
+    date_range: "2015–2016",
+    body: [
+      "In October 2015, Nelson Mullins — a Washington DC lobbying firm — received an approach. An internal memo recorded it this way: \"We were contacted by one of Mr. Wade's business associates in the U.S. who happens to be old friends with Bob Crowe. He said he would handle the payment details and contract.\" The associate was Epstein. The contract was $50,000. The job was to get Karim Wade out of Rebeuss prison.",
+      "By December, Crowe was chasing the retainer: \"We did not get the $50,000 promised by 11-30.\" Wire instructions followed in January 2016. Epstein paid.",
+      "What that $50,000 bought was a five-track pressure campaign running simultaneously in Washington.",
+      "At the State Department, Crowe met contacts directly. April 2016: \"good meeting at State... working behind the scenes to put pressure on Macky Sall.\" The US Ambassador to Senegal was identified as a lever. On Capitol Hill, lobbyist Vinoda Basnayake briefed Yebbie Watkins — chief of staff to House Democratic Whip Jim Clyburn — on the case. A Ron Dellums op-ed was placed in The Hill. Crowe's note on it: keep it \"highly confidential.\" Dellums was a former chairman of the House Armed Services Committee — his name carried weight on African affairs. Amnesty International was approached to take up Wade's detention as a human rights case. And the State Department's FY17 human rights report on Senegal was identified as a specific target — get Wade's name in as a political prisoner.",
+      "The campaign tracked Macky Sall's own vulnerabilities as leverage. February 2016, Crowe to Epstein: \"We feel that the development of Macky extending his term limits from 5 to 7 years helps us.\" Sall's political exposure was being used as pressure.",
+      "June 16, 2016. Crowe: \"He has told my friends high up at State that he was going to do it. They have been putting pressure on him!\" Eight days later Wade walked out of Rebeuss. He was on a plane to Doha the same night.",
+    ],
+    email_ids: [
+      "vol00009-efta00838871-pdf-5",
+      "vol00009-efta00707609-pdf",
+      "vol00009-efta00698508-pdf-2",
+      "EFTA02394840-0",
+      "EFTA01742150-0",
+      "EFTA02459411-0",
+      "EFTA02339435-0",
+    ],
+    news_links: [
+      {
+        title: "Epstein Made Efforts to Free the Son of Senegal's Former President",
+        url: "https://www.occrp.org/en/scoop/epstein-made-efforts-to-free-the-son-of-senegals-former-president-after-corruption-conviction",
+        source: "OCCRP",
+      },
+      {
+        title: "Lobbying diplomatique autour de Karim Wade",
+        url: "https://senego.com/moyennant-finances-et-lobbying-diplomatique-des-correspondances-devoilent-lintrusion-inattendue-de-jeffrey-epstein-dans-une-affaire-judiciaire-majeure-a-dakar_1920486.html",
+        source: "Senego",
+      },
+      {
+        title: "Epstein files reveal links to cash, women, power in Africa",
+        url: "https://www.yahoo.com/news/articles/epstein-files-reveal-links-cash-025719741.html",
+        source: "AFP",
+      },
+    ],
+  },
+  {
     slug: "wade-prison-operation",
     title: "How Epstein Ran a DC Lobbying Operation to Free Karim Wade from Prison",
     summary:
