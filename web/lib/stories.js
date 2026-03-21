@@ -193,6 +193,36 @@ export const STORIES = [
     news_links: [],
   },
   {
+    slug: "wade-prison-access",
+    title: "How Epstein Got Inside Rebeuss Prison",
+    summary:
+      "After Karim Wade's arrest in 2013, Epstein coordinated prison access through Nina Keita, brokered by Paris fixer Rasseck Bourgi, and began paying Wade's defense lawyers through a Moroccan bank routing.",
+    countries: ["Senegal"],
+    date_range: "2013–2014",
+    body: [
+      "Karim Wade was arrested April 15, 2013. By August he was in Rebeuss, Dakar's main detention facility, facing charges of illicitly accumulating $240 million. Epstein's first move was to find a way in.",
+      "He didn't contact the prison. He called Rasseck Bourgi — who appears in the emails as \"Ute Bourgi,\" the brother of Robert Bourgi, the French lawyer who spent decades as the quiet back-channel between successive French governments and Francophone African leaders. Rasseck had his own connections in Dakar. Epstein's request was simple: Nina Keita, Ouattara's niece, wants to visit Wade. Can she?",
+      "Rasseck came back with the procedure. She needed authorization from the judge. The lawyers to contact were Maître Seydou Diagne or Maître Demba Bathily. Epstein forwarded it to Nina. She replied the next morning: \"Thank you Jeffrey!! I'll contact them tomorrow.\"",
+      "Five months later Epstein was talking to Diagne directly. A short exchange — \"karim asked that we connect\" — and they moved to Viber. By May 2014, Diagne sent his bank details: Attijariwafa Bank, Dakar branch, routing through Casablanca. Epstein told Nina he'd sent the transfer twice. Diagne confirmed receipt with a voucher. Wade's prison assistant came back asking if Epstein could send another payment — the lawyers needed more.",
+      "Epstein had known Wade for less than three years. He had introduced him to JPMorgan, the Gates Foundation, Sultan Bin Sulayem, and Ehud Barak. He was now paying his criminal defense lawyers through a Moroccan bank routing, coordinated through an Ivorian presidential niece, brokered by a Paris fixer with ties to the Élysée. The access chain ran from New York to Paris to Abidjan to Dakar — and it worked.",
+    ],
+    email_ids: [
+      "vol00009-efta00966541-pdf-2",
+      "EFTA01963508-0",
+      "EFTA01945668-0",
+      "EFTA01927653-0",
+      "EFTA01924121-0",
+      "EFTA02705431-0",
+    ],
+    news_links: [
+      {
+        title: "Epstein Made Efforts to Free the Son of Senegal's Former President",
+        url: "https://www.occrp.org/en/scoop/epstein-made-efforts-to-free-the-son-of-senegals-former-president-after-corruption-conviction",
+        source: "OCCRP",
+      },
+    ],
+  },
+  {
     slug: "wade-prison-operation",
     title: "How Epstein Ran a DC Lobbying Operation to Free Karim Wade from Prison",
     summary:
