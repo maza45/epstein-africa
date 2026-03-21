@@ -220,7 +220,7 @@ export const STORIES = [
     slug: "wade-prison-access",
     title: "Operation Saving Soldier Wade: How Epstein Got Inside Rebeuss Prison",
     summary:
-      "After Karim Wade's arrest in 2013, Epstein coordinated prison access through Nina Keita, brokered by Paris fixer Rasseck Bourgi, and began paying Wade's defense lawyers through a Moroccan bank routing.",
+      "Karim Wade was arrested in April 2013. Epstein coordinated prison access through Nina Keita, brokered by Paris fixer Rasseck Bourgi, and began paying Wade's defense lawyers through a Moroccan bank routing.",
     countries: ["Senegal"],
     date_range: "2013–2014",
     body: [
@@ -250,7 +250,7 @@ export const STORIES = [
     slug: "wade-dc-lobbying",
     title: "The DC Machine Epstein Built to Free Karim Wade",
     summary:
-      "From October 2015, Epstein funded a five-track Washington lobbying campaign covering State Department pressure, Congressional briefings, a planted op-ed, Amnesty International outreach, and a human rights report target, until Wade walked out of prison in June 2016.",
+      "From October 2015, Epstein funded a five-track Washington lobbying campaign: State Department pressure, Congressional briefings, a planted op-ed, Amnesty International outreach, and a human rights report target. Wade walked out of prison in June 2016.",
     countries: ["Senegal"],
     date_range: "2015–2016",
     body: [
@@ -328,7 +328,7 @@ export const STORIES = [
     slug: "sultan-scouting-operation",
     title: "Sultan's Scouting Operation: How Epstein Mapped a Continent",
     summary:
-      "Between 2012 and 2013, Sultan Bin Sulayem moved through Africa and Central Asia, Angola, Gabon, Congo, Kazakhstan, briefing Epstein from helicopters and energy summits while Epstein identified the financial angles and asked who to call.",
+      "Between 2012 and 2013, Sultan Bin Sulayem moved through Africa and Central Asia: Angola, Gabon, Congo, Kazakhstan. He briefed Epstein from helicopters and energy summits. Epstein identified the financial angles and asked who to call.",
     countries: ["Angola", "Gabon", "Ivory Coast"],
     date_range: "2012–2013",
     body: [
@@ -357,7 +357,7 @@ export const STORIES = [
     slug: "nigeria-ports-deal",
     title: "The Nigeria Ports Deal: Sultan, Zeitlin, and Epstein's Room",
     summary:
-      "In June 2018, Epstein brokered negotiations between DP World chairman Sultan Bin Sulayem and Nigeria sovereign wealth fund chair Jide Zeitlin, cycling through Obama's White House Counsel and the Emir of Kano as social proof when the deal stalled.",
+      "In June 2018, Epstein brokered negotiations between DP World chairman Sultan Bin Sulayem and Nigeria sovereign wealth fund chair Jide Zeitlin. When the deal stalled, he cycled through Obama's White House Counsel and the Emir of Kano as social proof.",
     countries: ["Nigeria"],
     date_range: "2018",
     body: [
@@ -402,7 +402,7 @@ export const STORIES = [
     slug: "kenya-safari-2009",
     title: "The Kenya Safari: What Epstein Asked of Miasha Fisher Before She Left",
     summary:
-      "In 2009, Epstein and Peggy Siegal planned a Kenya safari for 21-year-old Miasha Fisher. Ghislaine Maxwell reviewed the full visa and itinerary package and asked what 'the work portion' was. The documents don't answer that question.",
+      "In 2009, Epstein and Peggy Siegal planned a Kenya safari for 21-year-old Miasha Fisher. Ghislaine Maxwell reviewed the full visa and itinerary package and asked what 'the work portion' was.",
     countries: ["Kenya"],
     date_range: "2009",
     body: [
@@ -431,7 +431,7 @@ export const STORIES = [
     slug: "somaliland-recognition",
     title: "Somaliland: The Unrecognized State Sultan Wanted Epstein to Legitimize",
     summary:
-      "Between 2011 and 2018, Epstein accumulated seven years of Somaliland interest, from a field scout's report out of Hargeisa, through water and oil pitches near Berbera, to Sultan Bin Sulayem firing a six-document recognition lobbying dossier at him in April 2018, two months before the Nigeria ports negotiations began.",
+      "Epstein's Somaliland file spans seven years. It opens with a field scout's report from Hargeisa in 2011 and ends with Sultan Bin Sulayem sending a six-document recognition lobbying dossier in April 2018, two months before the Nigeria ports negotiations began.",
     countries: ["Somalia"],
     date_range: "2011–2018",
     body: [
@@ -466,7 +466,7 @@ export const STORIES = [
     slug: "rod-larsen-epstein-intelligence",
     title: "Terje Rød-Larsen: The Diplomat Who Fed Epstein Intelligence",
     summary:
-      "The architect of the Oslo Accords and President of the International Peace Institute was one of Epstein's closest contacts, visiting his island, brokering his meetings with Sultan, and using him as a relay channel to Bill Gates for UN field intelligence from Nigeria, Somalia, and Pakistan.",
+      "Terje Rød-Larsen designed the Oslo Accords and led the International Peace Institute for sixteen years. He visited Epstein's island with his family, brokered his meetings with Sultan, and funneled classified UN field intelligence from Nigeria, Somalia, and Pakistan to Bill Gates through Epstein.",
     countries: ["Nigeria", "Somalia"],
     date_range: "2011–2015",
     body: [
