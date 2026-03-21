@@ -94,7 +94,7 @@ export default function EmailDetail() {
         <a
           className="back-btn"
           href={(() => {
-            const raw = router.query.from ? decodeURIComponent(router.query.from) : "/";
+            const raw = router.query.back ? decodeURIComponent(router.query.back) : "/";
             return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
           })()}
         >

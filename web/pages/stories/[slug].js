@@ -98,7 +98,7 @@ export default function StoryPage() {
                         className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
                         onClick={() =>
                           router.push(
-                            `/emails/${encodeURIComponent(email.id)}?from=${encodeURIComponent(router.asPath)}`
+                            `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
                           )
                         }
                       >

@@ -107,7 +107,7 @@ export default function PersonProfile() {
                             className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
                             onClick={() =>
                               router.push(
-                                `/emails/${encodeURIComponent(email.id)}`
+                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
                               )
                             }
                           >
