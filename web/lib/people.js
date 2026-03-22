@@ -167,6 +167,38 @@ export const PEOPLE = [
     bio: "Ghanim Bin Saad Al Saad served as Managing Director and CEO of Qatari Diar, the sovereign real estate and infrastructure investment fund of the State of Qatar. He is named in Epstein's archive in connection with the Congo Brazzaville bank project. A December 30, 2010 briefing from Philippe Jonnart, forwarded by Peter Mandelson to Epstein in January 2011, identified him as the Qatari funding source: \"the Qatari interlocutor Jean-Yves met with in Brazzaville was Ghanim Bin Saad Al Saad, Managing Director & CEO, Qatari Diar.\" Jean-Yves Ollivier had already met him in Brazzaville before Mandelson or Epstein entered the picture. His role was as the target capital provider for the proposed private bank. Qatari Diar, established in 2005, manages real estate and infrastructure investments across more than 25 countries on behalf of the Qatar Investment Authority.",
     searchTerms: ["ghanim", "ghanim bin saad", "qatari diar"],
   },
+  {
+    slug: "ehud-barak",
+    name: "Ehud Barak",
+    title: "Former Prime Minister and Defence Minister of Israel",
+    countries: ["Ivory Coast", "Africa"],
+    bio: "Ehud Barak served as Prime Minister of Israel from 1999 to 2001 and as Defence Minister from 2007 to 2013. He is a regular correspondent in Epstein's archive. His connection to Africa runs through the Ivory Coast surveillance deal: in September 2013, Epstein passed him the personal email of Sidi Tiémoko Touré, Ouattara's chief of staff, writing \"chief of staff of outara, he arrives tomorw, try to coordianate.\" The connection had been built through Nina Keita, Ouattara's niece. A mass surveillance contract for Ivory Coast's phone and internet communications, built by former Israeli intelligence officials, was formalized in 2014. Barak also appears in the archive as a confirmed or near-confirmed attendee at social dinners with Epstein in New York. His relationship with Epstein became public during the 2019 criminal proceedings; Barak acknowledged meeting Epstein multiple times but denied knowledge of his crimes.",
+    searchTerms: ["ehud barak", "barak"],
+  },
+  {
+    slug: "prince-andrew",
+    name: "Prince Andrew, Duke of York",
+    title: "Member of the British Royal Family; former UK Trade Envoy",
+    countries: ["Libya", "Africa"],
+    bio: "Prince Andrew served as the United Kingdom's Special Representative for International Trade and Investment from 2001 to 2011. He appears in Epstein's Africa-related correspondence in three connected threads. In October 2010, he co-planned a trip to Tripoli with Epstein to pursue Gaddafi's sovereign wealth, writing \"Libya fixed. Call me whenever.\" In November 2010, he was physically present at Epstein's New York house during a conversation about Africa opportunities involving Karim Wade. Epstein wrote to Wade: \"I'm with Prince Andrew at my house in New York... we are talking about the opportunities in Africa.\" Andrew referred to Gaddafi in emails as \"Brother Leader.\" He resigned as Trade Envoy in 2011 following a separate controversy over his relationship with Epstein. In 2022 he settled a civil lawsuit brought by Virginia Giuffre.",
+    searchTerms: ["prince andrew", "andrew", "PA", "duke of york"],
+  },
+  {
+    slug: "joi-ito",
+    name: "Joi Ito",
+    title: "Former Director, MIT Media Lab",
+    countries: ["Zimbabwe", "Africa"],
+    bio: "Joi Ito served as Director of the MIT Media Lab from 2011 to 2019. He appears in Epstein's archive in the Zimbabwe currency thread. On June 12, 2015, Epstein forwarded him a Guardian article about Zimbabwe's demonetization and proposed using the country as a test case for a new currency and economic system, describing Zimbabwe as \"a great petrie dish.\" Ito responded \"Ha! Amazing\" and then asked \"You mean Mugabe? Are you buddies?\" Epstein replied that he was not but \"can easily get his attention.\" No follow-through appears in the archive. In September 2019, the New Yorker reported that Ito had accepted donations from Epstein for the Media Lab after Epstein's 2008 sex offender conviction, and had disguised the source. Ito resigned as Media Lab director the same day the story published.",
+    searchTerms: ["joi ito", "joi", "ito", "media lab"],
+  },
+  {
+    slug: "ali-bongo",
+    name: "Ali Bongo Ondimba",
+    title: "President of Gabon",
+    countries: ["Gabon", "Africa"],
+    bio: "Ali Bongo Ondimba has served as President of Gabon since 2009, succeeding his father Omar Bongo who held the presidency for 41 years. He appears in Epstein's archive in a thread spanning June 2012 to May 2013. On June 24, 2012, Epstein used Karim Wade as an intelligence source to check whether Bongo was coming to Paris. Wade confirmed the trip. On July 1, 2012, Epstein told Sultan Bin Sulayem that Bongo was in Paris and he was with him. Epstein tried to bring Sultan to the same meeting; Sultan was traveling and could not attend. In May 2013, Sultan met Bongo independently in Libreville and told Epstein he had promised to bring him to Gabon. No documented Gabon visit by Epstein follows in the archive. Bongo was deposed in a military coup in August 2023 after an election dispute.",
+    searchTerms: ["ali bongo", "bongo", "gabon"],
+  },
 ];
 
 export function getPersonBySlug(slug) {
