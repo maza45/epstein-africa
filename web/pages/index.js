@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import { getDb } from "../lib/db";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const db = getDb();
 
   const emailCount = db

@@ -2,7 +2,7 @@ import Head from "next/head";
 import Nav from "../components/Nav";
 import { getDb } from "../lib/db";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const db = getDb();
   const emailCount = db
     .prepare("SELECT COUNT(*) AS n FROM emails WHERE is_promotional = 0")

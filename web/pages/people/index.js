@@ -4,7 +4,7 @@ import Nav from "../../components/Nav";
 import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const db = getDb();
 
   const counts = PEOPLE.map((person) => {
