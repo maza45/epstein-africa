@@ -436,7 +436,7 @@ export const STORIES = [
     countries: ["Kenya"],
     date_range: "2009",
     body: [
-      "On December 19, 2009, Peggy Siegal boarded a plane with her daughter Mattie, headed for Nairobi by way of Amsterdam, then Cottar's Camp in the Masai Mara, then Sasaab, then Lamu's Peponi Hotel, back January 4th. The trip was Epstein's. \"We can not thank you enough,\" Siegal wrote to him from the gate, \"yet another life experience\" (EFTA02433105-0).",
+      "On December 19, 2009, New York film publicist Peggy Siegal boarded a plane with her daughter Mattie, headed for Nairobi by way of Amsterdam, then Cottar's Camp in the Masai Mara, then Sasaab, then Lamu's Peponi Hotel, back January 4th. The trip was Epstein's. \"We can not thank you enough,\" Siegal wrote to him from the gate, \"yet another life experience\" (EFTA02433105-0).",
       "Midway through the email she mentioned Somalia: \"If the Masai warriors don't eat us, the pirates from Somalia will.\" Then, a few lines later: \"Can bring a little baby back for you....or two. Boys or girls? So Madonna.\"",
       "The Madonna reference was current. In June 2009, six months before Siegal's flight, Madonna had finalized the adoption of Mercy James from Malawi. Celebrity adoptions from sub-Saharan Africa were a recurring news story. Siegal was using it as a punchline. She signed off planning a Palm Beach visit in January and noting that the Duchess of York had been on morning television.",
     ],
