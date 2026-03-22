@@ -596,6 +596,27 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "rwanda-clinton-kagame",
+    title: "Epstein, the Clinton Foundation, and the Rwandan Students He Used to Reach Kagame",
+    summary:
+      "In 2006, the Clinton Foundation's foreign policy office arranged meetings between two Rwandan students Epstein sponsored at City College and Epstein himself. Four years later, Epstein cited those students — relocated, in his retelling, to Columbia — as a credential to reach Paul Kagame.",
+    countries: ["Rwanda"],
+    date_range: "2006–2012",
+    body: [
+      "In January 2006, Tascha Alvarez von Gustedt wrote to Darren Indyke, Epstein's lawyer. She was the Assistant Director of Foreign Policy at the Clinton Foundation's Office of President William J. Clinton, and she wanted to arrange a meeting between Epstein and two Rwandan students he was sponsoring at City College. The students were \"so grateful to Mr. Epstein,\" she wrote, \"and would very much like to meet him and thank him in person for his support\" (75143e89879e72055fc93a9d2cbccf03-0). She wrote again in February. Then again in March, apologizing for her \"persistance.\" Each time Epstein replied in one line through Indyke, moving the date forward: \"feb,\" then \"check again next week,\" then \"march 14\" (056bf630dbae823c73c1d7976617fc11-0, c3bb0bb4c3c2a2f3308b47f1d8375be0-0). The Foundation was coordinating a thank-you meeting between students and their sponsor.",
+      "Four years later, Epstein reached for the Rwanda connection in a different way. In September 2010, a contact forwarded him an invitation from Francine Lefrak, a New York socialite close to Rwanda's president Paul Kagame, to attend an event with African heads of state. Epstein replied: \"she can tell kagami that I was the one that went with clinton and funded the rwandan students at columbia\" (EFTA01984007-0). In 2006 the students had been at City College. In his message to Kagame's circle, they were at Columbia.",
+      "By July 2012, Jonathan Farkas wrote to Epstein: \"i ran into Francine lefrak last night are you in rwanda with Clinton give president Kigame my best\" (EFTA01874244-0).",
+    ],
+    email_ids: [
+      "75143e89879e72055fc93a9d2cbccf03-0",
+      "056bf630dbae823c73c1d7976617fc11-0",
+      "c3bb0bb4c3c2a2f3308b47f1d8375be0-0",
+      "EFTA01984007-0",
+      "EFTA01874244-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
