@@ -617,6 +617,29 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "gabon-bongo",
+    title: "Tracking Bongo: How Epstein Used Karim Wade to Find a Head of State",
+    summary:
+      "On June 24, 2012, Epstein asked Karim Wade to check whether Gabon's president Ali Bongo was coming to Paris. Wade confirmed. A week later Bongo was there, and Epstein was with him. Sultan Bin Sulayem got to Libreville eleven months later and reported back.",
+    countries: ["Gabon"],
+    date_range: "2012–2013",
+    body: [
+      "On June 24, 2012, Epstein sent a short message to Karim Wade: \"I understand that ali bongo might be coming to paris., would be easier to talk\" (vol00009-efta00938513-pdf-0). Wade was in Dakar. Bongo was the president of Gabon. Epstein was using one African head of state's son to track the movements of another.",
+      "Wade replied the next morning from his BlackBerry: \"Will check and get back to u.\" (EFTA01877919-0). A week passed. Then, on July 1, Epstein wrote to Sultan Bin Sulayem: \"where are you? i understand that Ali bongo is in paris, here with me\" (EFTA01881400-0). Bongo had arrived. The intelligence had been correct.",
+      "Epstein wanted Sultan there too. \"Can you come to island?\" he asked the same evening (EFTA01876881-0). Sultan was in London, heading to LA on the 4th, New York on the 15th. He replied the next day: \"I will try but my family is with me\" (EFTA01877914-0). He didn't make it.",
+      "Eleven months later Sultan was in Libreville. His May 2013 Africa trip report told Epstein he had met Bongo directly and promised to bring Epstein to Gabon (EFTA01759560-0). The meeting Epstein had tried to arrange in Paris in July 2012 had its follow-up in the Gabonese capital instead, carried by Sultan alone.",
+    ],
+    email_ids: [
+      "vol00009-efta00938513-pdf-0",
+      "EFTA01877919-0",
+      "EFTA01881400-0",
+      "EFTA01876881-0",
+      "EFTA01877914-0",
+      "EFTA01759560-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
