@@ -640,6 +640,30 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "zimbabwe-petrie-dish",
+    title: "\"Zimbabwe Would Be a Great Petrie Dish\": Epstein's Currency Experiment That Never Left His Inbox",
+    summary:
+      "On June 12, 2015, after reading about Zimbabwe's currency collapse, Epstein pitched two separate contacts on redesigning the country's financial system from scratch. He used the phrase \"petrie dish\" in both conversations. Joi Ito asked if he was buddies with Mugabe. Epstein said he could get his attention.",
+    countries: ["Zimbabwe"],
+    date_range: "2009–2015",
+    body: [
+      "On June 12, 2015, the Guardian reported that Zimbabwe was retiring its currency. The exchange rate for the old dollar was 35 quadrillion to one. Epstein forwarded the article to Joi Ito, then director of MIT's Media Lab, with two words: \"please note\" (EFTA01748183-0). Ito replied \"Ha! Amazing.\" Then: \"we sshould approach him and provide a new currency / ecnomy\" (vol00009-efta00854503-pdf-0). Ito wrote back: \"You mean Mugabe? Are you buddies?\" Epstein: \"no, but can easily get his attention, zimbabwe would be a great petrie dish, its also supposed to be beautiful\" (vol00009-efta00854505-pdf-0).",
+      "The same morning he sent the same article to a second contact with the subject line \"opportunity.\" The contact asked \"How.\" Epstein: \"you know him, you should start new currency, from scratch, electronic, ? new rules. great test bed.\" The contact said they had talked about it. Epstein: \"yes but they know nothing meaningful\" (EFTA01731891-0).",
+      "Eleven days later, inside a longer email about tax policy and linguistics, Epstein was still on it: \"I ve been researching how to start a new financial system for Zimbabwe. its now so broken it presents a clean petrie dish, exchange rate of a billion billion dollars equals one us dollar\" (EFTA02348391-0).",
+      "Zimbabwe had appeared in his inbox before. In November 2011, a redacted contact reported that China's foreign minister was in Harare discussing a switch to the yuan as national currency, and that a $7 billion diamond deal had just been signed (EFTA01835773-0). In September 2009, Epstein had described the Mayor of Harare to a Gates Foundation contact as commanding \"salary billion dollars a day\" (EFTA01818956-0).",
+    ],
+    email_ids: [
+      "EFTA01818956-0",
+      "EFTA01835773-0",
+      "EFTA01748183-0",
+      "vol00009-efta00854503-pdf-0",
+      "vol00009-efta00854505-pdf-0",
+      "EFTA01731891-0",
+      "EFTA02348391-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
