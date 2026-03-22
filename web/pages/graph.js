@@ -10,7 +10,9 @@ export default function GraphPage() {
   const simulationRef = useRef(null);
   const router = useRouter();
 
-  const [d3Ready, setD3Ready] = useState(false);
+  const [d3Ready, setD3Ready] = useState(
+    typeof window !== "undefined" && !!window.d3
+  );
   const [graphData, setGraphData] = useState(null);
   const [error, setError] = useState(null);
 
