@@ -1,9 +1,24 @@
+import { useState, useMemo } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
 import { STORIES } from "../../lib/stories";
 
+const ALL_COUNTRIES = [
+  ...new Set(STORIES.flatMap((s) => s.countries)),
+].sort();
+
 export default function StoriesIndex() {
+  const [country, setCountry] = useState(null);
+
+  const filtered = useMemo(
+    () =>
+      country
+        ? STORIES.filter((s) => s.countries.includes(country))
+        : STORIES,
+    [country]
+  );
+
   return (
     <>
       <Head>
@@ -24,8 +39,26 @@ export default function StoriesIndex() {
           </p>
         </header>
 
+        <div className="country-filter">
+          <button
+            className={`filter-pill${country === null ? " active" : ""}`}
+            onClick={() => setCountry(null)}
+          >
+            All
+          </button>
+          {ALL_COUNTRIES.map((c) => (
+            <button
+              key={c}
+              className={`filter-pill${country === c ? " active" : ""}`}
+              onClick={() => setCountry(c)}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+
         <div className="stories-grid">
-          {STORIES.map((story) => (
+          {filtered.map((story) => (
             <Link
               key={story.slug}
               href={`/stories/${story.slug}`}
