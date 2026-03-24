@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pandas as pd
 
-SLIM_PARQUET = Path("data/jmail/emails-slim.parquet")
+SLIM_PARQUET = Path("data/jmail/emails-full.parquet")
 OUT_PARQUET = Path("data/jmail/africa.parquet")
 
 # All terms that signal Africa relevance. Value = canonical country tag (for
