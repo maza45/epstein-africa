@@ -762,6 +762,95 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "barak-security-machine",
+    title: "The Security Machine: How Barak Built a Surveillance Portfolio on Epstein's Money",
+    summary:
+      "Between 2014 and 2018, Ehud Barak assembled a portfolio of Israeli security startups with Epstein as investor and advisor. One of those companies, Carbyne, was pitched to Sultan Bin Sulayem for port security during the same months Epstein was brokering the Nigeria ports deal.",
+    countries: ["Nigeria", "Ivory Coast", "Africa"],
+    date_range: "2013-2018",
+    body: [
+      "In December 2014, Ehud Barak sent Jeffrey Epstein a set of investor presentations for a startup called Reporty Homeland Security. The pitch deck came in numbered PDFs. Barak wrote: \"This is another one I look into. To be followed by another four. The last one will note End.\" Within three weeks they had a term sheet. Barak told Epstein: \"I assume that by Monday evening we will be ripe for decision on the investment. Most probably a positive one. Pl make the proper preparations for such a case.\" Darren Indyke, Epstein's lawyer, handled the paperwork. A signed term sheet followed in February 2015 (EFTA02370742-0).",
+      "Reporty was an emergency communications platform built by Israeli engineers, designed to replace traditional 911 systems. Barak was chairman and lead investor. Epstein co-invested alongside Nicole Junkermann, a German-British investor Barak brought in. In September 2015 Barak wrote to Junkermann: \"I would like to propose entering (in coordination with JE) with .5M into our investment in Reporty.\" By February 2016 the company was ahead of schedule. Barak told Epstein and Junkermann: \"Reporty is basically moving faster than how I assumed they will. So, I ordered today to transfer the New .5M to their account.\" The company later rebranded as Carbyne.",
+      "Reporty was not the only Israeli security company in Barak's portfolio that year. On May 11, 2015, Barak forwarded Epstein press coverage of his entry into FST Biometrics, a facial recognition company founded by Aharon Ze'evi Farkash, the former head of Israeli military intelligence. The announcement ran in the New York Times, Washington Post, Reuters, and the Daily Mail. Barak wrote to Epstein: \"Jeff. Have a look. Getting some traction. Will also meet with Reporty guy early next week\" (EFTA02347697-0).",
+      "Eight days later Barak updated Epstein again: \"The access control co. I've entered with Gary Fegel drew positive attention here. I start to look as being involved in Security related HighTec\" (EFTA02370742-0). In the span of six months Barak had invested in three Israeli security startups: Reporty (emergency communications), FST Biometrics (facial recognition), and the access control company with Gary Fegel. All three used technology developed by veterans of Israel's military and intelligence services. In all three, Epstein was advisor or co-investor.",
+      "FST Biometrics had a specific pedigree. Farkash developed the company's core concept during the second Palestinian Intifada: a biometric system called Basel, originally prototyped at the Erez crossing between Israel and Gaza to control the movement of Palestinian workers. Barak and Fegel invested $15 million in FST Biometrics in May 2015. According to Al Jazeera and Drop Site News, the Basel system was later deployed in Nigeria, marketed as \"field-proven\" security technology. Israeli intelligence firms used the Boko Haram insurgency to pitch these systems to Nigerian officials. The email archive documents Barak's investment in FST and his communication of this to Epstein, but does not contain emails about the Nigerian deployment itself.",
+      "The archive does show Barak in Nigeria. In August 2013, while pitching an Israeli medical diagnostics startup called Parasight to Boris Nikolic at the Gates Foundation, Barak wrote: \"I'm in NY on Sep 22-26 for the Clinton GI. Earlier in Sept in Bali and Nigeria\" (EFTA01961245-0). Parasight developed machine-vision technology for malaria blood analysis. No other emails in the archive document what Barak did in Nigeria on that trip.",
+      "The threads converged in August 2018. On August 5, Sultan Bin Sulayem forwarded Epstein an email from Amir Elichai, Carbyne's CEO, following a meeting with Sultan. Sultan wrote to Epstein: \"This a startup it has a good future steady consistent revenue stream in an important business for airports and public facilities I am intending to invest what do you think.\" The Carbyne pitch covered three topics: Carbyne for personal security in sea ports, Carbyne for Dubai's 911 system, and Carbyne's Series B investment round. Elichai told Sultan: \"We are interested in participating in the security effort for the 2022 Games. We can work through a European company of your choice and minimize Israeli profile\" (f8e4cb45260f7aa6f717919f1be31c44).",
+      "That same summer, Epstein was brokering the Nigeria ports deal between Sultan and Jide Zeitlin. The Carbyne pitch to Sultan, the Nigeria ports negotiation, and Barak's years of security-tech investment all ran through Epstein simultaneously. Drop Site News and Al Jazeera reported that by 2020, the World Bank had tapped the Israel National Cyber Directorate and a startup co-founded by Barak to shape Nigeria's national cyber infrastructure. The archive shows the investor relationships and the timing. The deployment chain sits in external reporting.",
+    ],
+    email_ids: [
+      "EFTA02347697-0",
+      "EFTA02347697-1",
+      "EFTA02370742-0",
+      "EFTA02370742-1",
+      "EFTA01961245-0",
+      "EFTA01961245-4",
+      "EFTA01961245-5",
+      "EFTA02652177",
+      "f8e4cb45260f7aa6f717919f1be31c44",
+    ],
+    news_links: [
+      {
+        title: "Tested on Palestinians: Epstein, Israel's Barak pushed spy tech in Nigeria",
+        url: "https://www.aljazeera.com/features/2026/2/18/tested-on-palestinians-epstein-israels-barak-pushed-spy-tech-in-nigeria",
+        source: "Al Jazeera",
+      },
+      {
+        title: "Epstein Flipped Israel's Gaza-Tested Biometric Scanners Into Nigeria Ports Deal for UAE",
+        url: "https://www.dropsitenews.com/p/epstein-ehud-barak-sultan-sulayem-nigeria-ports-israel-dp-world",
+        source: "Drop Site News",
+      },
+      {
+        title: "Investigation Uncovers Epstein, Barak's Covert Spy-tech Exploits in Nigeria",
+        url: "https://dailytrust.com/investigation-uncovers-epstein-baraks-covert-spy-tech-exploits-in-nigeria/",
+        source: "Daily Trust",
+      },
+      {
+        title: "Jeffrey Epstein and Ehud Barak: Profiting from Nigeria's Security Challenges",
+        url: "https://www.modernghana.com/news/1473112/jeffrey-epstein-ehud-barak-profiting-from-niger.html",
+        source: "Modern Ghana",
+      },
+    ],
+  },
+  {
+    slug: "somaliland-business-ventures",
+    title: "Somaliwood Studios, Bottled Water, and Bonemeal: Epstein's Somaliland Investment Pipeline",
+    summary:
+      "In 2012, a correspondent pitched Epstein on building a film studio in Somaliland called 'Somaliwood Studios.' The same year, separate pitches arrived for Somaliland water exports and a solid waste business. Epstein replied to the water pitch: 'I like it.'",
+    countries: ["Somalia", "Africa"],
+    date_range: "2012",
+    body: [
+      "On August 9, 2012, someone in Epstein's circle sent an email with the subject line \"i had a fun idea.\" The pitch was to build a film studio in Somaliland and call it Somaliwood Studios. The sender wrote: \"What if we put together a small group that professionalized the African film industry. There is currently a small movement called Nollywood (in Nigeria) and the big boss there is a YGL. She was telling me how hard it was since no one knew how to de film.\" The solution: \"we could build a small studio in Somaliland and called it SOMALIWOOD STUDIOS. Imagine the cool filming...beaches, desert, etc. We could invite muslim and all sorts of groups to film there\" (EFTA01876256).",
+      "The pitch included children's programming: \"Could do like Sesame Street type stuff (children's programming etc for African kids).\" It claimed Somaliland had \"serious tech ability\" and proposed building a CGI facility. The sender copied Epstein: \"I'm copying Jeffrey since he might also think this would be FUN FUN FUN.\" The sender's identity is redacted in the archive. No follow-up emails confirm the studio was pursued.",
+      "Somaliwood was not the only Somaliland business pitch that reached Epstein in 2012. On April 25, an associate emailed about Somaliland's water reserves: \"there are huge water reserves, untapped ( and clean) near port city of berbera..direct access to Saudi market. Easy to ship. Minimal transport. Again Somaliland.\" A proposed company name appeared in a follow-up: \"AfricEAU.\" Epstein responded the same day: \"I like it\" (EFTA01885124, EFTA01885540).",
+      "Three weeks later, Philippe von Stauffenberg wrote about broader Somaliland commercial plans. He proposed a solid waste business as a spinoff from a foundation, listing opportunities including \"desalination, water bottling and of course bonemeal in Somaliland.\" He also mentioned building sustainable homes in Luanda, Angola, and homes in Chad. He wrote: \"I think that outside of water and other opportunities in Africa we should seriously position the solid waste business soon as it is probably the most actionable from my end with real money that I can put behind that\" (EFTA02555040).",
+      "These business pitches arrived in the same year Sultan Bin Sulayem was briefing Epstein on meetings with African heads of state and Epstein was running the Karim Wade relationship into Beijing and Paris. Somaliland appeared to Epstein's circle as a commercial frontier: unrecognized, unregulated, and open for investment. The recognition lobbying that Sultan sent Epstein in 2018 was, in part, a continuation of this commercial interest. The water, the studio, and the recognition effort all pointed at the same target: Berbera port and the territory it serves.",
+    ],
+    email_ids: [
+      "EFTA01876256",
+      "EFTA01885124",
+      "EFTA01885540",
+      "EFTA02555040",
+    ],
+    news_links: [
+      {
+        title: "Epstein emails show Somaliland eyed for water, finance projects",
+        url: "https://www.aa.com.tr/en/americas/epstein-emails-show-somaliland-eyed-for-water-finance-projects/3816729",
+        source: "Anadolu Agency",
+      },
+      {
+        title: "Epstein Files Reveal Interest in Somaliland Resources, Recognition Strategy",
+        url: "https://saxafimedia.com/epstein-files-reveal-somaliland-recognition/",
+        source: "Saxafi Media",
+      },
+      {
+        title: "India's Modi, Somaliland and Rothschild deal feature in new Epstein files",
+        url: "https://www.trtworld.com/article/11ff23dfd2b1",
+        source: "TRT World",
+      },
+    ],
+  },
 ];
 
 export function getStoryBySlug(slug) {
