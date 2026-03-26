@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
+import { PEOPLE } from "../../lib/people";
+import { getDb } from "../../lib/db";
 
 function formatDate(d) {
   if (!d) return "Unknown";
@@ -27,21 +29,11 @@ function parseParticipants(raw) {
   return [...parts].filter(Boolean);
 }
 
-const SENDER_SLUGS = [
-  { fragments: ["jeffrey epstein", "j. epstein", "jeeproject"], slug: "jeffrey-epstein" },
-  { fragments: ["sultan bin sulaye"], slug: "sultan-bin-sulayem" },
-  { fragments: ["peggy siegal"], slug: "peggy-siegal" },
-  { fragments: ["jide zeitlin"], slug: "jide-zeitlin" },
-  { fragments: ["lesley groff"], slug: "lesley-groff" },
-  { fragments: ["miasha"], slug: "miasha" },
-  { fragments: ["ghislaine maxwell", "gmax"], slug: "ghislaine-maxwell" },
-  { fragments: ["nina keita", "nina k."], slug: "nina-keita" },
-  { fragments: ["sidi tiemoko", "sidi toure", "sidi tiémoko", "sidi"], slug: "sidi-tiemoko-toure" },
-  { fragments: ["ramata", "ramata sall", "ramata fall"], slug: "ramata-sall-fall" },
-  { fragments: ["karim wade"], slug: "karim-wade" },
-  { fragments: ["terje rod-larsen", "terje", "rod-larsen", "ipinst"], slug: "terje-rod-larsen" },
-  { fragments: ["sarah kellen", "sarah k", "kensington"], slug: "sarah-kellen" },
-];
+// Derive sender-to-slug mapping from canonical PEOPLE array
+const SENDER_SLUGS = PEOPLE.map((p) => ({
+  fragments: p.searchTerms,
+  slug: p.slug,
+}));
 
 function senderSlug(sender) {
   if (!sender) return null;
@@ -50,6 +42,19 @@ function senderSlug(sender) {
     if (fragments.some((f) => lower.includes(f))) return slug;
   }
   return null;
+}
+
+export async function getServerSideProps({ params }) {
+  const db = getDb();
+  const email = db
+    .prepare(
+      `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
+              countries, release_batch, epstein_is_sender, all_participants, body
+       FROM emails WHERE id = ?`
+    )
+    .get(params.id);
+  if (!email) return { notFound: true };
+  return { props: { ssrEmail: email } };
 }
 
 function Field({ label, value, mono }) {
@@ -62,31 +67,26 @@ function Field({ label, value, mono }) {
   );
 }
 
-export default function EmailDetail() {
+export default function EmailDetail({ ssrEmail }) {
   const router = useRouter();
-  const { id } = router.query;
-  const [email, setEmail] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    if (!id) return;
-    fetch(`/api/emails/${encodeURIComponent(id)}`)
-      .then((r) => {
-        if (!r.ok) throw new Error("Not found");
-        return r.json();
-      })
-      .then(setEmail)
-      .catch(() => setError("Email not found."));
-  }, [id]);
+  const [email] = useState(ssrEmail);
+  const error = null;
 
   const participants = email ? parseParticipants(email.all_participants) : [];
+
+  const title = email ? `${email.subject || "(no subject)"} — Epstein Africa` : "Epstein Africa";
+  const description = email
+    ? `Email from ${email.sender || "Unknown"} — ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : "undated"}${email.countries ? ` — ${email.countries}` : ""}`
+    : "";
 
   return (
     <>
       <Head>
-        <title>
-          {email ? `${email.subject || "(no subject)"} — Epstein Africa` : "Loading…"}
-        </title>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="article" />
       </Head>
 
       <div className="container">

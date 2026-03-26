@@ -3,8 +3,14 @@ import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import Nav from "../components/Nav";
+import { buildGraphData } from "../lib/graph";
 
-export default function GraphPage() {
+export async function getStaticProps() {
+  const data = buildGraphData();
+  return { props: { precomputedGraph: data } };
+}
+
+export default function GraphPage({ precomputedGraph }) {
   const containerRef = useRef(null);
   const svgRef = useRef(null);
   const simulationRef = useRef(null);
@@ -13,19 +19,8 @@ export default function GraphPage() {
   const [d3Ready, setD3Ready] = useState(
     typeof window !== "undefined" && !!window.d3
   );
-  const [graphData, setGraphData] = useState(null);
-  const [error, setError] = useState(null);
-
-  // Fetch graph data once on mount
-  useEffect(() => {
-    fetch("/api/graph")
-      .then((r) => {
-        if (!r.ok) throw new Error("Failed to load graph data");
-        return r.json();
-      })
-      .then(setGraphData)
-      .catch(() => setError("Failed to load graph data."));
-  }, []);
+  const [graphData] = useState(precomputedGraph);
+  const [error] = useState(null);
 
   // Initialise D3 when both script and data are ready
   useEffect(() => {

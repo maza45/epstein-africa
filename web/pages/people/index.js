@@ -15,7 +15,7 @@ export async function getStaticProps() {
     const row = db
       .prepare(
         `SELECT COUNT(*) as count FROM emails
-         WHERE is_promotional = 0 AND (${termConditions})`
+         WHERE COALESCE(is_promotional, 0) = 0 AND (${termConditions})`
       )
       .get(...params);
     return { slug: person.slug, count: row.count };

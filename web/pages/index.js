@@ -9,12 +9,12 @@ export async function getStaticProps() {
   const db = getDb();
 
   const emailCount = db
-    .prepare("SELECT COUNT(*) AS n FROM emails WHERE is_promotional = 0")
+    .prepare("SELECT COUNT(*) AS n FROM emails WHERE COALESCE(is_promotional, 0) = 0")
     .get().n;
 
   const rows = db
     .prepare(
-      "SELECT DISTINCT countries FROM emails WHERE is_promotional = 0 AND countries IS NOT NULL"
+      "SELECT DISTINCT countries FROM emails WHERE COALESCE(is_promotional, 0) = 0 AND countries IS NOT NULL"
     )
     .all();
 

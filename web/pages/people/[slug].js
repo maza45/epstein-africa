@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
+import { getPersonBySlug } from "../../lib/people";
+import { getDb } from "../../lib/db";
 
 function formatDate(d) {
   if (!d) return "—";
@@ -21,32 +23,76 @@ function cleanSender(sender) {
   return sender.replace(/[<>]/g, "").trim();
 }
 
-export default function PersonProfile() {
+const LIMIT = 25;
+
+export async function getServerSideProps({ params, query }) {
+  const person = getPersonBySlug(params.slug);
+  if (!person) return { notFound: true };
+
+  const db = getDb();
+  const page = Math.max(1, parseInt(query.page) || 1);
+  const offset = (page - 1) * LIMIT;
+
+  const termConditions = person.searchTerms
+    .map(() => "(LOWER(sender) LIKE ? OR LOWER(all_participants) LIKE ?)")
+    .join(" OR ");
+  const sqlParams = person.searchTerms.flatMap((t) => [`%${t}%`, `%${t}%`]);
+
+  const total = db
+    .prepare(
+      `SELECT COUNT(*) AS n FROM emails
+       WHERE COALESCE(is_promotional, 0) = 0 AND (${termConditions})`
+    )
+    .get(...sqlParams).n;
+
+  const emails = db
+    .prepare(
+      `SELECT id, sender, subject, sent_at, countries, epstein_is_sender
+       FROM emails
+       WHERE COALESCE(is_promotional, 0) = 0 AND (${termConditions})
+       ORDER BY COALESCE(sent_at, '9999-99-99') ASC
+       LIMIT ? OFFSET ?`
+    )
+    .all(...sqlParams, LIMIT, offset);
+
+  return { props: { person, emails, total, page } };
+}
+
+export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, total: ssrTotal, page: ssrPage }) {
   const router = useRouter();
-  const { slug } = router.query;
-  const [data, setData] = useState(null);
+  const [page, setPage] = useState(ssrPage);
+  const [data, setData] = useState({ person: ssrPerson, emails: ssrEmails, total: ssrTotal });
   const [error, setError] = useState(null);
 
+  // Client-side fetch for page changes after initial SSR load
   useEffect(() => {
-    if (!slug) return;
-    fetch(`/api/people/${slug}`)
+    if (page === ssrPage) return;
+    fetch(`/api/people/${ssrPerson.slug}?page=${page}&limit=${LIMIT}`)
       .then((r) => {
         if (!r.ok) throw new Error("Not found");
         return r.json();
       })
       .then(setData)
-      .catch(() => setError("Person not found."));
-  }, [slug]);
+      .catch(() => setError("Failed to load."));
+  }, [page]);
 
   const person = data?.person;
   const emails = data?.emails ?? [];
+  const total = data?.total ?? 0;
+  const totalPages = Math.ceil(total / LIMIT);
 
   return (
     <>
       <Head>
-        <title>
-          {person ? `${person.name} — Epstein Africa` : "Loading…"}
-        </title>
+        <title>{person ? `${person.name} — Epstein Africa` : "Epstein Africa"}</title>
+        {person && (
+          <>
+            <meta name="description" content={`${person.title}. ${person.bio.slice(0, 150)}...`} />
+            <meta property="og:title" content={`${person.name} — Epstein Africa`} />
+            <meta property="og:description" content={person.title} />
+            <meta property="og:type" content="profile" />
+          </>
+        )}
       </Head>
 
       <div className="container">
@@ -80,7 +126,7 @@ export default function PersonProfile() {
 
               <section className="profile-emails">
                 <h2 className="section-heading">
-                  Emails ({data.total})
+                  Emails ({total})
                 </h2>
 
                 <div className="table-wrap">
@@ -135,6 +181,28 @@ export default function PersonProfile() {
                     </tbody>
                   </table>
                 </div>
+
+                {totalPages > 1 && (
+                  <div className="pagination">
+                    <button
+                      disabled={page === 1}
+                      onClick={() => setPage(page - 1)}
+                      aria-label="Previous page"
+                    >
+                      ← Prev
+                    </button>
+                    <span>
+                      Page {page} / {totalPages}
+                    </span>
+                    <button
+                      disabled={page >= totalPages}
+                      onClick={() => setPage(page + 1)}
+                      aria-label="Next page"
+                    >
+                      Next →
+                    </button>
+                  </div>
+                )}
               </section>
             </div>
           </>

@@ -22,6 +22,32 @@ function cleanSender(sender) {
   return sender.replace(/[<>]/g, "").trim();
 }
 
+// Turn inline email IDs like (EFTA01841982-0) into clickable links
+const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?))\b/g;
+
+function linkifyCitations(text) {
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  CITATION_RE.lastIndex = 0;
+  while ((match = CITATION_RE.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    const id = match[1];
+    parts.push(
+      <Link key={`${id}-${match.index}`} href={`/emails/${encodeURIComponent(id)}`} className="citation-link">
+        {id}
+      </Link>
+    );
+    lastIndex = CITATION_RE.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts.length > 1 ? parts : text;
+}
+
 export async function getStaticPaths() {
   return {
     paths: STORIES.map((s) => ({ params: { slug: s.slug } })),
@@ -51,6 +77,9 @@ export default function StoryPage({ story }) {
       <Head>
         <title>{story.title} — Epstein Africa</title>
         <meta name="description" content={story.summary} />
+        <meta property="og:title" content={story.title} />
+        <meta property="og:description" content={story.summary} />
+        <meta property="og:type" content="article" />
       </Head>
 
       <div className="container">
@@ -72,7 +101,7 @@ export default function StoryPage({ story }) {
           {story.body.length > 0 && (
             <div className="story-body">
               {story.body.map((para, i) => (
-                <p key={i}>{para}</p>
+                <p key={i}>{linkifyCitations(para)}</p>
               ))}
             </div>
           )}

@@ -21,7 +21,7 @@ export default function handler(req, res) {
   if (q) {
     // FTS5 full-text search — covers sender, subject, and body
     const matchQuery = '"' + q.replace(/"/g, '""') + '"';
-    const ftsConditions = ["e.is_promotional = 0"];
+    const ftsConditions = ["COALESCE(e.is_promotional, 0) = 0"];
     const ftsParams = [matchQuery];
 
     if (country) {
@@ -54,7 +54,7 @@ export default function handler(req, res) {
       .all(...ftsParams, limit, offset);
   } else {
     // No search query — plain filter on country only
-    const conditions = ["is_promotional = 0"];
+    const conditions = ["COALESCE(is_promotional, 0) = 0"];
     const params = [];
 
     if (country) {

@@ -407,6 +407,17 @@ a:hover {
   margin-bottom: 2.5rem;
 }
 
+.citation-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+  font-size: 0.82rem;
+}
+.citation-link:hover {
+  color: var(--accent-hover);
+  border-bottom-style: solid;
+}
+
 .story-section {
   margin-top: 2.5rem;
 }
