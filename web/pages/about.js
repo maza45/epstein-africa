@@ -97,16 +97,7 @@ export default function About({ emailCount }) {
             <a href="https://jmail.world" target="_blank" rel="noreferrer">
               jmail.world
             </a>
-            , compiled from the DOJ release files. The code and data pipeline
-            are on GitHub at{" "}
-            <a
-              href="https://github.com/Iskanenani/epstein-africa"
-              target="_blank"
-              rel="noreferrer"
-            >
-              github.com/Iskanenani/epstein-africa
-            </a>
-            .
+            , compiled from the DOJ release files.
           </p>
         </div>
 

@@ -109,7 +109,7 @@ export default function Home({ emailCount, countries }) {
     name: "Epstein Africa Email Database",
     description,
     url: BASE,
-    license: "https://github.com/Iskanenani/epstein-africa",
+    license: "https://creativecommons.org/licenses/by/4.0/",
     creator: { "@type": "Organization", name: "Epstein Africa", url: BASE },
     distribution: [
       {
