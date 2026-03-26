@@ -1,8 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
+
+const BASE = "https://epstein-africa.vercel.app";
 
 export async function getStaticProps() {
   const db = getDb();
@@ -38,11 +41,17 @@ export default function PeopleIndex({ people }) {
   return (
     <>
       <Head>
-        <title>Key Persons — Epstein Africa</title>
+        <title>Key Persons \u2014 Epstein Africa</title>
         <meta
           name="description"
           content="Profiles of key persons documented in Epstein's Africa-related correspondence."
         />
+        <link rel="canonical" href={`${BASE}/people`} />
+        <meta property="og:title" content="Key Persons \u2014 Epstein Africa" />
+        <meta property="og:description" content="Profiles of key persons documented in Epstein's Africa-related correspondence." />
+        <meta property="og:url" content={`${BASE}/people`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Key Persons")}&subtitle=${encodeURIComponent(`${people.length} profiles from the email archive`)}&type=person`} />
       </Head>
 
       <div className="container">
@@ -80,6 +89,8 @@ export default function PeopleIndex({ people }) {
             </Link>
           ))}
         </div>
+
+        <Footer />
       </div>
     </>
   );

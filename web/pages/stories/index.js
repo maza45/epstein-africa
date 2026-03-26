@@ -2,7 +2,10 @@ import { useState, useMemo } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
 import { STORIES } from "../../lib/stories";
+
+const BASE = "https://epstein-africa.vercel.app";
 
 const ALL_COUNTRIES = [
   ...new Set(STORIES.flatMap((s) => s.countries)),
@@ -22,11 +25,17 @@ export default function StoriesIndex() {
   return (
     <>
       <Head>
-        <title>Stories — Epstein Africa</title>
+        <title>Stories \u2014 Epstein Africa</title>
         <meta
           name="description"
           content="Investigative narratives drawn from Epstein's Africa-related email archive."
         />
+        <link rel="canonical" href={`${BASE}/stories`} />
+        <meta property="og:title" content="Stories \u2014 Epstein Africa" />
+        <meta property="og:description" content="Investigative narratives drawn from Epstein's Africa-related email archive." />
+        <meta property="og:url" content={`${BASE}/stories`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Stories")}&subtitle=${encodeURIComponent("Investigative narratives from the email archive")}`} />
       </Head>
 
       <div className="container">
@@ -77,6 +86,8 @@ export default function StoriesIndex() {
             </Link>
           ))}
         </div>
+
+        <Footer />
       </div>
     </>
   );

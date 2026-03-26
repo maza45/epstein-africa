@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import { buildGraphData } from "../lib/graph";
 
+const BASE = "https://epstein-africa.vercel.app";
+
 export async function getStaticProps() {
   const data = buildGraphData();
   return { props: { precomputedGraph: data } };
@@ -49,7 +51,7 @@ export default function GraphPage({ precomputedGraph }) {
     const minW = Math.min(...weights, 0);
     const opacityScale = d3.scaleLinear().domain([minW, maxW]).range([0.08, 0.65]).clamp(true);
 
-    // ── Zoom container ────────────────────────────────────────────────────
+    // Zoom container
     const g = svg.append("g");
 
     svg.call(
@@ -58,11 +60,7 @@ export default function GraphPage({ precomputedGraph }) {
         .on("zoom", (event) => g.attr("transform", event.transform))
     );
 
-    // ── Simulation ────────────────────────────────────────────────────────
-    // forceX/forceY with weak strength gently recentres without collapsing.
-    // forceCenter is NOT used — it overrides repulsion and causes collapse.
-    // forceLink strength uses D3 default (scales by node connectivity),
-    // preventing over-pulling on high-degree nodes like Epstein.
+    // Simulation
     const simulation = d3
       .forceSimulation(nodes)
       .force(
@@ -71,17 +69,16 @@ export default function GraphPage({ precomputedGraph }) {
           .forceLink(links)
           .id((d) => d.id)
           .distance((d) => (d.type === "person-person" ? 180 : 140))
-        // no .strength() override — D3 default scales by 1/sqrt(degree)
       )
       .force("charge", d3.forceManyBody().strength(-600).distanceMax(600))
       .force("x", d3.forceX(width / 2).strength(0.05))
       .force("y", d3.forceY(height / 2).strength(0.05))
       .force("collide", d3.forceCollide((d) => (d.type === "person" ? 32 : 42)))
-      .alphaDecay(0.015); // slower cooling → more time to spread out
+      .alphaDecay(0.015);
 
     simulationRef.current = simulation;
 
-    // ── Edges ─────────────────────────────────────────────────────────────
+    // Edges
     const maxWeight = Math.max(...links.map((e) => e.weight));
     const link = g
       .append("g")
@@ -93,7 +90,7 @@ export default function GraphPage({ precomputedGraph }) {
       .attr("stroke-width", (d) => (Math.log(d.weight + 1) / Math.log(maxWeight + 1)) * 6 + 0.8)
       .attr("stroke-opacity", (d) => opacityScale(d.weight));
 
-    // ── Drag behaviour ────────────────────────────────────────────────────
+    // Drag behaviour
     const drag = d3
       .drag()
       .on("start", (event, d) => {
@@ -111,7 +108,7 @@ export default function GraphPage({ precomputedGraph }) {
         d.fy = null;
       });
 
-    // ── Nodes ─────────────────────────────────────────────────────────────
+    // Nodes
     const node = g
       .append("g")
       .attr("class", "nodes")
@@ -150,7 +147,7 @@ export default function GraphPage({ precomputedGraph }) {
           .attr("stroke-width", 1.5);
       });
 
-    // ── Labels ────────────────────────────────────────────────────────────
+    // Labels
     const label = g
       .append("g")
       .attr("class", "labels")
@@ -165,7 +162,7 @@ export default function GraphPage({ precomputedGraph }) {
       .attr("dy", (d) => (d.type === "person" ? 20 : 26))
       .attr("pointer-events", "none");
 
-    // ── Tick ──────────────────────────────────────────────────────────────
+    // Tick
     simulation.on("tick", () => {
       link
         .attr("x1", (d) => d.source.x)
@@ -184,7 +181,14 @@ export default function GraphPage({ precomputedGraph }) {
   return (
     <>
       <Head>
-        <title>Network Graph — Epstein Africa</title>
+        <title>Network Graph \u2014 Epstein Africa</title>
+        <meta name="description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
+        <link rel="canonical" href={`${BASE}/graph`} />
+        <meta property="og:title" content="Network Graph \u2014 Epstein Africa" />
+        <meta property="og:description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
+        <meta property="og:url" content={`${BASE}/graph`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Network Graph")}&subtitle=${encodeURIComponent("Persons and countries in the email archive")}`} />
       </Head>
 
       <Script
@@ -202,7 +206,7 @@ export default function GraphPage({ precomputedGraph }) {
         {error && <p className="error-msg" style={{ padding: "1rem" }}>{error}</p>}
 
         {!graphData && !error && (
-          <p className="loading-msg" style={{ padding: "1rem" }}>Loading…</p>
+          <p className="loading-msg" style={{ padding: "1rem" }}>Loading\u2026</p>
         )}
 
         <div className="graph-container" ref={containerRef}>
@@ -213,16 +217,16 @@ export default function GraphPage({ precomputedGraph }) {
               <svg width="16" height="16">
                 <circle cx="8" cy="8" r="6" fill="#2e2e2e" stroke="#777" strokeWidth="1.5" />
               </svg>
-              <span>Person (click → profile)</span>
+              <span>Person (click \u2192 profile)</span>
             </div>
             <div className="legend-item">
               <svg width="16" height="16">
                 <circle cx="8" cy="8" r="7" fill="#c8860a" stroke="#e8a020" strokeWidth="1.5" />
               </svg>
-              <span>Country (click → filter emails)</span>
+              <span>Country (click \u2192 filter emails)</span>
             </div>
             <div className="legend-item legend-hint">
-              Scroll to zoom · Drag nodes · Click to navigate
+              Scroll to zoom \u00b7 Drag nodes \u00b7 Click to navigate
             </div>
           </div>
         </div>

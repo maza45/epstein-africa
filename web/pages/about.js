@@ -1,6 +1,9 @@
 import Head from "next/head";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
+
+const BASE = "https://epstein-africa.vercel.app";
 
 export async function getStaticProps() {
   const db = getDb();
@@ -11,13 +14,36 @@ export async function getStaticProps() {
 }
 
 export default function About({ emailCount }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Epstein Africa",
+    url: `${BASE}/about`,
+    mainEntity: {
+      "@type": "WebSite",
+      name: "Epstein Africa",
+      url: BASE,
+      description: "Searchable database of Jeffrey Epstein's documented connections to Africa.",
+    },
+  };
+
   return (
     <>
       <Head>
-        <title>About — Epstein Africa</title>
+        <title>About \u2014 Epstein Africa</title>
         <meta
           name="description"
-          content="About the Epstein Africa database — methodology, sources, and caveats."
+          content="About the Epstein Africa database \u2014 methodology, sources, and caveats."
+        />
+        <link rel="canonical" href={`${BASE}/about`} />
+        <meta property="og:title" content="About \u2014 Epstein Africa" />
+        <meta property="og:description" content="About the Epstein Africa database \u2014 methodology, sources, and caveats." />
+        <meta property="og:url" content={`${BASE}/about`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("About")}&subtitle=${encodeURIComponent("Methodology, sources, and caveats")}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </Head>
 
@@ -37,13 +63,13 @@ export default function About({ emailCount }) {
           <p>
             The archive has 1.7 million emails. We filtered it down to{" "}
             {emailCount.toLocaleString()} that reference African countries,
-            cities, or people with documented African ties — by keyword search
+            cities, or people with documented African ties \u2014 by keyword search
             on subjects, senders, participant lists, and email body text.
           </p>
 
           <p>
             Beyond the raw emails, the site includes documented profiles of key
-            correspondents and narrative investigations into the major threads —
+            correspondents and narrative investigations into the major threads \u2014
             the Ivory Coast surveillance deal, the Libya operation, the Senegal
             political network, the Kenya safari.
           </p>
@@ -83,6 +109,8 @@ export default function About({ emailCount }) {
             .
           </p>
         </div>
+
+        <Footer />
       </div>
     </>
   );

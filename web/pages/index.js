@@ -3,7 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
+
+const BASE = "https://epstein-africa.vercel.app";
 
 export async function getStaticProps() {
   const db = getDb();
@@ -39,14 +42,14 @@ export async function getStaticProps() {
 const LIMIT = 25;
 
 function cleanSender(sender) {
-  if (!sender) return "—";
+  if (!sender) return "\u2014";
   const match = sender.match(/^([^<]+)</);
   if (match) return match[1].trim();
   return sender.replace(/[<>]/g, "").trim();
 }
 
 function formatDate(d) {
-  if (!d) return "—";
+  if (!d) return "\u2014";
   return new Date(d).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "short",
@@ -114,13 +117,44 @@ export default function Home({ emailCount, countries }) {
 
   const totalPages = Math.ceil(total / LIMIT);
 
+  const description = `Searchable database of Jeffrey Epstein's documented connections to Africa, sourced from DOJ Epstein Files Transparency Act releases. ${emailCount.toLocaleString()} verified emails.`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "Epstein Africa Email Database",
+    description,
+    url: BASE,
+    license: "https://github.com/Iskanenani/epstein-africa",
+    creator: { "@type": "Organization", name: "Epstein Africa", url: BASE },
+    distribution: [
+      {
+        "@type": "DataDownload",
+        encodingFormat: "text/csv",
+        contentUrl: `${BASE}/api/export?format=csv`,
+      },
+      {
+        "@type": "DataDownload",
+        encodingFormat: "application/json",
+        contentUrl: `${BASE}/api/export?format=json`,
+      },
+    ],
+  };
+
   return (
     <>
       <Head>
-        <title>Epstein Africa — Email Database</title>
-        <meta
-          name="description"
-          content="Searchable database of Jeffrey Epstein's documented connections to Africa, sourced from DOJ Epstein Files Transparency Act releases."
+        <title>Epstein Africa \u2014 Email Database</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={BASE} />
+        <meta property="og:title" content="Epstein Africa \u2014 Email Database" />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={BASE} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Epstein Africa")}&subtitle=${encodeURIComponent(`${emailCount.toLocaleString()} verified emails from DOJ releases`)}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </Head>
 
@@ -130,7 +164,7 @@ export default function Home({ emailCount, countries }) {
           <h1>Epstein Africa</h1>
           <p className="subtitle">
             Searchable database of Jeffrey Epstein&apos;s documented connections
-            to Africa — {emailCount.toLocaleString()} verified emails, excluding promotional mail.{" "}
+            to Africa \u2014 {emailCount.toLocaleString()} verified emails, excluding promotional mail.{" "}
             <span className="source">
               Source: DOJ Epstein Files Transparency Act.
             </span>
@@ -141,7 +175,7 @@ export default function Home({ emailCount, countries }) {
           <input
             type="text"
             className="search-input"
-            placeholder="Search subject, sender…"
+            placeholder="Search subject, sender\u2026"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             aria-label="Search emails"
@@ -163,7 +197,7 @@ export default function Home({ emailCount, countries }) {
 
         <div className="meta-row">
           <span className="result-count">
-            {loading ? "Loading…" : `${total.toLocaleString()} emails`}
+            {loading ? "Loading\u2026" : `${total.toLocaleString()} emails`}
           </span>
           {(currentSearch || currentCountry) && (
             <button
@@ -176,6 +210,9 @@ export default function Home({ emailCount, countries }) {
               Clear filters
             </button>
           )}
+          <a href="/api/export?format=csv" className="download-btn" download>
+            Download CSV
+          </a>
         </div>
 
         <div className="table-wrap">
@@ -192,7 +229,7 @@ export default function Home({ emailCount, countries }) {
               {loading ? (
                 <tr>
                   <td colSpan={4} className="loading-cell">
-                    Loading…
+                    Loading\u2026
                   </td>
                 </tr>
               ) : emails.length === 0 ? (
@@ -220,7 +257,7 @@ export default function Home({ emailCount, countries }) {
                               {c}
                             </span>
                           ))
-                        : "—"}
+                        : "\u2014"}
                     </td>
                   </tr>
                 ))
@@ -236,7 +273,7 @@ export default function Home({ emailCount, countries }) {
               onClick={() => pushFilters({ page: currentPage - 1 })}
               aria-label="Previous page"
             >
-              ← Prev
+              \u2190 Prev
             </button>
             <span>
               Page {currentPage} / {totalPages}
@@ -246,23 +283,12 @@ export default function Home({ emailCount, countries }) {
               onClick={() => pushFilters({ page: currentPage + 1 })}
               aria-label="Next page"
             >
-              Next →
+              Next \u2192
             </button>
           </div>
         )}
 
-        <footer className="site-footer">
-          <p>
-            Public interest journalism. Free, ad-free, open source.{" "}
-            <a
-              href="https://github.com/Iskanenani/epstein-africa"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-          </p>
-        </footer>
+        <Footer />
       </div>
     </>
   );

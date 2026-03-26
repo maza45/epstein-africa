@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import ShareButtons from "../../components/ShareButtons";
 import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
+
+const BASE = "https://epstein-africa.vercel.app";
 
 function formatDate(d) {
   if (!d) return "Unknown";
@@ -74,19 +78,23 @@ export default function EmailDetail({ ssrEmail }) {
 
   const participants = email ? parseParticipants(email.all_participants) : [];
 
-  const title = email ? `${email.subject || "(no subject)"} — Epstein Africa` : "Epstein Africa";
+  const title = email ? `${email.subject || "(no subject)"} \u2014 Epstein Africa` : "Epstein Africa";
   const description = email
-    ? `Email from ${email.sender || "Unknown"} — ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : "undated"}${email.countries ? ` — ${email.countries}` : ""}`
+    ? `Email from ${email.sender || "Unknown"} \u2014 ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : "undated"}${email.countries ? ` \u2014 ${email.countries}` : ""}`
     : "";
+  const pageUrl = email ? `/emails/${encodeURIComponent(email.id)}` : "/";
 
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <link rel="canonical" href={`${BASE}${pageUrl}`} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
+        <meta property="og:url" content={`${BASE}${pageUrl}`} />
         <meta property="og:type" content="article" />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(email?.subject || "Email")}&subtitle=${encodeURIComponent(description)}`} />
       </Head>
 
       <div className="container">
@@ -98,12 +106,12 @@ export default function EmailDetail({ ssrEmail }) {
             return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
           })()}
         >
-          ← Back
+          \u2190 Back
         </a>
 
         {error && <p className="error-msg">{error}</p>}
 
-        {!email && !error && <p className="loading-msg">Loading…</p>}
+        {!email && !error && <p className="loading-msg">Loading\u2026</p>}
 
         {email && (
           <article className="email-detail">
@@ -117,6 +125,7 @@ export default function EmailDetail({ ssrEmail }) {
                   <span className="badge-epstein">Epstein sender</span>
                 )}
               </div>
+              <ShareButtons path={pageUrl} title={email.subject || "Email"} summary={description} />
             </header>
 
             <div className="detail-fields">
@@ -178,7 +187,7 @@ export default function EmailDetail({ ssrEmail }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      View on Jmail ↗
+                      View on Jmail \u2197
                     </a>
                   </div>
                 </div>
@@ -186,6 +195,8 @@ export default function EmailDetail({ ssrEmail }) {
             </div>
           </article>
         )}
+
+        <Footer />
       </div>
     </>
   );

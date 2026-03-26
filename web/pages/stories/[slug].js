@@ -3,10 +3,14 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import ShareButtons from "../../components/ShareButtons";
 import { STORIES, getStoryBySlug } from "../../lib/stories";
 
+const BASE = "https://epstein-africa.vercel.app";
+
 function formatDate(d) {
-  if (!d) return "—";
+  if (!d) return "\u2014";
   return new Date(d).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "short",
@@ -16,7 +20,7 @@ function formatDate(d) {
 }
 
 function cleanSender(sender) {
-  if (!sender) return "—";
+  if (!sender) return "\u2014";
   const match = sender.match(/^([^<]+)</);
   if (match) return match[1].trim();
   return sender.replace(/[<>]/g, "").trim();
@@ -72,19 +76,38 @@ export default function StoryPage({ story }) {
       .then(setEmails);
   }, [story]);
 
+  const pageUrl = `/stories/${story.slug}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: story.title,
+    description: story.summary,
+    url: `${BASE}${pageUrl}`,
+    publisher: { "@type": "Organization", name: "Epstein Africa", url: BASE },
+    image: `${BASE}/api/og?title=${encodeURIComponent(story.title)}&subtitle=${encodeURIComponent(story.countries.join(", "))}&type=article`,
+  };
+
   return (
     <>
       <Head>
-        <title>{story.title} — Epstein Africa</title>
+        <title>{story.title} \u2014 Epstein Africa</title>
         <meta name="description" content={story.summary} />
+        <link rel="canonical" href={`${BASE}${pageUrl}`} />
         <meta property="og:title" content={story.title} />
         <meta property="og:description" content={story.summary} />
+        <meta property="og:url" content={`${BASE}${pageUrl}`} />
         <meta property="og:type" content="article" />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(story.title)}&subtitle=${encodeURIComponent(story.countries.join(", "))}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </Head>
 
       <div className="container">
         <Nav />
-        <button className="back-btn" onClick={() => router.back()}>← Back</button>
+        <button className="back-btn" onClick={() => router.back()}>\u2190 Back</button>
 
         <article className="story-article">
           <header className="story-header">
@@ -96,6 +119,7 @@ export default function StoryPage({ story }) {
             </div>
             <h1 className="story-heading">{story.title}</h1>
             <p className="story-lede">{story.summary}</p>
+            <ShareButtons path={pageUrl} title={story.title} summary={story.summary} />
           </header>
 
           {story.body.length > 0 && (
@@ -138,7 +162,7 @@ export default function StoryPage({ story }) {
                             ? email.countries.split(", ").map((c) => (
                                 <span key={c} className="tag">{c}</span>
                               ))
-                            : "—"}
+                            : "\u2014"}
                         </td>
                       </tr>
                     ))}
@@ -156,7 +180,7 @@ export default function StoryPage({ story }) {
                   <li key={link.url}>
                     <span className="news-source">{link.source}</span>
                     <a href={link.url} target="_blank" rel="noreferrer">
-                      {link.title} ↗
+                      {link.title} \u2197
                     </a>
                   </li>
                 ))}
@@ -164,6 +188,8 @@ export default function StoryPage({ story }) {
             </section>
           )}
         </article>
+
+        <Footer />
       </div>
     </>
   );

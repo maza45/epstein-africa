@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import ShareButtons from "../../components/ShareButtons";
 import { getPersonBySlug } from "../../lib/people";
 import { getDb } from "../../lib/db";
 
+const BASE = "https://epstein-africa.vercel.app";
+
 function formatDate(d) {
-  if (!d) return "—";
+  if (!d) return "\u2014";
   return new Date(d).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "short",
@@ -17,7 +21,7 @@ function formatDate(d) {
 }
 
 function cleanSender(sender) {
-  if (!sender) return "—";
+  if (!sender) return "\u2014";
   const match = sender.match(/^([^<]+)</);
   if (match) return match[1].trim();
   return sender.replace(/[<>]/g, "").trim();
@@ -80,33 +84,51 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
   const emails = data?.emails ?? [];
   const total = data?.total ?? 0;
   const totalPages = Math.ceil(total / LIMIT);
+  const pageUrl = person ? `/people/${person.slug}` : "/people";
+
+  const jsonLd = person ? {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: person.name,
+    jobTitle: person.title,
+    description: person.bio,
+    url: `${BASE}${pageUrl}`,
+  } : null;
 
   return (
     <>
       <Head>
-        <title>{person ? `${person.name} — Epstein Africa` : "Epstein Africa"}</title>
+        <title>{person ? `${person.name} \u2014 Epstein Africa` : "Epstein Africa"}</title>
         {person && (
           <>
             <meta name="description" content={`${person.title}. ${person.bio.slice(0, 150)}...`} />
-            <meta property="og:title" content={`${person.name} — Epstein Africa`} />
+            <link rel="canonical" href={`${BASE}${pageUrl}`} />
+            <meta property="og:title" content={`${person.name} \u2014 Epstein Africa`} />
             <meta property="og:description" content={person.title} />
+            <meta property="og:url" content={`${BASE}${pageUrl}`} />
             <meta property="og:type" content="profile" />
+            <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(person.name)}&subtitle=${encodeURIComponent(person.title)}&type=person`} />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
           </>
         )}
       </Head>
 
       <div className="container">
         <Nav />
-        <button className="back-btn" onClick={() => router.back()}>← Back</button>
+        <button className="back-btn" onClick={() => router.back()}>\u2190 Back</button>
 
         {error && <p className="error-msg">{error}</p>}
-        {!data && !error && <p className="loading-msg">Loading…</p>}
+        {!data && !error && <p className="loading-msg">Loading\u2026</p>}
 
         {person && (
           <>
             <header className="site-header">
               <h1>{person.name}</h1>
               <p className="subtitle">{person.title}</p>
+              <ShareButtons path={pageUrl} title={person.name} summary={person.title} />
             </header>
 
             <div className="profile-body">
@@ -173,7 +195,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                                       {c}
                                     </span>
                                   ))
-                                : "—"}
+                                : "\u2014"}
                             </td>
                           </tr>
                         ))
@@ -189,7 +211,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                       onClick={() => setPage(page - 1)}
                       aria-label="Previous page"
                     >
-                      ← Prev
+                      \u2190 Prev
                     </button>
                     <span>
                       Page {page} / {totalPages}
@@ -199,7 +221,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                       onClick={() => setPage(page + 1)}
                       aria-label="Next page"
                     >
-                      Next →
+                      Next \u2192
                     </button>
                   </div>
                 )}
@@ -207,6 +229,8 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
             </div>
           </>
         )}
+
+        <Footer />
       </div>
     </>
   );
