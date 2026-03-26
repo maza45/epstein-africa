@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
+import { cleanSender, formatDate, splitCountries } from "../lib/format";
 
 const BASE = "https://epstein-africa.vercel.app";
 
@@ -23,9 +24,8 @@ export async function getStaticProps() {
 
   const countrySet = new Set();
   for (const row of rows) {
-    for (const c of row.countries.split(",")) {
-      const t = c.trim();
-      if (t) countrySet.add(t);
+    for (const c of splitCountries(row.countries)) {
+      countrySet.add(c);
     }
   }
   // "Africa" pinned first, rest alphabetical
@@ -40,22 +40,6 @@ export async function getStaticProps() {
 }
 
 const LIMIT = 25;
-
-function cleanSender(sender) {
-  if (!sender) return "—";
-  const match = sender.match(/^([^<]+)</);
-  if (match) return match[1].trim();
-  return sender.replace(/[<>]/g, "").trim();
-}
-
-function formatDate(d) {
-  if (!d) return "—";
-  return new Date(d).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
 
 export default function Home({ emailCount, countries }) {
   const [emails, setEmails] = useState([]);
@@ -92,7 +76,7 @@ export default function Home({ emailCount, countries }) {
     if (searchInput === currentSearch) return;
     const t = setTimeout(() => pushFilters({ page: 1, search: searchInput }), 300);
     return () => clearTimeout(t);
-  }, [searchInput]);
+  }, [searchInput, router.isReady, currentSearch, pushFilters]);
 
   // Fetch whenever URL-derived state changes
   const fetchEmails = useCallback(async () => {
@@ -252,7 +236,7 @@ export default function Home({ emailCount, countries }) {
                     </td>
                     <td className="col-countries">
                       {email.countries
-                        ? email.countries.split(", ").map((c) => (
+                        ? splitCountries(email.countries).map((c) => (
                             <span key={c} className="tag">
                               {c}
                             </span>

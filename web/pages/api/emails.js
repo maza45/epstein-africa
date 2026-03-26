@@ -20,7 +20,13 @@ export default function handler(req, res) {
 
   if (q) {
     // FTS5 full-text search — covers sender, subject, and body
-    const matchQuery = '"' + q.replace(/"/g, '""') + '"';
+    // Strip FTS5 operators and wrap in quotes for literal phrase search
+    const sanitized = q.replace(/[*"]/g, "").replace(/\b(AND|OR|NOT|NEAR)\b/gi, "");
+    if (!sanitized.trim()) {
+      res.setHeader("Cache-Control", "public, max-age=3600");
+      return res.status(200).json({ emails: [], total: 0, page, limit });
+    }
+    const matchQuery = '"' + sanitized.replace(/"/g, '""') + '"';
     const ftsConditions = ["COALESCE(e.is_promotional, 0) = 0"];
     const ftsParams = [matchQuery];
 

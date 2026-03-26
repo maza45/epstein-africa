@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const BASE = "https://epstein-africa.vercel.app";
 
-export default function ShareButtons({ path, title, summary }) {
+export default function ShareButtons({ path, title }) {
   const [copied, setCopied] = useState(false);
   const url = `${BASE}${path}`;
   const text = `${title} — Epstein Africa`;
@@ -19,18 +19,18 @@ export default function ShareButtons({ path, title, summary }) {
   }
 
   return (
-    <div className="share-buttons">
+    <div className="share-buttons" role="group" aria-label="Share this page">
       <span className="share-label">Share</span>
-      <a href={twitterUrl} target="_blank" rel="noreferrer" className="share-btn" title="Share on X">
+      <a href={twitterUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label="Share on X">
         X
       </a>
-      <a href={bskyUrl} target="_blank" rel="noreferrer" className="share-btn" title="Share on Bluesky">
+      <a href={bskyUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label="Share on Bluesky">
         Bsky
       </a>
-      <a href={redditUrl} target="_blank" rel="noreferrer" className="share-btn" title="Share on Reddit">
+      <a href={redditUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label="Share on Reddit">
         Reddit
       </a>
-      <button onClick={copyLink} className="share-btn" title="Copy link">
+      <button onClick={copyLink} className="share-btn" aria-label="Copy link to clipboard">
         {copied ? "Copied" : "Link"}
       </button>
     </div>

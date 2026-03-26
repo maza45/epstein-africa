@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Nav from "../../components/Nav";
@@ -7,20 +7,9 @@ import Footer from "../../components/Footer";
 import ShareButtons from "../../components/ShareButtons";
 import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
+import { formatDateTime, splitCountries } from "../../lib/format";
 
 const BASE = "https://epstein-africa.vercel.app";
-
-function formatDate(d) {
-  if (!d) return "Unknown";
-  return new Date(d).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "UTC",
-  });
-}
 
 function parseParticipants(raw) {
   if (!raw) return [];
@@ -103,6 +92,10 @@ export default function EmailDetail({ ssrEmail }) {
           className="back-btn"
           href={(() => {
             const raw = router.query.back ? decodeURIComponent(router.query.back) : "/";
+            try {
+              const url = new URL(raw, "https://epstein-africa.vercel.app");
+              if (url.origin !== "https://epstein-africa.vercel.app") return "/";
+            } catch { /* relative paths are fine */ }
             return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
           })()}
         >
@@ -120,7 +113,7 @@ export default function EmailDetail({ ssrEmail }) {
                 {email.subject || "(no subject)"}
               </h1>
               <div className="detail-meta">
-                <span className="date">{formatDate(email.sent_at)}</span>
+                <span className="date">{formatDateTime(email.sent_at)}</span>
                 {email.epstein_is_sender === 1 && (
                   <span className="badge-epstein">Epstein sender</span>
                 )}
@@ -160,7 +153,7 @@ export default function EmailDetail({ ssrEmail }) {
                 <div className="field">
                   <div className="field-label">Countries mentioned</div>
                   <div className="field-value">
-                    {email.countries.split(", ").map((c) => (
+                    {splitCountries(email.countries).map((c) => (
                       <span key={c} className="tag">{c}</span>
                     ))}
                   </div>

@@ -3,7 +3,7 @@
   --surface: #141414;
   --border: #2a2a2a;
   --text: #d8d8d8;
-  --text-dim: #888;
+  --text-dim: #999;
   --accent: #c0392b;
   --accent-hover: #e74c3c;
   --tag-bg: #1e1e1e;
@@ -302,6 +302,12 @@ a:hover {
   text-decoration: none;
 }
 
+.site-nav a.nav-active {
+  color: #fff;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.15rem;
+}
+
 /* ── Stories index ── */
 .stories-grid {
   display: grid;
@@ -448,7 +454,7 @@ a:hover {
 .graph-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 

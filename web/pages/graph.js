@@ -22,7 +22,8 @@ export default function GraphPage({ precomputedGraph }) {
     typeof window !== "undefined" && !!window.d3
   );
   const [graphData] = useState(precomputedGraph);
-  const [error] = useState(null);
+  const routerRef = useRef(router);
+  routerRef.current = router;
 
   // Initialise D3 when both script and data are ready
   useEffect(() => {
@@ -127,9 +128,9 @@ export default function GraphPage({ precomputedGraph }) {
       .on("click", (event, d) => {
         event.stopPropagation();
         if (d.type === "person" && d.slug) {
-          router.push(`/people/${d.slug}`);
+          routerRef.current.push(`/people/${d.slug}`);
         } else if (d.type === "country") {
-          router.push(`/?country=${encodeURIComponent(d.label)}`);
+          routerRef.current.push(`/?country=${encodeURIComponent(d.label)}`);
         }
       })
       .call(drag);
@@ -176,7 +177,7 @@ export default function GraphPage({ precomputedGraph }) {
     });
 
     return () => simulation.stop();
-  }, [d3Ready, graphData, router]);
+  }, [d3Ready, graphData]);
 
   return (
     <>
@@ -202,10 +203,7 @@ export default function GraphPage({ precomputedGraph }) {
           <Nav />
         </div>
 
-
-        {error && <p className="error-msg" style={{ padding: "1rem" }}>{error}</p>}
-
-        {!graphData && !error && (
+        {!graphData && (
           <p className="loading-msg" style={{ padding: "1rem" }}>Loading…</p>
         )}
 

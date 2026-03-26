@@ -7,25 +7,9 @@ import Footer from "../../components/Footer";
 import ShareButtons from "../../components/ShareButtons";
 import { getPersonBySlug } from "../../lib/people";
 import { getDb } from "../../lib/db";
+import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 
 const BASE = "https://epstein-africa.vercel.app";
-
-function formatDate(d) {
-  if (!d) return "—";
-  return new Date(d).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  });
-}
-
-function cleanSender(sender) {
-  if (!sender) return "—";
-  const match = sender.match(/^([^<]+)</);
-  if (match) return match[1].trim();
-  return sender.replace(/[<>]/g, "").trim();
-}
 
 const LIMIT = 25;
 
@@ -190,7 +174,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                             </td>
                             <td className="col-countries">
                               {email.countries
-                                ? email.countries.split(", ").map((c) => (
+                                ? splitCountries(email.countries).map((c) => (
                                     <span key={c} className="tag">
                                       {c}
                                     </span>

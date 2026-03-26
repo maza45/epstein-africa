@@ -6,25 +6,9 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import ShareButtons from "../../components/ShareButtons";
 import { STORIES, getStoryBySlug } from "../../lib/stories";
+import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 
 const BASE = "https://epstein-africa.vercel.app";
-
-function formatDate(d) {
-  if (!d) return "—";
-  return new Date(d).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  });
-}
-
-function cleanSender(sender) {
-  if (!sender) return "—";
-  const match = sender.match(/^([^<]+)</);
-  if (match) return match[1].trim();
-  return sender.replace(/[<>]/g, "").trim();
-}
 
 // Turn inline email IDs like (EFTA01841982-0) into clickable links
 const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?))\b/g;
@@ -73,7 +57,8 @@ export default function StoryPage({ story }) {
     if (!story || story.email_ids.length === 0) return;
     fetch(`/api/stories/emails?ids=${story.email_ids.join(",")}`)
       .then((r) => r.json())
-      .then(setEmails);
+      .then(setEmails)
+      .catch(() => {});
   }, [story]);
 
   const pageUrl = `/stories/${story.slug}`;
@@ -159,7 +144,7 @@ export default function StoryPage({ story }) {
                         <td className="col-subject">{email.subject || "(no subject)"}</td>
                         <td className="col-countries">
                           {email.countries
-                            ? email.countries.split(", ").map((c) => (
+                            ? splitCountries(email.countries).map((c) => (
                                 <span key={c} className="tag">{c}</span>
                               ))
                             : "—"}
