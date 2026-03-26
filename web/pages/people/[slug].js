@@ -11,7 +11,7 @@ import { getDb } from "../../lib/db";
 const BASE = "https://epstein-africa.vercel.app";
 
 function formatDate(d) {
-  if (!d) return "\u2014";
+  if (!d) return "—";
   return new Date(d).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "short",
@@ -21,7 +21,7 @@ function formatDate(d) {
 }
 
 function cleanSender(sender) {
-  if (!sender) return "\u2014";
+  if (!sender) return "—";
   const match = sender.match(/^([^<]+)</);
   if (match) return match[1].trim();
   return sender.replace(/[<>]/g, "").trim();
@@ -98,12 +98,12 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
   return (
     <>
       <Head>
-        <title>{person ? `${person.name} \u2014 Epstein Africa` : "Epstein Africa"}</title>
+        <title>{person ? `${person.name} — Epstein Africa` : "Epstein Africa"}</title>
         {person && (
           <>
             <meta name="description" content={`${person.title}. ${person.bio.slice(0, 150)}...`} />
             <link rel="canonical" href={`${BASE}${pageUrl}`} />
-            <meta property="og:title" content={`${person.name} \u2014 Epstein Africa`} />
+            <meta property="og:title" content={`${person.name} — Epstein Africa`} />
             <meta property="og:description" content={person.title} />
             <meta property="og:url" content={`${BASE}${pageUrl}`} />
             <meta property="og:type" content="profile" />
@@ -118,10 +118,10 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
 
       <div className="container">
         <Nav />
-        <button className="back-btn" onClick={() => router.back()}>\u2190 Back</button>
+        <button className="back-btn" onClick={() => router.back()}>← Back</button>
 
         {error && <p className="error-msg">{error}</p>}
-        {!data && !error && <p className="loading-msg">Loading\u2026</p>}
+        {!data && !error && <p className="loading-msg">Loading…</p>}
 
         {person && (
           <>
@@ -195,7 +195,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                                       {c}
                                     </span>
                                   ))
-                                : "\u2014"}
+                                : "—"}
                             </td>
                           </tr>
                         ))
@@ -211,7 +211,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                       onClick={() => setPage(page - 1)}
                       aria-label="Previous page"
                     >
-                      \u2190 Prev
+                      ← Prev
                     </button>
                     <span>
                       Page {page} / {totalPages}
@@ -221,7 +221,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                       onClick={() => setPage(page + 1)}
                       aria-label="Next page"
                     >
-                      Next \u2192
+                      Next →
                     </button>
                   </div>
                 )}

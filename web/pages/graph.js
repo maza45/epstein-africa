@@ -181,10 +181,10 @@ export default function GraphPage({ precomputedGraph }) {
   return (
     <>
       <Head>
-        <title>Network Graph \u2014 Epstein Africa</title>
+        <title>Network Graph — Epstein Africa</title>
         <meta name="description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
         <link rel="canonical" href={`${BASE}/graph`} />
-        <meta property="og:title" content="Network Graph \u2014 Epstein Africa" />
+        <meta property="og:title" content="Network Graph — Epstein Africa" />
         <meta property="og:description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
         <meta property="og:url" content={`${BASE}/graph`} />
         <meta property="og:type" content="website" />
@@ -206,7 +206,7 @@ export default function GraphPage({ precomputedGraph }) {
         {error && <p className="error-msg" style={{ padding: "1rem" }}>{error}</p>}
 
         {!graphData && !error && (
-          <p className="loading-msg" style={{ padding: "1rem" }}>Loading\u2026</p>
+          <p className="loading-msg" style={{ padding: "1rem" }}>Loading…</p>
         )}
 
         <div className="graph-container" ref={containerRef}>
@@ -217,16 +217,16 @@ export default function GraphPage({ precomputedGraph }) {
               <svg width="16" height="16">
                 <circle cx="8" cy="8" r="6" fill="#2e2e2e" stroke="#777" strokeWidth="1.5" />
               </svg>
-              <span>Person (click \u2192 profile)</span>
+              <span>Person (click → profile)</span>
             </div>
             <div className="legend-item">
               <svg width="16" height="16">
                 <circle cx="8" cy="8" r="7" fill="#c8860a" stroke="#e8a020" strokeWidth="1.5" />
               </svg>
-              <span>Country (click \u2192 filter emails)</span>
+              <span>Country (click → filter emails)</span>
             </div>
             <div className="legend-item legend-hint">
-              Scroll to zoom \u00b7 Drag nodes \u00b7 Click to navigate
+              Scroll to zoom · Drag nodes · Click to navigate
             </div>
           </div>
         </div>

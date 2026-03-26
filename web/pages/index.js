@@ -42,14 +42,14 @@ export async function getStaticProps() {
 const LIMIT = 25;
 
 function cleanSender(sender) {
-  if (!sender) return "\u2014";
+  if (!sender) return "—";
   const match = sender.match(/^([^<]+)</);
   if (match) return match[1].trim();
   return sender.replace(/[<>]/g, "").trim();
 }
 
 function formatDate(d) {
-  if (!d) return "\u2014";
+  if (!d) return "—";
   return new Date(d).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "short",
@@ -144,10 +144,10 @@ export default function Home({ emailCount, countries }) {
   return (
     <>
       <Head>
-        <title>Epstein Africa \u2014 Email Database</title>
+        <title>Epstein Africa — Email Database</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={BASE} />
-        <meta property="og:title" content="Epstein Africa \u2014 Email Database" />
+        <meta property="og:title" content="Epstein Africa — Email Database" />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={BASE} />
         <meta property="og:type" content="website" />
@@ -164,7 +164,7 @@ export default function Home({ emailCount, countries }) {
           <h1>Epstein Africa</h1>
           <p className="subtitle">
             Searchable database of Jeffrey Epstein&apos;s documented connections
-            to Africa \u2014 {emailCount.toLocaleString()} verified emails, excluding promotional mail.{" "}
+            to Africa — {emailCount.toLocaleString()} verified emails, excluding promotional mail.{" "}
             <span className="source">
               Source: DOJ Epstein Files Transparency Act.
             </span>
@@ -175,7 +175,7 @@ export default function Home({ emailCount, countries }) {
           <input
             type="text"
             className="search-input"
-            placeholder="Search subject, sender\u2026"
+            placeholder="Search subject, sender…"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             aria-label="Search emails"
@@ -197,7 +197,7 @@ export default function Home({ emailCount, countries }) {
 
         <div className="meta-row">
           <span className="result-count">
-            {loading ? "Loading\u2026" : `${total.toLocaleString()} emails`}
+            {loading ? "Loading…" : `${total.toLocaleString()} emails`}
           </span>
           {(currentSearch || currentCountry) && (
             <button
@@ -229,7 +229,7 @@ export default function Home({ emailCount, countries }) {
               {loading ? (
                 <tr>
                   <td colSpan={4} className="loading-cell">
-                    Loading\u2026
+                    Loading…
                   </td>
                 </tr>
               ) : emails.length === 0 ? (
@@ -257,7 +257,7 @@ export default function Home({ emailCount, countries }) {
                               {c}
                             </span>
                           ))
-                        : "\u2014"}
+                        : "—"}
                     </td>
                   </tr>
                 ))
@@ -273,7 +273,7 @@ export default function Home({ emailCount, countries }) {
               onClick={() => pushFilters({ page: currentPage - 1 })}
               aria-label="Previous page"
             >
-              \u2190 Prev
+              ← Prev
             </button>
             <span>
               Page {currentPage} / {totalPages}
@@ -283,7 +283,7 @@ export default function Home({ emailCount, countries }) {
               onClick={() => pushFilters({ page: currentPage + 1 })}
               aria-label="Next page"
             >
-              Next \u2192
+              Next →
             </button>
           </div>
         )}

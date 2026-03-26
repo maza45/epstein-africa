@@ -78,9 +78,9 @@ export default function EmailDetail({ ssrEmail }) {
 
   const participants = email ? parseParticipants(email.all_participants) : [];
 
-  const title = email ? `${email.subject || "(no subject)"} \u2014 Epstein Africa` : "Epstein Africa";
+  const title = email ? `${email.subject || "(no subject)"} — Epstein Africa` : "Epstein Africa";
   const description = email
-    ? `Email from ${email.sender || "Unknown"} \u2014 ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : "undated"}${email.countries ? ` \u2014 ${email.countries}` : ""}`
+    ? `Email from ${email.sender || "Unknown"} — ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : "undated"}${email.countries ? ` — ${email.countries}` : ""}`
     : "";
   const pageUrl = email ? `/emails/${encodeURIComponent(email.id)}` : "/";
 
@@ -106,12 +106,12 @@ export default function EmailDetail({ ssrEmail }) {
             return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
           })()}
         >
-          \u2190 Back
+          ← Back
         </a>
 
         {error && <p className="error-msg">{error}</p>}
 
-        {!email && !error && <p className="loading-msg">Loading\u2026</p>}
+        {!email && !error && <p className="loading-msg">Loading…</p>}
 
         {email && (
           <article className="email-detail">
@@ -187,7 +187,7 @@ export default function EmailDetail({ ssrEmail }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      View on Jmail \u2197
+                      View on Jmail ↗
                     </a>
                   </div>
                 </div>

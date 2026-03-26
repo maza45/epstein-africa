@@ -10,7 +10,7 @@ import { STORIES, getStoryBySlug } from "../../lib/stories";
 const BASE = "https://epstein-africa.vercel.app";
 
 function formatDate(d) {
-  if (!d) return "\u2014";
+  if (!d) return "—";
   return new Date(d).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "short",
@@ -20,7 +20,7 @@ function formatDate(d) {
 }
 
 function cleanSender(sender) {
-  if (!sender) return "\u2014";
+  if (!sender) return "—";
   const match = sender.match(/^([^<]+)</);
   if (match) return match[1].trim();
   return sender.replace(/[<>]/g, "").trim();
@@ -91,7 +91,7 @@ export default function StoryPage({ story }) {
   return (
     <>
       <Head>
-        <title>{story.title} \u2014 Epstein Africa</title>
+        <title>{story.title} — Epstein Africa</title>
         <meta name="description" content={story.summary} />
         <link rel="canonical" href={`${BASE}${pageUrl}`} />
         <meta property="og:title" content={story.title} />
@@ -107,7 +107,7 @@ export default function StoryPage({ story }) {
 
       <div className="container">
         <Nav />
-        <button className="back-btn" onClick={() => router.back()}>\u2190 Back</button>
+        <button className="back-btn" onClick={() => router.back()}>← Back</button>
 
         <article className="story-article">
           <header className="story-header">
@@ -162,7 +162,7 @@ export default function StoryPage({ story }) {
                             ? email.countries.split(", ").map((c) => (
                                 <span key={c} className="tag">{c}</span>
                               ))
-                            : "\u2014"}
+                            : "—"}
                         </td>
                       </tr>
                     ))}
@@ -180,7 +180,7 @@ export default function StoryPage({ story }) {
                   <li key={link.url}>
                     <span className="news-source">{link.source}</span>
                     <a href={link.url} target="_blank" rel="noreferrer">
-                      {link.title} \u2197
+                      {link.title} ↗
                     </a>
                   </li>
                 ))}

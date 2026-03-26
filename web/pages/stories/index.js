@@ -25,13 +25,13 @@ export default function StoriesIndex() {
   return (
     <>
       <Head>
-        <title>Stories \u2014 Epstein Africa</title>
+        <title>Stories — Epstein Africa</title>
         <meta
           name="description"
           content="Investigative narratives drawn from Epstein's Africa-related email archive."
         />
         <link rel="canonical" href={`${BASE}/stories`} />
-        <meta property="og:title" content="Stories \u2014 Epstein Africa" />
+        <meta property="og:title" content="Stories — Epstein Africa" />
         <meta property="og:description" content="Investigative narratives drawn from Epstein's Africa-related email archive." />
         <meta property="og:url" content={`${BASE}/stories`} />
         <meta property="og:type" content="website" />

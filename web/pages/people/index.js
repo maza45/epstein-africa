@@ -41,13 +41,13 @@ export default function PeopleIndex({ people }) {
   return (
     <>
       <Head>
-        <title>Key Persons \u2014 Epstein Africa</title>
+        <title>Key Persons — Epstein Africa</title>
         <meta
           name="description"
           content="Profiles of key persons documented in Epstein's Africa-related correspondence."
         />
         <link rel="canonical" href={`${BASE}/people`} />
-        <meta property="og:title" content="Key Persons \u2014 Epstein Africa" />
+        <meta property="og:title" content="Key Persons — Epstein Africa" />
         <meta property="og:description" content="Profiles of key persons documented in Epstein's Africa-related correspondence." />
         <meta property="og:url" content={`${BASE}/people`} />
         <meta property="og:type" content="website" />
