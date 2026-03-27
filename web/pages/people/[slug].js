@@ -5,7 +5,7 @@ import Link from "next/link";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import ShareButtons from "../../components/ShareButtons";
-import { getPersonBySlug } from "../../lib/people";
+import { PEOPLE, getPersonBySlug } from "../../lib/people";
 import { getDb } from "../../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 
@@ -13,13 +13,20 @@ const BASE = "https://epstein-africa.vercel.app";
 
 const LIMIT = 25;
 
-export async function getServerSideProps({ params, query }) {
+export async function getStaticPaths() {
+  return {
+    paths: PEOPLE.map((p) => ({ params: { slug: p.slug } })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const person = getPersonBySlug(params.slug);
   if (!person) return { notFound: true };
 
   const db = getDb();
-  const page = Math.max(1, parseInt(query.page) || 1);
-  const offset = (page - 1) * LIMIT;
+  const page = 1;
+  const offset = 0;
 
   const termConditions = person.searchTerms
     .map(() => "(LOWER(sender) LIKE ? OR LOWER(all_participants) LIKE ?)")

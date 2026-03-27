@@ -111,7 +111,7 @@ a:hover {
   align-items: center;
   gap: 1rem;
   margin-bottom: 0.75rem;
-  min-height: 1.5rem;
+  min-height: 2rem;
 }
 
 .result-count {
@@ -352,6 +352,10 @@ a:hover {
   color: var(--text-dim);
   line-height: 1.6;
   margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .story-countries {
@@ -837,11 +841,40 @@ a:hover {
 }
 
 /* ── Responsive ── */
+@media (max-width: 900px) {
+  .col-countries {
+    display: none;
+  }
+  .col-sender {
+    width: 140px;
+  }
+  .filters {
+    flex-direction: column;
+  }
+  .search-input {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   html {
     font-size: 13px;
   }
-  .col-countries {
-    display: none;
+  .col-sender {
+    width: 100px;
+  }
+  .col-date {
+    width: 80px;
+    font-size: 0.75rem;
+  }
+  .meta-row {
+    flex-wrap: wrap;
+  }
+  .stories-grid {
+    grid-template-columns: 1fr;
+  }
+  .people-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
@@ -6,6 +5,7 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import ShareButtons from "../../components/ShareButtons";
 import { STORIES, getStoryBySlug } from "../../lib/stories";
+import { getDb } from "../../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 
 const BASE = "https://epstein-africa.vercel.app";
@@ -46,20 +46,26 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const story = getStoryBySlug(params.slug);
   if (!story) return { notFound: true };
-  return { props: { story } };
+
+  let emails = [];
+  if (story.email_ids.length > 0) {
+    const db = getDb();
+    const placeholders = story.email_ids.map(() => "?").join(",");
+    emails = db
+      .prepare(
+        `SELECT id, doc_id, sender, subject, sent_at, countries, epstein_is_sender
+         FROM emails
+         WHERE id IN (${placeholders})
+         ORDER BY COALESCE(sent_at, '9999-99-99') ASC`
+      )
+      .all(...story.email_ids);
+  }
+
+  return { props: { story, emails } };
 }
 
-export default function StoryPage({ story }) {
+export default function StoryPage({ story, emails }) {
   const router = useRouter();
-  const [emails, setEmails] = useState([]);
-
-  useEffect(() => {
-    if (!story || story.email_ids.length === 0) return;
-    fetch(`/api/stories/emails?ids=${story.email_ids.join(",")}`)
-      .then((r) => r.json())
-      .then(setEmails)
-      .catch(() => {});
-  }, [story]);
 
   const pageUrl = `/stories/${story.slug}`;
 

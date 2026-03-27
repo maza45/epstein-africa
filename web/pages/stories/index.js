@@ -7,19 +7,27 @@ import { STORIES } from "../../lib/stories";
 
 const BASE = "https://epstein-africa.vercel.app";
 
-const ALL_COUNTRIES = [
-  ...new Set(STORIES.flatMap((s) => s.countries)),
-].sort();
+export async function getStaticProps() {
+  const stories = STORIES.map(({ slug, title, summary, countries, date_range }) => ({
+    slug,
+    title,
+    summary,
+    countries,
+    date_range,
+  }));
+  const allCountries = [...new Set(STORIES.flatMap((s) => s.countries))].sort();
+  return { props: { stories, allCountries } };
+}
 
-export default function StoriesIndex() {
+export default function StoriesIndex({ stories, allCountries }) {
   const [country, setCountry] = useState(null);
 
   const filtered = useMemo(
     () =>
       country
-        ? STORIES.filter((s) => s.countries.includes(country))
-        : STORIES,
-    [country]
+        ? stories.filter((s) => s.countries.includes(country))
+        : stories,
+    [country, stories]
   );
 
   return (
@@ -55,7 +63,7 @@ export default function StoriesIndex() {
           >
             All
           </button>
-          {ALL_COUNTRIES.map((c) => (
+          {allCountries.map((c) => (
             <button
               key={c}
               className={`filter-pill${country === c ? " active" : ""}`}
