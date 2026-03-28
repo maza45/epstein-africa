@@ -602,6 +602,13 @@ a:hover {
   margin-bottom: 1.25rem;
 }
 
+.mention-note {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
 .profile-meta-row {
   display: flex;
   flex-wrap: wrap;

@@ -28,6 +28,7 @@ export async function getStaticProps({ params }) {
   const page = 1;
   const offset = 0;
 
+  // Section 1: emails where person is sender or participant
   const termConditions = person.searchTerms
     .map(() => "(LOWER(sender) LIKE ? OR LOWER(all_participants) LIKE ?)")
     .join(" OR ");
@@ -50,10 +51,60 @@ export async function getStaticProps({ params }) {
     )
     .all(...sqlParams, LIMIT, offset);
 
-  return { props: { person, emails, total, page } };
+  // Section 2: emails mentioning person in body (only if person has bodySearchTerms)
+  let mentionEmails = [];
+  let mentionTotal = 0;
+  if (person.bodySearchTerms && person.bodySearchTerms.length > 0) {
+    const bodyTerms = person.bodySearchTerms;
+    const personCountries = (person.countries || []).filter((c) => c !== "Africa");
+
+    // Find body mentions, exclude emails already in Section 1
+    const bodyConditions = bodyTerms
+      .map(() => "LOWER(body) LIKE ?")
+      .join(" OR ");
+    const bodyParams = bodyTerms.map((t) => `%${t.toLowerCase()}%`);
+
+    const senderExclude = termConditions;
+    const senderExcludeParams = [...sqlParams];
+
+    const candidateRows = db
+      .prepare(
+        `SELECT id, sender, subject, sent_at, countries, epstein_is_sender, body
+         FROM emails
+         WHERE COALESCE(is_promotional, 0) = 0
+           AND (${bodyConditions})
+           AND NOT (${senderExclude})
+         ORDER BY COALESCE(sent_at, '9999-99-99') ASC`
+      )
+      .all(...bodyParams, ...senderExcludeParams);
+
+    // Noise filter: name appears 2+ times in body, OR email country overlaps with person countries
+    const filtered = candidateRows.filter((row) => {
+      const bodyLower = (row.body || "").toLowerCase();
+      let nameCount = 0;
+      for (const term of bodyTerms) {
+        const re = new RegExp(term.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+        const matches = bodyLower.match(re);
+        if (matches) nameCount += matches.length;
+      }
+      if (nameCount >= 2) return true;
+
+      if (personCountries.length > 0 && row.countries) {
+        const emailCountries = row.countries.split(",").map((c) => c.trim());
+        if (personCountries.some((pc) => emailCountries.includes(pc))) return true;
+      }
+
+      return false;
+    });
+
+    mentionTotal = filtered.length;
+    mentionEmails = filtered.slice(0, LIMIT).map(({ body, ...rest }) => rest);
+  }
+
+  return { props: { person, emails, total, page, mentionEmails, mentionTotal } };
 }
 
-export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, total: ssrTotal, page: ssrPage }) {
+export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, total: ssrTotal, page: ssrPage, mentionEmails: ssrMentionEmails, mentionTotal: ssrMentionTotal }) {
   const router = useRouter();
   const [page, setPage] = useState(ssrPage);
   const [data, setData] = useState({ person: ssrPerson, emails: ssrEmails, total: ssrTotal });
@@ -217,6 +268,62 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                   </div>
                 )}
               </section>
+
+              {ssrMentionEmails && ssrMentionEmails.length > 0 && (
+                <section className="profile-emails">
+                  <h2 className="section-heading">
+                    Emails mentioning {person.name} ({ssrMentionTotal})
+                  </h2>
+                  <p className="mention-note">
+                    {person.name} does not appear as a sender or recipient in these emails. They are referenced in the body text.
+                  </p>
+
+                  <div className="table-wrap">
+                    <table className="email-table">
+                      <thead>
+                        <tr>
+                          <th className="col-date">Date</th>
+                          <th className="col-sender">Sender</th>
+                          <th className="col-subject">Subject</th>
+                          <th className="col-countries">Countries</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {ssrMentionEmails.map((email) => (
+                          <tr
+                            key={email.id}
+                            className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
+                            onClick={() =>
+                              router.push(
+                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
+                              )
+                            }
+                          >
+                            <td className="col-date">
+                              {formatDate(email.sent_at)}
+                            </td>
+                            <td className="col-sender">
+                              {cleanSender(email.sender)}
+                            </td>
+                            <td className="col-subject">
+                              {email.subject || "(no subject)"}
+                            </td>
+                            <td className="col-countries">
+                              {email.countries
+                                ? splitCountries(email.countries).map((c) => (
+                                    <span key={c} className="tag">
+                                      {c}
+                                    </span>
+                                  ))
+                                : "—"}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )}
             </div>
           </>
         )}

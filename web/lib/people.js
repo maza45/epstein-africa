@@ -158,6 +158,7 @@ export const PEOPLE = [
     countries: ["Nigeria", "Africa"],
     bio: "Okey Enelamah served as Nigeria's Minister of Industry, Trade and Investment under President Muhammadu Buhari from 2015 to 2019. He appears in Epstein's archive in the Nigeria ports thread. On May 3, 2018, the day President Buhari met Trump at the White House, Enelamah stopped by Jide Zeitlin's home in Washington. He mentioned to Zeitlin his prior discussions with Sultan Bin Sulayem at Davos. Zeitlin forwarded the conversation to Epstein the same evening alongside a note that he had also spoken with Vice President Pence that day. Enelamah's presence in the chain places the Nigerian government's trade ministry in proximity to the Sultan-Zeitlin-Epstein Nigeria ports negotiation, though the archive does not document direct contact between Enelamah and Epstein.",
     searchTerms: ["enelamah", "okey enelamah", "okey"],
+    bodySearchTerms: ["enelamah"],
   },
   {
     slug: "ghanim-bin-saad-al-saad",
@@ -166,6 +167,7 @@ export const PEOPLE = [
     countries: ["South Africa", "Africa"],
     bio: "Ghanim Bin Saad Al Saad served as Managing Director and CEO of Qatari Diar, the sovereign real estate and infrastructure investment fund of the State of Qatar. He is named in Epstein's archive in connection with the Congo Brazzaville bank project. A December 30, 2010 briefing from Philippe Jonnart, forwarded by Peter Mandelson to Epstein in January 2011, identified him as the Qatari funding source: \"the Qatari interlocutor Jean-Yves met with in Brazzaville was Ghanim Bin Saad Al Saad, Managing Director & CEO, Qatari Diar.\" Jean-Yves Ollivier had already met him in Brazzaville before Mandelson or Epstein entered the picture. His role was as the target capital provider for the proposed private bank. Qatari Diar, established in 2005, manages real estate and infrastructure investments across more than 25 countries on behalf of the Qatar Investment Authority.",
     searchTerms: ["ghanim", "ghanim bin saad", "qatari diar"],
+    bodySearchTerms: ["ghanim", "qatari diar"],
   },
   {
     slug: "ehud-barak",
@@ -198,6 +200,7 @@ export const PEOPLE = [
     countries: ["Gabon", "Africa"],
     bio: "Ali Bongo Ondimba has served as President of Gabon since 2009, succeeding his father Omar Bongo who held the presidency for 41 years. He appears in Epstein's archive in a thread spanning June 2012 to May 2013. On June 24, 2012, Epstein used Karim Wade as an intelligence source to check whether Bongo was coming to Paris. Wade confirmed the trip. On July 1, 2012, Epstein told Sultan Bin Sulayem that Bongo was in Paris and he was with him. Epstein tried to bring Sultan to the same meeting; Sultan was traveling and could not attend. In May 2013, Sultan met Bongo independently in Libreville and told Epstein he had promised to bring him to Gabon. No documented Gabon visit by Epstein follows in the archive. Bongo was deposed in a military coup in August 2023 after an election dispute.",
     searchTerms: ["ali bongo", "bongo", "gabon"],
+    bodySearchTerms: ["bongo", "ali bongo"],
   },
   {
     slug: "mark-lloyd",
@@ -214,6 +217,7 @@ export const PEOPLE = [
     countries: ["South Africa"],
     bio: "Daniel Siad sent model portfolios from Cape Town to Epstein in early 2014, forwarding packages from Pure Management and portfoliopad.com links. In February 2014 he wrote: \"The most beautiful girls in the world are there.\" In March 2014 he told Epstein \"the potential of girls is huge\" and offered to \"organize for New York or Paris.\" He appears in 8 emails in the Africa archive, all from February to March 2014. Epstein responded to his scouting updates with \"very good\" and \"very intersitng.\"",
     searchTerms: ["daniel siad", "siad"],
+    bodySearchTerms: ["siad", "daniel siad"],
   },
   {
     slug: "bill-gates",
@@ -230,6 +234,7 @@ export const PEOPLE = [
     countries: ["South Africa"],
     bio: "Jacob Zuma served as President of South Africa from 2009 to 2018. On March 5, 2010, Mark Lloyd organized a private dinner in his honor at the Ritz Hotel at Epstein's direction. Epstein wrote that night: \"mark lloyd is havign dinner for zuma tomorrow night at the ritz.\" Peter Mandelson, who attended, wrote afterward: \"I am also summoned to see Presdt Zuma tomorrow for private meeting. Do we like South Africa ??\" A follow-up email noted Zuma \"was much more impressive and engaging than I thought he would be.\" He appears in 9 emails. Not a direct Epstein correspondent.",
     searchTerms: ["zuma", "jacob zuma", "president zuma"],
+    bodySearchTerms: ["zuma"],
   },
   {
     slug: "sol-kerzner",
@@ -238,6 +243,7 @@ export const PEOPLE = [
     countries: ["South Africa", "Morocco"],
     bio: "Sol Kerzner was a South African casino and hotel magnate who built Sun City and founded Kerzner International, which operates the Atlantis and One&Only resort brands. In June 2010, Ian Douglas from Kerzner's chairman's office emailed Epstein to arrange a July 21 meeting in New York, writing that the contact came \"following your discussions with Sultan bin Sulayem.\" Epstein told Sarah Kellen: \"he is supposed to send info first, I spoke to sol on the phone.\" He appears in 13 emails in the archive. Kerzner died in 2020.",
     searchTerms: ["kerzner", "sol kerzner"],
+    bodySearchTerms: ["kerzner"],
   },
   {
     slug: "leon-black",
@@ -246,6 +252,7 @@ export const PEOPLE = [
     countries: ["Ivory Coast"],
     bio: "Leon Black co-founded Apollo Management (now Apollo Global Management), one of the world's largest private equity firms. In February 2012, Epstein described him to Nina Keita as \"a client and a very close friend\" who \"owns appollo.\" A Google Calendar reminder in Epstein's archive reads: \"Leon blacks guy see ivory coast minister.\" On February 6, 2012, Lesley Groff relayed that \"Leon Black's guy, Ali Rasheed, says he would like to meet with the minister of the ivory coast today.\" Melanie Spinella, Black's assistant at Apollo, coordinated the meeting logistics with Epstein's office. He appears in 13 emails in the archive.",
     searchTerms: ["leon black", "apollo", "ali rasheed"],
+    bodySearchTerms: ["leon black"],
   },
   {
     slug: "paul-kagame",
@@ -254,6 +261,7 @@ export const PEOPLE = [
     countries: ["Rwanda"],
     bio: "Paul Kagame has served as President of Rwanda since 2000. Epstein funded Rwandan students at Columbia University through the Clinton Foundation, a connection he later leveraged for access. In September 2010, when invited to an event where \"many African heads of state\" would attend and where the host was \"great friends with the president of Rwanda,\" Epstein wrote: \"she can tell kagami that I was the one that went with clinton and funded the rwandan students at columbia.\" In July 2012, a correspondent asked Epstein: \"are you in rwanda with Clinton give president Kigame my best.\" He appears in 8 emails in the archive. Not a direct Epstein correspondent.",
     searchTerms: ["kagame", "paul kagame", "kagami"],
+    bodySearchTerms: ["kagame", "kigame", "kagami"],
   },
   {
     slug: "jean-luc-brunel",
