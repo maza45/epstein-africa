@@ -13,8 +13,6 @@ const BASE = "https://epstein-africa.vercel.app";
 
 function parseParticipants(raw) {
   if (!raw) return [];
-  // Format: "name <email> ["recip1", "recip2"] [] []"
-  // Extract all email-like tokens
   const emails = raw.match(/[\w.+-]+@[\w.-]+\.[a-z]{2,}/gi) || [];
   const names = raw.match(/^([^<[]+)/);
   const parts = new Set(emails);
@@ -22,17 +20,11 @@ function parseParticipants(raw) {
   return [...parts].filter(Boolean);
 }
 
-// Derive sender-to-slug mapping from canonical PEOPLE array
-const SENDER_SLUGS = PEOPLE.map((p) => ({
-  fragments: p.searchTerms,
-  slug: p.slug,
-}));
-
-function senderSlug(sender) {
+function findSenderSlug(sender) {
   if (!sender) return null;
   const lower = sender.toLowerCase();
-  for (const { fragments, slug } of SENDER_SLUGS) {
-    if (fragments.some((f) => lower.includes(f))) return slug;
+  for (const p of PEOPLE) {
+    if (p.searchTerms.some((f) => lower.includes(f))) return p.slug;
   }
   return null;
 }
@@ -47,7 +39,8 @@ export async function getServerSideProps({ params }) {
     )
     .get(params.id);
   if (!email) return { notFound: true };
-  return { props: { ssrEmail: email } };
+  const senderProfileSlug = findSenderSlug(email.sender);
+  return { props: { ssrEmail: email, senderProfileSlug } };
 }
 
 function Field({ label, value, mono }) {
@@ -60,7 +53,7 @@ function Field({ label, value, mono }) {
   );
 }
 
-export default function EmailDetail({ ssrEmail }) {
+export default function EmailDetail({ ssrEmail, senderProfileSlug }) {
   const router = useRouter();
   const [email] = useState(ssrEmail);
   const error = null;
@@ -126,8 +119,8 @@ export default function EmailDetail({ ssrEmail }) {
                 <div className="field">
                   <div className="field-label">From</div>
                   <div className="field-value">
-                    {senderSlug(email.sender) ? (
-                      <Link href={`/people/${senderSlug(email.sender)}`}>
+                    {senderProfileSlug ? (
+                      <Link href={`/people/${senderProfileSlug}`}>
                         {email.sender}
                       </Link>
                     ) : (
