@@ -1021,7 +1021,7 @@ export const STORIES = [
     title: "The Yemeni Billionaire Who Used Epstein as a Back-Channel",
     summary:
       "Between 2012 and 2018, Shaher Abdulhak, introduced by Sultan Bin Sulayem as 'the richest Yemeni,' corresponded with Jeffrey Epstein across at least 38 email threads. Epstein brokered a British QC for Abdulhak's son's criminal case, advised on an Ethiopian tobacco monopoly and a Coca-Cola plant bombed by the Saudi coalition, and facilitated shadow diplomacy on Yemen, including a meeting with UN envoy Terje Rod-Larsen and an introduction to Steve Bannon.",
-    countries: ["Yemen", "Ethiopia", "Sudan", "Somalia"],
+    countries: ["Ethiopia", "Sudan", "Somalia"],
     date_range: "2012-2018",
     body: [
       "On May 20, 2012, Jeffrey Epstein emailed Sultan Bin Sulayem: \"I met with boreh and abdul shaher from yemen. ( little strange)\" (EFTA01883174-0). Sultan replied the next day with a profile: \"Shaher is the richest Yemeni he owns oil concessions in Sudan as well as 50% of the mobile co in Sudan he is also the largest wholesaler in Yemen for rice sugar tea veg oil. And yes he is a strange man\" (EFTA01881965-0). Within two weeks, Epstein was advising on Shaher's son Farouk's criminal case in London, a matter that had generated international press. Farouk Abdulhak had fled the UK in 2008 after a Norwegian student was found dead in his flat. Yemen refused extradition.",
