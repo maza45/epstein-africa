@@ -49,7 +49,7 @@ export default function handler(req) {
             EA
           </div>
           <div style={{ color: "#888", fontSize: "20px" }}>
-            epstein-africa.vercel.app
+            epsteinafrica.com
           </div>
         </div>
 

@@ -9,7 +9,7 @@ import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
 import { formatDateTime, splitCountries } from "../../lib/format";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 function parseParticipants(raw) {
   if (!raw) return [];
@@ -86,8 +86,8 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug }) {
           href={(() => {
             const raw = router.query.back ? decodeURIComponent(router.query.back) : "/";
             try {
-              const url = new URL(raw, "https://epstein-africa.vercel.app");
-              if (url.origin !== "https://epstein-africa.vercel.app") return "/";
+              const url = new URL(raw, "https://www.epsteinafrica.com");
+              if (url.origin !== "https://www.epsteinafrica.com") return "/";
             } catch { /* relative paths are fine */ }
             return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
           })()}

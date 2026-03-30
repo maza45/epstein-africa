@@ -1,6 +1,6 @@
 import { STORIES } from "../lib/stories";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 function escapeXml(s) {
   return s

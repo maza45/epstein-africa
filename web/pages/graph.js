@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import { buildGraphData } from "../lib/graph";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 export async function getStaticProps() {
   const data = buildGraphData();

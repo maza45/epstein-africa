@@ -9,7 +9,7 @@ import { PEOPLE, getPersonBySlug } from "../../lib/people";
 import { getDb } from "../../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 const LIMIT = 25;
 

@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../lib/format";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 export async function getStaticProps() {
   const db = getDb();

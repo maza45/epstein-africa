@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 export default function ShareButtons({ path, title }) {
   const [copied, setCopied] = useState(false);

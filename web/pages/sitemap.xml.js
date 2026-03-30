@@ -2,7 +2,7 @@ import { STORIES } from "../lib/stories";
 import { PEOPLE } from "../lib/people";
 import { getDb } from "../lib/db";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 function generateSitemap(emailIds) {
   const now = new Date().toISOString().split("T")[0];

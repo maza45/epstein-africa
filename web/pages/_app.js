@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import Head from "next/head";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 export default function App({ Component, pageProps }) {
   return (

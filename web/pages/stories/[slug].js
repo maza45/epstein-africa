@@ -8,7 +8,7 @@ import { STORIES, getStoryBySlug } from "../../lib/stories";
 import { getDb } from "../../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 // Turn inline email IDs like (EFTA01841982-0) into clickable links
 const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?))\b/g;

@@ -5,7 +5,7 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import { STORIES } from "../../lib/stories";
 
-const BASE = "https://epstein-africa.vercel.app";
+const BASE = "https://www.epsteinafrica.com";
 
 export async function getStaticProps() {
   const stories = STORIES.map(({ slug, title, summary, countries, date_range }) => ({
