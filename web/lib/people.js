@@ -305,6 +305,15 @@ export const PEOPLE = [
     searchTerms: ["bob crowe", "crowe", "nelson mullins"],
     bodySearchTerms: ["crowe", "nelson mullins"],
   },
+  {
+    slug: "shaher-abdulhak",
+    name: "Shaher Abdulhak",
+    title: "Yemeni billionaire, Chairman of Sheba Investment Company",
+    countries: ["Yemen", "Ethiopia", "Sudan", "Somalia", "Zimbabwe", "Egypt"],
+    bio: "Sultan Bin Sulayem introduced Shaher Abdulhak to Epstein in May 2012 as \"the richest Yemeni,\" describing his oil concessions in Sudan and 50 percent stake in Sudan's mobile network. The correspondence spans seven years and 38 email threads. Epstein brokered Lord Ken Macdonald QC for Abdulhak's son Farouk's criminal case in London, advised on a $20 million loan for Ethiopia's sole cigarette monopoly (National Tobacco Enterprise, held via Sheba Investment Cayman), and responded within minutes when the Saudi coalition bombed Abdulhak's Coca-Cola plant in Sanaa. In 2017-2018, Abdulhak proposed a Yemen-Israel peace initiative modeled on Sadat, Epstein facilitated a meeting with UN diplomat Terje Rod-Larsen, and Epstein introduced Abdulhak to Steve Bannon.",
+    searchTerms: ["shaher", "abdulhak", "shaher abdulhak", "chairman.shaherov", "chairman-21"],
+    bodySearchTerms: ["shaher", "abdulhak"],
+  },
 ];
 
 export function getPersonBySlug(slug) {
