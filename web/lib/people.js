@@ -271,6 +271,40 @@ export const PEOPLE = [
     bio: "Jean-Luc Brunel was a French modeling agent who ran MC2 Model Management. In July 2012 he emailed Epstein about upcoming travel: \"Paris for until wednesday. May be Morocco for r days end of the week NY except if I can go to Ethiopia with you.\" He appears in 1 email in the Africa archive. Daniel Siad, who scouted Cape Town models for Epstein, operated in the same recruitment network. Brunel was arrested in Paris in December 2020 on charges of rape and trafficking of minors. He was found dead in his prison cell in February 2022.",
     searchTerms: ["brunel", "jean-luc brunel", "jean luc brunel"],
   },
+  {
+    slug: "gregory-brown",
+    name: "Gregory Brown",
+    title: "Chairman & CEO, GlobalCast Partners LLC",
+    countries: ["Libya"],
+    bio: "Gregory Brown sent Epstein 42 emails between June 2011 and June 2013 pitching post-Gaddafi Libya as an investment opportunity. He framed TNC humanitarian aid as a gateway to \"$100 billion rebuilding\" contracts and offered access to frozen sovereign funds, oil concessions, and telecom infrastructure deals. In June 2011, Brown arranged a UN reception where he introduced Epstein to Dr. Muhammad Al Magariaf, who was elected Libya's first post-Gaddafi president in August 2012. Epstein wrote: \"lets see him in new york.\" Brown also tried to bring Fadel Hshad, the TNC official holding the mandate to negotiate Goldman Sachs' $1.3 billion settlement with the Libyan Investment Authority, to meet Epstein in New York.",
+    searchTerms: ["gregory brown", "gbrown1970", "globalcast"],
+  },
+  {
+    slug: "boris-nikolic",
+    name: "Boris Nikolic",
+    title: "Science Advisor to Bill Gates; bgC3",
+    countries: ["Tanzania", "Nigeria", "Zimbabwe", "Africa"],
+    bio: "Boris Nikolic served as Bill Gates's science adviser and appears in 11 emails in the Africa archive. On September 30, 2012, Gates wrote to Nikolic: \"Go ahead and forward this to Jeffrey. He and I talked quite a bit last night including explaining that Melinda had just been in Africa with Kofi.\" Nikolic forwarded Melinda French's Tanzania agriculture trip photos to Epstein that same day. In August 2013, Ehud Barak's associate sent Nikolic a pitch for Parasight Ltd., an Israeli malaria diagnostics company, with Epstein copied. Nikolic responded that the Gates Foundation was \"funding a company to develop similar system\" but offered to help. He was named as a backup executor in Epstein's will.",
+    searchTerms: ["boris nikolic", "nikolic"],
+    bodySearchTerms: ["nikolic"],
+  },
+  {
+    slug: "david-stern",
+    name: "David Stern",
+    title: "Lawyer, Witan Group",
+    countries: ["Djibouti", "Libya", "Senegal", "Kenya", "Africa"],
+    bio: "David Stern of the Witan Group appears in 8 emails spanning 2011 to 2018. He represented Abdourahman Boreh, the Djiboutian port magnate, in litigation against the Republic of Djibouti. In October 2015 he told Epstein he was \"helping Boreh win his case\" and shared a Daily Mail article about the proceedings. In March 2016: \"Boreh won his case 100%.\" He also briefed Epstein on China-Africa geopolitics, forwarding coverage of Xi Jinping's 2012 speech on China-Africa strategic partnerships. In March 2017 he asked Epstein to \"check Rothschild for Boreh\" ahead of a Geneva trip. His last email, in December 2018, reported a \"big meeting Mubadala\" and noted Dubai was \"totally overbuilt.\"",
+    searchTerms: ["david stern", "ds@witangroup", "witan"],
+  },
+  {
+    slug: "bob-crowe",
+    name: "Bob Crowe",
+    title: "Partner & Chair of Government Relations, Nelson Mullins Riley & Scarborough LLP",
+    countries: ["Senegal"],
+    bio: "Bob Crowe appears in 15 emails between December 2015 and June 2016, all related to the Karim Wade lobbying campaign in Senegal. His firm, Nelson Mullins, was retained for $50,000 per month to lobby the U.S. government on Wade's detention by President Macky Sall's administration. In April 2016 he reported directly to Epstein: \"I had a good meeting at State today. My contact is working behind the scenes to help put pressure on Macky Sall and his administration.\" He briefed Senator Ed Markey, dined with Jim Clyburn (\"Assistant Democratic Leader in the House and prominent member of the black caucus\"), and worked to get Wade's case into the State Department's Human Rights Report. He also complained about unpaid fees: \"We did not get the $50,000 promised by 11-30.\"",
+    searchTerms: ["bob crowe", "crowe", "nelson mullins"],
+    bodySearchTerms: ["crowe", "nelson mullins"],
+  },
 ];
 
 export function getPersonBySlug(slug) {
