@@ -51,3 +51,8 @@ htmlcov/
 .env
 *.key
 scripts/traffic-monitor/wrangler.toml
+scripts/outreach/
+dsrc/
+.claude/
+.wrangler/
+tasks.json
