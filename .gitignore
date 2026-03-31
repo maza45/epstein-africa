@@ -52,21 +52,12 @@ htmlcov/
 *.key
 scripts/traffic-monitor/wrangler.toml
 scripts/outreach/
-web/media-outreach.md
 dsrc/
 .claude/
 .wrangler/
 tasks.json
 
-# Internal docs — never commit operational/research docs to a public repo
-CLAUDE.md
-CONTEXT.md
-CODE_OF_CONDUCT.md
-CONTRIBUTING.md
-SECURITY.md
-docs/
-web/CLAUDE.md
-web/RESEARCH.md
-web/RESEARCH_SOURCES.md
-web/RESEARCH_THREADS.md
-scripts/traffic-monitor/README.md
+# No .md files in public repo — only code and data
+*.md
+!README.md
+!.github/ISSUE_TEMPLATE/*.md
