@@ -1097,6 +1097,7 @@ export const STORIES = [
       "By March 2019, Marc Leon was negotiating directly with Shuliak. Kensington proposed closing at 19 million euros for the shares plus 1 million to Kensington, with a warning: \"This transaction has too many risks\" (vol00009-efta00552022-pdf). Shuliak pushed back on the structure, suggesting buying the property outright for 8 million euros \"and the stock of the anshalt for any agreed balance.\" Leon pushed for 23 million. The ownership had shifted again: \"The offer should be for Khan Stiftung - Vaduz, now owner of Pamur\" (vol00009-efta00552022-pdf).",
       "On March 13, 2019, Epstein dropped the mask. Writing as \"J\" from jeevacation@gmail.com, in an email addressed to Marc Leon but routed through Shuliak's thread, he laid out the terms himself: \"The buyer is haze trust , the ultimate owner , me. the bank is deutsch bank.\" He asked whether Marc's 1 million fee should be referenced in the offer or kept aside (vol00009-efta00552078-pdf).",
       "Shuliak had been negotiating as though she were the buyer. The email confirmed she was not. Four jurisdictions, three shell companies, one palace. Epstein had been chasing Bin Ennakhil since at least 2010. His lawyers told him to walk away. He ignored them. Kensington's own broker called it too risky. He kept going. By March 2019, the deal structure had cycled through Pamur Anstalt, Rilton Investments, Khan Stiftung, and Haze Trust. Deutsche Bank was the bank. Epstein was four months from arrest.",
+      "On April 26, 2019, Epstein emailed Marc Leon and Mark Lloyd one last time. He compared Marrakech prices to the US market, then delivered his verdict on the palace he had pursued for nine years: \"I don't think anyone who is a serious buyer will pay more for bin enikhil than the original 10 m I proposed 6 years ago, they are buying a garden. with a very large gazebo. a great one true work of art, but not a house.\" He added: \"When Mr Kiss dies. Mrs kiss will become realistic\" (EFTA02314180-0).",
     ],
     email_ids: [
       "EFTA01781836-0",
@@ -1152,6 +1153,7 @@ export const STORIES = [
       "vol00009-efta00552078-pdf-0",
       "EFTA02313589-0",
       "EFTA02313589-1",
+      "EFTA02314180-0",
     ],
     news_links: [],
   },
