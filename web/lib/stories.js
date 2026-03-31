@@ -578,7 +578,7 @@ export const STORIES = [
     title: "\"Reputations Converge\": How Epstein Introduced Larry Summers to Karim Wade in Doha",
     summary:
       "On November 29, 2016, six months after Karim Wade walked out of Rebeuss prison and flew to Qatar, Epstein sent a two-line email: 'larry, karim, karim - larry.' Summers agreed to the Wednesday call before asking who Wade was. Then he told Epstein to stay discreet.",
-    countries: ["Senegal"],
+    countries: ["Senegal", "Qatar"],
     date_range: "2011–2016",
     body: [
       "Larry Summers agreed to meet Karim Wade before he asked who Wade was. On November 29, 2016, Epstein sent a two-line introduction email to both men: \"larry, karim, karim - larry, larry will be in doha on wed, i think you two would enjoy meeting\" (HOUSE_OVERSIGHT_026028-0). Wade, writing from the Afri zp account he had used since leaving Dakar, replied the same morning: \"I'll be very please to meet or take you for diner. My mobile in Doha is [redacted]\" (HOUSE_OVERSIGHT_026028-2).",
@@ -593,6 +593,8 @@ export const STORIES = [
       "HOUSE_OVERSIGHT_026028-3",
       "HOUSE_OVERSIGHT_026028-4",
       "EFTA02182743-0",
+      "EFTA01787082-0",
+      "EFTA01787108-0",
     ],
     news_links: [],
   },
