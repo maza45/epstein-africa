@@ -52,6 +52,7 @@ htmlcov/
 *.key
 scripts/traffic-monitor/wrangler.toml
 scripts/outreach/
+web/media-outreach.md
 dsrc/
 .claude/
 .wrangler/
