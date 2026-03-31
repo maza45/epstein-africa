@@ -8,7 +8,12 @@ export default function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const db = getDb();
+  let db;
+  try {
+    db = getDb();
+  } catch (err) {
+    return res.status(500).json({ error: err.message, code: err.code, stack: err.stack });
+  }
 
   const page = Math.max(1, parseInt(req.query.page) || 1);
   const limit = Math.min(LIMIT_MAX, parseInt(req.query.limit) || LIMIT_DEFAULT);
