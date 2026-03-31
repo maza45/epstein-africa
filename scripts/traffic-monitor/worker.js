@@ -155,25 +155,23 @@ export default {
     }
   },
 
-  // GET route: read the anomaly log
+  // GET route: read the anomaly log (requires X-Auth header)
   async fetch(request, env) {
-    const url = new URL(request.url);
-
-    if (url.pathname === "/" || url.pathname === "") {
-      const indexRaw = await env.TRAFFIC_ANOMALIES.get("index");
-      const index = indexRaw ? JSON.parse(indexRaw) : [];
-
-      const entries = [];
-      for (const key of index) {
-        const val = await env.TRAFFIC_ANOMALIES.get(key);
-        if (val) entries.push(JSON.parse(val));
-      }
-
-      return new Response(JSON.stringify(entries, null, 2), {
-        headers: { "Content-Type": "application/json" },
-      });
+    if (request.headers.get("X-Auth") !== env.LOG_SECRET) {
+      return new Response("Not found", { status: 404 });
     }
 
-    return new Response("Not found", { status: 404 });
+    const indexRaw = await env.TRAFFIC_ANOMALIES.get("index");
+    const index = indexRaw ? JSON.parse(indexRaw) : [];
+
+    const entries = [];
+    for (const key of index) {
+      const val = await env.TRAFFIC_ANOMALIES.get(key);
+      if (val) entries.push(JSON.parse(val));
+    }
+
+    return new Response(JSON.stringify(entries, null, 2), {
+      headers: { "Content-Type": "application/json" },
+    });
   },
 };
