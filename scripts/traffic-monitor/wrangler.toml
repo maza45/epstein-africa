@@ -1,0 +1,10 @@
+name = "traffic-monitor"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[triggers]
+crons = ["0 8 * * *"]
+
+[[kv_namespaces]]
+binding = "TRAFFIC_ANOMALIES"
+id = "REDACTED_KV_NAMESPACE_ID"
