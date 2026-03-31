@@ -2,3 +2,4 @@
 node_modules/
 data/ds4/
 data/archive_manifest.json
+.vercel
