@@ -50,3 +50,4 @@ htmlcov/
 # Sensitive
 .env
 *.key
+scripts/traffic-monitor/wrangler.toml

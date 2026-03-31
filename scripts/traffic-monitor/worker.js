@@ -1,4 +1,3 @@
-const ZONE_ID = "REDACTED_ZONE_ID";
 const GRAPHQL_URL = "https://api.cloudflare.com/client/v4/graphql";
 
 // Thresholds
@@ -9,7 +8,7 @@ const LOW_UNIQUE_THRESHOLD = 5; // unique IPs
 async function queryAnalytics(env, start, end) {
   const query = `{
     viewer {
-      zones(filter: { zoneTag: "${ZONE_ID}" }) {
+      zones(filter: { zoneTag: "${env.CF_ZONE_ID}" }) {
         httpRequests1hGroups(
           limit: 24,
           orderBy: [datetime_DESC],

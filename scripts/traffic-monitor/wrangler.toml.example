@@ -7,4 +7,4 @@ crons = ["0 8 * * *"]
 
 [[kv_namespaces]]
 binding = "TRAFFIC_ANOMALIES"
-id = "REDACTED_KV_NAMESPACE_ID"
+id = "<your-kv-namespace-id>"
