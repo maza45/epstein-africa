@@ -213,10 +213,10 @@ export const PEOPLE = [
   {
     slug: "daniel-siad",
     name: "Daniel Siad",
-    title: "Model scout, Pure Management Cape Town",
+    title: "Model scout in Jean-Luc Brunel's network",
     countries: ["South Africa"],
-    bio: "Daniel Siad sent model portfolios from Cape Town to Epstein in early 2014, forwarding packages from Pure Management and portfoliopad.com links. In February 2014 he wrote: \"The most beautiful girls in the world are there.\" In March 2014 he told Epstein \"the potential of girls is huge\" and offered to \"organize for New York or Paris.\" He appears in 8 emails in the Africa archive, all from February to March 2014. Epstein responded to his scouting updates with \"very good\" and \"very intersitng.\"",
-    searchTerms: ["daniel siad", "siad"],
+    bio: "Daniel Amar Siad scouted young women for Epstein from 2005 to 2018, operating across Paris, Stockholm, Bangkok, Ibiza, Cape Town, and Dubai. He was introduced by Jean-Luc Brunel and paid through Epstein's financial staff. In 2010 he emailed Brunel about \"Scouting fees\" with Epstein copied. In 2011 he wrote to Brunel: \"Commition de mes 2 filles Chez toi.\" His South Africa scouting began in 2013 from Cape Town, where he forwarded portfolios from Pure Management. SDNY prosecutors circulated his contact file, titled \"Contact Info Daniel Siad (from Brunel),\" in December 2018.",
+    searchTerms: ["daniel siad", "siad", "daniel amar siad"],
     bodySearchTerms: ["siad", "daniel siad"],
   },
   {
