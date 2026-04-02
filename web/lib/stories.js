@@ -1248,6 +1248,41 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "rothschild-ivory-coast-mozambique",
+    title: "How Epstein Brokered Ariane de Rothschild's Access to the President of Ivory Coast",
+    summary:
+      "Between 2013 and 2017, Ariane de Rothschild, vice chair of the Edmond de Rothschild Group, corresponded with Jeffrey Epstein across dozens of emails. Epstein introduced her to Sultan Bin Sulayem, provided a contact list for Ivory Coast and Qatar, offered private access to President Ouattara through his niece Nina Keita, and instructed his financial manager to build a reporting template for the Rothschild family's assets across Mozambique, Cameroon, and Paris.",
+    countries: ["Ivory Coast", "Mozambique", "South Africa", "Cameroon"],
+    date_range: "2013–2017",
+    body: [
+      "In October 2013, Epstein introduced Ariane de Rothschild to Sultan Bin Sulayem, chairman of DP World and Epstein's most active Africa operator. Rothschild wrote back: \"thank you very much for introducing me to sultan suleyman. What a fantastically energetic man! I will look into his harbour fund and will put him into contact with the pdt of Cameroun and somebody in Ivory Coast\" (vol00009-efta00872215-pdf-0). Epstein replied: \"He thought you were great.\" Within a month, Rothschild was connecting Sultan to her own network of African heads of state.",
+      "On November 18, 2013, Epstein sent a one-line email to Olivier Colom, a senior executive at Edmond de Rothschild, and copied Rothschild. It read: \"for qatar, Jabor - al thani. for ivory coast. nina keita. for somailland yemen egypt. abdullah shaher\" (EFTA01946328-0). Three names. Three regions. Epstein was handing the Rothschild Group a contact sheet for his entire Africa and Middle East network. Jabor Al Thani was a Qatari royal. Nina Keita was President Ouattara's niece. Shaher Abdulhak was Yemen's richest man. All three were Epstein correspondents with their own threads in the archive.",
+      "Two and a half years later, in May 2016, Rothschild returned from Abidjan. She told Epstein she was \"back saturday from Abidjan\" and was seeing candidates for the CEO position in Luxembourg, dealing with a letter from Eric de Rothschild about Chateau Lafite, and introducing a new asset management director to her teams. Epstein replied: \"great, if you want private time with Outarra, his niece Nina, is his personal contact. and if you see hamad, minister of interior give him a hug from me\" (vol00009-efta00703590-pdf-0). He was offering the vice chair of one of Europe's oldest banking dynasties a private back channel to the President of Ivory Coast, the same channel he had used to broker a surveillance deal three years earlier.",
+      "Epstein treated the Rothschild relationship as an advisory engagement. In November 2014, he emailed his financial manager Richard Kahn: \"we need to provide a template for rothschild financial reporting. lets mirro ours. houses pregny, bretbgne, paris, mozambique, cameroon. invest cheese, wine. 3 vinearyds, lafitie. bank holding. notel. investments. art. jewelery, etc\" (vol00009-efta01000473-pdf-0). He was mapping the Rothschild family's assets across two continents.",
+      "He also shaped the bank's governance. In April 2015, Epstein sent Rothschild a strategy memo listing goals for corporate control: \"you shoudl have money under your sole control. resignation letter of B. from boards for personal medical reasons. shareholder voting in your favor from B.\" On the advisory board, he was specific: \"summers ehud pritsker. no diplomats. serious people, with a strong finance operations reputation NOT charity, preferable some jews\" (vol00009-efta00859200-pdf-0). Summers was Lawrence Summers. Ehud was Ehud Barak. Pritzker was Tom Pritzker, chairman of Hyatt Hotels. Rothschild had separately asked if Summers would serve alongside Kevin Rudd and Donald Kaberuka, president of the African Development Bank.",
+      "Mozambique ran through the entire correspondence. Rothschild traveled there repeatedly, sometimes with her daughters, sometimes alone. In June 2014, she sent Epstein a photo: \"This is the beach house in mozambique\" (EFTA01922952-0). Epstein forwarded it. A month later he wrote: \"I assume you have good satellite phones for Mozambique, the new ones we have are great. Not much bigger than the old cell phones. Decisions might need to be made\" (EFTA01918374-0). In March 2017, he proposed a structure: \"set up a grantor trust, ex, mozambique environmental trust. contribute paintings. give it 5 months, put at auction\" (EFTA02657524-0). A tax vehicle dressed in conservation.",
+      "In November 2014, Rothschild offered to find Epstein a head gardener for his island. \"I was thinking of somebody I know, an excellent botanist from the botanical garden in Johannesburg. Also, I asked Svetlana if she could send me architect plans for the measures\" (EFTA02593926-0). The subject line was \"Island.\" She was sourcing staff for Little Saint James from South Africa.",
+      "In October 2016, Rothschild emailed from Mozambique. She wrote: \"The very good news is that I m going leopard hunting tonight\" before flying to Cape Town for a philanthropic seminar she had organized (EFTA01743317-0). Two weeks later, Epstein wrote: \"do you think the local taxi driver would understand that though served on a silver platter, surrounded by specially fragranced candles, combined, you and I ate less than his child did last night.\" Rothschild replied: \"No!! Imagine an African!\" (EFTA01738398-0).",
+      "The correspondence continued through at least late 2018. In May 2018, Epstein listed Rothschild on a self-forwarded contact note alongside Steve Bannon, Noam Chomsky, Ehud Barak, James Watson, Leon Black, Tom Pritzker, Larry Summers, Joi Ito, Sultan Bin Sulayem, and Jide Zeitlin. Fourteen months later he was arrested. Ariane de Rothschild became chair of the Edmond de Rothschild Group in 2019.",
+    ],
+    email_ids: [
+      "vol00009-efta00872215-pdf-0",
+      "EFTA01946328-0",
+      "vol00009-efta00703590-pdf-0",
+      "vol00009-efta01000473-pdf-0",
+      "vol00009-efta00859200-pdf-0",
+      "EFTA01922952-0",
+      "EFTA01918374-0",
+      "EFTA02657524-0",
+      "EFTA02593926-0",
+      "EFTA01743317-0",
+      "EFTA01738398-0",
+      "vol00009-efta00964496-pdf-0",
+      "EFTA01918717-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
