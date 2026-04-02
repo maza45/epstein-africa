@@ -376,6 +376,33 @@ export const PEOPLE = [
     searchTerms: ["jagland", "thorbjorn jagland"],
     bodySearchTerms: ["jagland"],
   },
+  {
+    slug: "lisa-svensson",
+    name: "Lisa Emelia Svensson",
+    title: "Swedish diplomat; Ambassador for Ocean and Water; UNEP Nairobi",
+    countries: ["Kenya", "Sudan"],
+    bio: "Lisa Emelia Svensson appears in 24 emails in Epstein's archive, spanning 2012 to 2019. She met Epstein in Washington in October 2012. A month later, when she told him about her appointment as Sweden's Ambassador for Ocean and Water, Epstein directed her to \"read up and meet ghisaline,\" linking to Ghislaine Maxwell's TerraMar Project. Svensson asked: \"Who is Ghisaline?\" She moved to Nairobi in 2016 for UNEP, adopted the nickname \"The African,\" and asked to stay in Epstein's Paris annex while apartment hunting. In March 2019 she asked Epstein to help route private philanthropic funding through an organization to employ her in Paris.",
+    searchTerms: ["svensson", "lisa emelia"],
+    bodySearchTerms: ["svensson"],
+  },
+  {
+    slug: "steve-bannon",
+    name: "Steve Bannon",
+    title: "Former White House Chief Strategist",
+    countries: ["Egypt", "Morocco", "Ivory Coast", "Kenya"],
+    bio: "Steve Bannon appears in 19 emails as sender or recipient in Epstein's archive, spanning 2017 to 2019. Epstein introduced Bannon to Shaher Abdulhak, Jabor Al Thani, and Sultan Bin Sulayem. In February 2018, Epstein told Bannon: \"when i was with Mabutu Seko, dictator of Zaire. mid 80s.\" In July 2018, Epstein and Bannon discussed visiting Mubarak and Sisi in Cairo. Epstein sent Bannon country lists spanning Senegal, Kenya, Ivory Coast, Tunisia, and Dubai. Bannon appears on Epstein's 2018 and 2019 Paris schedules alongside Jabor, Sultan, and Jack Lang. Epstein told Sultan Bin Sulayem: \"when you are in new york you should meet miro and bannon.\"",
+    searchTerms: ["bannon", "steve bannon"],
+    bodySearchTerms: ["bannon"],
+  },
+  {
+    slug: "nicole-junkermann",
+    name: "Nicole Junkermann",
+    title: "Investor; WEF Young Global Leader",
+    countries: ["Morocco", "Gabon"],
+    bio: "Nicole Junkermann appears in 24 emails in Epstein's archive. She is a German-British investor and WEF Young Global Leader who corresponded with Epstein about business and travel, including references to Gabon and Morocco. She appears on Epstein's January 2019 Paris schedule alongside Jabor Al Thani, Sultan Bin Sulayem, and Steve Bannon.",
+    searchTerms: ["junkermann", "nicole junkermann"],
+    bodySearchTerms: ["junkermann"],
+  },
 ];
 
 export function getPersonBySlug(slug) {

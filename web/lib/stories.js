@@ -1314,6 +1314,38 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "svensson-kenya-ghislaine",
+    title: "The Swedish Diplomat Epstein Pointed at Ghislaine Maxwell the Day She Got Her New Job",
+    summary:
+      "In November 2012, Lisa Emelia Svensson told Jeffrey Epstein she had been appointed Sweden's Ambassador for Ocean and Water. Epstein's response: 'read up and meet ghisaline.' Svensson asked: 'Who is Ghisaline?' Four years later she moved to Nairobi, started calling herself 'The African,' asked to stay in Epstein's Paris annex, and in March 2019 asked Epstein to help her route private philanthropic funding through an organization that could employ her.",
+    countries: ["Kenya", "Sudan"],
+    date_range: "2012–2019",
+    body: [
+      "On November 22, 2012, Lisa Emelia Svensson emailed Jeffrey Epstein. \"I will start my new job Dec 1 ... Ambassador for Ocean & Water :)\" She listed her priorities: water as a political issue in Sudan, sanitation, climate change, clean technology, and Arctic ocean policy. She wanted Epstein's advice and \"a plattform with great persons that could support me\" (EFTA01975267-0).",
+      "Epstein's reply ignored every item on her list. He wrote: \"read up and meet ghisaline she is having a great time\" and attached links to the TerraMar Project's Facebook, Twitter, Instagram, and Pinterest accounts (vol00009-efta00948701-pdf-0). TerraMar was Ghislaine Maxwell's ocean conservation nonprofit, founded earlier that year. A Swedish diplomat had just told Epstein about her new role in global water policy, and his first instinct was to connect her with Maxwell.",
+      "Svensson replied the next day: \"thanks - will do !! Who is Ghisaline?\" (EFTA01976066-0). Epstein answered: \"ghislaine maxwell, terramare\" (EFTA01977134-0). A week later, Svensson wrote again: \"the rumour that u r coming is all over town ! Big birds can't hide :) Ms Mermaid\" (EFTA02031256-0). She signed off with a nickname.",
+      "Four years passed. In October 2016, Svensson emailed Epstein from a new location: \"Gave up on Swedish men - Moved to Kenya - wish me luck. Come and visit\" (EFTA02448063-0). She was now based at UNEP in Nairobi.",
+      "By February 2017, she had adopted a new identity. She wrote to Epstein from New York: \"I am in town 12-19 Feb. Will i be there!? The African\" (EFTA02355404-0). Epstein replied: \"12th gtrat.\" She answered: \"What language is that :) Ok 13th it's!\" (vol00009-efta00648000-pdf-0). Epstein forwarded the entire exchange to Lesley Groff for scheduling.",
+      "In April 2017, she told Epstein she was \"leaving Nairobi in end June\" and looking for an apartment in Paris. \"Any suggestion would be fantastic!\" (vol00009-efta01047708-pdf-0). By September she was more direct: \"Jeff - now in Nairobi for a few days. Let me know if you by any chance would have the annex available. I will land in Paris 17 sept, and hopefully find apartment within 2 weeks\" (EFTA02636661-0). She was asking to stay at Epstein's Paris property while apartment hunting.",
+      "The last email in the archive is dated March 31, 2019, three and a half months before Epstein's arrest. The subject line was \"pick ur brain.\" Svensson wrote: \"Still looking for a way out of Nairobi. I have got funding from a philanthropist for 18 month doing ocean work. Yet i would need to have an organization that could receive private money and then employ me in Paris. Would you have any useful suggestions/contacts?\" (EFTA02637727-0). A UN diplomat based in Kenya was asking a convicted sex offender to help structure a private funding arrangement. She added: \"But leaving tomorrow midnight to Nairobi\" (EFTA02634802-0). The archive contains no reply.",
+    ],
+    email_ids: [
+      "EFTA01975267-0",
+      "vol00009-efta00948701-pdf-0",
+      "EFTA01976066-0",
+      "EFTA01977134-0",
+      "EFTA02031256-0",
+      "EFTA02448063-0",
+      "EFTA02355404-0",
+      "vol00009-efta00648000-pdf-0",
+      "vol00009-efta01047708-pdf-0",
+      "EFTA02636661-0",
+      "EFTA02637727-0",
+      "EFTA02634802-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
