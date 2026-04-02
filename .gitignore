@@ -29,6 +29,7 @@ env/
 output/
 *.db
 !web/data/epstein_africa.db
+web/data/story-audit.json
 
 # OS
 .DS_Store

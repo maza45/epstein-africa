@@ -403,6 +403,42 @@ export const PEOPLE = [
     searchTerms: ["junkermann", "nicole junkermann"],
     bodySearchTerms: ["junkermann"],
   },
+  {
+    slug: "noam-chomsky",
+    name: "Noam Chomsky",
+    title: "Linguist; MIT professor emeritus",
+    countries: ["Zimbabwe", "Senegal", "South Africa"],
+    bio: "Noam Chomsky appears in over 50 direct correspondence emails with Epstein in the archive, spanning June 2015 to May 2018. In June 2015, Epstein told Chomsky he was \"researching how to start a new financial system for Zimbabwe,\" calling it \"a clean petrie dish.\" Chomsky replied with a detailed analysis of how Cuba's military role in Angola ended South African apartheid. In September 2015, Epstein brokered a three-way meeting between Chomsky and Ehud Barak at Harvard, and took a photo. In October 2015, Chomsky thanked Epstein for visiting \"on your way to Senegal,\" placing Epstein in Senegal in late October 2015. Valeria Chomsky coordinated scheduling. Epstein forwarded Chomsky's private critique of Israeli policy to Barak, titling it \"Question from Chomsky, private of course.\" The relationship continued after Epstein's 2008 conviction.",
+    searchTerms: ["chomsky", "noam chomsky"],
+    bodySearchTerms: ["chomsky"],
+  },
+  {
+    slug: "robert-trivers",
+    name: "Robert Trivers",
+    title: "Evolutionary biologist; Rutgers professor; Crafoord Prize laureate",
+    countries: ["Nigeria"],
+    bio: "Robert Trivers appears in over 60 emails in Epstein's archive spanning 2013 to 2018. He is one of the most influential evolutionary biologists alive, known for reciprocal altruism theory and parent-offspring conflict. He lunched at Epstein's Manhattan townhouse alongside Ehud Barak in December 2013. In December 2017, he thanked Epstein for financial support that had left him \"$160,000 richer than a year ago\" and described an arrangement where Epstein would match academic salary offers at an 80/20 split. He planned to use Epstein's funds for genetics research on \"elite sprinters and the West African populations from which they sprang.\" Three months later, he sent Epstein a joke about Igbo slaves being deported from the U.S. to Jamaica, comparing Epstein's physical value to a slave's market price.",
+    searchTerms: ["trivers", "robert trivers"],
+    bodySearchTerms: ["trivers"],
+  },
+  {
+    slug: "deepak-chopra",
+    name: "Deepak Chopra",
+    title: "Wellness author; founder, Chopra Foundation",
+    countries: ["Morocco"],
+    bio: "Deepak Chopra appears in over 50 emails in Epstein's archive spanning 2016 to 2018. He exchanged philosophical musings with Epstein about consciousness, pleasure, and youth. In August 2016, Chopra wrote to Epstein: \"Only this morning I sniffed the wine of Moroccan youth.\" Epstein replied: \"the type of wine that does not get better with age.\" Epstein hosted Chopra at his Palm Beach residence in February 2017 and introduced him to Jabor Al Thani and Sultan Bin Sulayem. In December 2018 they discussed AI and virtual reality alongside MIT researchers. Chopra has publicly stated he met Epstein only a few times. The archive shows regular personal correspondence, overnight stays, and active social brokering by Epstein on Chopra's behalf.",
+    searchTerms: ["chopra", "deepak chopra", "deepak"],
+    bodySearchTerms: ["chopra"],
+  },
+  {
+    slug: "ben-goertzel",
+    name: "Ben Goertzel",
+    title: "AI researcher; CEO, Novamente/OpenCog; co-founder, iCog Labs (Ethiopia)",
+    countries: ["Ethiopia"],
+    bio: "Ben Goertzel is an AI researcher who ran the OpenCog artificial general intelligence project out of Hong Kong and co-founded iCog Labs in Addis Ababa with Ethiopian roboticist Getnet Aseffa Gezaw. He appears in over 80 emails in Epstein's archive spanning 2011 to 2016. Epstein funded Goertzel's Hong Kong OpenCog effort and hosted him at his Manhattan residence. In 2014, Epstein's foundation issued a press release claiming it helped launch AI in Ethiopia through iCog Labs. Goertzel wrote to Epstein's PR team in August 2014 correcting the record: the foundation had never funded iCog, which was seed-funded by investor Sander Olsen. Goertzel said he tolerated the false association because \"Jeffrey has been so generous to me over the years.\" The articles were published anyway. He pitched Epstein on a $3M AGI project, a $75K Ethiopian teaching tablet, and AGI conference sponsorship. Epstein maintained Goertzel on his personal contacts list through at least October 2016.",
+    searchTerms: ["goertzel", "ben goertzel"],
+    bodySearchTerms: ["goertzel", "icog"],
+  },
 ];
 
 export function getPersonBySlug(slug) {
