@@ -510,7 +510,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .legend-item {
@@ -529,6 +529,24 @@ a:hover {
   font-size: 0.72rem;
   opacity: 0.6;
   margin-top: 0.25rem;
+}
+
+.graph-mode-toggle {
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.graph-mode-toggle:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
 }
 
 /* ── About page ── */

@@ -22,6 +22,7 @@ export default function GraphPage({ precomputedGraph }) {
     typeof window !== "undefined" && !!window.d3
   );
   const [graphData] = useState(precomputedGraph);
+  const [exploreMode, setExploreMode] = useState(false);
   const routerRef = useRef(router);
   routerRef.current = router;
 
@@ -43,8 +44,21 @@ export default function GraphPage({ precomputedGraph }) {
     svg.attr("width", width).attr("height", height);
 
     // Deep-copy so D3 mutations don't affect state
-    const nodes = graphData.nodes.map((d) => ({ ...d }));
-    const allLinks = graphData.edges.map((d) => ({ ...d }));
+    let nodes = graphData.nodes.map((d) => ({ ...d }));
+    let allLinks = graphData.edges.map((d) => ({ ...d }));
+
+    if (!exploreMode) {
+      // Default: only published profiles + countries
+      const kept = new Set();
+      nodes = nodes.filter((n) => {
+        if (n.type === "country") { kept.add(n.id); return true; }
+        if (n.slug) { kept.add(n.id); return true; }
+        return false;
+      });
+      allLinks = allLinks.filter(
+        (l) => kept.has(l.source) && kept.has(l.target)
+      );
+    }
 
     // Cull low-weight edges when graph is large to prevent browser freeze
     const edgeThreshold = allLinks.length > 600 ? 2 : allLinks.length > 300 ? 1 : 0;
@@ -53,11 +67,10 @@ export default function GraphPage({ precomputedGraph }) {
       : allLinks;
 
     // Remove orphan nodes (no remaining edges) after culling
-    if (edgeThreshold > 0) {
+    {
       const connected = new Set();
       links.forEach((l) => { connected.add(l.source); connected.add(l.target); });
-      const removed = nodes.length;
-      nodes.splice(0, nodes.length, ...nodes.filter((n) => connected.has(n.id)));
+      nodes = nodes.filter((n) => connected.has(n.id));
     }
 
     // Edge opacity scale
@@ -65,6 +78,10 @@ export default function GraphPage({ precomputedGraph }) {
     const maxW = Math.max(...weights, 1);
     const minW = Math.min(...weights, 0);
     const opacityScale = d3.scaleLinear().domain([minW, maxW]).range([0.08, 0.65]).clamp(true);
+
+    // Node radius scale based on email count
+    const maxEmails = Math.max(...nodes.filter((n) => n.type === "person").map((n) => n.emailCount || 1), 1);
+    const radiusScale = d3.scaleSqrt().domain([1, maxEmails]).range([6, 20]).clamp(true);
 
     // Zoom container
     const g = svg.append("g");
@@ -76,10 +93,10 @@ export default function GraphPage({ precomputedGraph }) {
     );
 
     // Scale simulation parameters to graph size
-    const isLarge = nodes.length > 150;
-    const chargeStrength = isLarge ? -300 : -600;
+    const isLarge = nodes.length > 100;
+    const chargeStrength = isLarge ? -300 : -500;
     const chargeMax = isLarge ? 400 : 600;
-    const decay = isLarge ? 0.04 : 0.015;
+    const decay = isLarge ? 0.04 : 0.02;
 
     // Simulation
     const simulation = d3
@@ -94,7 +111,10 @@ export default function GraphPage({ precomputedGraph }) {
       .force("charge", d3.forceManyBody().strength(chargeStrength).distanceMax(chargeMax))
       .force("x", d3.forceX(width / 2).strength(0.05))
       .force("y", d3.forceY(height / 2).strength(0.05))
-      .force("collide", d3.forceCollide((d) => (d.type === "person" ? 32 : 42)))
+      .force("collide", d3.forceCollide((d) => {
+        if (d.type === "country") return 42;
+        return (radiusScale(d.emailCount || 1)) + 12;
+      }))
       .alphaDecay(decay);
 
     simulationRef.current = simulation;
@@ -136,7 +156,7 @@ export default function GraphPage({ precomputedGraph }) {
       .selectAll("circle")
       .data(nodes)
       .join("circle")
-      .attr("r", (d) => (d.type === "person" ? 8 : 12))
+      .attr("r", (d) => (d.type === "country" ? 12 : radiusScale(d.emailCount || 1)))
       .attr("fill", (d) => (d.type === "person" ? "#2e2e2e" : "#c8860a"))
       .attr("stroke", (d) => (d.type === "person" ? "#777" : "#e8a020"))
       .attr("stroke-width", 1.5)
@@ -176,11 +196,18 @@ export default function GraphPage({ precomputedGraph }) {
       .data(nodes)
       .join("text")
       .text((d) => d.label)
-      .attr("font-size", (d) => (d.type === "person" ? "10px" : "9px"))
+      .attr("font-size", (d) => {
+        if (d.type === "country") return "9px";
+        const r = radiusScale(d.emailCount || 1);
+        return r > 12 ? "11px" : "9px";
+      })
       .attr("font-family", "SF Mono, Fira Code, monospace")
       .attr("fill", (d) => (d.type === "person" ? "#c8c8c8" : "#e8a020"))
       .attr("text-anchor", "middle")
-      .attr("dy", (d) => (d.type === "person" ? 20 : 26))
+      .attr("dy", (d) => {
+        if (d.type === "country") return 26;
+        return radiusScale(d.emailCount || 1) + 12;
+      })
       .attr("pointer-events", "none");
 
     // Tick
@@ -197,7 +224,7 @@ export default function GraphPage({ precomputedGraph }) {
     });
 
     return () => simulation.stop();
-  }, [d3Ready, graphData]);
+  }, [d3Ready, graphData, exploreMode]);
 
   return (
     <>
@@ -246,6 +273,12 @@ export default function GraphPage({ precomputedGraph }) {
             <div className="legend-item legend-hint">
               Scroll to zoom · Drag nodes · Click to navigate
             </div>
+            <button
+              className="graph-mode-toggle"
+              onClick={() => setExploreMode((prev) => !prev)}
+            >
+              {exploreMode ? "Show profiles only" : "Explore all connections"}
+            </button>
           </div>
         </div>
       </div>
