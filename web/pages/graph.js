@@ -44,7 +44,21 @@ export default function GraphPage({ precomputedGraph }) {
 
     // Deep-copy so D3 mutations don't affect state
     const nodes = graphData.nodes.map((d) => ({ ...d }));
-    const links = graphData.edges.map((d) => ({ ...d }));
+    const allLinks = graphData.edges.map((d) => ({ ...d }));
+
+    // Cull low-weight edges when graph is large to prevent browser freeze
+    const edgeThreshold = allLinks.length > 600 ? 2 : allLinks.length > 300 ? 1 : 0;
+    let links = edgeThreshold > 0
+      ? allLinks.filter((l) => l.weight > edgeThreshold)
+      : allLinks;
+
+    // Remove orphan nodes (no remaining edges) after culling
+    if (edgeThreshold > 0) {
+      const connected = new Set();
+      links.forEach((l) => { connected.add(l.source); connected.add(l.target); });
+      const removed = nodes.length;
+      nodes.splice(0, nodes.length, ...nodes.filter((n) => connected.has(n.id)));
+    }
 
     // Edge opacity scale
     const weights = links.map((l) => l.weight);
@@ -61,6 +75,12 @@ export default function GraphPage({ precomputedGraph }) {
         .on("zoom", (event) => g.attr("transform", event.transform))
     );
 
+    // Scale simulation parameters to graph size
+    const isLarge = nodes.length > 150;
+    const chargeStrength = isLarge ? -300 : -600;
+    const chargeMax = isLarge ? 400 : 600;
+    const decay = isLarge ? 0.04 : 0.015;
+
     // Simulation
     const simulation = d3
       .forceSimulation(nodes)
@@ -71,11 +91,11 @@ export default function GraphPage({ precomputedGraph }) {
           .id((d) => d.id)
           .distance((d) => (d.type === "person-person" ? 180 : 140))
       )
-      .force("charge", d3.forceManyBody().strength(-600).distanceMax(600))
+      .force("charge", d3.forceManyBody().strength(chargeStrength).distanceMax(chargeMax))
       .force("x", d3.forceX(width / 2).strength(0.05))
       .force("y", d3.forceY(height / 2).strength(0.05))
       .force("collide", d3.forceCollide((d) => (d.type === "person" ? 32 : 42)))
-      .alphaDecay(0.015);
+      .alphaDecay(decay);
 
     simulationRef.current = simulation;
 
