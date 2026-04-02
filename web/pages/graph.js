@@ -119,9 +119,54 @@ export default function GraphPage({ precomputedGraph }) {
 
     simulationRef.current = simulation;
 
+    // Pre-build adjacency map for O(1) highlight lookups
+    const neighbors = new Map();
+    links.forEach((l) => {
+      const sid = typeof l.source === "object" ? l.source.id : l.source;
+      const tid = typeof l.target === "object" ? l.target.id : l.target;
+      if (!neighbors.has(sid)) neighbors.set(sid, new Set());
+      if (!neighbors.has(tid)) neighbors.set(tid, new Set());
+      neighbors.get(sid).add(tid);
+      neighbors.get(tid).add(sid);
+    });
+
+    // Highlight state
+    let highlightedId = null;
+    const settled = { value: false };
+    simulation.on("end", () => { settled.value = true; });
+
+    // Declared here, assigned after SVG elements are created
+    let link, node, label;
+
+    function highlightNode(id) {
+      const neighborIds = neighbors.get(id) || new Set();
+      const isConn = (nid) => nid === id || neighborIds.has(nid);
+
+      const dur = settled.value ? 200 : 0;
+
+      node.transition().duration(dur)
+        .attr("opacity", (d) => isConn(d.id) ? 1 : 0.08);
+      label.transition().duration(dur)
+        .attr("opacity", (d) => isConn(d.id) ? 1 : 0.08);
+      link.transition().duration(dur)
+        .attr("stroke-opacity", (d) => {
+          const sid = typeof d.source === "object" ? d.source.id : d.source;
+          const tid = typeof d.target === "object" ? d.target.id : d.target;
+          return (sid === id || tid === id) ? Math.min(opacityScale(d.weight) * 2.5, 1) : 0.02;
+        });
+    }
+
+    function resetHighlight() {
+      const dur = settled.value ? 200 : 0;
+      node.transition().duration(dur).attr("opacity", 1);
+      label.transition().duration(dur).attr("opacity", 1);
+      link.transition().duration(dur)
+        .attr("stroke-opacity", (d) => opacityScale(d.weight));
+    }
+
     // Edges
     const maxWeight = Math.max(...links.map((e) => e.weight));
-    const link = g
+    link = g
       .append("g")
       .attr("class", "links")
       .selectAll("line")
@@ -136,6 +181,7 @@ export default function GraphPage({ precomputedGraph }) {
       .drag()
       .on("start", (event, d) => {
         if (!event.active) simulation.alphaTarget(0.3).restart();
+        settled.value = false;
         d.fx = d.x;
         d.fy = d.y;
       })
@@ -150,7 +196,7 @@ export default function GraphPage({ precomputedGraph }) {
       });
 
     // Nodes
-    const node = g
+    node = g
       .append("g")
       .attr("class", "nodes")
       .selectAll("circle")
@@ -160,36 +206,36 @@ export default function GraphPage({ precomputedGraph }) {
       .attr("fill", (d) => (d.type === "person" ? "#2e2e2e" : "#c8860a"))
       .attr("stroke", (d) => (d.type === "person" ? "#777" : "#e8a020"))
       .attr("stroke-width", 1.5)
-      .attr("cursor", (d) => {
-        if (d.type === "person" && d.slug) return "pointer";
-        if (d.type === "country") return "pointer";
-        return "default";
-      })
+      .attr("cursor", "pointer")
       .on("click", (event, d) => {
         event.stopPropagation();
-        if (d.type === "person" && d.slug) {
-          routerRef.current.push(`/people/${d.slug}`);
-        } else if (d.type === "country") {
-          routerRef.current.push(`/?country=${encodeURIComponent(d.label)}`);
+        if (highlightedId === d.id) {
+          // Second click on same node: navigate
+          highlightedId = null;
+          resetHighlight();
+          if (d.type === "person" && d.slug) {
+            routerRef.current.push(`/people/${d.slug}`);
+          } else if (d.type === "country") {
+            routerRef.current.push(`/?country=${encodeURIComponent(d.label)}`);
+          }
+        } else {
+          // First click: highlight connections
+          highlightedId = d.id;
+          highlightNode(d.id);
         }
       })
       .call(drag);
 
-    // Hover highlight
-    node
-      .on("mouseenter", function (event, d) {
-        d3.select(this)
-          .attr("stroke", d.type === "person" ? "#ccc" : "#ffe066")
-          .attr("stroke-width", 2.5);
-      })
-      .on("mouseleave", function (event, d) {
-        d3.select(this)
-          .attr("stroke", d.type === "person" ? "#777" : "#e8a020")
-          .attr("stroke-width", 1.5);
-      });
+    // Background click: reset highlight
+    svg.on("click", () => {
+      if (highlightedId) {
+        highlightedId = null;
+        resetHighlight();
+      }
+    });
 
     // Labels
-    const label = g
+    label = g
       .append("g")
       .attr("class", "labels")
       .selectAll("text")
@@ -271,7 +317,7 @@ export default function GraphPage({ precomputedGraph }) {
               <span>Country (click → filter emails)</span>
             </div>
             <div className="legend-item legend-hint">
-              Scroll to zoom · Drag nodes · Click to navigate
+              Scroll to zoom · Drag nodes · Click to highlight · Click again to visit
             </div>
             <button
               className="graph-mode-toggle"
