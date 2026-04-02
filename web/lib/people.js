@@ -367,6 +367,15 @@ export const PEOPLE = [
     searchTerms: ["shuliak", "karyna"],
     bodySearchTerms: ["shuliak", "karyna"],
   },
+  {
+    slug: "thorbjorn-jagland",
+    name: "Thorbjorn Jagland",
+    title: "Secretary General, Council of Europe; Chair, Norwegian Nobel Committee",
+    countries: ["Senegal"],
+    bio: "Thorbjorn Jagland appears in over 70 emails in Epstein's archive, spanning 2012 to 2019. He served as Secretary General of the Council of Europe (2009-2019) and chaired the Norwegian Nobel Committee that awarded Obama the Peace Prize. He stayed at Epstein's Paris apartment, dined with Bill Gates at Epstein's New York house, and was invited to Epstein's island alongside Richard Branson. In July 2015, Epstein asked Jagland whether Karim Wade, convicted in Senegal, could bring his case to the European Court of Human Rights using his French passport. Jagland replied: \"given the fact that Karim has a French passport, it should be possible.\" In March 2019, Epstein listed Jagland among his \"numbers in case of trouble.\" Jagland left the Council of Europe in September 2019.",
+    searchTerms: ["jagland", "thorbjorn jagland"],
+    bodySearchTerms: ["jagland"],
+  },
 ];
 
 export function getPersonBySlug(slug) {

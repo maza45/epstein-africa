@@ -1283,6 +1283,37 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "jagland-wade-echr",
+    title: "Epstein Asked the Head of the Council of Europe to Intervene in the Karim Wade Case",
+    summary:
+      "In July 2015, Jeffrey Epstein asked Thorbjorn Jagland, Secretary General of the Council of Europe and chair of the Norwegian Nobel Committee, whether Karim Wade could bring his Senegalese corruption conviction to the European Court of Human Rights using his French passport. Jagland replied that it should be possible. The correspondence also shows Jagland staying at Epstein's Paris apartment, dining with Bill Gates at Epstein's house, and appearing on Epstein's 'numbers in case of trouble' list months before his arrest.",
+    countries: ["Senegal"],
+    date_range: "2012–2019",
+    body: [
+      "In March 2013, Epstein was coordinating a meeting between Bill Gates and Thorbjorn Jagland, Secretary General of the Council of Europe. Gates had to be in Ghana on the 26th. Epstein wrote asking if Jagland could come to Paris instead: \"would it be posssible for you to come to paris on the 27th.. you could stay with me either the night of the 26 or the night of the 27. If not I understand, and i will have him fly to you and take a hotel.\" Jagland replied from his iPad: \"Therefore you an bill could come on the 25. I have a lot of bedrooms if necessary. We need to talk on the phone\" (EFTA01899919-0). A convicted sex offender was arranging Bill Gates's travel to visit the head of the Council of Europe.",
+      "The meeting required secrecy. The same week, Epstein told Boris Nikolic: \"wewill need two hours or so prior to jagland, he wants it very very private. others can meeet in paris if you want\" (EFTA01898409-0). The visit happened. Afterward, Epstein wrote to Nikolic: \"Jagland Thorborn had a great time and really enjoyed the visit. Bill should put together his requirements for further review by the IPI team and not let it happen at the subordinate level\" (EFTA01897000-0).",
+      "Jagland became a regular guest. In September 2013, Epstein told Nina Keita, President Ouattara's niece: \"you can also tell your uncle that bill gates, chud barak, who he recently met with and thorbom jagland, sec general counsel of the councsel of europe will be at the house. if we would like to join he is welcone\" (EFTA01957828-0). In March 2014, Epstein invited Richard Branson to meet Jagland on his island: \"thorbjom jagland, head of the nobel peace prize commitcc will be staying duiring caster if you want to vist or i can bring him to you.\" Branson declined: \"Sadly in Morocco at that time\" (EFTA01934478-0).",
+      "In February 2015, Lesley Groff's schedule confirmed: \"Jagland to stay with Jeffrey at the Paris apartment March 5-8.\" The same schedule included Ariane de Rothschild on March 1, a flight to Marrakech on March 7, and Mark Lloyd meeting Epstein the same day (EFTA02363562-0).",
+      "Four months later, Epstein made his ask. On July 10, 2015, he wrote to Jagland: \"my friend karim wade, son of the former president of senegal, was minister there and put on trial for corruption, the un said the trial was a farce. and as he has a french passport i wondered if he could bring his case to your court\" (vol00009-efta00851804-pdf-0). Karim Wade had been sentenced to six years for illicit enrichment by a Senegalese court in 2015. Epstein had been working to free him through DC lobbyists since 2014. Now he was asking the Secretary General of the Council of Europe whether Wade could use his French citizenship to access the European Court of Human Rights.",
+      "Jagland replied on July 25: \"Hi Jeffrey, all of a sudden I discovered that I've haven't replied. Yes, given the fact that Karim has a French passport, it should be possible. But I don't know wether this case has been in French courts. Tell me more. Summer is cold in Norway\" (vol00009-efta00850487-pdf-0). The Secretary General of the Council of Europe, the institution that oversees the ECHR, was telling a convicted sex offender that his friend's case could probably be brought before his court.",
+      "Epstein followed up with details: \"he is the son of the president of senegal. he was running against the current president, they began a corruption inquiry and sentenced him to six years in jail. he is a very good guy. the first went to the UN and the un report said that the trial was not conducted appropriatley and should be void. the president has ignored it. Karim Wade has a french passport as well as a senegalize. IF there was someone in your org that i could have his attny explain the facts, that would be helpful\" (EFTA02493550-0).",
+      "In March 2019, four months before his arrest, Epstein sent his lawyer Darren Indyke a list titled \"Numbers in case of trouble.\" It read: \"Miro. Terje lang ruemmler rothschild Jagland jabor\" (EFTA02637447-0). Jagland was one of seven people Epstein considered calling if things went wrong. Jagland left the Council of Europe in September 2019, two months after Epstein's arrest.",
+    ],
+    email_ids: [
+      "EFTA01899919-0",
+      "EFTA01898409-0",
+      "EFTA01897000-0",
+      "EFTA01957828-0",
+      "EFTA01934478-0",
+      "EFTA02363562-0",
+      "vol00009-efta00851804-pdf-0",
+      "vol00009-efta00850487-pdf-0",
+      "EFTA02493550-0",
+      "EFTA02637447-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
