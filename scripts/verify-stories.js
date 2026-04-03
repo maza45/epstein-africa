@@ -49,9 +49,17 @@ function loadArray(filePath, exportName) {
 // ---------------------------------------------------------------------------
 
 let db;
-function getEmail(emailId) {
+function getDb() {
   if (!db) db = new Database(DB_PATH, { readonly: true });
-  return db.prepare("SELECT id, doc_id, sender, sent_at, body FROM emails WHERE id = ?").get(emailId);
+  return db;
+}
+
+function getEmail(emailId) {
+  return getDb().prepare("SELECT id, doc_id, sender, sent_at, body FROM emails WHERE id = ?").get(emailId);
+}
+
+function getEmailsByDocId(docId) {
+  return getDb().prepare("SELECT id FROM emails WHERE doc_id = ?").all(docId);
 }
 
 // ---------------------------------------------------------------------------
@@ -202,31 +210,33 @@ function verifyStory(story) {
   }
 
   // Check inline citation IDs exist in DB (catches bare doc_ids without suffix)
+  const fixes = []; // { paraIndex, oldId, newId }
   for (let i = 0; i < (story.body || []).length; i++) {
     const para = story.body[i];
-    // Match (EFTA...) or (vol00009-...) patterns in parenthetical citations
     const idRe = /\(([A-Za-z0-9_\-\.]+(?:-(?:pdf|[0-9]+))?(?:\s*,\s*[A-Za-z0-9_\-\.]+(?:-(?:pdf|[0-9]+))?)*)\)/g;
     let m;
     while ((m = idRe.exec(para)) !== null) {
       const ids = m[1].split(/,\s*/).map((s) => s.trim());
       for (const eid of ids) {
-        // Skip if it's clearly not an email ID
         if (eid.length < 8 || /^[a-z]/.test(eid) && !eid.startsWith("vol")) continue;
         const row = getEmail(eid);
         if (!row) {
-          // Check if adding -0 would find it
-          const withSuffix = getEmail(`${eid}-0`);
-          if (withSuffix) {
+          // Look up all emails with this as doc_id
+          const matches = getEmailsByDocId(eid);
+          if (matches.length === 1) {
+            fixes.push({ paraIndex: i, oldId: eid, newId: matches[0].id });
+          } else if (matches.length > 1) {
             errors.push(
-              `BARE DOC_ID [p${i + 1}]: "${eid}" should be "${eid}-0" (missing suffix)`
+              `BARE DOC_ID [p${i + 1}]: "${eid}" has ${matches.length} emails in DB — pick one: ${matches.map((r) => r.id).join(", ")}`
             );
           }
+          // If 0 matches, it's not a doc_id — could be a hash-based ID missing from DB, skip
         }
       }
     }
   }
 
-  return { slug: story.slug, errors, warnings };
+  return { slug: story.slug, errors, warnings, fixes };
 }
 
 function verifyProfile(person) {
@@ -279,6 +289,7 @@ function main() {
   const profilesOnly = args.includes("--profiles");
   const showStatus = args.includes("--status");
   const forceLog = args.includes("--force-log");
+  const autoFix = args.includes("--fix");
 
   let stories, people;
   try {
@@ -338,17 +349,53 @@ function main() {
       process.exit(1);
     }
 
+    let allFixes = []; // { slug, fixes[] }
+
     for (const story of toCheck) {
       const result = verifyStory(story);
       totalChecked++;
-      if (result.errors.length === 0) {
+
+      const hasErrors = result.errors.length > 0;
+      const hasFixes = result.fixes && result.fixes.length > 0;
+
+      if (!hasErrors && !hasFixes) {
         console.log(`  \x1b[32m✓\x1b[0m ${story.slug} (${(story.email_ids || []).length} emails, ${(story.body || []).length} paragraphs)`);
       } else {
         console.log(`  \x1b[31m✗\x1b[0m ${story.slug}`);
         for (const e of result.errors) {
           console.log(`    \x1b[31m${e}\x1b[0m`);
         }
+        for (const f of result.fixes || []) {
+          if (autoFix) {
+            console.log(`    \x1b[33mFIXED: "${f.oldId}" → "${f.newId}"\x1b[0m`);
+          } else {
+            console.log(`    \x1b[31mBARE DOC_ID [p${f.paraIndex + 1}]: "${f.oldId}" → "${f.newId}" (run with --fix to auto-resolve)\x1b[0m`);
+          }
+        }
         totalErrors += result.errors.length;
+        if (!autoFix) totalErrors += (result.fixes || []).length;
+      }
+
+      if (hasFixes) allFixes.push({ slug: story.slug, fixes: result.fixes });
+    }
+
+    // Apply fixes to stories.js
+    if (autoFix && allFixes.length > 0) {
+      let src = fs.readFileSync(STORIES_PATH, "utf8");
+      let totalFixed = 0;
+      for (const { slug, fixes } of allFixes) {
+        for (const f of fixes) {
+          // Replace bare ID with full ID in story body text and email_ids
+          const escaped = f.oldId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          const re = new RegExp(`\\b${escaped}\\b`, "g");
+          const before = src;
+          src = src.replace(re, f.newId);
+          if (src !== before) totalFixed++;
+        }
+      }
+      if (totalFixed > 0) {
+        fs.writeFileSync(STORIES_PATH, src);
+        console.log(`\n\x1b[33mAuto-fixed ${totalFixed} bare doc_id(s) in stories.js\x1b[0m`);
       }
     }
   }
