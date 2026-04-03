@@ -153,6 +153,16 @@ export default function Home({ emailCount, countries }) {
               Source: DOJ Epstein Files Transparency Act.
             </span>
           </p>
+          <p className="site-statement">
+            The archive documents a pattern: humanitarian funding as the entry
+            point, intelligence collection as the product, political access as
+            the payoff. The same channel that carried polio field reports from
+            Nigeria carried investment deals worth millions. The same
+            relationships that opened doors to African presidents opened doors
+            to their ministers, their ports, their resources. The documents
+            don&apos;t explain why a convicted sex offender was at the center of
+            this network. They show that he was.
+          </p>
         </header>
 
         <div className="filters">
