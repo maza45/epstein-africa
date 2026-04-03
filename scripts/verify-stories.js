@@ -201,6 +201,31 @@ function verifyStory(story) {
     }
   }
 
+  // Check inline citation IDs exist in DB (catches bare doc_ids without suffix)
+  for (let i = 0; i < (story.body || []).length; i++) {
+    const para = story.body[i];
+    // Match (EFTA...) or (vol00009-...) patterns in parenthetical citations
+    const idRe = /\(([A-Za-z0-9_\-\.]+(?:-(?:pdf|[0-9]+))?(?:\s*,\s*[A-Za-z0-9_\-\.]+(?:-(?:pdf|[0-9]+))?)*)\)/g;
+    let m;
+    while ((m = idRe.exec(para)) !== null) {
+      const ids = m[1].split(/,\s*/).map((s) => s.trim());
+      for (const eid of ids) {
+        // Skip if it's clearly not an email ID
+        if (eid.length < 8 || /^[a-z]/.test(eid) && !eid.startsWith("vol")) continue;
+        const row = getEmail(eid);
+        if (!row) {
+          // Check if adding -0 would find it
+          const withSuffix = getEmail(`${eid}-0`);
+          if (withSuffix) {
+            errors.push(
+              `BARE DOC_ID [p${i + 1}]: "${eid}" should be "${eid}-0" (missing suffix)`
+            );
+          }
+        }
+      }
+    }
+  }
+
   return { slug: story.slug, errors, warnings };
 }
 
