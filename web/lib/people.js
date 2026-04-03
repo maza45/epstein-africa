@@ -6,6 +6,7 @@ export const PEOPLE = [
     countries: ["Nigeria", "Senegal", "Somalia", "Kenya", "Ivory Coast", "Zimbabwe", "Ethiopia", "Africa"],
     bio: "Sultan Ahmed Bin Sulayem is the Group Chairman and CEO of DP World, one of the world's largest port operators, headquartered in Dubai. He appears in 76 emails in Epstein's archive — the highest volume of any Africa-connected correspondent. Threads involve an Africa trip with Epstein, Nigeria port discussions, Senegal political coverage, Somaliland recognition documents, and references to African business figures including Aliko Dangote. His correspondence spans 2010–2018.",
     searchTerms: ["sultan", "sultan bin sulayem"],
+    bodySearchTerms: ["sultan", "sulayem"],
   },
   {
     slug: "jeffrey-epstein",
@@ -22,6 +23,7 @@ export const PEOPLE = [
     countries: ["Africa"],
     bio: "Peggy Siegal is a prominent New York entertainment publicist who appears in Epstein's Africa-related email archive. She was previously reported as a social contact of Epstein's.",
     searchTerms: ["peggy siegal", "peggy"],
+    bodySearchTerms: ["siegal"],
   },
   {
     slug: "jide-zeitlin",
@@ -30,6 +32,7 @@ export const PEOPLE = [
     countries: ["Nigeria", "Africa"],
     bio: "Adebayo 'Jide' Zeitlin is a Nigerian-American business executive who served as CEO of Tapestry Inc. (parent company of Coach). He appears in Epstein's Africa-related correspondence in the context of Nigerian business connections.",
     searchTerms: ["jide zeitlin", "jide", "zeitlin"],
+    bodySearchTerms: ["zeitlin"],
   },
   {
     slug: "lesley-groff",
@@ -46,6 +49,7 @@ export const PEOPLE = [
     countries: ["Africa"],
     bio: "An individual identified only as 'Miasha' appears in Epstein's Africa-related email archive. Full identity has not been confirmed from available documents.",
     searchTerms: ["miasha"],
+    bodySearchTerms: ["miasha"],
   },
   {
     slug: "nina-keita",
@@ -54,6 +58,7 @@ export const PEOPLE = [
     countries: ["Ivory Coast", "Senegal", "Africa"],
     bio: "Nina Keita is the niece of Alassane Ouattara, President of Ivory Coast since 2011. A former model who worked in France before returning to Abidjan, she appears hundreds of times in Epstein's archive — one of the most significant Africa-connected figures in the full dataset. Between 2011 and 2018 she acted as a direct intermediary between Epstein and the Ivorian presidency, introducing him to her uncle and arranging his 2012 Abidjan visit where he met sitting ministers. She also connected Epstein with Sidi Tiémoko Touré, Chef de Cabinet to President Ouattara, and played a central role in efforts to secure the release of Karim Wade from prison in 2015 — emails indicate Epstein sent $100,000 toward lobbying efforts, and when Wade was freed in 2016 she wrote to Epstein: \"Thank you for everything you have done for him.\" She later served as advisor to the Budget Minister, and since 2019 has been Deputy General Director of GESTOCI, the state oil storage company. She is married to Employment Minister Adama Kamara. She has not publicly responded to the disclosures.",
     searchTerms: ["nina keita", "nina k"],
+    bodySearchTerms: ["nina keita"],
   },
   {
     slug: "sidi-tiemoko-toure",
@@ -62,6 +67,7 @@ export const PEOPLE = [
     countries: ["Ivory Coast", "Africa"],
     bio: "Sidi Tiémoko Touré served as Chef de Cabinet — chief of staff — to President Alassane Ouattara of Ivory Coast. He appears in Epstein's archive connected directly to the Ivory Coast political thread. In September 2013, Epstein emailed Israeli Defence Minister Ehud Barak with Touré's personal email address, describing him as \"chief of staff of Ouattara\" and arranging a meeting. The introduction was coordinated through Nina Keita. The meeting was part of broader efforts by Epstein and Barak to broker a mass surveillance deal between Israel and Ivory Coast, which culminated in a formal security agreement signed in 2014. He later served as Minister of Animal and Fishery Resources under Ouattara.",
     searchTerms: ["sidi", "sidi tiemoko", "sidi toure", "sidi tiémoko"],
+    bodySearchTerms: ["sidi toure"],
   },
   {
     slug: "ghislaine-maxwell",
@@ -70,6 +76,7 @@ export const PEOPLE = [
     countries: ["Kenya", "Ethiopia", "Rwanda", "Africa"],
     bio: "Ghislaine Maxwell was Jeffrey Epstein's longtime companion and associate. She was convicted in 2021 of sex trafficking and related offences and is serving a 20-year federal prison sentence. She appears in Epstein's Africa-related archive in a small number of emails touching on Kenya safari travel, Ethiopia logistics, and a Rwanda scholarship forwarding. She corresponded under her own name and the alias 'Gmax'.",
     searchTerms: ["ghislaine maxwell", "ghislaine", "gmax"],
+    bodySearchTerms: ["ghislaine", "gmax"],
   },
   {
     slug: "terje-rod-larsen",
@@ -78,6 +85,7 @@ export const PEOPLE = [
     countries: ["Nigeria", "Somalia", "Sudan", "Egypt", "Mali", "Libya", "Senegal", "Africa"],
     bio: "Terje Rød-Larsen is a Norwegian diplomat best known for brokering the 1993 Oslo Accords between Israel and the PLO. From 2004 to 2020 he served as president of the International Peace Institute in New York, a think tank that received approximately $650,000 in donations from Epstein foundations. Rød-Larsen described Epstein as \"my best friend.\" He took a personal loan of $130,000 from Epstein in 2013, and Epstein's 2019 will bequeathed $5 million each to his two children. He resigned from the IPI in 2020 after the financial ties became public. In the Epstein archive's Africa emails, Rød-Larsen appears routing Nigeria and Somalia security intelligence briefings through Epstein, including a report on the shooting of a Somali polio worker. As of 2026 he is under criminal investigation by Norway's economic crimes authority Okokrim.",
     searchTerms: ["terje rod-larsen", "terje", "rod-larsen", "ipinst"],
+    bodySearchTerms: ["rod-larsen"],
   },
   {
     slug: "sarah-kellen",
@@ -86,6 +94,7 @@ export const PEOPLE = [
     countries: ["Kenya", "Nigeria", "Ivory Coast", "Senegal", "Gabon", "Mali", "Morocco", "Tanzania", "Uganda", "Africa"],
     bio: "Sarah Kellen served as Jeffrey Epstein's primary personal assistant and day-to-day scheduler. She was named as an unindicted co-conspirator in the 2007 Palm Beach investigation and received immunity under Epstein's 2008 non-prosecution agreement. A federal judge described her as a \"criminally responsible participant\" in Epstein's operation. She has never been criminally charged. In the Africa emails she appears coordinating Epstein's Africa tour itinerary, messaging Karim Wade on Epstein's behalf, and obtaining visas for Gabon, Sierra Leone, and Mali. She also used the alias Sarah Kensington professionally. She has stated through a spokesperson that she herself was a victim of Epstein's abuse.",
     searchTerms: ["sarah kellen", "sarah k", "kellen", "kensington"],
+    bodySearchTerms: ["sarah kellen"],
   },
   {
     slug: "ramata-sall-fall",
@@ -94,6 +103,7 @@ export const PEOPLE = [
     countries: ["Senegal", "Africa"],
     bio: "Ramata Sall Fall served as personal assistant to Karim Wade, son of former Senegalese President Abdoulaye Wade. She appears in Epstein's archive scheduling Wade's international meetings with Epstein, including a 2013 meeting in Beijing at the Westin Chaoyang hotel. Her emails also reference coordination with \"M. Shum\" — likely Desmond Shum, the Chinese-Kazakhstani businessman who met Karim Wade in Beijing in May 2011 at Epstein's introduction, to discuss offshore banking. Her correspondence reveals that Epstein's meetings with Wade were internationally choreographed and involved third-party business figures beyond the Senegal political circle.",
     searchTerms: ["ramata", "ramata sall", "ramata fall"],
+    bodySearchTerms: ["ramata"],
   },
   {
     slug: "elisabeth-feliho",
@@ -102,6 +112,7 @@ export const PEOPLE = [
     countries: ["Senegal", "Africa"],
     bio: "Elisabeth Feliho served as Karim Wade's primary point of contact with the outside world during his imprisonment in Rebeuss prison from 2013 to 2016. She corresponded with Epstein from two addresses — afrief@gmail.com and a Université de Lorraine email — signing variously as 'Elisabeth Feliho' and 'Elisabeth Karim's assistant.' Her role was operational: relaying Wade's messages to Epstein, chasing outstanding payments to his defence lawyers, and coordinating the engagement of the Nelson Mullins lobbying firm. In April 2014 she wrote to Epstein: 'I am writing on behalf of Karim who sends his regards. Nina visited him this weekend and he passed on a message for you.' In October 2015 she introduced Vinoda Basnayake of Nelson Mullins Riley & Scarborough to Epstein on Wade's instruction, forwarding the firm's DC Government Relations contact and adding: 'Please let us know before you contact them so we can advise them in advance so they expect your call.' She also made multiple requests to Epstein on Wade's behalf for transfers to cover legal fees. After Wade's release in June 2016 she continued to act as a liaison between Wade's circle and Epstein's network.",
     searchTerms: ["feliho", "elisabeth feliho", "afrief"],
+    bodySearchTerms: ["feliho"],
   },
   {
     slug: "rasseck-bourgi",
@@ -110,6 +121,7 @@ export const PEOPLE = [
     countries: ["Senegal", "Africa"],
     bio: "Rasseck Bourgi appears in Epstein's archive in August 2013, routing the logistics of Nina Keita's prison visit to Karim Wade in Rebeuss, Dakar. He provided the judge's name and Wade's defense lawyers' contacts. He is the brother of Robert Bourgi — the Franco-Lebanese lawyer who for four decades served as the central intermediary between French governments and Francophone African heads of state, a system known as Françafrique. Robert Bourgi was mentored by Jacques Foccart, de Gaulle's Africa adviser, and received the Legion of Honour from Nicolas Sarkozy in 2007. In his 2024 memoir he revealed carrying cash in suitcases to finance French electoral campaigns on behalf of African regimes. Rasseck's role in the Wade prison access chain places the Bourgi network at the intersection of Epstein's Africa operation and France's informal African political infrastructure. In the archive Rasseck corresponds under the email account of 'Ute Bourgi.'",
     searchTerms: ["rasseck", "rasseck bourgi", "ute bourgi", "bourgi"],
+    bodySearchTerms: ["bourgi"],
   },
   {
     slug: "karim-wade",
@@ -118,6 +130,7 @@ export const PEOPLE = [
     countries: ["Senegal", "Africa"],
     bio: "Karim Wade is the son of Abdoulaye Wade, President of Senegal from 2000 to 2012. He served as Minister of State under his father and was widely expected to succeed him. Wade and Epstein first met in 2010 through Sultan Bin Sulayem. After his father's defeat, Karim Wade was arrested in 2013 and convicted of illicit enrichment in 2015, sentenced to six years in prison. Epstein became involved in efforts to secure his release, with emails indicating he sent $100,000 toward lobbying efforts. Nina Keita acted as intermediary during Wade's imprisonment. Wade was released in 2016 through a presidential pardon and subsequently went into exile in Qatar. He appears in over 100 emails in Epstein's archive across this period.",
     searchTerms: ["karim wade", "karim", "wade", "afri xp", "afrixp"],
+    bodySearchTerms: ["karim wade"],
   },
   {
     slug: "peter-mandelson",
@@ -126,6 +139,7 @@ export const PEOPLE = [
     countries: ["South Africa", "Africa"],
     bio: "Peter Mandelson is a British Labour politician who served as EU Trade Commissioner from 2004 to 2008 and as Secretary of State for Business under Gordon Brown from 2008 to 2010. He was made a life peer as Baron Mandelson of Foy in the County of Herefordshire. In August 2010 he founded Global Counsel LLP, a political intelligence and advisory firm. The founding pitch document he sent to Epstein listed South Africa, Qatar, and China as explicit Category 1 client targets. He appears in Epstein's Africa-related archive from March 2010 to March 2011. His emails document: coordination of a private dinner for South African President Jacob Zuma at the Ritz Hotel (March 2010), a separate private meeting with Zuma the same trip, travel to South Africa and Congo Brazzaville in September and October 2010, and his introduction of Congo Finance Ministry official Rigobert Andely to Epstein for a bank project backed by Qatari sovereign capital. He asked Epstein to review the Congo bank business plan in January 2011. Mandelson was arrested in 2025 in connection with a corruption investigation, resigned from the House of Lords, and Global Counsel was wound down.",
     searchTerms: ["peter mandelson", "mandelson", "peter"],
+    bodySearchTerms: ["mandelson"],
   },
   {
     slug: "rigobert-andely",
@@ -134,6 +148,7 @@ export const PEOPLE = [
     countries: ["South Africa", "Africa"],
     bio: "Rigobert Andely is a senior official at the Finance Ministry of the Republic of Congo (Congo Brazzaville). He co-authored a business plan for a new private bank to be based in Brazzaville, focused on oil and mining project financing, public oil fund management, and government debt transactions. South African bank partnerships (Nedbank and ABSA) were to provide institutional backing; Qatari sovereign capital was the target funding source, channeled through Ghanim Bin Saad Al Saad of Qatari Diar. Andely had a prior relationship with Peter Mandelson that predated Epstein's involvement. On October 3, 2010, after meeting in Brazzaville, Mandelson wrote to him: \"I was really pleased to see you again after all these years and to talk about the bank project.\" Epstein was introduced to the project in January 2011. Andely arranged to meet Epstein at 22 Avenue Foch in Paris but cancelled at the last minute, citing instructions from \"my Big Boss in Brazzaville.\" He reports to both Mandelson and Jean-Yves Ollivier.",
     searchTerms: ["andely", "rigobert andely", "rigobert"],
+    bodySearchTerms: ["andely"],
   },
   {
     slug: "jean-yves-ollivier",
@@ -142,6 +157,7 @@ export const PEOPLE = [
     countries: ["South Africa", "Africa"],
     bio: "Jean-Yves Ollivier is a French businessman known in African diplomatic circles as Monsieur Afrique. In 1988, acting through back channels and without official mandate, he brokered the negotiations that produced the Brazzaville Protocol, leading to the Cuban withdrawal from Angola and Namibian independence. He is named by Rigobert Andely as one of his two principals on the Congo Brazzaville bank project, alongside Peter Mandelson. Ollivier had already met Ghanim Bin Saad Al Saad of Qatari Diar in Brazzaville before Mandelson brought Epstein into the project. In Andely's January 2011 cancellation email to Epstein, Ollivier is listed as one of the authorities who sanctioned the 22 Avenue Foch meeting. In October 2014, Peggy Siegal invited Epstein to a private New York screening of Plot for Peace, a documentary about Ollivier's Angola work. His personal connection to Epstein runs through both the Congo bank project and Siegal's social network.",
     searchTerms: ["ollivier", "jean-yves ollivier", "jean yves ollivier", "monsieur afrique"],
+    bodySearchTerms: ["ollivier"],
   },
   {
     slug: "larry-summers",
@@ -150,6 +166,7 @@ export const PEOPLE = [
     countries: ["Senegal", "Africa"],
     bio: "Lawrence Summers served as US Treasury Secretary under President Clinton from 1999 to 2001 and as President of Harvard University from 2001 to 2006. From 2009 to 2010 he was Director of the National Economic Council under President Obama. He appears in Epstein's archive as a regular dinner guest and correspondent. In September 2011, a member of Epstein's staff noted he was trying to arrange Summers and Karim Wade at the same dinner: \"JE just said Karim will be coming Friday and has me asking Larry Summers if he can come as well...this could become an initimate dinner!\" The introduction succeeded five years later. On November 29, 2016, six months after Wade's release from Rebeuss prison and his flight to Qatar, Epstein sent both men a two-line introduction email. Summers agreed to a Wednesday call before asking Epstein who Wade was. After receiving Epstein's briefing on Wade's background, he wrote back: \"Try always discreet. If u become associated publicly w something the reputations converge. Looking fwd to meeting Karim.\"",
     searchTerms: ["larry summers", "summers", "lawrence summers"],
+    bodySearchTerms: ["summers"],
   },
   {
     slug: "okey-enelamah",
@@ -176,6 +193,7 @@ export const PEOPLE = [
     countries: ["Ivory Coast", "Africa"],
     bio: "Ehud Barak served as Prime Minister of Israel from 1999 to 2001 and as Defence Minister from 2007 to 2013. He is a regular correspondent in Epstein's archive. His connection to Africa runs through the Ivory Coast surveillance deal: in September 2013, Epstein passed him the personal email of Sidi Tiémoko Touré, Ouattara's chief of staff, writing \"chief of staff of outara, he arrives tomorw, try to coordianate.\" The connection had been built through Nina Keita, Ouattara's niece. A mass surveillance contract for Ivory Coast's phone and internet communications, built by former Israeli intelligence officials, was formalized in 2014. Barak also appears in the archive as a confirmed or near-confirmed attendee at social dinners with Epstein in New York. His relationship with Epstein became public during the 2019 criminal proceedings; Barak acknowledged meeting Epstein multiple times but denied knowledge of his crimes.",
     searchTerms: ["ehud barak", "barak"],
+    bodySearchTerms: ["barak"],
   },
   {
     slug: "prince-andrew",
@@ -184,6 +202,7 @@ export const PEOPLE = [
     countries: ["Libya", "Africa"],
     bio: "Prince Andrew served as the United Kingdom's Special Representative for International Trade and Investment from 2001 to 2011. He appears in Epstein's Africa-related correspondence in three connected threads. In October 2010, he co-planned a trip to Tripoli with Epstein to pursue Gaddafi's sovereign wealth, writing \"Libya fixed. Call me whenever.\" In November 2010, he was physically present at Epstein's New York house during a conversation about Africa opportunities involving Karim Wade. Epstein wrote to Wade: \"I'm with Prince Andrew at my house in New York... we are talking about the opportunities in Africa.\" Andrew referred to Gaddafi in emails as \"Brother Leader.\" He resigned as Trade Envoy in 2011 following a separate controversy over his relationship with Epstein. In 2022 he settled a civil lawsuit brought by Virginia Giuffre.",
     searchTerms: ["prince andrew", "andrew", "PA", "duke of york"],
+    bodySearchTerms: ["prince andrew"],
   },
   {
     slug: "joi-ito",
@@ -192,6 +211,7 @@ export const PEOPLE = [
     countries: ["Zimbabwe", "Africa"],
     bio: "Joi Ito served as Director of the MIT Media Lab from 2011 to 2019. He appears in Epstein's archive in the Zimbabwe currency thread. On June 12, 2015, Epstein forwarded him a Guardian article about Zimbabwe's demonetization and proposed using the country as a test case for a new currency and economic system, describing Zimbabwe as \"a great petrie dish.\" Ito responded \"Ha! Amazing\" and then asked \"You mean Mugabe? Are you buddies?\" Epstein replied that he was not but \"can easily get his attention.\" No follow-through appears in the archive. In September 2019, the New Yorker reported that Ito had accepted donations from Epstein for the Media Lab after Epstein's 2008 sex offender conviction, and had disguised the source. Ito resigned as Media Lab director the same day the story published.",
     searchTerms: ["joi ito", "joi", "ito", "media lab"],
+    bodySearchTerms: ["joi ito"],
   },
   {
     slug: "ali-bongo",
@@ -209,6 +229,7 @@ export const PEOPLE = [
     countries: ["South Africa", "Morocco"],
     bio: "Mark Lloyd organized a dinner for South African President Jacob Zuma at the Ritz Hotel on March 5, 2010, sending invitations as \"a friend of Jeffrey Epstein.\" He appears in 128 emails in the archive, spanning 2010 to 2018. In April 2015 he asked Epstein for a loan of 1.6 million Moroccan dirhams (approximately $160,000). Epstein's office noted a prior 60-day loan from May 2012 that Lloyd repaid 50 days late. In December 2018, Lesley Groff wrote that she had contacted Lloyd \"about hotel accommodations for the girls\" in Marrakech. Lloyd also brokered Marrakech property viewings for Epstein and connected him with local real estate contacts.",
     searchTerms: ["mark lloyd", "lloyd"],
+    bodySearchTerms: ["mark lloyd"],
   },
   {
     slug: "daniel-siad",
@@ -226,6 +247,7 @@ export const PEOPLE = [
     countries: ["Nigeria", "Somalia", "Tanzania", "Ivory Coast", "Africa"],
     bio: "Bill Gates appears in 34 emails in Epstein's Africa archive. In September 2012, Gates wrote to his science adviser Boris Nikolic: \"Go ahead and forward this to Jeffrey. He and I talked quite a bit last night including explaining that Melinda had just been in Africa with Kofi.\" Nikolic forwarded Melinda French's Tanzania agriculture trip photos to Epstein. In April 2011, Epstein told a correspondent that Gates \"has asked me\" to come up with new ideas for the financial system. The Gates Foundation funded IPI's polio eradication intelligence program, whose reports Terje Rod-Larsen routed through Epstein. Nina Keita used Epstein's name to contact the Gates Foundation's Ivory Coast representative in March 2012.",
     searchTerms: ["bill gates", "gates foundation", "gates"],
+    bodySearchTerms: ["bill gates"],
   },
   {
     slug: "jacob-zuma",
@@ -270,6 +292,7 @@ export const PEOPLE = [
     countries: ["Ethiopia", "Morocco"],
     bio: "Jean-Luc Brunel was a French modeling agent who ran MC2 Model Management. In July 2012 he emailed Epstein about upcoming travel: \"Paris for until wednesday. May be Morocco for r days end of the week NY except if I can go to Ethiopia with you.\" He appears in 1 email in the Africa archive. Daniel Siad, who scouted Cape Town models for Epstein, operated in the same recruitment network. Brunel was arrested in Paris in December 2020 on charges of rape and trafficking of minors. He was found dead in his prison cell in February 2022.",
     searchTerms: ["brunel", "jean-luc brunel", "jean luc brunel"],
+    bodySearchTerms: ["brunel"],
   },
   {
     slug: "gregory-brown",
@@ -278,6 +301,7 @@ export const PEOPLE = [
     countries: ["Libya"],
     bio: "Gregory Brown sent Epstein 42 emails between June 2011 and June 2013 pitching post-Gaddafi Libya as an investment opportunity. He framed TNC humanitarian aid as a gateway to \"$100 billion rebuilding\" contracts and offered access to frozen sovereign funds, oil concessions, and telecom infrastructure deals. In June 2011, Brown arranged a UN reception where he introduced Epstein to Dr. Muhammad Al Magariaf, who was elected Libya's first post-Gaddafi president in August 2012. Epstein wrote: \"lets see him in new york.\" Brown also tried to bring Fadel Hshad, the TNC official holding the mandate to negotiate Goldman Sachs' $1.3 billion settlement with the Libyan Investment Authority, to meet Epstein in New York.",
     searchTerms: ["gregory brown", "gbrown1970", "globalcast"],
+    bodySearchTerms: ["gregory brown"],
   },
   {
     slug: "boris-nikolic",
@@ -295,6 +319,7 @@ export const PEOPLE = [
     countries: ["Djibouti", "Libya", "Senegal", "Kenya", "Africa"],
     bio: "David Stern of the Witan Group appears in 8 emails spanning 2011 to 2018. He represented Abdourahman Boreh, the Djiboutian port magnate, in litigation against the Republic of Djibouti. In October 2015 he told Epstein he was \"helping Boreh win his case\" and shared a Daily Mail article about the proceedings. In March 2016: \"Boreh won his case 100%.\" He also briefed Epstein on China-Africa geopolitics, forwarding coverage of Xi Jinping's 2012 speech on China-Africa strategic partnerships. In March 2017 he asked Epstein to \"check Rothschild for Boreh\" ahead of a Geneva trip. His last email, in December 2018, reported a \"big meeting Mubadala\" and noted Dubai was \"totally overbuilt.\"",
     searchTerms: ["david stern", "ds@witangroup", "witan"],
+    bodySearchTerms: ["david stern"],
   },
   {
     slug: "bob-crowe",
@@ -357,6 +382,7 @@ export const PEOPLE = [
     countries: ["Morocco", "Senegal", "Mali", "Gabon", "Ivory Coast", "Kenya", "South Africa"],
     bio: "Larry Visoski appears in 90 emails as sender in Epstein's archive, spanning 2011 to 2019. He was Epstein's chief pilot, calculating flight times for Africa itineraries covering Senegal, Mali, Gabon, Ivory Coast, Nairobi, Marrakech, and Cape Verde. He arranged landing permissions through the presidency of Senegal, Mali, and Gabon. He chartered a Libya flight at $115,000 with a $37,500 hull war premium. He coordinated landing at Abidjan without official permit, arranging to park at \"the Air Force Base instead of Civilian side\" the same night Hillary Clinton arrived. He attempted to sell Epstein's S76 helicopter to a buyer in South Africa.",
     searchTerms: ["visoski", "larry visoski"],
+    bodySearchTerms: ["visoski"],
   },
   {
     slug: "karyna-shuliak",
