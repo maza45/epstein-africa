@@ -364,6 +364,53 @@ a:hover {
   gap: 0.25rem;
 }
 
+/* ── Core stories (Start here) ── */
+.core-stories {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.core-stories-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.core-stories-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  max-width: 640px;
+}
+
+.core-stories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.core-card {
+  border-left: 2px solid var(--accent);
+}
+
+.core-card .story-title {
+  font-size: 0.85rem;
+}
+
+.core-card .story-summary {
+  display: none;
+}
+
+.all-stories-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
 /* ── Story detail ── */
 .story-article {
   max-width: 740px;
@@ -891,6 +938,9 @@ a:hover {
     min-width: 0;
     width: 100%;
   }
+  .core-stories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -911,6 +961,9 @@ a:hover {
     grid-template-columns: 1fr;
   }
   .people-grid {
+    grid-template-columns: 1fr;
+  }
+  .core-stories-grid {
     grid-template-columns: 1fr;
   }
 }

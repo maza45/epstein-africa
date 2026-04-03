@@ -7,6 +7,18 @@ import { STORIES } from "../../lib/stories";
 
 const BASE = "https://www.epsteinafrica.com";
 
+const CORE_SLUGS = [
+  "ivory-coast-surveillance",
+  "libya-sovereign-wealth",
+  "nikolic-gates-back-channel",
+  "wade-dc-lobbying",
+  "shaher-abdulhak-yemen-back-channel",
+  "sultan-scouting-operation",
+  "siad-cape-town-models",
+  "marrakech-bin-ennakhil",
+  "jagland-wade-echr",
+];
+
 export async function getStaticProps() {
   const stories = STORIES.map(({ slug, title, summary, countries, date_range }) => ({
     slug,
@@ -16,17 +28,22 @@ export async function getStaticProps() {
     date_range,
   }));
   const allCountries = [...new Set(STORIES.flatMap((s) => s.countries))].sort();
-  return { props: { stories, allCountries } };
+  const coreStories = CORE_SLUGS
+    .map((slug) => stories.find((s) => s.slug === slug))
+    .filter(Boolean);
+  return { props: { stories, allCountries, coreStories } };
 }
 
-export default function StoriesIndex({ stories, allCountries }) {
+export default function StoriesIndex({ stories, allCountries, coreStories }) {
   const [country, setCountry] = useState(null);
 
   const filtered = useMemo(
-    () =>
-      country
+    () => {
+      const base = country
         ? stories.filter((s) => s.countries.includes(country))
-        : stories,
+        : stories.filter((s) => !CORE_SLUGS.includes(s.slug));
+      return base;
+    },
     [country, stories]
   );
 
@@ -73,6 +90,40 @@ export default function StoriesIndex({ stories, allCountries }) {
             </button>
           ))}
         </div>
+
+        {!country && (
+          <section className="core-stories">
+            <h2 className="core-stories-heading">Start here</h2>
+            <p className="core-stories-subtitle">
+              Nine stories that show how Epstein operated across Africa:
+              surveillance deals, intelligence channels, political
+              manipulation, financial architecture, and trafficking.
+            </p>
+            <div className="core-stories-grid">
+              {coreStories.map((story) => (
+                <Link
+                  key={story.slug}
+                  href={`/stories/${story.slug}`}
+                  className="story-card core-card"
+                >
+                  <div className="story-date-range">{story.date_range}</div>
+                  <div className="story-title">{story.title}</div>
+                  <div className="story-countries">
+                    {story.countries.map((c) => (
+                      <span key={c} className="tag">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <h2 className="all-stories-heading">
+          {country ? `Stories: ${country}` : "All stories"}
+        </h2>
 
         <div className="stories-grid">
           {filtered.map((story) => (
