@@ -791,6 +791,7 @@ export const STORIES = [
       "The archive does show Barak in Nigeria. In August 2013, while pitching an Israeli medical diagnostics startup called Parasight to Boris Nikolic at the Gates Foundation, Barak wrote: \"I'm in NY on Sep 22-26 for the Clinton GI. Earlier in Sept in Bali and Nigeria\" (EFTA01961245-6). Parasight developed machine-vision technology for malaria blood analysis. No other emails in the archive document what Barak did in Nigeria on that trip.",
       "The threads converged in August 2018. On August 5, Sultan Bin Sulayem forwarded Epstein an email from Amir Elichai, Carbyne's CEO, following a meeting with Sultan. Sultan wrote to Epstein: \"This a startup it has a good future steady consistent revenue stream in an important business for airports and public facilities I am intending to invest what do you think.\" The Carbyne pitch covered three topics: Carbyne for personal security in sea ports, Carbyne for Dubai's 911 system, and Carbyne's Series B investment round. Elichai told Sultan: \"We are interested in participating in the security effort for the 2022 Games. We can work through a European company of your choice and minimize Israeli profile\" (EFTA02607775-2).",
       "That same summer, Epstein was brokering the Nigeria ports deal between Sultan and Jide Zeitlin. The Carbyne pitch to Sultan, the Nigeria ports negotiation, and Barak's years of security-tech investment all ran through Epstein simultaneously. Drop Site News and Al Jazeera reported that by 2020, the World Bank had tapped the Israel National Cyber Directorate and a startup co-founded by Barak to shape Nigeria's national cyber infrastructure. The archive shows the investor relationships and the timing. The deployment chain sits in external reporting.",
+      "In February 2014, Epstein wrote to Barak: \"with civil unrest exploding in ukraine syria, somolia, libya, and the desperation of those in power, isn't this perfect for you\" (685026b7a49ce70ea8c317c3b42af973-0).",
     ],
     email_ids: [
       "d9242f70087f25be2b3f3b7e378e99da-0",
@@ -807,6 +808,7 @@ export const STORIES = [
       "EFTA01961245-6",
       "EFTA02652177",
       "EFTA02607775-2",
+      "685026b7a49ce70ea8c317c3b42af973-0",
     ],
     news_links: [
       {

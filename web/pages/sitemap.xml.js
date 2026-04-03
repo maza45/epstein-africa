@@ -12,6 +12,7 @@ function generateSitemap(emailIds) {
     { path: "/stories", priority: "0.9" },
     { path: "/people", priority: "0.9" },
     { path: "/graph", priority: "0.7" },
+    { path: "/map", priority: "0.7" },
     { path: "/about", priority: "0.6" },
   ];
 

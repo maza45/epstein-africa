@@ -977,3 +977,178 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Map page ─────────────────────────────────────────── */
+.map-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 52px);
+  overflow: hidden;
+}
+
+.map-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: #888;
+  background: #0d1117;
+  border-bottom: 1px solid #1a1a2e;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.map-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.map-container {
+  flex: 1;
+  min-width: 0;
+  background: #0a0f14;
+}
+
+/* Panel */
+.map-panel {
+  width: 340px;
+  flex-shrink: 0;
+  background: #111820;
+  border-left: 1px solid #222;
+  padding: 1.25rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+.map-panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.2rem;
+  color: #c9a227;
+}
+
+.map-panel-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem;
+}
+
+.map-panel-close:hover {
+  color: #e0e0e0;
+}
+
+.map-panel-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #222;
+}
+
+.map-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-stat-num {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e0e0e0;
+}
+
+.map-stat-label {
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.map-panel-section {
+  margin-bottom: 1rem;
+}
+
+.map-panel-section h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin: 0 0 0.4rem;
+}
+
+.map-panel-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.map-panel-section li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #1a1a2e;
+  font-size: 0.85rem;
+}
+
+.map-panel-section li a {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.map-panel-section li a:hover {
+  color: #c9a227;
+}
+
+.map-panel-meta {
+  display: block;
+  font-size: 0.72rem;
+  color: #666;
+}
+
+.map-panel-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #c9a227;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.map-panel-link:hover {
+  text-decoration: underline;
+}
+
+/* Tooltip */
+.map-tooltip {
+  position: absolute;
+  background: #1a2332;
+  border: 1px solid #333;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #e0e0e0;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+/* Mobile: bottom sheet */
+@media (max-width: 768px) {
+  .map-body {
+    flex-direction: column;
+  }
+
+  .map-container {
+    flex: 1;
+    min-height: 50dvh;
+  }
+
+  .map-panel {
+    width: 100%;
+    max-height: 45dvh;
+    border-left: none;
+    border-top: 1px solid #222;
+  }
+}
