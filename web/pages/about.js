@@ -124,6 +124,20 @@ export default function About({ emailCount, countryCount }) {
             quotes preserve the original text, including typos.
           </p>
 
+          <h2>How stories are built</h2>
+          <p>
+            Every story follows the same process. Emails are identified in the
+            archive by keyword, sender, or participant matching. Each quoted
+            passage is verified verbatim against the original document. Email
+            IDs, senders, dates, and recipients are cross-checked before
+            publication. No claim appears without a document anchor. Direct
+            quotes preserve the original text, including typos and
+            misspellings. External claims — biographical details, news events,
+            public record — are separated from what the emails themselves say.
+            A pre-publication verification process checks every citation
+            against the database before any story goes live.
+          </p>
+
           <h2>Contact</h2>
           <p>
             If you are a journalist or researcher working on a specific lead
