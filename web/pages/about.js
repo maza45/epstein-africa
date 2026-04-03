@@ -65,7 +65,7 @@ export default function About({ emailCount, countryCount }) {
           <p>
             A searchable database of Jeffrey Epstein&apos;s documented
             connections to the African continent. {emailCount.toLocaleString()}{" "}
-            emails, 31 investigative stories, 33 person profiles,{" "}
+            emails, 46 investigative stories, 52 person profiles,{" "}
             {countryCount} countries. Every claim on this site links to a
             specific document ID from the U.S. Department of Justice release.
           </p>
@@ -78,6 +78,18 @@ export default function About({ emailCount, countryCount }) {
             African media. This site filters, indexes, and contextualizes the
             Africa-relevant portion of the archive so journalists, researchers,
             and the public can work with the primary sources directly.
+          </p>
+
+          <h2>What the archive shows</h2>
+          <p>
+            The archive documents a pattern: humanitarian funding as the entry
+            point, intelligence collection as the product, political access as
+            the payoff. The same channel that carried polio field reports from
+            Nigeria carried investment deals worth millions. The same
+            relationships that opened doors to African presidents opened doors
+            to their ministers, their ports, their resources. The documents
+            don&apos;t explain why a convicted sex offender was at the center of
+            this network. They show that he was.
           </p>
 
           <h2>Data sources</h2>
@@ -95,8 +107,8 @@ export default function About({ emailCount, countryCount }) {
           <h2>What you can do here</h2>
           <p>
             Search emails by keyword, sender, or country using full-text
-            search. Read 31 investigative stories, each citing specific email
-            document IDs. Browse 33 person profiles showing who communicated
+            search. Read 46 investigative stories, each citing specific email
+            document IDs. Browse 52 person profiles showing who communicated
             with whom. Explore the network graph to see relationships between
             people and countries. Export the full dataset as CSV or JSON.
             Subscribe to the RSS feed for new stories.
