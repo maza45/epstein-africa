@@ -1497,6 +1497,32 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "staley-jpmorgan-heads-of-state",
+    title: "How Epstein Brokered JPMorgan's #2 Into Private Meetings With Heads of State",
+    summary:
+      "When Jes Staley was promoted to number two at JPMorgan in September 2009, Sultan Bin Sulayem told Epstein: 'Did you see your friend Jes Staley just got promoted.' Epstein replied: 'it was not an accident.' Within months Epstein had arranged a private Sultan-Staley dinner, Staley was invited to meet 14 foreign ministers, and Peter Mandelson was pitching him Congo mining.",
+    countries: ["Nigeria", "Morocco"],
+    date_range: "2009–2010",
+    body: [
+      "On September 30, 2009, Sultan Bin Sulayem emailed Epstein: \"Did you see your friend Jes Staley just got promoted to #2 at JP Morgan\" (EFTA02526370-0). Epstein replied: \"it was not an accident..\" (vol00009-efta00740105-pdf-0).",
+      "Two months later, Epstein was coordinating Staley's travel: \"Jes is re arranging his schedule to make a trip to the middle east// saudi etc. call me\" (vol00009-efta00742801-pdf-0). On December 9, he arranged a private dinner between the two men: \"sultan , jes is free thurs, from 5-10 p.m. where and when, only the two of you please\" (vol00009-efta00743331-pdf-0).",
+      "The introduction produced a banking relationship. On April 15, 2010, Sultan wrote directly to Staley at JPMorgan: \"Dear Jes, DUKES HOTEL LIMITED — REFINANCING REQUIREMENTS — We have a requirement of refinancing the loan\" (EFTA02426003-0). The chairman of DP World was asking JPMorgan's number two for a loan, through a channel Epstein had built.",
+      "In October 2010, Epstein sent Staley an invitation to a meeting with fourteen foreign ministers and heads of state. \"jeffrey , please come. you may have private time with each . you security clearance is approved.\" The list included Nigeria's Henry Odein Ajumogobia, Morocco's Taieb Fassi-Fihri, Qatar's Sheikh Hamad bin Jassim bin Jabor Al-Thani, Lebanon's Prime Minister Saad Harari, Pakistan's Makhdoom Shah Mahmood Qureshi, and the UAE's Sheikh Abdullah bin Zayed Al Nahyan (vol00009-efta00755193-pdf-0).",
+      "The same week, Peter Mandelson wrote to Staley: \"In Congo Brazzaville last week, I talked at length with President Sassou Ntuesso, including about the above new mine.\" Staley replied: \"I will find out. Sounds interesting\" (EFTA02418828-3, EFTA02418828-4). Mandelson was pitching Congo mining to JPMorgan's second-in-command through the Epstein network.",
+    ],
+    email_ids: [
+      "EFTA02526370-0",
+      "vol00009-efta00740105-pdf-0",
+      "vol00009-efta00742801-pdf-0",
+      "vol00009-efta00743331-pdf-0",
+      "EFTA02426003-0",
+      "vol00009-efta00755193-pdf-0",
+      "EFTA02418828-3",
+      "EFTA02418828-4",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
