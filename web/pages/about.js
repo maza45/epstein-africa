@@ -65,9 +65,9 @@ export default function About({ emailCount, countryCount }) {
           <p>
             A searchable database of Jeffrey Epstein&apos;s documented
             connections to the African continent. {emailCount.toLocaleString()}{" "}
-            emails, 46 investigative stories, 52 person profiles,{" "}
-            {countryCount} countries. Every claim on this site links to a
-            specific document ID from the U.S. Department of Justice release.
+            emails across {countryCount} countries. Every claim on this site
+            links to a specific document ID from the U.S. Department of
+            Justice release.
           </p>
 
           <h2>Why it exists</h2>
@@ -107,8 +107,8 @@ export default function About({ emailCount, countryCount }) {
           <h2>What you can do here</h2>
           <p>
             Search emails by keyword, sender, or country using full-text
-            search. Read 46 investigative stories, each citing specific email
-            document IDs. Browse 52 person profiles showing who communicated
+            search. Read investigative stories, each citing specific email
+            document IDs. Browse person profiles showing who communicated
             with whom. Explore the network graph to see relationships between
             people and countries. Export the full dataset as CSV or JSON.
             Subscribe to the RSS feed for new stories.
