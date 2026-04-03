@@ -226,9 +226,30 @@ function verifyStory(story) {
           if (matches.length === 1) {
             fixes.push({ paraIndex: i, oldId: eid, newId: matches[0].id });
           } else if (matches.length > 1) {
-            errors.push(
-              `BARE DOC_ID [p${i + 1}]: "${eid}" has ${matches.length} emails in DB — pick one: ${matches.map((r) => r.id).join(", ")}`
-            );
+            // Try to disambiguate using the nearby quote
+            const citations = extractCitations(para);
+            let resolved = false;
+            for (const { quote } of citations) {
+              if (quote.length <= 10) continue;
+              // Check which of the N emails contains this quote
+              const quoteMatches = [];
+              for (const candidate of matches) {
+                const full = getEmail(candidate.id);
+                if (full && bodyContains(full.body, quote)) {
+                  quoteMatches.push(candidate.id);
+                }
+              }
+              if (quoteMatches.length === 1) {
+                fixes.push({ paraIndex: i, oldId: eid, newId: quoteMatches[0] });
+                resolved = true;
+                break;
+              }
+            }
+            if (!resolved) {
+              errors.push(
+                `BARE DOC_ID [p${i + 1}]: "${eid}" has ${matches.length} emails in DB, could not match quote — pick one: ${matches.map((r) => r.id).join(", ")}`
+              );
+            }
           }
           // If 0 matches, it's not a doc_id — could be a hash-based ID missing from DB, skip
         }
@@ -387,7 +408,7 @@ function main() {
         for (const f of fixes) {
           // Replace bare ID with full ID in story body text and email_ids
           const escaped = f.oldId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-          const re = new RegExp(`\\b${escaped}\\b`, "g");
+          const re = new RegExp(`\\b${escaped}\\b(?!-)`, "g");
           const before = src;
           src = src.replace(re, f.newId);
           if (src !== before) totalFixed++;
