@@ -1554,7 +1554,23 @@ export const STORIES = [
       "vol00009-efta01006183-pdf-0",
       "vol00009-efta01006185-pdf-0",
     ],
-    news_links: [],
+    news_links: [
+      {
+        title: "Steve Bannon's Secret Epstein Videos: The Tale of the Tapes",
+        url: "https://www.hollywoodreporter.com/news/politics-news/jeffrey-epstein-steve-bannon-1236325072/",
+        source: "Hollywood Reporter",
+      },
+      {
+        title: "Jeffrey Epstein's deep ties to Steve Bannon revealed in new files",
+        url: "https://www.nbcnews.com/tech/internet/epstein-files-steve-bannon-jeffrey-new-pdf-doj-trump-rcna258234",
+        source: "NBC News",
+      },
+      {
+        title: "Epstein calls himself 'lowest level' offender in newly released interview",
+        url: "https://www.france24.com/en/americas/20260203-epstein-denied-he-was-devil-video",
+        source: "France 24",
+      },
+    ],
   },
 ];
 
