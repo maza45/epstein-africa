@@ -1456,6 +1456,47 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "clinton-africa-trip-magaziner",
+    title: "The Clinton Foundation Sent Ghislaine Maxwell the Africa Trip Manifest",
+    summary:
+      "In September 2002, the Clinton Foundation's scheduling office emailed Ghislaine Maxwell the full plane manifest for President Clinton's Africa trip, covering Ghana, Nigeria, Rwanda, Mozambique, and South Africa. The manifest excluded Maxwell's own 'package' of travelers. Three months later, the head of Clinton's AIDS initiative wrote directly to Maxwell about progress in Rwanda and Mozambique.",
+    countries: ["Ghana", "Nigeria", "Rwanda", "Mozambique", "South Africa"],
+    date_range: "2002",
+    body: [
+      "On September 11, 2002, David Slade, Deputy Director of Scheduling at the Office of President William J. Clinton, emailed Ghislaine Maxwell. \"Doug asked me to email you the following information for planning purposes as we approach our departure date for Africa. Dan Rather with CBS has requested that he along with 3 crew fly aboard the plane with President Clinton for the Cape Town to Johannesburg, South Africa leg.\" The email included the full plane manifest for every leg of the trip (vol00009-efta00578629-pdf).",
+      "The route: New York to Accra, Ghana. Accra to Abuja, Nigeria. Abuja to Kigali, Rwanda. Kigali to Maputo, Mozambique. Maputo to Cape Town. Cape Town to Johannesburg. Johannesburg to London. The manifest listed President Clinton, Doug Band, Kevin Spacey, Rodney Slater, Gayle Smith, Casey and Laura Wasserman, and Ira Magaziner joining in Rwanda. Each leg carried five to seven Secret Service agents. Slade noted the manifest excluded \"your package\" (vol00009-efta00578629-pdf).",
+      "Two days later, Slade sent a revised manifest. \"FYI, President Clinton is no longer traveling to Kumasi, Ghana as part of his upcoming Africa trip\" (vol00009-efta00580574-pdf).",
+      "Three months after the trip, on December 23, 2002, Ira Magaziner emailed Maxwell directly. Magaziner was the head of the Clinton Foundation's AIDS initiative. He wrote: \"Ghislaine: How are you doing? We have been making good progress on the AIDS initiative. I have been back to Rwanda and Mozambique twice since we last talked and we are having good results in both countries. The more time I spend in Africa and in other poor countries, the clearer it becomes that effective investments in health and education are essential before they can advance. I hope you are well. Please give my regards to Jeffrey. I look forward to hearing your thoughts about your next steps whenever you formulate them\" (vol00009-efta00578693-pdf-0).",
+    ],
+    email_ids: [
+      "vol00009-efta00578629-pdf",
+      "vol00009-efta00580574-pdf",
+      "vol00009-efta00578693-pdf-0",
+    ],
+    news_links: [],
+  },
+  {
+    slug: "stern-china-africa-bridge",
+    title: "David Stern Pitched Epstein as the Bridge Between Chinese Capital and Africa",
+    summary:
+      "In late 2011, David Stern proposed an 'African investment vehicle' with Epstein as intermediary between Chinese capital and African governments. He had already pitched a Congo oil company to a Chinese state energy contact 'very confidentially,' and connected a Chinese billionaire with a British-Israeli property mogul over mobile payment technology he called 'perfect for Africa.'",
+    countries: ["Angola", "South Africa"],
+    date_range: "2010-2012",
+    body: [
+      "On November 2, 2010, David Stern emailed a contact named Fangzhi. \"As mentioned, please very confidentially have a look at Soco International plc. This is an oil and gas exploration and production company, headquartered in London, traded on the London Stock Exchange with interests in Vietnam, the Republic of Congo (Brazzaville), the Democratic Republic of Congo (Kinshasa) and Angola.\" He asked: \"Would this be an asset of interest for CNOOC?\" CNOOC is the China National Offshore Oil Corporation. Stern was pitching African oil assets to a Chinese state energy company through Epstein's network (EFTA01979689-0).",
+      "Thirteen months later, on November 21, 2011, Stern laid out the structure explicitly: \"For the African investment vehicle we can be the bridge between the Chinese and African side: both get what they want with maximum protection/distance (ie no direct Chinese involvement) through us as intermediary. It can be a deal machine once Chinese capital gets involved. It would fit in perfectly with the other plan of managing Chinese wealth\" (EFTA02522551-0).",
+      "Two weeks later he demonstrated the network in action. \"My Chinese friend Wu Zheng (worth $1 billion) is visiting me in London. I arranged meeting with David Reuben (worth $8.5 billion). The three of us discussed company Luup owned by Reuben: best mobile payment technology, mainly banking without an account.\" The pitch: \"We will do JV for Luup in China (Wu, Reuben, Me). This system is perfect for Africa and Chartered Bank wants to have it for Africa. Something we should do as part of your African initiative?\" (EFTA01848382-0).",
+      "In July 2012, Stern forwarded Epstein coverage of Xi Jinping's speech at the China-Africa People's Forum in Suzhou. His annotation: \"Note: Xi will become the next President at the end of the year\" (EFTA01803261-0). Stern was tracking Chinese leadership transitions for their implications on Africa investment.",
+    ],
+    email_ids: [
+      "EFTA01979689-0",
+      "EFTA02522551-0",
+      "EFTA01848382-0",
+      "EFTA01803261-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
