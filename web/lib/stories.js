@@ -1531,6 +1531,31 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "bannon-mobutu-cairo",
+    title: "Epstein Told Bannon He Was With Mobutu in the 1980s, Then Offered Him Mubarak and Sisi",
+    summary:
+      "In February 2018, Epstein told Steve Bannon he had been 'with Mabutu Seko, dictator of Zaire' in the mid-1980s, then sent him a photo of Mobutu. Bannon replied: 'we r on the cusp of real power.' Epstein corrected him: 'You not we.' Five months later, Epstein offered Bannon private access to Mubarak and Sisi in Cairo.",
+    countries: ["Egypt", "Congo"],
+    date_range: "2018",
+    body: [
+      "On February 19, 2018, Epstein and Bannon were discussing cryptocurrency and political finance. Epstein wrote: \"HAHA when i was with Mabutu Seko, dictator of Zaire. mid 80s He also wanted a coin called 'citizen.' in fact He required all african names to be changed and prefaced with the word 'Citizen.' in stead of monsieur and madam and required only african names as a poplulist binder. so . monsieur epstein\" (EFTA02524739-0). Epstein then sent Bannon a photo of Mobutu (vol00009-efta00881560-pdf-0).",
+      "Bannon replied about building political infrastructure: \"u add this potential grassroots (ie retail) financial muscle in back of a grassroots army u disintermediate mcconnel's corporatist apparatus\" (vol00009-efta00881551-pdf-0). Then: \"we r on the cusp of real power\" (vol00009-efta00881717-pdf-0). Epstein's reply was two words: \"You not we\" (vol00009-efta00881743-pdf-0).",
+      "Epstein had tried to put Bannon and Sultan Bin Sulayem in the same room. In March 2018, Epstein told Sultan: \"thurs night bannon ok.\" Sultan replied: \"Unfortunately I will cancel my New York trip. President of Congo insisting to sign the port concession with me on Friday\" (vol00009-efta00856042-pdf-0). The Bannon dinner was scrapped because Sultan had to fly to Congo to sign a port deal.",
+      "Five months later, on July 24, 2018, Epstein offered Bannon access to Egyptian leaders: \"btw, you and i can see mubarak/sisi as well. just need to schedule.\" Bannon: \"In cairo???\" Epstein: \"definitely not in palm beach :)\" (vol00009-efta01006183-pdf-0, vol00009-efta01006185-pdf-0). The same email thread included Epstein listing countries: \"kazaks, mongolians senegaleze. ivory coast, dubai, qatar saudi, kuwait. yemen eritrea. ethiopia. kenya. tunisia.\"",
+    ],
+    email_ids: [
+      "EFTA02524739-0",
+      "vol00009-efta00881560-pdf-0",
+      "vol00009-efta00881551-pdf-0",
+      "vol00009-efta00881717-pdf-0",
+      "vol00009-efta00881743-pdf-0",
+      "vol00009-efta00856042-pdf-0",
+      "vol00009-efta01006183-pdf-0",
+      "vol00009-efta01006185-pdf-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
