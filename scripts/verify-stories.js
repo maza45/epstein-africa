@@ -62,6 +62,23 @@ function getEmailsByDocId(docId) {
   return getDb().prepare("SELECT id FROM emails WHERE doc_id = ?").all(docId);
 }
 
+// Mirror of pages/emails/[id].js getServerSideProps fallback chain.
+// Returns true if the requested id would resolve at runtime, false if it would 404.
+function emailIdResolves(reqId) {
+  const d = getDb();
+  if (d.prepare("SELECT 1 FROM emails WHERE id = ?").get(reqId)) return true;
+  if (d.prepare("SELECT 1 FROM emails WHERE id = ?").get(`${reqId}-0`)) return true;
+  if (d.prepare("SELECT 1 FROM emails WHERE doc_id = ?").get(reqId)) return true;
+  const m = reqId.match(/^(.+)-\d+$/);
+  if (m) {
+    const stripped = m[1];
+    if (d.prepare("SELECT 1 FROM emails WHERE id = ? OR doc_id = ?").get(stripped, stripped)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // ---------------------------------------------------------------------------
 // Quote extraction: find "quoted text" (CITATION-ID) patterns
 // ---------------------------------------------------------------------------
@@ -161,6 +178,18 @@ function verifyStory(story) {
     const row = getEmail(eid);
     if (!row) {
       errors.push(`MISSING EMAIL: ${eid} not found in DB`);
+    }
+  }
+
+  // 1b. Check every news_links[].url that points to /emails/<id> resolves at runtime.
+  // Catches the bug class where a news_links URL has a stale -N suffix or wrong form.
+  for (const link of story.news_links || []) {
+    if (!link || !link.url) continue;
+    const m = link.url.match(/^\/emails\/([^/?#]+)/);
+    if (!m) continue;
+    const reqId = decodeURIComponent(m[1]);
+    if (!emailIdResolves(reqId)) {
+      errors.push(`BROKEN news_links URL: ${link.url} (would 404 at runtime)`);
     }
   }
 
