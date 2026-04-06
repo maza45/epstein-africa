@@ -137,6 +137,16 @@ function bodyContains(body, quote) {
   return matched / qWords.length >= 0.8;
 }
 
+// Strict version: require exact normalised substring match. No fuzzy fallback.
+// Used by the disambiguation paths so loose word-overlap can't pick the wrong sibling.
+function bodyContainsExact(body, quote) {
+  if (!body || !quote) return false;
+  const nb = normalise(body);
+  const nq = normalise(quote);
+  if (nq.length < 5) return false;
+  return nb.includes(nq);
+}
+
 // ---------------------------------------------------------------------------
 // Month matching
 // ---------------------------------------------------------------------------
@@ -169,9 +179,57 @@ function dateSentAtMatches(sentAt, month, year) {
 // Main verification
 // ---------------------------------------------------------------------------
 
+// Collapse a list of matching siblings into one canonical pick.
+// If all of them are duplicate ingests (same normalised body), treat as one
+// and return the lexicographically lowest id (the original ingest).
+// If they have different bodies, they're truly ambiguous and we return null.
+function collapseDuplicates(matches) {
+  if (matches.length === 0) return null;
+  if (matches.length === 1) return matches[0];
+  const bodies = matches.map((m) => {
+    const full = getEmail(m.id);
+    return full ? normalise(full.body || "") : "";
+  });
+  const allSame = bodies.every((b) => b === bodies[0]);
+  if (!allSame) return null;
+  // Duplicates — pick the lowest id (sorted lexicographically by suffix-aware order)
+  const sorted = [...matches].sort((a, b) => {
+    // Try numeric suffix sort first
+    const am = a.id.match(/-(\d+)$/);
+    const bm = b.id.match(/-(\d+)$/);
+    if (am && bm) return Number(am[1]) - Number(bm[1]);
+    return a.id < b.id ? -1 : 1;
+  });
+  return sorted[0];
+}
+
+// Pick the unique sibling whose body contains the quote.
+// Prefer exact substring match; only fall back to fuzzy if no sibling matches exactly.
+// Treats duplicate-ingest siblings (identical body content) as a single canonical pick.
+// Returns { id } when uniquely resolvable, or null otherwise.
+function pickSiblingForQuote(siblings, quote, excludeId) {
+  if (!quote || quote.length <= 10) return null;
+  const candidates = siblings.filter((s) => s.id !== excludeId);
+
+  const exact = candidates.filter((s) => {
+    const full = getEmail(s.id);
+    return full && bodyContainsExact(full.body, quote);
+  });
+  const exactPick = collapseDuplicates(exact);
+  if (exactPick) return exactPick;
+  if (exact.length > 1) return null; // multiple distinct matches — truly ambiguous
+
+  const fuzzy = candidates.filter((s) => {
+    const full = getEmail(s.id);
+    return full && bodyContains(full.body, quote);
+  });
+  return collapseDuplicates(fuzzy);
+}
+
 function verifyStory(story) {
   const errors = [];
   const warnings = [];
+  const fixes = []; // { paraIndex, oldId, newId, kind: "bare" | "wrong_suffix" }
 
   // 1. Check all email_ids exist
   for (const eid of story.email_ids || []) {
@@ -193,16 +251,18 @@ function verifyStory(story) {
     }
   }
 
-  // 2-4. Check each body paragraph
+  // 2. Check each body paragraph: quote must be in cited row, OR in a sibling
+  // (in which case we propose a fix instead of an error).
   for (let i = 0; i < (story.body || []).length; i++) {
     const para = story.body[i];
     const citations = extractCitations(para);
 
-    for (const { quote, ids } of citations) {
+    for (const { quote, ids, fullMatch } of citations) {
       if (quote.length <= 10) continue;
 
       // Quote must match in at least ONE of the cited email IDs
       let foundInAny = false;
+      let proposedFix = null;
       const checkedIds = [];
       for (const eid of ids) {
         const row = getEmail(eid);
@@ -212,12 +272,28 @@ function verifyStory(story) {
           foundInAny = true;
           break;
         }
+        // Cited row doesn't contain the quote — try siblings under the same doc_id.
+        // The wrong-suffix bug class: previous auto-fix wrote the wrong -N for the
+        // quote, but a sibling does contain it. Propose a fix, don't silently pass.
+        // The anchor (fullMatch) lets the fix application target THIS specific
+        // citation, not just any occurrence of the bare id in the paragraph.
+        if (!proposedFix) {
+          const siblings = getEmailsByDocId(row.doc_id);
+          const sib = pickSiblingForQuote(siblings, quote, row.id);
+          if (sib) {
+            proposedFix = { paraIndex: i, oldId: eid, newId: sib.id, kind: "wrong_suffix", anchor: fullMatch };
+          }
+        }
       }
 
       if (!foundInAny && checkedIds.length > 0) {
-        errors.push(
-          `QUOTE MISMATCH [p${i + 1}]: "${quote.slice(0, 60)}..." not found in ${checkedIds.join(", ")}`
-        );
+        if (proposedFix) {
+          fixes.push(proposedFix);
+        } else {
+          errors.push(
+            `QUOTE MISMATCH [p${i + 1}]: "${quote.slice(0, 60)}..." not found in ${checkedIds.join(", ")}`
+          );
+        }
       }
     }
   }
@@ -238,49 +314,63 @@ function verifyStory(story) {
     }
   }
 
-  // Check inline citation IDs exist in DB (catches bare doc_ids without suffix)
-  const fixes = []; // { paraIndex, oldId, newId }
+  // 3. Check inline citation IDs exist in DB (catches bare doc_ids without suffix).
+  // This walks each citation+id pair and uses ONLY that citation's own quote to
+  // disambiguate (the previous version walked ALL paragraph quotes, which produced
+  // wrong-sibling resolutions when one quote happened to match a sibling of the
+  // wrong document). For non-quoted parenthetical IDs (no nearby quote), only
+  // single-match siblings are auto-resolvable.
   for (let i = 0; i < (story.body || []).length; i++) {
     const para = story.body[i];
+    const citations = extractCitations(para);
+
+    // Track which parenthetical strings are part of a quote+id pair so we don't
+    // process them twice in the bare-id-only loop below. Keyed by fullMatch.
+    const quotedAnchors = new Set();
+    for (const cit of citations) {
+      for (const eid of cit.ids) {
+        if (eid.length < 8 || (/^[a-z]/.test(eid) && !eid.startsWith("vol"))) continue;
+        quotedAnchors.add(cit.fullMatch);
+        const row = getEmail(eid);
+        if (row) continue; // exists, fine
+        const matches = getEmailsByDocId(eid);
+        if (matches.length === 0) continue;
+        if (matches.length === 1) {
+          fixes.push({ paraIndex: i, oldId: eid, newId: matches[0].id, kind: "bare", anchor: cit.fullMatch });
+          continue;
+        }
+        // Multiple siblings — disambiguate using ONLY this citation's quote.
+        const sib = pickSiblingForQuote(matches, cit.quote, null);
+        if (sib) {
+          fixes.push({ paraIndex: i, oldId: eid, newId: sib.id, kind: "bare", anchor: cit.fullMatch });
+        } else {
+          errors.push(
+            `BARE DOC_ID [p${i + 1}]: "${eid}" has ${matches.length} emails in DB, quote could not be uniquely placed — pick one: ${matches.map((r) => r.id).join(", ")}`
+          );
+        }
+      }
+    }
+
+    // Also process bare IDs in parentheticals that are NOT part of a quote+id pair
+    // (e.g. trailing source citations with no inline quote). Only auto-fix single
+    // matches; multi-match cases need a quote and there isn't one here.
     const idRe = /\(([A-Za-z0-9_\-\.]+(?:-(?:pdf|[0-9]+))?(?:\s*,\s*[A-Za-z0-9_\-\.]+(?:-(?:pdf|[0-9]+))?)*)\)/g;
     let m;
     while ((m = idRe.exec(para)) !== null) {
+      if (quotedAnchors.has(m[0])) continue; // already handled in the quoted loop above
+      const parentheticalAnchor = m[0];
       const ids = m[1].split(/,\s*/).map((s) => s.trim());
       for (const eid of ids) {
-        if (eid.length < 8 || /^[a-z]/.test(eid) && !eid.startsWith("vol")) continue;
+        if (eid.length < 8 || (/^[a-z]/.test(eid) && !eid.startsWith("vol"))) continue;
         const row = getEmail(eid);
-        if (!row) {
-          // Look up all emails with this as doc_id
-          const matches = getEmailsByDocId(eid);
-          if (matches.length === 1) {
-            fixes.push({ paraIndex: i, oldId: eid, newId: matches[0].id });
-          } else if (matches.length > 1) {
-            // Try to disambiguate using the nearby quote
-            const citations = extractCitations(para);
-            let resolved = false;
-            for (const { quote } of citations) {
-              if (quote.length <= 10) continue;
-              // Check which of the N emails contains this quote
-              const quoteMatches = [];
-              for (const candidate of matches) {
-                const full = getEmail(candidate.id);
-                if (full && bodyContains(full.body, quote)) {
-                  quoteMatches.push(candidate.id);
-                }
-              }
-              if (quoteMatches.length === 1) {
-                fixes.push({ paraIndex: i, oldId: eid, newId: quoteMatches[0] });
-                resolved = true;
-                break;
-              }
-            }
-            if (!resolved) {
-              errors.push(
-                `BARE DOC_ID [p${i + 1}]: "${eid}" has ${matches.length} emails in DB, could not match quote — pick one: ${matches.map((r) => r.id).join(", ")}`
-              );
-            }
-          }
-          // If 0 matches, it's not a doc_id — could be a hash-based ID missing from DB, skip
+        if (row) continue;
+        const matches = getEmailsByDocId(eid);
+        if (matches.length === 1) {
+          fixes.push({ paraIndex: i, oldId: eid, newId: matches[0].id, kind: "bare", anchor: parentheticalAnchor });
+        } else if (matches.length > 1) {
+          errors.push(
+            `BARE DOC_ID [p${i + 1}]: "${eid}" has ${matches.length} emails in DB, no nearby quote to disambiguate — pick one: ${matches.map((r) => r.id).join(", ")}`
+          );
         }
       }
     }
@@ -416,10 +506,11 @@ function main() {
           console.log(`    \x1b[31m${e}\x1b[0m`);
         }
         for (const f of result.fixes || []) {
+          const tag = f.kind === "wrong_suffix" ? "WRONG SUFFIX" : "BARE DOC_ID";
           if (autoFix) {
-            console.log(`    \x1b[33mFIXED: "${f.oldId}" → "${f.newId}"\x1b[0m`);
+            console.log(`    \x1b[33mFIXED [${tag}, p${f.paraIndex + 1}]: "${f.oldId}" → "${f.newId}"\x1b[0m`);
           } else {
-            console.log(`    \x1b[31mBARE DOC_ID [p${f.paraIndex + 1}]: "${f.oldId}" → "${f.newId}" (run with --fix to auto-resolve)\x1b[0m`);
+            console.log(`    \x1b[31m${tag} [p${f.paraIndex + 1}]: "${f.oldId}" → "${f.newId}" (run with --fix to auto-resolve)\x1b[0m`);
           }
         }
         totalErrors += result.errors.length;
@@ -429,23 +520,77 @@ function main() {
       if (hasFixes) allFixes.push({ slug: story.slug, fixes: result.fixes });
     }
 
-    // Apply fixes to stories.js
+    // Apply fixes to stories.js — anchor-based, per occurrence.
+    // Each fix carries an `anchor` field that is the full citation context
+    // (e.g. '"quote text" (oldId)' for quoted citations, or '(oldId)' for
+    // unquoted ones). The application searches for that exact anchor and
+    // replaces just the (oldId) inside it, leaving every other occurrence of
+    // the same id elsewhere in the paragraph untouched. This is what fixes
+    // the marrakech p15 case where the same bare doc_id was cited twice in
+    // the same paragraph for two different quotes — each citation now gets
+    // resolved independently to its correct sibling.
     if (autoFix && allFixes.length > 0) {
       let src = fs.readFileSync(STORIES_PATH, "utf8");
       let totalFixed = 0;
+      // Reload stories so paragraph indices match the current source on disk
+      const freshStories = loadArray(STORIES_PATH, "STORIES");
+      const storyBySlug = new Map(freshStories.map((s) => [s.slug, s]));
+
       for (const { slug, fixes } of allFixes) {
+        const story = storyBySlug.get(slug);
+        if (!story) continue;
+        // Group fixes by paragraph index, preserving order
+        const byPara = new Map();
         for (const f of fixes) {
-          // Replace bare ID with full ID in story body text and email_ids
-          const escaped = f.oldId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-          const re = new RegExp(`\\b${escaped}\\b(?!-)`, "g");
-          const before = src;
-          src = src.replace(re, f.newId);
-          if (src !== before) totalFixed++;
+          if (!byPara.has(f.paraIndex)) byPara.set(f.paraIndex, []);
+          byPara.get(f.paraIndex).push(f);
+        }
+        for (const [paraIndex, paraFixes] of byPara) {
+          const original = (story.body || [])[paraIndex];
+          if (original == null) continue;
+          let modified = original;
+          for (const f of paraFixes) {
+            if (!f.anchor) {
+              console.log(`    \x1b[31mWARNING: fix has no anchor — skipping (${f.oldId} → ${f.newId})\x1b[0m`);
+              continue;
+            }
+            // Build a new anchor with oldId replaced by newId.
+            // We replace inside the anchor string (not the full paragraph)
+            // so we know exactly which (oldId) we're touching.
+            const escaped = f.oldId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            const isSuffixed = /-\d+$/.test(f.oldId);
+            const tail = isSuffixed ? "(?!\\d)" : "(?!-)";
+            const re = new RegExp(`\\b${escaped}\\b${tail}`);
+            const newAnchor = f.anchor.replace(re, f.newId);
+            if (newAnchor === f.anchor) {
+              console.log(`    \x1b[31mWARNING: anchor did not contain ${f.oldId} (${slug} p${paraIndex + 1})\x1b[0m`);
+              continue;
+            }
+            // Find this exact anchor in the (possibly already-modified) paragraph
+            // and replace the first occurrence. Ordered fixes for the same anchor
+            // would need extra care; in practice anchors are unique per fix because
+            // each citation has its own quote.
+            if (modified.includes(f.anchor)) {
+              modified = modified.replace(f.anchor, newAnchor);
+            } else {
+              console.log(`    \x1b[31mWARNING: anchor not found in paragraph ${paraIndex + 1} of ${slug}\x1b[0m`);
+            }
+          }
+          if (modified !== original) {
+            const origJson = JSON.stringify(original);
+            const modJson = JSON.stringify(modified);
+            if (src.includes(origJson)) {
+              src = src.replace(origJson, modJson);
+              totalFixed++;
+            } else {
+              console.log(`    \x1b[31mWARNING: could not locate paragraph ${paraIndex + 1} of ${slug} in source\x1b[0m`);
+            }
+          }
         }
       }
       if (totalFixed > 0) {
         fs.writeFileSync(STORIES_PATH, src);
-        console.log(`\n\x1b[33mAuto-fixed ${totalFixed} bare doc_id(s) in stories.js\x1b[0m`);
+        console.log(`\n\x1b[33mAuto-fixed ${totalFixed} paragraph(s) in stories.js\x1b[0m`);
       }
     }
   }
