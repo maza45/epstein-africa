@@ -62,6 +62,72 @@ function getEmailsByDocId(docId) {
   return getDb().prepare("SELECT id FROM emails WHERE doc_id = ?").all(docId);
 }
 
+// Insert a new entry into a story's email_ids array in the source.
+// Returns the modified src. Locates the story by slug, finds the email_ids
+// array, and inserts the new id on its own line just before the closing `]`,
+// matching the indentation of existing entries.
+function insertEmailId(src, slug, newId) {
+  const slugRe = new RegExp(`slug:\\s*["']${slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`);
+  const slugMatch = slugRe.exec(src);
+  if (!slugMatch) return { src, ok: false, reason: `slug not found: ${slug}` };
+
+  // Find the next email_ids: [ after the slug
+  const fromSlug = src.indexOf("email_ids:", slugMatch.index);
+  if (fromSlug === -1) return { src, ok: false, reason: `email_ids not found for ${slug}` };
+  const openBracket = src.indexOf("[", fromSlug);
+  if (openBracket === -1) return { src, ok: false, reason: `[ not found after email_ids for ${slug}` };
+
+  // Find the matching closing ] (depth-tracked in case of nested brackets, though there shouldn't be any)
+  let depth = 1;
+  let closeBracket = -1;
+  for (let i = openBracket + 1; i < src.length; i++) {
+    if (src[i] === "[") depth++;
+    else if (src[i] === "]") {
+      depth--;
+      if (depth === 0) { closeBracket = i; break; }
+    }
+  }
+  if (closeBracket === -1) return { src, ok: false, reason: `unmatched [ for ${slug}` };
+
+  // Idempotency check: skip if id is already present in this array
+  const arrayContent = src.slice(openBracket, closeBracket);
+  if (new RegExp(`["']${newId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`).test(arrayContent)) {
+    return { src, ok: true, alreadyPresent: true };
+  }
+
+  // Detect indentation from an existing entry; default to 6 spaces
+  let entryIndent = "      ";
+  const entryMatch = arrayContent.match(/\n(\s+)["']/);
+  if (entryMatch) entryIndent = entryMatch[1];
+
+  // Find the start of the line containing the closing ]
+  let lineStart = closeBracket;
+  while (lineStart > 0 && src[lineStart - 1] !== "\n") lineStart--;
+
+  const insertion = `${entryIndent}"${newId}",\n`;
+  return { src: src.slice(0, lineStart) + insertion + src.slice(lineStart), ok: true };
+}
+
+// Walk a story's body and return the set of citation IDs that look like real
+// email IDs (matching the format conventions). Used by the email_ids
+// reconciliation step in --fix mode.
+function extractCitedIdsFromBody(story) {
+  const cited = new Set();
+  for (const para of story.body || []) {
+    const idRe = /\(([A-Za-z0-9_\-\.]+(?:\s*,\s*[A-Za-z0-9_\-\.]+)*)\)/g;
+    let m;
+    while ((m = idRe.exec(para)) !== null) {
+      const ids = m[1].split(/,\s*/).map((s) => s.trim());
+      for (const id of ids) {
+        if (id.length < 8) continue;
+        if (/^[a-z]/.test(id) && !id.startsWith("vol")) continue;
+        cited.add(id);
+      }
+    }
+  }
+  return cited;
+}
+
 // Mirror of pages/emails/[id].js getServerSideProps fallback chain.
 // Returns true if the requested id would resolve at runtime, false if it would 404.
 function emailIdResolves(reqId) {
@@ -588,9 +654,65 @@ function main() {
           }
         }
       }
+      // Reconcile email_ids: any id newly cited in the body that isn't in
+      // the story's email_ids array gets added. We do this by re-loading the
+      // (now-modified) source so paragraph indices match the new state, then
+      // walking each affected story's body to find citations missing from
+      // email_ids. Conservative — we ADD missing ids but never REMOVE
+      // existing ones (some stories intentionally keep context emails in
+      // email_ids that aren't directly quoted).
+      // Duplicate handling: if a content-identical row (same doc_id, same
+      // normalised body) is already in email_ids, skip the addition. This
+      // catches the bare-vs-suffixed duplicate-ingest case where the body
+      // cites e.g. `(vol*-pdf)` and email_ids already has `(vol*-pdf-3)`
+      // with identical content.
+      let totalIdsAdded = 0;
+      let totalIdsSkipped = 0;
       if (totalFixed > 0) {
+        // Write the body fixes first so loadArray sees them
         fs.writeFileSync(STORIES_PATH, src);
-        console.log(`\n\x1b[33mAuto-fixed ${totalFixed} paragraph(s) in stories.js\x1b[0m`);
+        const reloaded = loadArray(STORIES_PATH, "STORIES");
+        const reloadedBySlug = new Map(reloaded.map((s) => [s.slug, s]));
+
+        for (const { slug } of allFixes) {
+          const story = reloadedBySlug.get(slug);
+          if (!story) continue;
+          const cited = extractCitedIdsFromBody(story);
+          const existing = new Set(story.email_ids || []);
+          const toAdd = [...cited].filter((id) => !existing.has(id) && getEmail(id));
+          for (const id of toAdd) {
+            // Duplicate check: is there already an email_ids entry with the
+            // same doc_id and same normalised body content? If so, skip.
+            const newRow = getEmail(id);
+            const dupOf = (story.email_ids || []).find((existingId) => {
+              const eRow = getEmail(existingId);
+              return eRow
+                && eRow.doc_id === newRow.doc_id
+                && normalise(eRow.body || "") === normalise(newRow.body || "");
+            });
+            if (dupOf) {
+              totalIdsSkipped++;
+              console.log(`    \x1b[33mSKIPPED ${slug}: "${id}" is a content-duplicate of "${dupOf}" already in email_ids\x1b[0m`);
+              continue;
+            }
+            const result = insertEmailId(src, slug, id);
+            if (result.ok && !result.alreadyPresent) {
+              src = result.src;
+              totalIdsAdded++;
+              console.log(`    \x1b[33mADDED to ${slug} email_ids: "${id}"\x1b[0m`);
+            } else if (!result.ok) {
+              console.log(`    \x1b[31mWARNING: could not add ${id} to ${slug} email_ids — ${result.reason}\x1b[0m`);
+            }
+          }
+        }
+        // Re-write src after the email_ids insertions
+        if (totalIdsAdded > 0) {
+          fs.writeFileSync(STORIES_PATH, src);
+        }
+        const summary = `Auto-fixed ${totalFixed} paragraph(s) in stories.js`
+          + (totalIdsAdded > 0 ? `, added ${totalIdsAdded} email_ids entr${totalIdsAdded === 1 ? "y" : "ies"}` : "")
+          + (totalIdsSkipped > 0 ? `, skipped ${totalIdsSkipped} duplicate${totalIdsSkipped === 1 ? "" : "s"}` : "");
+        console.log(`\n\x1b[33m${summary}\x1b[0m`);
       }
     }
   }
