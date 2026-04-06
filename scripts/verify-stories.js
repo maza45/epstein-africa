@@ -486,6 +486,75 @@ function updateAuditLog(slug, emails, paragraphs) {
 }
 
 // ---------------------------------------------------------------------------
+// Deep audit — find silently-wrong citations that the main verifier accepts
+// ---------------------------------------------------------------------------
+//
+// The main quote check passes a citation if the cited row's body fuzzy-matches
+// the quote (80% word-in-order). That can pass cases where the cited row is
+// not actually the right message — e.g. the cited row is a long forwarded
+// chain that contains the quote text by accident, while a sibling under the
+// same doc_id has the quote as a clean exact match.
+//
+// This is the bug class that produced the 4 wrong-suffix citations in
+// mandelson and marrakech on 2026-04-03 (db7a9a1's buggy auto-fix). The
+// wrong-suffix detection in the main quote check catches the cases where the
+// cited row fails fuzzy too, but cases where the cited row passes fuzzy
+// without exact need this stronger check.
+//
+// Read-only — reports findings, never modifies anything. Run via --audit-deep.
+
+function runDeepAudit(stories) {
+  const suspects = [];
+  let totalCitations = 0;
+
+  for (const story of stories) {
+    for (let pi = 0; pi < (story.body || []).length; pi++) {
+      const para = story.body[pi];
+      const citations = extractCitations(para);
+      for (const { quote, ids } of citations) {
+        if (quote.length <= 10) continue;
+        for (const eid of ids) {
+          totalCitations++;
+          const cited = getEmail(eid);
+          if (!cited) continue;
+          // If the cited row is a strong (exact) match, skip — it's fine.
+          if (bodyContainsExact(cited.body, quote)) continue;
+          // If the cited row doesn't even fuzzy-match, the existing
+          // wrong-suffix detection in the main quote check would catch it.
+          if (!bodyContains(cited.body, quote)) continue;
+          // Cited row passes fuzzy but not exact. Look for siblings with exact match.
+          const siblings = getEmailsByDocId(cited.doc_id).filter((s) => s.id !== eid);
+          const exactSiblings = siblings.filter((s) => {
+            const full = getEmail(s.id);
+            return full && bodyContainsExact(full.body, quote);
+          });
+          if (exactSiblings.length === 0) continue;
+          suspects.push({
+            story: story.slug,
+            paragraph: pi + 1,
+            cited: eid,
+            quote: quote.slice(0, 80),
+            exactSiblings: exactSiblings.map((s) => s.id),
+          });
+        }
+      }
+    }
+  }
+
+  console.log(`Scanned ${totalCitations} citations across ${stories.length} stories.`);
+  console.log(`Found ${suspects.length} suspects where a sibling has an exact match while the cited row only fuzzy-matches:`);
+  console.log();
+  for (const s of suspects) {
+    console.log(`  \x1b[33m${s.story} [p${s.paragraph}]\x1b[0m`);
+    console.log(`    cited:    ${s.cited}`);
+    console.log(`    siblings: ${s.exactSiblings.join(", ")}`);
+    console.log(`    quote:    "${s.quote}..."`);
+    console.log();
+  }
+  return suspects.length;
+}
+
+// ---------------------------------------------------------------------------
 // CLI
 // ---------------------------------------------------------------------------
 
@@ -496,6 +565,7 @@ function main() {
   const showStatus = args.includes("--status");
   const forceLog = args.includes("--force-log");
   const autoFix = args.includes("--fix");
+  const auditDeep = args.includes("--audit-deep");
 
   let stories, people;
   try {
@@ -524,6 +594,18 @@ function main() {
     console.log();
     console.log(`${audited} audited, ${unaudited} unverified, ${stories.length} total.`);
     process.exit(0);
+  }
+
+  // --audit-deep: read-only deep audit. For every cited row, check if a
+  // sibling under the same doc_id has a strictly stronger (exact) match for
+  // the quote. Catches the bug class where the cited row is a long forwarded
+  // chain that fuzzy-matches the quote by accident, while a clean sibling
+  // has the actual quoted text. This is the same bug class that produced
+  // the wrong-suffix citations on 2026-04-03 (db7a9a1).
+  // Run periodically as a safety net, especially after bulk content edits.
+  if (auditDeep) {
+    const suspectCount = runDeepAudit(stories);
+    process.exit(suspectCount > 0 ? 1 : 0);
   }
 
   // --force-log <slug>: manually mark a story as audited (for human-verified edge cases)
