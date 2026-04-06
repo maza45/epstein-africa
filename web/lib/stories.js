@@ -226,7 +226,7 @@ export const STORIES = [
       },
       {
         title: "Epstein to Karim Wade, June 2011: \"Gates now wants to send a team to you to organize municipal finance\"",
-        url: "/emails/EFTA01863799-0",
+        url: "/emails/EFTA01863799",
         source: "DOJ email archive",
       },
     ],
