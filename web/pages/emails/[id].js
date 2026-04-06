@@ -58,6 +58,21 @@ export async function getServerSideProps({ params }) {
       )
       .get(params.id);
   }
+  // Fallback: stale citations may append -N to a bare doc_id whose row has id == doc_id.
+  // Strip a trailing -<digits> and retry against both id and doc_id.
+  if (!email) {
+    const m = params.id.match(/^(.+)-\d+$/);
+    if (m) {
+      const stripped = m[1];
+      email = db
+        .prepare(
+          `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
+                  countries, release_batch, epstein_is_sender, all_participants, body
+           FROM emails WHERE id = ? OR doc_id = ? ORDER BY id LIMIT 1`
+        )
+        .get(stripped, stripped);
+    }
+  }
   if (!email) return { notFound: true };
   const senderProfileSlug = findSenderSlug(email.sender);
   return { props: { ssrEmail: email, senderProfileSlug } };
