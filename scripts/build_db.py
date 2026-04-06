@@ -5,7 +5,6 @@ This script rebuilds the DB from africa.parquet, destroying all manually
 inserted rows and all Tier 1 ingest data. Use instead:
 
     python scripts/ingest_parquet.py --tier1    # Populate from full parquet
-    sqlite3 web/data/epstein_africa.db < scripts/manual_inserts.sql  # Manual rows
     python scripts/export_manual_rows.py --export  # Back up manual rows
 
 See scripts/ingest_parquet.py for the current ingest pipeline.
