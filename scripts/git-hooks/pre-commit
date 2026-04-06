@@ -1,71 +1,13 @@
 #!/bin/bash
-# Pre-commit hook: verify story/profile citations against the DB
-# Auto-fixes bare doc_ids when unambiguous (single match in DB)
-# Only blocks if an AUDITED story fails or ambiguous bare doc_ids remain
-#
-# IMPORTANT: do not "simplify" this hook without understanding the two bugs
-# it had on 2026-04-03 to 2026-04-06:
-#   1. STATUS=$? after a pipeline (`node ... | tee ...`) captures tee's exit
-#      code (always 0), not node's. Without `set -o pipefail`, the regression
-#      check below was dead code and never blocked anything. Use ${PIPESTATUS[0]}
-#      or pipefail. We use pipefail here.
-#   2. The verifier prints failing slugs as `  \x1b[31m✗\x1b[0m slug` with
-#      ANSI color codes. The previous regex `^  ✗` did not strip color codes,
-#      so the FAILING list was always empty. Strip ANSI before grepping.
-# See memory/project_email_404_bug_class.md and the Apr 6 re-examination
-# session for the full incident write-up.
+# Pre-commit hook: verify story and profile citations against the DB.
+# Runs scripts/verify-stories.js when stories.js or people.js is staged.
+# Blocks the commit on any error. Reporter only — no auto-fix.
 
-set -o pipefail
+set -e
 
-STORIES_CHANGED=$(git diff --cached --name-only | grep -c "web/lib/stories.js")
-PEOPLE_CHANGED=$(git diff --cached --name-only | grep -c "web/lib/people.js")
+CHANGED=$(git diff --cached --name-only | grep -E '^web/lib/(stories|people)\.js$' || true)
 
-if [ "$STORIES_CHANGED" -gt 0 ] || [ "$PEOPLE_CHANGED" -gt 0 ]; then
+if [ -n "$CHANGED" ]; then
     echo "Running story verification..."
-
-    # First pass: auto-fix bare doc_ids and wrong-suffix citations.
-    # Output is shown to the user so they see what got fixed.
-    node scripts/verify-stories.js --fix 2>&1
-    FIX_STATUS=${PIPESTATUS[0]}
-
-    # If stories.js was modified by --fix, re-stage it
-    if ! git diff --quiet web/lib/stories.js; then
-        echo "Re-staging stories.js after auto-fix..."
-        git add web/lib/stories.js
-    fi
-
-    # Second pass: WITHOUT --fix, parse the failing slug list cleanly.
-    # The first pass's output mixes "FIXED" entries with real errors and prints
-    # ✗ for any story that had ANY entries (even fully-fixed ones), so parsing
-    # it for blocking decisions is misleading. The second pass on the now-fixed
-    # source produces an unambiguous failure list.
-    node scripts/verify-stories.js 2>&1 | tee /tmp/verify-output.txt > /dev/null
-    CHECK_STATUS=${PIPESTATUS[0]}
-
-    if [ "$CHECK_STATUS" -ne 0 ]; then
-        # Strip ANSI color codes before parsing the output, otherwise
-        # `^  ✗ slug` is `^  \x1b[31m✗\x1b[0m slug` and the regex misses.
-        OUTPUT_PLAIN=$(sed 's/\x1b\[[0-9;]*m//g' /tmp/verify-output.txt)
-
-        AUDIT_LOG="web/data/story-audit.json"
-        if [ -f "$AUDIT_LOG" ]; then
-            FAILING=$(echo "$OUTPUT_PLAIN" | grep -E "^  ✗ " | sed 's/^  ✗ //' | awk '{print $1}')
-            BLOCK=0
-            for slug in $FAILING; do
-                if grep -q "\"$slug\"" "$AUDIT_LOG" 2>/dev/null; then
-                    echo "BLOCKING: audited story '$slug' is now failing!"
-                    BLOCK=1
-                fi
-            done
-            if [ "$BLOCK" -eq 1 ]; then
-                echo ""
-                echo "An audited story has regressed. Fix before committing."
-                rm -f /tmp/verify-output.txt
-                exit 1
-            fi
-        fi
-        echo ""
-        echo "Warning: unaudited stories have quote mismatches (not blocking)."
-    fi
-    rm -f /tmp/verify-output.txt
+    node scripts/verify-stories.js
 fi
