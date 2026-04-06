@@ -31,48 +31,13 @@ function findSenderSlug(sender) {
 
 export async function getServerSideProps({ params }) {
   const db = getDb();
-  let email = db
+  const email = db
     .prepare(
       `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
               countries, release_batch, epstein_is_sender, all_participants, body
        FROM emails WHERE id = ?`
     )
     .get(params.id);
-  // Fallback: bare doc_id without suffix → try doc_id-0
-  if (!email) {
-    email = db
-      .prepare(
-        `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
-                countries, release_batch, epstein_is_sender, all_participants, body
-         FROM emails WHERE id = ?`
-      )
-      .get(`${params.id}-0`);
-  }
-  // Fallback: try matching by doc_id (first result)
-  if (!email) {
-    email = db
-      .prepare(
-        `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
-                countries, release_batch, epstein_is_sender, all_participants, body
-         FROM emails WHERE doc_id = ? ORDER BY id LIMIT 1`
-      )
-      .get(params.id);
-  }
-  // Fallback: stale citations may append -N to a bare doc_id whose row has id == doc_id.
-  // Strip a trailing -<digits> and retry against both id and doc_id.
-  if (!email) {
-    const m = params.id.match(/^(.+)-\d+$/);
-    if (m) {
-      const stripped = m[1];
-      email = db
-        .prepare(
-          `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
-                  countries, release_batch, epstein_is_sender, all_participants, body
-           FROM emails WHERE id = ? OR doc_id = ? ORDER BY id LIMIT 1`
-        )
-        .get(stripped, stripped);
-    }
-  }
   if (!email) return { notFound: true };
   const senderProfileSlug = findSenderSlug(email.sender);
   return { props: { ssrEmail: email, senderProfileSlug } };
