@@ -5,10 +5,11 @@
 # (which is tracked in the repo) instead of the default .git/hooks/ (which
 # is per-clone and would otherwise miss the project's pre-commit verifier).
 #
-# The pre-commit hook itself runs scripts/verify-stories.js --fix when
-# web/lib/stories.js or web/lib/people.js are staged. It auto-fixes bare
-# doc_ids and wrong-suffix citations, and blocks commits when an audited
-# story regresses.
+# The pre-commit hook itself runs scripts/verify-stories.js when
+# web/lib/stories.js or web/lib/people.js are staged. Reporter only:
+# checks that every cited email_id exists, every body quote appears in
+# its cited row, and every news_links URL resolves. Blocks the commit
+# on any error. No auto-fix, no audit log.
 #
 # Why this exists as a separate file (rather than living in .git/hooks):
 # .git/ is per-clone and not tracked by git, so any hook installed there
