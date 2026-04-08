@@ -155,6 +155,12 @@ export default function MapPage({ countryData, countryCount }) {
     // Detect touch device — no tooltip on mobile
     const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
+    // A country is "covered" if it has any emails, stories, or people.
+    // Previously this gated only on emailCount > 0, which made story-only
+    // countries (e.g. Equatorial Guinea after the 2026-04-08 lead) invisible.
+    const hasContent = (data) =>
+      data && (data.emailCount > 0 || data.storyCount > 0 || data.peopleCount > 0);
+
     // Draw countries
     const paths = g.selectAll("path")
       .data(geoData.features)
@@ -163,7 +169,8 @@ export default function MapPage({ countryData, countryCount }) {
       .attr("fill", (d) => {
         const name = d.properties.name;
         const data = countryData[name];
-        if (!data || data.emailCount === 0) return "#0d1117";
+        if (!hasContent(data)) return "#0d1117";
+        if (data.emailCount === 0) return "#5a4a1a"; // story-only fallback (dim gold)
         return colorScale(data.emailCount);
       })
       .attr("stroke", "#2a3a4a")
@@ -171,12 +178,12 @@ export default function MapPage({ countryData, countryCount }) {
       .attr("cursor", (d) => {
         const name = d.properties.name;
         const data = countryData[name];
-        return data && data.emailCount > 0 ? "pointer" : "default";
+        return hasContent(data) ? "pointer" : "default";
       })
       .on("click", (event, d) => {
         const name = d.properties.name;
         const data = countryData[name];
-        if (data && data.emailCount > 0) {
+        if (hasContent(data)) {
           handleSelect(name);
           g.selectAll("path")
             .attr("stroke", "#2a3a4a")
@@ -195,7 +202,7 @@ export default function MapPage({ countryData, countryCount }) {
         .on("mouseenter", function (event, d) {
           const name = d.properties.name;
           const data = countryData[name];
-          if (data && data.emailCount > 0) {
+          if (hasContent(data)) {
             d3.select(this).attr("stroke", "#c9a227").attr("stroke-width", 1.5);
             tooltip
               .style("display", "block")
@@ -223,7 +230,7 @@ export default function MapPage({ countryData, countryCount }) {
       { name: "Comoros", lon: 43.87, lat: -11.87 },
       { name: "Cape Verde", lon: -23.63, lat: 16.0 },
       { name: "Sao Tome and Principe", lon: 6.61, lat: 0.19 },
-    ].filter((d) => countryData[d.name] && countryData[d.name].emailCount > 0);
+    ].filter((d) => hasContent(countryData[d.name]));
 
     const islandDots = g.selectAll(".island-dot")
       .data(ISLANDS)
@@ -232,7 +239,10 @@ export default function MapPage({ countryData, countryCount }) {
       .attr("cx", (d) => projection([d.lon, d.lat])[0])
       .attr("cy", (d) => projection([d.lon, d.lat])[1])
       .attr("r", 5)
-      .attr("fill", (d) => colorScale(countryData[d.name].emailCount))
+      .attr("fill", (d) => {
+        const data = countryData[d.name];
+        return data.emailCount > 0 ? colorScale(data.emailCount) : "#5a4a1a";
+      })
       .attr("stroke", "#2a3a4a")
       .attr("stroke-width", 0.5)
       .attr("cursor", "pointer")

@@ -39,16 +39,16 @@ const PEOPLE_PATH = path.join(__dirname, "..", "web", "lib", "people.js");
 const AFRICAN_COUNTRIES = new Set([
   "Africa",
   "Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi",
-  "Cabo Verde", "Cameroon", "Central African Republic", "Chad", "Comoros",
-  "Congo", "DRC", "Côte d'Ivoire", "Ivory Coast", "Djibouti", "Egypt",
+  "Cabo Verde", "Cape Verde", "Cameroon", "Central African Republic", "Chad",
+  "Comoros", "Congo", "DRC", "Côte d'Ivoire", "Ivory Coast", "Djibouti", "Egypt",
   "Equatorial Guinea", "Eritrea", "Eswatini", "Ethiopia", "Gabon",
   "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Kenya", "Lesotho",
   "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania",
   "Mauritius", "Morocco", "Mozambique", "Namibia", "Niger", "Nigeria",
-  "Rwanda", "São Tomé and Príncipe", "Senegal", "Seychelles",
-  "Sierra Leone", "Somalia", "Somaliland", "South Africa", "South Sudan",
-  "Sudan", "Tanzania", "Togo", "Tunisia", "Uganda", "Western Sahara",
-  "Zambia", "Zimbabwe",
+  "Rwanda", "São Tomé and Príncipe", "Sao Tome and Principe", "Senegal",
+  "Seychelles", "Sierra Leone", "Somalia", "Somaliland", "South Africa",
+  "South Sudan", "Sudan", "Tanzania", "Togo", "Tunisia", "Uganda",
+  "Western Sahara", "Zambia", "Zimbabwe",
 ]);
 
 // ---------------------------------------------------------------------------
