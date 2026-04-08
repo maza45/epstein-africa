@@ -466,6 +466,15 @@ export const PEOPLE = [
     bodySearchTerms: ["goertzel", "icog"],
   },
   {
+    slug: "greg-wyler",
+    name: "Greg Wyler",
+    title: "Founder, O3b Networks and OneWeb (satellite connectivity)",
+    countries: ["Africa"],
+    bio: "Greg Wyler is the founder of satellite internet ventures O3b Networks (later acquired by SES) and OneWeb, both focused on bringing connectivity to underserved markets including across Africa. He appears in Epstein's production archive in November 2014, when Epstein forwarded him a news article reporting that satellite operator Thuraya Telecommunications had launched mobile satellite services with Airtel Africa across twelve African countries, including Gabon, Ghana, Kenya, Zambia, Congo Republic, and the Democratic Republic of Congo. Wyler's reply dismissed the offering: 'Great! Its a crappy crappy service, BT its better than nothing!'",
+    searchTerms: ["greg wyler", "wyler", "o3b", "oneweb"],
+    bodySearchTerms: ["wyler"],
+  },
+  {
     slug: "cheikh-kante",
     name: "Cheikh Kante",
     title: "Chairman of Senegal Ports (2012)",
