@@ -1582,6 +1582,31 @@ export const STORIES = [
       },
     ],
   },
+  {
+    slug: "senegal-macky-pivot-dakar-port",
+    title: "Eleven Hours in Dakar: Sultan's Pivot from Wade to Macky Sall",
+    summary:
+      "After Macky Sall won Senegal's 2012 election, Sultan Bin Sulayem flew to Dakar at dawn, met the new president and prime minister in person, and kept Karim Wade at phone-call distance. Within weeks the Chairman of the Port of Dakar was chasing him for the summary of a bank project Sultan had pitched in the room with Macky.",
+    countries: ["Senegal"],
+    date_range: "2012",
+    body: [
+      "March 26, 2012. Macky Sall wins the Senegalese runoff. The same day, Sultan Bin Sulayem forwards Epstein the BBC report on the result (EFTA01770297-0). Wade had been Epstein's principal Senegal access for two years. Wade was now out.",
+      "Three weeks later Sultan sent a brief: \"1-there is a problem between Karim and the new prime minister Karim has not handed his ministerial responsibility to the new ministers. 2- there is a big question marks on some of the financial transactions that Karim has entered in\" (EFTA02004987-0). DP World had its own political reporting on Senegal. Karim's legal exposure was visible from Dubai before it was visible from Dakar.",
+      "May 15, 2012. Sultan flew into Dakar at 7am. He emailed Epstein from the airport on his way out: \"I am in Dakar had an excellent meeting with both new president and prime minister spoke to Karim on phone but didn't have time to meet him I arrived at 7 am and went into several meetings now Ifs 6:46 pm I am heading to airport\" (vol00009-efta00671985-pdf-0). Eleven hours, two heads of state, one phone call to Karim.",
+      "At those meetings Sultan pitched a bank project. Two weeks later Cheikh Kante, Chairman of the Port of Dakar, emailed DP World CEO Mohammed Sharaf and DP World Africa executive Guido Heremans, chasing him for the summary: \"I am still waiting for the summary of the bank project advised by the Sultan during our meeting with the President Macky Sall at Dakar. Please don't hesitate to send me list of pending matters between DP World and Dakar port including new ideas of projects\" (EFTA01882968-0). Sultan added a wrapper for Epstein on the same forward: \"I think me and you should visit Senegal again\" (EFTA01882968-0). Epstein replied: \"lets talk about it\" (EFTA01883293-0).",
+      "A year earlier Epstein had built a Senegal banking pitch with Karim Wade as the political vehicle, JPMorgan as the trading consultant, and the Gates Foundation as the development cover. The 2012 version replaced Wade with Macky Sall and JPMorgan with DP World. The bank stayed.",
+      "That November Sultan forwarded Epstein an internal DP World note from Hussain Ishaq Hassan Ibrahim to Joost Kruijning, CC Anil Wats: \"Former president's son summoned by military police over corruption claims\" (EFTA01977019-0). It was the same DP World Africa team that had hosted Cheikh Kante in Dubai earlier in the year. Karim Wade was arrested five months later.",
+    ],
+    email_ids: [
+      "EFTA01770297-0",
+      "EFTA02004987-0",
+      "vol00009-efta00671985-pdf-0",
+      "EFTA01882968-0",
+      "EFTA01883293-0",
+      "EFTA01977019-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
