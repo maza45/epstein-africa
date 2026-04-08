@@ -96,33 +96,44 @@ print(f"  production doc_ids: {len(prod_docids)}")
 # Most "needs ingest" leads from earlier passes turned out to be redundant
 # because their content was already in PROD via a different doc_id.
 #
-# Fingerprint = normalized middle-150-char slice of the body, OCR-tolerant.
-# Checked via Python set membership at O(1) per row.
+# Fingerprint = WORD-based 12-gram shingles, OCR-tolerant. The original
+# char-window fingerprint missed cases where OCR-broken chars (e.g.
+# "publ=c" vs "pu=lic" vs "public") shifted the byte position of the
+# slice. Word-shingle fingerprints survive single-character OCR breaks
+# because individual broken chars become extra "words" but the 12-gram
+# context is preserved 11/12 times within each window.
 
-def content_fingerprint(body):
-    """Stable middle-slice fingerprint, OCR-tolerant."""
+def content_fingerprints(body):
+    """Yields a set of word-shingle fingerprints for `body`. OCR-tolerant.
+    Returns empty set if the body is too short to fingerprint."""
     if not body or len(body) < 50:
-        return None
-    norm = re.sub(r"[^a-z0-9]", " ", body.lower())
-    norm = re.sub(r"\s+", " ", norm).strip()
-    if len(norm) < 50:
-        return None
-    if len(norm) < 200:
-        return norm[:150]
-    return norm[50:200]
+        return frozenset()
+    # Aggressive normalization: strip MIME `=XX` artifacts AND lone `=`
+    # before tokenizing, since OCR can mangle either form.
+    norm = re.sub(r"=[0-9a-f]{2}", "", body, flags=re.IGNORECASE)
+    norm = re.sub(r"=", "", norm)
+    norm = re.sub(r"[^a-z0-9 ]", " ", norm.lower())
+    words = norm.split()
+    if len(words) < 12:
+        return frozenset()
+    # Build a set of 12-gram word shingles. Stride by 4 to keep the set
+    # small but still robust to single-word OCR breaks.
+    shingles = set()
+    for i in range(0, len(words) - 11, 4):
+        shingles.add(" ".join(words[i:i+12]))
+    return frozenset(shingles)
 
-print("  building PROD content fingerprints...")
+print("  building PROD content fingerprints (word shingles)...")
 prod_fingerprints = set()
 for r in prod.execute("SELECT body FROM emails WHERE body IS NOT NULL"):
-    fp = content_fingerprint(r[0])
-    if fp:
+    for fp in content_fingerprints(r[0]):
         prod_fingerprints.add(fp)
-print(f"  PROD fingerprints: {len(prod_fingerprints)}")
+print(f"  PROD shingle fingerprints: {len(prod_fingerprints)}")
 
 def content_already_in_prod(body):
-    """True if a fingerprint of `body` matches any PROD body."""
-    fp = content_fingerprint(body)
-    return fp is not None and fp in prod_fingerprints
+    """True if ANY shingle of `body` matches any PROD shingle."""
+    fps = content_fingerprints(body)
+    return any(fp in prod_fingerprints for fp in fps)
 
 # Pre-compute the set of research doc_ids whose body content is already in
 # PROD via a sibling doc_id. Algorithms 2/3/5 use this alongside prod_docids
