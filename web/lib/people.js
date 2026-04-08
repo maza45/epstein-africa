@@ -465,6 +465,15 @@ export const PEOPLE = [
     searchTerms: ["goertzel", "ben goertzel"],
     bodySearchTerms: ["goertzel", "icog"],
   },
+  {
+    slug: "cheikh-kante",
+    name: "Cheikh Kante",
+    title: "Chairman of Senegal Ports (2012)",
+    countries: ["Senegal"],
+    bio: "Senegalese official identified by Sultan Bin Sulayem to Epstein in June 2012 as Chairman of Senegal's ports. He attended a meeting in Dakar with Sultan and the newly elected President Macky Sall where Sultan pitched a banking project wrapped around DP World's operations at the Port of Dakar. Kante then visited Dubai as a DP World guest and on June 1, 2012 wrote to DP World CEO Mohammed Sharaf and Africa executive Guido Heremans chasing the project summary. He signed his message 'Dr Cheikh Kanto', a variant of Kante that appears in the original message body. Sultan forwarded the chain to Epstein the following day with the line 'I think me and you should visit Senegal again', and Epstein replied: 'lets talk about it'.",
+    searchTerms: ["cheikh kante", "kante", "cheikh kanto", "kanto"],
+    bodySearchTerms: ["cheikh kante", "kante"],
+  },
 ];
 
 export function getPersonBySlug(slug) {
