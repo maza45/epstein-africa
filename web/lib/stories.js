@@ -1583,6 +1583,27 @@ export const STORIES = [
     ],
   },
   {
+    slug: "equatorial-guinea-trip-plan",
+    title: "Malabo or Bata: Epstein's Equatorial Guinea Trip Plan",
+    summary:
+      "In September 2011 Epstein asked his flight team to plan a 14-leg trip with Equatorial Guinea as the African pivot before flying to his Caribbean island. When the flight desk asked which Equatorial Guinea city, his iPhone autocorrected the answer. Two years later Larry Summers asked him from an African economic forum if he knew the president of Equatorial Guinea, on a list of six African heads of state.",
+    countries: ["Equatorial Guinea"],
+    date_range: "2011–2013",
+    body: [
+      "September 26, 2011. Epstein wrote his flight team: \"It would be helpful if you both created a flight plan and approx cost breakdown for following itinerary and do it both in g2 and 727. paris, marrakesh, dakar senegal, abijan ivory coast. equatorial guinea, djibouti, dubai, baku, astana kazakhstan, moscow minsk vilnius, riga, new york\" (EFTA01857576-0). A second version followed: \"2. same as above but after equatorial guinea, fly straight to virgin islands\" (EFTA01857576-0). Equatorial Guinea was the African door to his Caribbean island.",
+      "The flight desk needed a more specific answer. The next day they replied: \"Which city in Equatorial Guinea do you need\" (EFTA01774115-0). Epstein's iPhone reply was \"Batavia\" (EFTA01774115-0). The desk pushed back: \"That does not come up in any searches\", then \"do you mean Bata?\" (EFTA01775072-0). Epstein: \"Yes\". Bata is the second city of Equatorial Guinea, on the mainland; Malabo, the capital, sits on the island of Bioko. The choice between them was operationally specific. Epstein wanted the mainland.",
+      "Whether the trip happened the archive does not say. The plan is the document.",
+      "June 15, 2013. Larry Summers wrote Epstein from an event: \"Speaking at an African Econ forum in Gabon\" and asked, \"Do you know president? Or of Senegal Congo cent aft republic Equatorial Guinea Cameroon Angola?\" (EFTA02519820-0). The former US Treasury Secretary treated Epstein as a one-stop African presidential rolodex and named six heads of state. Equatorial Guinea was on the list.",
+    ],
+    email_ids: [
+      "EFTA01857576-0",
+      "EFTA01774115-0",
+      "EFTA01775072-0",
+      "EFTA02519820-0",
+    ],
+    news_links: [],
+  },
+  {
     slug: "senegal-macky-pivot-dakar-port",
     title: "Eleven Hours in Dakar: Sultan's Pivot from Wade to Macky Sall",
     summary:
