@@ -483,6 +483,15 @@ export const PEOPLE = [
     searchTerms: ["cheikh kante", "kante", "cheikh kanto", "kanto"],
     bodySearchTerms: ["cheikh kante", "kante"],
   },
+  {
+    slug: "adnan-mahmood",
+    name: "Adnan Mahmood",
+    title: "Officer, Group Chairman & CEO Office, DP World",
+    countries: ["Africa"],
+    bio: "Adnan Mahmood is an Officer in the Group Chairman & CEO Office at DP World, based at JAFZA 17, 6th Floor, Jebel Ali Free Zone, Dubai. He appears in Epstein's production archive as the operational coordinator who arranged Sultan Bin Sulayem's June 2018 meeting with Jide Zeitlin (chair of the Nigerian Sovereign Investment Authority) at DP World headquarters in Dubai, to discuss the Badagry/Lekki ports negotiation that Epstein had brokered. He wrote to Jide directly: 'please advise if Tuesday 19th June (around 10 am) is convenient for you to meet in our headquarters (DP World, JAFZA 17, 6th Floor, Jebel Ali Free Zone) in Dubai.'",
+    searchTerms: ["adnan mahmood"],
+    bodySearchTerms: ["adnan mahmood"],
+  },
 ];
 
 export function getPersonBySlug(slug) {
