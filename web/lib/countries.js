@@ -152,7 +152,10 @@ const COUNTRY_KEYWORDS = {
   "swaziland": "Eswatini",
   "mbabane": "Eswatini",
   "lesotho": "Lesotho",
-  "maseru": "Lesotho",
+  // "maseru" deliberately omitted: 6/6 matches in PROD are the "Maseru"
+  // shell company in the marrakech-bin-ennakhil property deal
+  // (alongside Rilton, Khan Stiftung, Arcana, etc), zero genuine Lesotho
+  // capital references. The "lesotho" keyword still catches the country.
   "malawi": "Malawi",
   "lilongwe": "Malawi",
   "blantyre": "Malawi",
@@ -183,8 +186,38 @@ const COUNTRY_KEYWORDS = {
   "africa": "Africa",
 };
 
+// Per-keyword false-positive filters. Each filter receives the body text
+// and the regex match index, and returns true if the match represents a
+// genuine country reference (keep) or false if it's a known false positive
+// pattern (skip). When a filter is defined for a keyword, detectCountries
+// iterates through ALL matches in the body and accepts the keyword's
+// country tag if ANY match passes the filter.
+//
+// This lets us keep keywords that are genuine country/city names but also
+// happen to be common first names or OCR-mangled versions of other words,
+// without losing the true positives.
+const KEYWORD_FILTERS = {
+  // "chad" is also a common American first name. Skip when followed by
+  // whitespace + a capitalized surname pattern (e.g. "Chad Wolf",
+  // "Chad Daybell", "Chad Higdon"). Keep when followed by comma, lowercase,
+  // or sentence punctuation (the country-list / preposition contexts).
+  "chad": (text, matchEnd) => {
+    const after = text.slice(matchEnd, matchEnd + 30);
+    return !/^\s+[A-Z][a-z]+/.test(after);
+  },
+  // "lome" is consistently OCR-mangled from "Lorne" in references to
+  // "Lorne Michaels" (SNL producer). Skip when followed by whitespace
+  // + "Michaels". Keep all other usages (e.g. "Lome', Togo", "city called
+  // lome").
+  "lome": (text, matchEnd) => {
+    const after = text.slice(matchEnd, matchEnd + 15);
+    return !/^\s+Michaels/i.test(after);
+  },
+};
+
 const _patterns = Object.entries(COUNTRY_KEYWORDS).map(([kw, country]) => ({
-  re: new RegExp("\\b" + kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i"),
+  kw,
+  re: new RegExp("\\b" + kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "gi"),
   country,
 }));
 
@@ -196,8 +229,17 @@ const _patterns = Object.entries(COUNTRY_KEYWORDS).map(([kw, country]) => ({
 export function detectCountries(text) {
   if (!text) return "";
   const seen = {};
-  for (const { re, country } of _patterns) {
-    if (re.test(text)) seen[country] = true;
+  for (const { kw, re, country } of _patterns) {
+    re.lastIndex = 0;
+    const filter = KEYWORD_FILTERS[kw];
+    let m;
+    while ((m = re.exec(text)) !== null) {
+      const matchEnd = m.index + m[0].length;
+      if (!filter || filter(text, matchEnd)) {
+        seen[country] = true;
+        break; // one passing match is enough
+      }
+    }
   }
   return Object.keys(seen).join(", ");
 }
