@@ -13,7 +13,8 @@
  *      cited email's body.
  *   3. Every news_links[].url that points to /emails/<id> resolves via the
  *      single canonical id lookup.
- *   4. Profile entries have a slug and name.
+ *   4. Every country in story `countries` array is African (Africa-only rule).
+ *   5. Profile entries have a slug and name.
  *
  * Exit code 0 = all pass, 1 = failures found.
  *
@@ -30,6 +31,25 @@ const Database = require(path.join(__dirname, "..", "web", "node_modules", "bett
 const DB_PATH = path.join(__dirname, "..", "web", "data", "epstein_africa.db");
 const STORIES_PATH = path.join(__dirname, "..", "web", "lib", "stories.js");
 const PEOPLE_PATH = path.join(__dirname, "..", "web", "lib", "people.js");
+
+// Africa-only rule: story `countries` arrays must contain only African
+// values (or the generic "Africa" tag). Non-African mentions in body prose
+// are fine — this set only constrains the filter array. See
+// memory/feedback_africa_countries_only.md for the rationale.
+const AFRICAN_COUNTRIES = new Set([
+  "Africa",
+  "Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi",
+  "Cabo Verde", "Cameroon", "Central African Republic", "Chad", "Comoros",
+  "Congo", "DRC", "Côte d'Ivoire", "Ivory Coast", "Djibouti", "Egypt",
+  "Equatorial Guinea", "Eritrea", "Eswatini", "Ethiopia", "Gabon",
+  "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Kenya", "Lesotho",
+  "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania",
+  "Mauritius", "Morocco", "Mozambique", "Namibia", "Niger", "Nigeria",
+  "Rwanda", "São Tomé and Príncipe", "Senegal", "Seychelles",
+  "Sierra Leone", "Somalia", "Somaliland", "South Africa", "South Sudan",
+  "Sudan", "Tanzania", "Togo", "Tunisia", "Uganda", "Western Sahara",
+  "Zambia", "Zimbabwe",
+]);
 
 // ---------------------------------------------------------------------------
 // Load stories.js / people.js by stripping `export` and running in a vm sandbox
@@ -162,7 +182,16 @@ function verifyStory(story) {
     }
   }
 
-  // 4. Summary quotes (same rule).
+  // 4. Country tags must be African (Africa-only rule).
+  for (const country of story.countries || []) {
+    if (!AFRICAN_COUNTRIES.has(country)) {
+      errors.push(
+        `NON-AFRICAN COUNTRY: "${country}" in countries[] (Africa-only rule)`
+      );
+    }
+  }
+
+  // 5. Summary quotes (same rule as body quotes).
   if (story.summary) {
     for (const { quote, ids } of extractCitations(story.summary)) {
       if (quote.length <= 10) continue;
