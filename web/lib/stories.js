@@ -1652,6 +1652,28 @@ export const STORIES = [
     ],
     news_links: [],
   },
+  {
+    slug: "conover-libya-access",
+    title: "Bill Conover Offered Epstein \"Total Access\" to Post-Gaddafi Libya",
+    summary:
+      "In late 2011, a Dubai-based fixer named Bill Conover pitched Epstein on post-Gaddafi Libya access and dealmaking. Epstein engaged quickly, calling back the same night and taking a breakfast meeting two weeks later. By March 2012 the thread had advanced to a stronger partner: the Al Otaiba group from Abu Dhabi, who had bankrolled the rebellion.",
+    countries: ["Libya"],
+    date_range: "2011-2012",
+    body: [
+      "On November 27, 2011, Bill Conover emailed Epstein: \"We have total access to the new gov in Libya for all business. They gave me an opportunity. No capital is required and substantial fees can be made with a few introductions. I need to discuss it in private. It's urgent\" (EFTA01846653-1). Epstein replied from his iPhone: \"I tried calling\" (EFTA01846653-0). Conover wrote back: \"Thanks. I put my phone on silent at night. Please call again\" (vol00009-efta00925160-pdf-0). Two weeks later, on December 12, Epstein's schedule read: \"8:30 AM: Breakfast with Bill Conover.\" The same day's calendar listed Nina Keita at 10:30 and Sultan Bin Sulayem tentative at 3:30 (vol00009-efta00422821-pdf-0).",
+      "The day before the breakfast, Conover sent links to his partners' Dubai companies: Wilshire Foods, Tanmia Properties, MEC Telematik. The principal entrepreneur was from Misrata. \"His family is in Libya and one of the main business families. They were in the thick of things across the board in Libya and came out on top\" (EFTA02003472-0).",
+      "Three months later, on March 6, 2012, Conover wrote again. He had upgraded. \"We're dealing with the Saad-Al Otaiba group on some potential deals in Libya,\" he told Epstein. The Al Otaibas had \"helped start the NTC of Libya and were principal financial sponsors of the rebellion.\" They had already \"placed approx $1B in a bank they own in Libya,\" were taking control of the national phone company, and wanted partners for auto distribution (GM, Caterpillar, Mercedes), food production, and deep-water drilling with Libya's National Oil Company. \"One of the Al Otaibas is a current ambassador to the US\" (EFTA01840044-0). Whether Epstein acted on any of this is not established by the archive.",
+    ],
+    email_ids: [
+      "EFTA01846653-0",
+      "EFTA01846653-1",
+      "vol00009-efta00925160-pdf-0",
+      "vol00009-efta00422821-pdf-0",
+      "EFTA02003472-0",
+      "EFTA01840044-0",
+    ],
+    news_links: [],
+  },
 ];
 
 export function getStoryBySlug(slug) {
