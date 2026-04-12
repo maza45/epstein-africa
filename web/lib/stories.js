@@ -366,6 +366,16 @@ export const STORIES = [
       "EFTA02459411-0",
       "EFTA02339435-0",
     ],
+    title_fr: "La machine washingtonienne qu'Epstein a construite pour lib\u00e9rer Karim Wade",
+    summary_fr: "\u00c0 partir de fin 2015, Epstein finance une campagne de lobbying \u00e0 Washington via Nelson Mullins. Bob Crowe travaille ses contacts au D\u00e9partement d'\u00c9tat et au Congr\u00e8s. En juin 2016, Crowe annonce le succ\u00e8s. Huit jours plus tard, Wade sort de prison et s'envole pour Doha.",
+    body_fr: [
+      "30 septembre 2015. L'assistante de Karim Wade en prison, Elisabeth Feliho, \u00e9crit \u00e0 Epstein en son nom, lui demandant de financer \"a US Legal/lobby firm based in DC\" pour faire pression sur le S\u00e9n\u00e9gal au sujet de la d\u00e9cision du Groupe de travail de l'ONU qualifiant la d\u00e9tention de Wade d'arbitraire : \"Total cost for 3 months would be 100.000 USD and they are ready to start today\" (vol00009-efta00844576-pdf-0). Epstein est m\u00e9fiant : \"Sorry but who are you ?\" (vol00009-efta00698766-pdf-0). Deux jours plus tard, Feliho s'identifie et nomme le cabinet : \"Sorry this is Elisabeth Karim's assistant\" (vol00009-efta00844576-pdf-0), \"The firm is Nelson Mullins based in DC\" (vol00009-efta00844576-pdf-0). Elle ajoute un avertissement : \"Please let us know before you contact them so we can advise them in advance so they expect your call\" (vol00009-efta00844473-pdf-0). Le 5 octobre, Nina Keita transmet la cha\u00eene \u00e0 Epstein avec sa propre demande : \"he really, really needs your help... A lot of his friends have disappeared\" (vol00009-efta00698766-pdf-0). Epstein se d\u00e9cide ce jour-l\u00e0 : \"i am speaking to the wash firm tomorrow when i return to new York\" (vol00009-efta00844308-pdf-0).",
+      "En d\u00e9cembre 2015, le mandat Nelson Mullins a trois mois. Le 14 d\u00e9cembre, Vinoda Basnayake \u00e9crit \u00e0 Cheikh Tidiane Sy, avec Bob Crowe en copie, d\u00e9taillant la grille tarifaire : \"We wanted a fee of $50,000 per month for 3 months of work paid quarterly in advance which would be $150,000\" (vol00009-efta00838871-pdf-5). Ma\u00eetre Diagne, avocat de Wade, avait accept\u00e9 mais demand\u00e9 un report du dernier versement de 50 000 dollars au 30 novembre. La m\u00eame lettre mentionne le premier contact au Congr\u00e8s : \"We are engaging Congress and had an initial briefing with Senator Ed Markey, the top Democrat on the Senate Foreign Relations Committee on Africa\" (vol00009-efta00838871-pdf-5).",
+      "En d\u00e9cembre 2015, Bob Crowe chez Nelson Mullins relance Epstein pour l'acompte : \"We did not get the $50,000 promised by 11-30\" (vol00009-efta00707609-pdf-0).",
+      "En f\u00e9vrier 2016, Crowe \u00e9crit : \"We feel that the development of Macky extending his term limits from 5 to 7 years helps us\" (EFTA01742150-1). En avril, il rend compte de ses progr\u00e8s : \"I had a good meeting at State today. My contact is working behind the scenes to help put pressure on Macky Sall and his administration. Also our Ambassador is helping. We are also working with State to get Wade's detention highlighted in the FY 17 Human Rights Report for Senegal\" (EFTA02394840-0). Crowe ajoute : \"Vinoda continues to work with Congress.\"",
+      "15 juin 2016. Macky Sall d\u00e9clare au khalife des mourides \u00e0 Touba que la d\u00e9cision est prise : \"J'ai d\u00e9cid\u00e9 de le lib\u00e9rer et je ne compte pas revenir sur ma d\u00e9cision\" (vol00009-efta00825650-pdf-0). La couverture publique annonce que Wade refuse la gr\u00e2ce (vol00009-efta00825642-pdf-0). Epstein a une autre lecture via son canal priv\u00e9. Il \u00e9crit \u00e0 Nina Keita le soir m\u00eame : \"i was told he initilaly refused , but two hours ago they sent a message that he now agrees to leave prison\" (vol00009-efta00825658-pdf-0). Nina, qui organisait l'acc\u00e8s de Karim \u00e0 la prison depuis 2013, contacte ses sources : \"I can't reach any of his people right now\" (vol00009-efta00703643-pdf-0). Elle revient avec la r\u00e9ponse en fran\u00e7ais : \"macky a dit kil va le liberer mais peux pas savoir c kil ya derriere\" (vol00009-efta00825557-pdf-0).",
+      "16 juin 2016. Crowe \u00e9crit \u00e0 Epstein : \"He has told my friends high up at State that he was going to do it. They have been putting pressure on him!\" (vol00009-efta00825493-pdf-0). Huit jours plus tard, Sultan Bin Sulayem \u00e9crit \u00e0 Epstein : \"Karim was released from jail last night\" (EFTA02459411-0). Le lendemain, Sultan confirme : \"he was flown directly to Doha on the night of his release\" (EFTA02339435-0).",
+    ],
     news_links: [
       {
         title: "Epstein Made Efforts to Free the Son of Senegal's Former President",
@@ -383,7 +393,7 @@ export const STORIES = [
         source: "AFP",
       },
       {
-        title: "Macky : « J'ai décidé de libérer Karim » C'est officiel!",
+        title: "Macky : \u00ab J'ai d\u00e9cid\u00e9 de lib\u00e9rer Karim \u00bb C'est officiel!",
         url: "https://www.seneweb.com/news/Justice/macky-laquo-j-rsquo-ai-decide-de-liberer_n_185050.html",
         source: "Seneweb",
       },
