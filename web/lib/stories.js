@@ -316,6 +316,15 @@ export const STORIES = [
       "EFTA01924121-0",
       "EFTA02705431-0",
     ],
+    title_fr: "Op\u00e9ration sauver le soldat Wade : comment Epstein a p\u00e9n\u00e9tr\u00e9 la prison de Rebeuss",
+    summary_fr: "Karim Wade est arr\u00eat\u00e9 en avril 2013. Epstein organise l'acc\u00e8s \u00e0 la prison par Nina Keita, via l'interm\u00e9diaire parisien Rasseck Bourgi, et commence \u00e0 payer les avocats de la d\u00e9fense de Wade par un circuit bancaire marocain.",
+    body_fr: [
+      "Karim Wade est arr\u00eat\u00e9 le 15 avril 2013. En ao\u00fbt, il est \u00e0 Rebeuss, le principal centre de d\u00e9tention de Dakar, poursuivi pour accumulation illicite de 240 millions de dollars. Le premier r\u00e9flexe d'Epstein est de trouver un moyen d'entrer.",
+      "Il ne contacte pas la prison. Il appelle un contact qui appara\u00eet dans les emails sous le nom de \"Ute Bourgi.\" La demande d'Epstein est simple : Nina Keita, ni\u00e8ce d'Ouattara, veut rendre visite \u00e0 Wade. Est-ce possible ?",
+      "Rasseck revient avec la proc\u00e9dure. Elle a besoin d'une autorisation du juge. Les avocats \u00e0 contacter sont Ma\u00eetre Seydou Diagne ou Ma\u00eetre Demba Bathily. Epstein transmet le message \u00e0 Nina. Elle r\u00e9pond le lendemain matin : \"Thank you Jeffrey!! I'll contact them tomorrow.\"",
+      "Cinq mois plus tard, Epstein parle directement \u00e0 Diagne. \"karim asked that we connect\" (EFTA01945668-0). Ils passent sur Viber. En mai 2014, Diagne envoie ses coordonn\u00e9es bancaires : Attijariwafa Bank, Dakar, transit par Casablanca (EFTA01927653-0). Epstein dit \u00e0 un contact : \"I sent it twice\" (EFTA01924121-0). Un exp\u00e9diteur caviari\u00e9 avait demand\u00e9 si Epstein \"was able to do the transaction.\" Diagne confirme la r\u00e9ception par un re\u00e7u (EFTA02705431-0).",
+      "Epstein connaissait Wade depuis moins de trois ans. Il l'avait introduit aupr\u00e8s de la Fondation Gates et de Sultan Bin Sulayem. Il payait d\u00e9sormais ses avocats p\u00e9nalistes par un circuit bancaire marocain, coordonn\u00e9 par la ni\u00e8ce du pr\u00e9sident ivoirien.",
+    ],
     news_links: [
       {
         title: "Epstein Made Efforts to Free the Son of Senegal's Former President",
