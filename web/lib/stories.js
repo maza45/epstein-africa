@@ -568,6 +568,16 @@ export const STORIES = [
       "EFTA02443211-1",
       "EFTA01822564-0",
     ],
+    title_fr: "Le safari au Kenya : ce qu'Epstein a demand\u00e9 \u00e0 Miasha Fisher avant son d\u00e9part",
+    summary_fr: "En 2009, Epstein et Peggy Siegal organisent un safari au Kenya pour Miasha Fisher, 21 ans. Ghislaine Maxwell examine le dossier complet de visa et d'itin\u00e9raire et demande quelle est 'the work portion'.",
+    body_fr: [
+      "9 avril 2009. La m\u00e8re de Miasha Fisher envoie \u00e0 Epstein des photos d'une artiste nomm\u00e9e TORA, lui demandant de les transmettre \u00e0 un certain Tommy (EFTA02412701-0). Epstein r\u00e9pond : \"Put miasha in a sexy outfit and meet tommy\" (EFTA01782176-0). Le lendemain, plus pr\u00e9cis : \"put a white button down shirt with white bra if miasha has it - hair -ponytail see you soon\" (vol00009-efta00748701-pdf-0).",
+      "Mi-avril, Epstein et Peggy Siegal pr\u00e9parent un \"African Equestrian safari and internship\" pour la fille de Siegal, Mattie, et Miasha. Le 20 avril, Epstein contacte Miasha directement pour la premi\u00e8re fois : \"call.\" Puis : \"you should record your current voice and take photos of your current physique\" (EFTA01827283-0).",
+      "Le 27 avril, Epstein \u00e0 Peggy au sujet de la m\u00e8re de Miasha : \"treat her like you would any other client.. 10k per month for six months ? your call\" (vol00009-efta00749252-pdf-0). Le 28 mai, le voyage est document\u00e9. Epstein demande de combien les co\u00fbts d\u00e9passent \"the i3K jeffrey will pay\" (EFTA02443211-1). Il transmet le dossier complet \u00e0 Ghislaine Maxwell : documents de visa, itin\u00e9raire, assurance (vol00009-efta00749876-pdf-0). Maxwell r\u00e9pond le lendemain matin : \"Wow..what is the work portion of this..it looks like a holiday camp..i am v jealous\" (EFTA02443081-0).",
+      "11 juin, Epstein \u00e0 Miasha : \"have you started pills and shots?\" (EFTA01829651-0). Elle confirme. Epstein : \"great ---Israeli?\" (EFTA01829799-0).",
+      "Miasha n'est pas partie. Fin juin, Mattie s'\u00e9tait retir\u00e9e du volet estival. Le voyage de d\u00e9cembre qui a eu lieu \u00e9tait celui de Peggy seule. Le mot d'adieu d'Epstein : \"you will be amazed by the aroma\" (EFTA01822564-0).",
+      "Maxwell avait demand\u00e9 quelle \u00e9tait la partie travail. Les documents ne r\u00e9pondent pas.",
+    ],
     news_links: [],
   },
   {
