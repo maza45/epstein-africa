@@ -31,16 +31,53 @@ function findSenderSlug(sender) {
 
 export async function getServerSideProps({ params }) {
   const db = getDb();
+  const requestedId = params.id;
   const email = db
     .prepare(
       `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
               countries, release_batch, epstein_is_sender, all_participants, body
        FROM emails WHERE id = ?`
     )
-    .get(params.id);
-  if (!email) return { notFound: true };
+    .get(requestedId);
+
+  if (!email) {
+    // Compatibility redirect for stale bare doc_id URLs that were crawled
+    // before canonical row ids ({doc_id}-N) became the public route format.
+    const siblings = db
+      .prepare(
+        `SELECT id, sender, subject, sent_at, countries,
+                substr(body, 1, 150) AS preview
+         FROM emails
+         WHERE doc_id = ?
+         ORDER BY id ASC
+        `
+      )
+      .all(requestedId);
+
+    if (siblings.length === 1 && siblings[0].id !== requestedId) {
+      return {
+        redirect: {
+          destination: `/emails/${encodeURIComponent(siblings[0].id)}`,
+          permanent: true,
+        },
+      };
+    }
+
+    if (siblings.length > 1) {
+      return {
+        props: {
+          ssrEmail: null,
+          senderProfileSlug: null,
+          siblingChoices: siblings,
+          requestedId,
+        },
+      };
+    }
+
+    return { notFound: true };
+  }
   const senderProfileSlug = findSenderSlug(email.sender);
-  return { props: { ssrEmail: email, senderProfileSlug } };
+  return { props: { ssrEmail: email, senderProfileSlug, siblingChoices: [], requestedId } };
 }
 
 function Field({ label, value, mono }) {
@@ -53,30 +90,43 @@ function Field({ label, value, mono }) {
   );
 }
 
-export default function EmailDetail({ ssrEmail, senderProfileSlug }) {
+export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoices = [], requestedId }) {
   const router = useRouter();
   const [email] = useState(ssrEmail);
   const error = null;
+  const isChooser = !email && siblingChoices.length > 1;
 
   const participants = email ? parseParticipants(email.all_participants) : [];
 
-  const title = email ? `${email.subject || "(no subject)"} — Epstein Africa` : "Epstein Africa";
+  const title = isChooser
+    ? `Multiple Email Records — Epstein Africa`
+    : email
+      ? `${email.subject || "(no subject)"} — Epstein Africa`
+      : "Epstein Africa";
   const description = email
     ? `Email from ${email.sender || "Unknown"} — ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : "undated"}${email.countries ? ` — ${email.countries}` : ""}`
-    : "";
-  const pageUrl = email ? `/emails/${encodeURIComponent(email.id)}` : "/";
+    : isChooser
+      ? `The pasted email link "${requestedId}" matches multiple records. Choose the correct email record.`
+      : "";
+  const pageUrl = email ? `/emails/${encodeURIComponent(email.id)}` : `/emails/${encodeURIComponent(requestedId || "")}`;
 
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`${BASE}${pageUrl}`} />
+        {!isChooser && <link rel="canonical" href={`${BASE}${pageUrl}`} />}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:url" content={`${BASE}${pageUrl}`} />
+        {!isChooser && <meta property="og:url" content={`${BASE}${pageUrl}`} />}
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(email?.subject || "Email")}&subtitle=${encodeURIComponent(description)}`} />
+        {!isChooser && (
+          <meta
+            property="og:image"
+            content={`${BASE}/api/og?title=${encodeURIComponent(email?.subject || "Email")}&subtitle=${encodeURIComponent(description)}`}
+          />
+        )}
+        {isChooser && <meta name="robots" content="noindex" />}
       </Head>
 
       <div className="container">
@@ -97,7 +147,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug }) {
 
         {error && <p className="error-msg">{error}</p>}
 
-        {!email && !error && <p className="loading-msg">Loading…</p>}
+        {!email && !error && !isChooser && <p className="loading-msg">Loading…</p>}
 
         {email && (
           <article className="email-detail">
@@ -179,6 +229,60 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug }) {
                 </div>
               )}
             </div>
+          </article>
+        )}
+
+        {isChooser && (
+          <article className="email-detail">
+            <header className="detail-header">
+              <h1 className="detail-subject">Multiple Email Records</h1>
+              <p className="story-lede">
+                The link you opened matches multiple email records for document <span className="mono">{requestedId}</span>.
+                Choose the record you want to view.
+              </p>
+            </header>
+
+            <section className="story-section">
+              <div className="table-wrap">
+                <table className="email-table">
+                  <thead>
+                    <tr>
+                      <th className="col-date">Date</th>
+                      <th className="col-sender">Sender</th>
+                      <th className="col-subject">Subject</th>
+                      <th className="col-countries">Countries</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {siblingChoices.map((choice) => (
+                      <tr
+                        key={choice.id}
+                        className="clickable-row"
+                        onClick={() =>
+                          router.push(
+                            `/emails/${encodeURIComponent(choice.id)}?back=${encodeURIComponent(router.asPath)}`
+                          )
+                        }
+                      >
+                        <td className="col-date">{formatDateTime(choice.sent_at)}</td>
+                        <td className="col-sender">{choice.sender || "Unknown"}</td>
+                        <td className="col-subject">
+                          <div>{choice.subject || "(no subject)"}</div>
+                          {choice.preview && <div className="chooser-preview">{choice.preview}</div>}
+                        </td>
+                        <td className="col-countries">
+                          {choice.countries
+                            ? splitCountries(choice.countries).map((c) => (
+                                <span key={c} className="tag">{c}</span>
+                              ))
+                            : "—"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
           </article>
         )}
 
