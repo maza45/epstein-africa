@@ -595,6 +595,13 @@ export const STORIES = [
     email_ids: [
       "EFTA02433105-0",
     ],
+    title_fr: "\"Can Bring a Little Baby Back for You.... or Two\" : l'email de Peggy Siegal depuis la porte d'embarquement",
+    summary_fr: "Le 19 d\u00e9cembre 2009, Peggy Siegal embarque pour le Kenya aux frais d'Epstein. Depuis la porte d'embarquement, elle lui \u00e9crit un mot de remerciement. \u00c0 la fin, elle propose de lui ramener un enfant k\u00e9nyan. Gar\u00e7ons ou filles, demande-t-elle. \"So Madonna.\"",
+    body_fr: [
+      "Le 19 d\u00e9cembre 2009, Peggy Siegal est dans un avion avec sa fille Mattie, sur le point de d\u00e9coller d'Amsterdam vers Nairobi. L'itin\u00e9raire : \"Cotter's Camp in the Masai Mara....then to Sasaab...Then...to Lamu to Peponi Hotel....and back Jan. 4th.\" Le voyage \u00e9tait celui d'Epstein. \"We can not thank you enough yet another life experience\" (EFTA02433105-0).",
+      "Au milieu de l'email, elle mentionne la Somalie : \"If the Masai warriors don't eat us, the pirates from Somalia will.\" Puis, quelques lignes plus loin : \"Can bring a little baby back for you....or two. Boys or girls? So Madonna.\"",
+      "La r\u00e9f\u00e9rence \u00e0 Madonna \u00e9tait d'actualit\u00e9. En juin 2009, six mois avant le vol de Siegal, Madonna avait finalis\u00e9 l'adoption de Mercy James au Malawi. Les adoptions de c\u00e9l\u00e9brit\u00e9s en Afrique subsaharienne faisaient r\u00e9guli\u00e8rement les gros titres. Siegal en faisait une blague. Elle signe en pr\u00e9voyant une visite \u00e0 Palm Beach en janvier et en notant que la Duchesse d'York \u00e9tait pass\u00e9e \u00e0 la t\u00e9l\u00e9vision le matin.",
+    ],
     news_links: [],
   },
   {
