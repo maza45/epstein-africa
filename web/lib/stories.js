@@ -150,6 +150,14 @@ export const STORIES = [
       "EFTA01980734-0",
       "vol00009-efta00899072-pdf-1",
     ],
+    title_fr: "Comment Sultan Bin Sulayem a introduit Karim Wade aupr\u00e8s d'Epstein",
+    summary_fr: "En novembre 2010, Sultan Bin Sulayem organise une rencontre entre Epstein et Karim Wade, fils du pr\u00e9sident du S\u00e9n\u00e9gal. En 48 heures, Epstein propose une \u00e9conomie num\u00e9rique offshore pour le S\u00e9n\u00e9gal.",
+    body_fr: [
+      "13 novembre 2010. Karim Wade, fils du pr\u00e9sident du S\u00e9n\u00e9gal, \u00e9crit au bureau d'Epstein : \"I tried to call you at the request of Sutan Bin Sulayem of Dubai World to meet with Jeffrey Epstain\" (vol00009-efta00559607-pdf-0). L'assistante d'Epstein r\u00e9pond en quelques heures : adresse de l'appartement, code du portail, lundi \u00e0 17h30 (EFTA02318552-1).",
+      "Trois jours plus tard, Wade \u00e9crit : \"I was very happy to meet you. Have no doubt that we will have fun\" (EFTA02416717-0). Epstein r\u00e9pond avec un projet pour le S\u00e9n\u00e9gal : \"making senegal a banking center / intemet server , base.\" Il d\u00e9taille les id\u00e9es : \"the newest technology for five to ten years out. intemet gambling, housing servers that allow people to 'do business' in senegal without having to actually be there. The mobile phone should also be the bank account.\" Il avait d\u00e9j\u00e0 \"spoke to gates group regarding nuclear power\" (vol00009-efta00899072-pdf-1).",
+      "Epstein voulait se rendre indispensable avant que quiconque n'arrive.",
+      "Le r\u00f4le de Sultan est explicite dans les emails. Il n'a pas simplement connu les deux hommes. Il a organis\u00e9 l'introduction d\u00e9lib\u00e9r\u00e9ment. Le m\u00eame homme qui envoyait \u00e0 Epstein des photos avec Dangote et des chefs d'\u00c9tat africains, transmettait des documents de reconnaissance du Somaliland, g\u00e9rait des n\u00e9gociations portuaires au Nigeria. Sultan orientait aussi discr\u00e8tement Epstein vers la succession politique du S\u00e9n\u00e9gal.",
+    ],
     news_links: [
       {
         title: "Epstein files reveal links to cash, women, power in Africa",
