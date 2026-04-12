@@ -217,6 +217,15 @@ export const STORIES = [
       "The harem email doesn't appear in the Africa-filtered dataset. No country keywords triggered it. It surfaced only through a direct quote search of the full 1.78 million email archive.",
     ],
     email_ids: ["EFTA01852132-0", "EFTA01864579-0", "EFTA01864579-2"],
+    title_fr: "Le harem : l'offre de Karim Wade \u00e0 Epstein",
+    summary_fr: "En novembre 2011, Karim Wade, fils du pr\u00e9sident du S\u00e9n\u00e9gal, propose de g\u00e9rer un harem dans le palais marocain qu'Epstein envisageait. Epstein r\u00e9pond vouloir 'a separate house for the women' et copier les plans du palais du Prince Bandar bin Sultan \u00e0 Marrakech.",
+    body_fr: [
+      "11 novembre 2011. Epstein \u00e9crit \u00e0 un contact : \"perfect.. I will leave time . also free in the evening. Im working on moroccan house plans.\" La r\u00e9ponse arrive le lendemain matin depuis un compte enregistr\u00e9 sous \"afri xp\" : \"Do not forget in the house the harem part. Happy to manage it...\" (EFTA01852132-0).",
+      "Epstein r\u00e9pond : \"eunuchs only I want it to have a seperate house for the women , I am getting the house plans of Bandar in marrakesch\" (EFTA01852132-0).",
+      "Bandar d\u00e9signe le Prince Bandar bin Sultan. L'email n'en dit pas plus.",
+      "L'identit\u00e9 de \"afri xp\" est confirm\u00e9e par les documents. Six mois plus t\u00f4t, le 22 mai 2011, le m\u00eame compte avait demand\u00e9 \u00e0 Epstein de passer sur une nouvelle adresse priv\u00e9e. Epstein r\u00e9pond : \"im sorry , who is this\" (EFTA01864579-0). La r\u00e9ponse : \"This is Karim sorry better use this email adr. Cu\" (EFTA01864579-2). Le nom d'affichage \"afri xp\" correspond au m\u00eame compte. \"Afri xp\" est Karim Wade, fils du pr\u00e9sident du S\u00e9n\u00e9gal, l'homme que Sultan Bin Sulayem avait introduit aupr\u00e8s d'Epstein en novembre 2010.",
+      "L'email sur le harem n'appara\u00eet pas dans le jeu de donn\u00e9es filtr\u00e9 par l'Afrique. Aucun mot-cl\u00e9 g\u00e9ographique ne l'a d\u00e9clench\u00e9. Il n'a \u00e9t\u00e9 retrouv\u00e9 que par une recherche directe de citation dans l'archive compl\u00e8te de 1,78 million d'emails.",
+    ],
     news_links: [
       {
         title: "Epstein Made Efforts to Free the Son of Senegal's Former President After Corruption Conviction",
