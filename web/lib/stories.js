@@ -185,6 +185,15 @@ export const STORIES = [
       "EFTA01865779-0",
       "EFTA01809435-0",
     ],
+    title_fr: "De Dakar \u00e0 P\u00e9kin : comment Epstein a reli\u00e9 Wade \u00e0 la Chine",
+    summary_fr: "Six mois apr\u00e8s l'introduction organis\u00e9e par Sultan, Epstein met en contact l'h\u00e9ritier politique du S\u00e9n\u00e9gal avec le milliardaire chinois Desmond Shum, puis se rend lui-m\u00eame \u00e0 P\u00e9kin pour boucler la boucle.",
+    body_fr: [
+      "Six mois apr\u00e8s l'introduction par Sultan Bin Sulayem, Karim Wade n'\u00e9tait plus un simple contact d'Epstein. Il \u00e9tait un atout achemin\u00e9 vers un second r\u00e9seau.",
+      "26 avril 2011. Epstein envoie un email d'une ligne aux deux hommes : \"desmond ,meet karem, karem, desmond\" (EFTA02538527-0). Desmond Shum \u00e9tait bas\u00e9 \u00e0 P\u00e9kin. Il r\u00e9pond en quelques heures : \"I am happy to fly down to see you in SH\" (EFTA01865779-0). Il proposait de voler jusqu'\u00e0 Shanghai pour rencontrer Wade.",
+      "Dix jours plus tard, Epstein part lui-m\u00eame pour P\u00e9kin : \"arriving in Beijing monday morning and will stay till following friday then back through Paris\" (EFTA01809435-0). Le m\u00eame email transmet le num\u00e9ro de t\u00e9l\u00e9phone de Shum directement \u00e0 Wade. L'introduction africaine \u00e9tait devenue une introduction chinoise.",
+      "Ce qui a \u00e9t\u00e9 discut\u00e9 exactement n'est pas d\u00e9taill\u00e9 dans les emails de P\u00e9kin. Epstein proposait \u00e0 Wade une infrastructure financi\u00e8re pour le S\u00e9n\u00e9gal depuis leur premi\u00e8re rencontre en novembre 2010. Shum avait des connexions \u00e0 P\u00e9kin. Wade avait l'acc\u00e8s politique \u00e0 Dakar. Epstein \u00e9tait au milieu, reliant les deux.",
+      "Ce qui est sorti de la rencontre n'appara\u00eet pas dans les archives.",
+    ],
     news_links: [
       {
         title: "Epstein files reveal links to cash, women, power in Africa",
