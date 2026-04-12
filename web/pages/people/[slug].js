@@ -8,21 +8,39 @@ import ShareButtons from "../../components/ShareButtons";
 import { PEOPLE, getPersonBySlug } from "../../lib/people";
 import { getDb } from "../../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../../lib/format";
-
-const BASE = "https://www.epsteinafrica.com";
+import {
+  BASE,
+  getCanonicalUrl,
+  getLocalizedPerson,
+  getOgLocale,
+  hasFrenchPerson,
+  normalizeLocale,
+  PEOPLE_COPY,
+} from "../../lib/i18n";
 
 const LIMIT = 25;
 
 export async function getStaticPaths() {
   return {
-    paths: PEOPLE.map((p) => ({ params: { slug: p.slug } })),
+    paths: PEOPLE.flatMap((person) => {
+      const paths = [{ params: { slug: person.slug }, locale: "en" }];
+      if (hasFrenchPerson(person)) {
+        paths.push({ params: { slug: person.slug }, locale: "fr" });
+      }
+      return paths;
+    }),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
+  const normalizedLocale = normalizeLocale(locale);
   const person = getPersonBySlug(params.slug);
   if (!person) return { notFound: true };
+  if (normalizedLocale === "fr" && !hasFrenchPerson(person)) {
+    return { notFound: true };
+  }
+  const localizedPerson = getLocalizedPerson(person, normalizedLocale);
 
   const db = getDb();
   const page = 1;
@@ -101,11 +119,23 @@ export async function getStaticProps({ params }) {
     mentionEmails = filtered.slice(0, LIMIT).map(({ body, ...rest }) => rest);
   }
 
-  return { props: { person, emails, total, page, mentionEmails, mentionTotal } };
+  return {
+    props: {
+      person: localizedPerson,
+      emails,
+      total,
+      page,
+      mentionEmails,
+      mentionTotal,
+      locale: normalizedLocale,
+      frAvailable: hasFrenchPerson(person),
+    },
+  };
 }
 
-export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, total: ssrTotal, page: ssrPage, mentionEmails: ssrMentionEmails, mentionTotal: ssrMentionTotal }) {
+export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, total: ssrTotal, page: ssrPage, mentionEmails: ssrMentionEmails, mentionTotal: ssrMentionTotal, locale, frAvailable }) {
   const router = useRouter();
+  const t = PEOPLE_COPY[locale] || PEOPLE_COPY.en;
   const [page, setPage] = useState(ssrPage);
   const [data, setData] = useState({ person: ssrPerson, emails: ssrEmails, total: ssrTotal });
   const [error, setError] = useState(null);
@@ -113,14 +143,14 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
   // Client-side fetch for page changes after initial SSR load
   useEffect(() => {
     if (page === ssrPage) return;
-    fetch(`/api/people/${ssrPerson.slug}?page=${page}&limit=${LIMIT}`)
+    fetch(`/api/people/${ssrPerson.slug}?page=${page}&limit=${LIMIT}&locale=${encodeURIComponent(locale)}`)
       .then((r) => {
         if (!r.ok) throw new Error("Not found");
         return r.json();
       })
       .then(setData)
       .catch(() => setError("Failed to load."));
-  }, [page]);
+  }, [locale, page, ssrPage, ssrPerson.slug]);
 
   const person = data?.person;
   const emails = data?.emails ?? [];
@@ -134,7 +164,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
     name: person.name,
     jobTitle: person.title,
     description: person.bio,
-    url: `${BASE}${pageUrl}`,
+    url: getCanonicalUrl(pageUrl, locale),
   } : null;
 
   return (
@@ -144,12 +174,19 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
         {person && (
           <>
             <meta name="description" content={`${person.title}. ${person.bio.slice(0, 150)}...`} />
-            <link rel="canonical" href={`${BASE}${pageUrl}`} />
+            <link rel="canonical" href={getCanonicalUrl(pageUrl, locale)} />
             <meta property="og:title" content={`${person.name} — Epstein Africa`} />
             <meta property="og:description" content={person.title} />
-            <meta property="og:url" content={`${BASE}${pageUrl}`} />
+            <meta property="og:url" content={getCanonicalUrl(pageUrl, locale)} />
             <meta property="og:type" content="profile" />
+            <meta property="og:locale" content={getOgLocale(locale)} />
             <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(person.name)}&subtitle=${encodeURIComponent(person.title)}&type=person`} />
+            {frAvailable && locale === "en" && (
+              <link rel="alternate" hrefLang="fr" href={getCanonicalUrl(pageUrl, "fr")} />
+            )}
+            {frAvailable && locale === "fr" && (
+              <link rel="alternate" hrefLang="en" href={getCanonicalUrl(pageUrl, "en")} />
+            )}
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -159,18 +196,18 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
       </Head>
 
       <div className="container">
-        <Nav />
-        <button className="back-btn" onClick={() => router.back()}>← Back</button>
+        <Nav pagePath={pageUrl} frAvailable={frAvailable} />
+        <button className="back-btn" onClick={() => router.back()}>← {t.back}</button>
 
-        {error && <p className="error-msg">{error}</p>}
-        {!data && !error && <p className="loading-msg">Loading…</p>}
+        {error && <p className="error-msg">{t.loadFailed}</p>}
+        {!data && !error && <p className="loading-msg">{t.loading}</p>}
 
         {person && (
           <>
             <header className="site-header">
               <h1>{person.name}</h1>
               <p className="subtitle">{person.title}</p>
-              <ShareButtons path={pageUrl} title={person.name} summary={person.title} />
+              <ShareButtons path={pageUrl} title={person.name} summary={person.title} locale={locale} />
             </header>
 
             <div className="profile-body">
@@ -190,24 +227,24 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
 
               <section className="profile-emails">
                 <h2 className="section-heading">
-                  Emails ({total})
+                  {t.emailsHeading} ({total})
                 </h2>
 
                 <div className="table-wrap">
                   <table className="email-table">
                     <thead>
                       <tr>
-                        <th className="col-date">Date</th>
-                        <th className="col-sender">Sender</th>
-                        <th className="col-subject">Subject</th>
-                        <th className="col-countries">Countries</th>
+                        <th className="col-date">{t.thDate}</th>
+                        <th className="col-sender">{t.thSender}</th>
+                        <th className="col-subject">{t.thSubject}</th>
+                        <th className="col-countries">{t.thCountries}</th>
                       </tr>
                     </thead>
                     <tbody>
                       {emails.length === 0 ? (
                         <tr>
                           <td colSpan={4} className="loading-cell">
-                            No emails found.
+                            {t.noEmails}
                           </td>
                         </tr>
                       ) : (
@@ -218,6 +255,9 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                             onClick={() =>
                               router.push(
                                 `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
+                                ,
+                                undefined,
+                                { locale: false }
                               )
                             }
                           >
@@ -251,19 +291,19 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                     <button
                       disabled={page === 1}
                       onClick={() => setPage(page - 1)}
-                      aria-label="Previous page"
+                      aria-label={t.prevPage}
                     >
-                      ← Prev
+                      ← {t.prevPage}
                     </button>
                     <span>
-                      Page {page} / {totalPages}
+                      {t.pageOf} {page} / {totalPages}
                     </span>
                     <button
                       disabled={page >= totalPages}
                       onClick={() => setPage(page + 1)}
-                      aria-label="Next page"
+                      aria-label={t.nextPage}
                     >
-                      Next →
+                      {t.nextPage} →
                     </button>
                   </div>
                 )}
@@ -272,20 +312,20 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
               {ssrMentionEmails && ssrMentionEmails.length > 0 && (
                 <section className="profile-emails">
                   <h2 className="section-heading">
-                    Emails mentioning {person.name} ({ssrMentionTotal})
+                    {t.mentionHeading} {person.name} ({ssrMentionTotal})
                   </h2>
                   <p className="mention-note">
-                    {person.name} does not appear as a sender or recipient in these emails. They are referenced in the body text.
+                    {person.name} {t.mentionNote}
                   </p>
 
                   <div className="table-wrap">
                     <table className="email-table">
                       <thead>
                         <tr>
-                          <th className="col-date">Date</th>
-                          <th className="col-sender">Sender</th>
-                          <th className="col-subject">Subject</th>
-                          <th className="col-countries">Countries</th>
+                          <th className="col-date">{t.thDate}</th>
+                          <th className="col-sender">{t.thSender}</th>
+                          <th className="col-subject">{t.thSubject}</th>
+                          <th className="col-countries">{t.thCountries}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -295,7 +335,9 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                             className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
                             onClick={() =>
                               router.push(
-                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
+                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`,
+                                undefined,
+                                { locale: false }
                               )
                             }
                           >
@@ -328,7 +370,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
           </>
         )}
 
-        <Footer />
+        <Footer locale={locale} />
       </div>
     </>
   );

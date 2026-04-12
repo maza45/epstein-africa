@@ -4,13 +4,28 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
+import {
+  BASE,
+  getCanonicalUrl,
+  getLocalizedPerson,
+  getOgLocale,
+  hasFrenchPerson,
+  hasFrenchStaticPage,
+  normalizeLocale,
+  PEOPLE_COPY,
+} from "../../lib/i18n";
 
-const BASE = "https://www.epsteinafrica.com";
+export async function getStaticProps({ locale }) {
+  const normalizedLocale = normalizeLocale(locale);
+  const frAvailable = hasFrenchStaticPage("people");
+  if (normalizedLocale === "fr" && !frAvailable) {
+    return { notFound: true };
+  }
 
-export async function getStaticProps() {
   const db = getDb();
+  const sourcePeople = normalizedLocale === "fr" ? PEOPLE.filter(hasFrenchPerson) : PEOPLE;
 
-  const counts = PEOPLE.map((person) => {
+  const counts = sourcePeople.map((person) => {
     const termConditions = person.searchTerms
       .map(() => "(LOWER(sender) LIKE ? OR LOWER(all_participants) LIKE ?)")
       .join(" OR ");
@@ -26,42 +41,49 @@ export async function getStaticProps() {
 
   const countMap = Object.fromEntries(counts.map((c) => [c.slug, c.count]));
 
-  const sortedPeople = [...PEOPLE].sort(
+  const sortedPeople = [...sourcePeople].sort(
     (a, b) => (countMap[b.slug] ?? 0) - (countMap[a.slug] ?? 0)
   );
 
   return {
     props: {
-      people: sortedPeople.map((p) => ({ ...p, emailCount: countMap[p.slug] ?? 0 })),
+      people: sortedPeople.map((p) => ({
+        ...getLocalizedPerson(p, normalizedLocale),
+        emailCount: countMap[p.slug] ?? 0,
+      })),
+      locale: normalizedLocale,
+      frAvailable,
     },
   };
 }
 
-export default function PeopleIndex({ people }) {
+export default function PeopleIndex({ people, locale, frAvailable }) {
+  const t = PEOPLE_COPY[locale] || PEOPLE_COPY.en;
   return (
     <>
       <Head>
-        <title>Key Persons — Epstein Africa</title>
-        <meta
-          name="description"
-          content="Profiles of key persons documented in Epstein's Africa-related correspondence."
-        />
-        <link rel="canonical" href={`${BASE}/people`} />
-        <meta property="og:title" content="Key Persons — Epstein Africa" />
-        <meta property="og:description" content="Profiles of key persons documented in Epstein's Africa-related correspondence." />
-        <meta property="og:url" content={`${BASE}/people`} />
+        <title>{t.indexTitle}</title>
+        <meta name="description" content={t.indexDescription} />
+        <link rel="canonical" href={getCanonicalUrl("/people", locale)} />
+        <meta property="og:title" content={t.indexTitle} />
+        <meta property="og:description" content={t.indexDescription} />
+        <meta property="og:url" content={getCanonicalUrl("/people", locale)} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Key Persons")}&subtitle=${encodeURIComponent(`${people.length} profiles from the email archive`)}&type=person`} />
+        <meta property="og:locale" content={getOgLocale(locale)} />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(t.indexHeading)}&subtitle=${encodeURIComponent(`${people.length} ${t.ogSubtitle}`)}&type=person`} />
+        {frAvailable && locale === "en" && (
+          <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/people", "fr")} />
+        )}
+        {frAvailable && locale === "fr" && (
+          <link rel="alternate" hrefLang="en" href={getCanonicalUrl("/people", "en")} />
+        )}
       </Head>
 
       <div className="container">
-        <Nav />
+        <Nav pagePath="/people" frAvailable={frAvailable} />
         <header className="site-header">
-          <h1>Key Persons</h1>
-          <p className="subtitle">
-            Individuals identified in Epstein&apos;s Africa-related
-            correspondence. Profiles are based on documented email records only.
-          </p>
+          <h1>{t.indexHeading}</h1>
+          <p className="subtitle">{t.indexSubtitle}</p>
         </header>
 
         <div className="people-grid">
@@ -69,6 +91,7 @@ export default function PeopleIndex({ people }) {
             <Link
               key={person.slug}
               href={`/people/${person.slug}`}
+              locale={locale}
               className="person-card"
             >
               <div className="person-name">{person.name}</div>
@@ -84,13 +107,13 @@ export default function PeopleIndex({ people }) {
                 )}
               </div>
               {person.emailCount > 0 && (
-                <div className="person-email-count">{person.emailCount} emails</div>
+                <div className="person-email-count">{person.emailCount} {t.emailCount}</div>
               )}
             </Link>
           ))}
         </div>
 
-        <Footer />
+        <Footer locale={locale} />
       </div>
     </>
   );
