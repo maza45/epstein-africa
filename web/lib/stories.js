@@ -471,6 +471,16 @@ export const STORIES = [
       "EFTA01975989-0",
       "EFTA01975812-0",
     ],
+    title_fr: "L'op\u00e9ration de reconnaissance de Sultan : comment Epstein a cartographi\u00e9 un continent",
+    summary_fr: "Entre 2012 et 2013, Sultan Bin Sulayem sillonne l'Afrique et l'Asie centrale : Angola, Gabon, Congo, Kazakhstan. Il informe Epstein depuis des h\u00e9licopt\u00e8res et des sommets \u00e9nerg\u00e9tiques. Epstein identifie les angles financiers et demande qui appeler.",
+    body_fr: [
+      "Mi-2012, le r\u00e9seau avait sa m\u00e9thode. Sultan Bin Sulayem se d\u00e9pla\u00e7ait en premier, puis informait Epstein. Epstein identifiait l'angle financier.",
+      "Juillet 2012 : Epstein \u00e0 Sultan : \"I hope your ramadan is easy, I can set up standard and you for ivory coast, whenever you like\" (EFTA01876197-0).",
+      "Octobre 2012 : Sultan rapporte une semaine charg\u00e9e \u00e0 Duba\u00ef : \"we have president Maldives ,president of Rawanda president of Gabon president of Djibouti all attending a an energy summit in dubai\" (EFTA01765205-1). Sultan construisait les relations.",
+      "2 novembre 2012. Wade \u00e0 Epstein : \"Angola is a big target for our project. Meeting with my friend the daughter of the PR 3rd week of november. If ur arround Paris or London, I can introduce u to her\" (EFTA01978629-0). Trois jours plus tard, Epstein demande : \"will dos cantos, be in paris on the 29th\" (EFTA01765092-0). Il \u00e9crit aussi \u00e0 Wade que \"eike batista from brazil, richest guy thre , would like also to meet with isabel dos santos in london or paris\" (EFTA01976871-0). Rien dans les archives ne confirme qu'une rencontre a eu lieu.",
+      "En mars 2013, Sultan planifie un d\u00e9placement : \"17 to 20 with Shsikh Abdulla to 1. South Africa 2. Angola 3. Zambia 4. Ethiopia\" (EFTA01761448-0). Deux mois plus tard, il rend compte : \"Just arrived from Africa, had a great and very successful trip to Congo Kinshasa, Gabon, Rwanda. I met President Kabila and discussed port investment which he welcomes. He wants to give us investment in mining and oil and gas. I mentioned to him that I have an American fund manager who will visit with me next time\" (EFTA01759560-0). Sultan rapporte aussi avoir rencontr\u00e9 \"my friend Ali Bongo\" au Gabon. Il envoie cet email \u00e0 Epstein.",
+      "11 mai 2013. Sultan \u00e9crit \u00e0 Epstein depuis un h\u00e9licopt\u00e8re : \"I am now in a helicopter flying from aktao Khazakistan to Ashgabat turkomanistan accompanying the president to inaugurate the new rail connection between china and cis countries we have signed a deal to manage the logistics China is investing $400 B to build a new industrial city on the border\" (EFTA01975989-0). Epstein avait r\u00e9pondu plus t\u00f4t dans la matin\u00e9e : \"I will be with bill gates Paris , 9-10 June then free\" (EFTA01975812-0).",
+    ],
     news_links: [],
   },
   {
