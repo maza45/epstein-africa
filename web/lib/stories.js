@@ -422,6 +422,16 @@ export const STORIES = [
       "EFTA01738729-0",
       "vol00009-efta01060422-pdf-1",
     ],
+    title_fr: "De Rebeuss \u00e0 Doha : Epstein proposait encore des affaires \u00e0 Wade le jour de sa mort",
+    summary_fr: "Quelques heures apr\u00e8s sa sortie de prison en juin 2016, Karim Wade est dans un avion pour le Qatar. En quelques semaines, lui et Epstein relancent le contrat GNL norv\u00e9gien. Epstein le pr\u00e9sentait encore \u00e0 des investisseurs en 2018.",
+    body_fr: [
+      "25 juin 2016. Sultan \u00e9crit \u00e0 Epstein avec la version officielle : Wade a obtenu une gr\u00e2ce pr\u00e9sidentielle, bien qu'il reste redevable d'une amende de 200 millions de dollars. Les m\u00e9dias fran\u00e7ais et Al Jazeera rapportent que le Qatar a servi de m\u00e9diateur. Il a \u00e9t\u00e9 transport\u00e9 \u00e0 Doha la nuit m\u00eame de sa sortie.",
+      "Deux mois plus tard, premier contact depuis l'exil. Epstein : \"Any fun?\" Wade : \"Yes Sir, really enjoy Qatar.\"",
+      "En septembre, il est d\u00e9j\u00e0 revenu aux affaires. Wade : \"Yes still in Doha. Are u still in contact with ur LNG friend\" (EFTA01744455-0). Wade pr\u00e9cise : \"Yep the norvegian guy with the fleet of LNG ships\" (vol00009-efta00817072-pdf-0). Trois ans de prison. Retour au contrat GNL.",
+      "2 novembre : Epstein demande si Wade est au Qatar. Wade : \"Yeswill be there. Just met with J'aborde who told me that you are coming\" (EFTA01738729-0). J'aborde n'est pas identifi\u00e9 ailleurs dans les archives.",
+      "29 novembre : Epstein pr\u00e9sente Wade \u00e0 Larry Summers : \"larry, karim, karim - lany, lany will be in doha on wed, i think you two would enjoy meeting.\" Wade r\u00e9pond \u00e0 Summers : \"I'll be very please to meet or take you for diner\" (vol00009-efta01060422-pdf-1).",
+      "Les derniers emails de Wade dans les archives datent de 2018. Toujours \u00e0 Doha, toujours en contact.",
+    ],
     news_links: [
       {
         title: "Epstein Made Efforts to Free the Son of Senegal's Former President",
