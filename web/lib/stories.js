@@ -2197,6 +2197,14 @@ export const STORIES = [
       "EFTA01840044-0",
     ],
     news_links: [],
+    title_fr: "Bill Conover offrit \u00e0 Epstein un \u00ab\u00a0total access\u00a0\u00bb \u00e0 la Libye post-Kadhafi",
+    summary_fr:
+      "Fin 2011, un interm\u00e9diaire bas\u00e9 \u00e0 Duba\u00ef nomm\u00e9 Bill Conover proposa \u00e0 Epstein un acc\u00e8s et des affaires dans la Libye post-Kadhafi. Epstein r\u00e9agit vite, rappelant le soir m\u00eame et prenant un petit-d\u00e9jeuner deux semaines plus tard. En mars 2012, le fil avait progress\u00e9 vers un partenaire plus puissant\u00a0: le groupe Al Otaiba d'Abou Dhabi, qui avait financ\u00e9 la r\u00e9bellion.",
+    body_fr: [
+      "Le 27 novembre 2011, Bill Conover \u00e9crivit \u00e0 Epstein\u00a0: \"We have total access to the new gov in Libya for all business. They gave me an opportunity. No capital is required and substantial fees can be made with a few introductions. I need to discuss it in private. It's urgent\" (EFTA01846653-1). Epstein r\u00e9pondit depuis son iPhone\u00a0: \"I tried calling\" (EFTA01846653-0). Conover r\u00e9pondit\u00a0: \"Thanks. I put my phone on silent at night. Please call again\" (vol00009-efta00925160-pdf-0). Deux semaines plus tard, le 12 d\u00e9cembre, l'agenda d'Epstein indiquait\u00a0: \"8:30 AM: Breakfast with Bill Conover.\" Le m\u00eame jour figuraient Nina Keita \u00e0 10h30 et Sultan Bin Sulayem en provisoire \u00e0 15h30 (vol00009-efta00422821-pdf-0).",
+      "La veille du petit-d\u00e9jeuner, Conover envoya des liens vers les soci\u00e9t\u00e9s de ses partenaires \u00e0 Duba\u00ef\u00a0: Wilshire Foods, Tanmia Properties, MEC Telematik. L'entrepreneur principal \u00e9tait de Misrata. \"His family is in Libya and one of the main business families. They were in the thick of things across the board in Libya and came out on top\" (EFTA02003472-0).",
+      "Trois mois plus tard, le 6 mars 2012, Conover \u00e9crivit \u00e0 nouveau. Il avait mont\u00e9 en gamme. \"We're dealing with the Saad-Al Otaiba group on some potential deals in Libya,\" dit-il \u00e0 Epstein. Les Al Otaiba avaient \"helped start the NTC of Libya and were principal financial sponsors of the rebellion.\" Ils avaient d\u00e9j\u00e0 \"placed approx $1B in a bank they own in Libya,\" prenaient le contr\u00f4le de la compagnie t\u00e9l\u00e9phonique nationale et cherchaient des partenaires pour la distribution automobile (GM, Caterpillar, Mercedes), la production alimentaire et le forage en eau profonde avec la National Oil Company libyenne. \"One of the Al Otaibas is a current ambassador to the US\" (EFTA01840044-0). Les archives n'\u00e9tablissent pas si Epstein donna suite.",
+    ],
   },
 ];
 
