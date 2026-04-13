@@ -1231,6 +1231,13 @@ export const STORIES = [
       "EFTA01814737-0",
     ],
     news_links: [],
+    title_fr: "Sultan organise l'acc\u00e8s d'Epstein au roi des casinos sud-africains Sol Kerzner",
+    summary_fr:
+      "Le 25 juin 2010, le bureau de Sol Kerzner \u00e9crivit \u00e0 Jeffrey Epstein pour organiser une rencontre. Le contact venait de Sultan Bin Sulayem. Sultan dit \u00e0 Epstein que Kerzner allait \u00ab\u00a0release the numbers\u00a0\u00bb apr\u00e8s leur rencontre. Epstein se plaignit de n'avoir \u00ab\u00a0never got any numbers.\u00a0\u00bb",
+    body_fr: [
+      "Le 25 juin 2010, Ian Douglas, un cadre du bureau du pr\u00e9sident de Sol Kerzner, \u00e9crivit \u00e0 Jeffrey Epstein. \"Following your discussions with Sultan bin Sulayem, Mr Sol Kerzner has asked that I get in touch with you,\" \u00e9crivit Douglas. Il proposa une rencontre le 21 juillet dans les bureaux new-yorkais de Kerzner au Crown Building sur la Cinqui\u00e8me Avenue (EFTA02411125-0). L'\u00e9quipe d'Epstein r\u00e9pondit qu'il ne serait pas \u00e0 New York le 21 et sugg\u00e9ra un appel pour fixer une nouvelle date. La r\u00e9ponse pr\u00e9cisait aussi que \"Jeffrey ,and Ghislaine Maxwell, have met sol\" et demandait \u00e0 Douglas de \"remind sol that their first contact was with David and Cathy Luri , in the eighties\" (vol00009-efta00736051-pdf-0). Douglas relanca le 29 juin. L'assistante d'Epstein Sarah K. transf\u00e9ra le message en interne\u00a0: \"I told him I would speak with you about this.. should I tell him we will need to wait till the date gets closer? Do you want to meet him?\" Epstein r\u00e9pondit\u00a0: \"he is supposed to send info first, I spoke to sol on the phone\" (vol00009-efta00736244-pdf-0).",
+      "Le 14 juillet, Lesley Groff envoya un rappel\u00a0: \"Sol Kerzner would like to meet with you on July 21\" (EFTA02409524-0). Le 21 juillet, Epstein transf\u00e9ra le rappel avec une seule annotation\u00a0: \"nevergot any numbers\" (EFTA01814737-0). Le m\u00eame jour, Sultan Bin Sulayem envoya un texto \u00e0 Epstein\u00a0: \"I think sol will give the instruction to release the numbers after he meets you\" (EFTA02409279-0). Les archives ne contiennent aucun suivi apr\u00e8s la rencontre.",
+    ],
   },
   {
     slug: "lloyd-fixer-borrower",
