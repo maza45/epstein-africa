@@ -801,6 +801,15 @@ export const STORIES = [
       "EFTA01787108-0",
     ],
     news_links: [],
+    title_fr: "\u00ab\u00a0Reputations Converge\u00a0\u00bb\u00a0: comment Epstein pr\u00e9senta Larry Summers \u00e0 Karim Wade \u00e0 Doha",
+    summary_fr:
+      "Le 29 novembre 2016, Epstein pr\u00e9senta Karim Wade et Larry Summers par email. Summers demanda \u00ab\u00a0Who is the guy you have set me up with?\u00a0\u00bb puis accepta la rencontre. Il \u00e9crivit \u00e0 Epstein\u00a0: \u00ab\u00a0Try always discreet. If u become associated publicly w something the reputations converge.\u00a0\u00bb",
+    body_fr: [
+      "Le 29 novembre 2016, Epstein envoya un email de pr\u00e9sentation aux deux hommes\u00a0: \"larry, karim, karim - larry, larry will be in doha on wed, i think you two would enjoy meeting\" (HOUSE_OVERSIGHT_026028-0). Wade, \u00e9crivant depuis le compte Afri zp, r\u00e9pondit\u00a0: \"I'll be very please to meet or take you for diner\" (HOUSE_OVERSIGHT_026028-2).",
+      "Summers \u00e9crivit \u00e0 Epstein s\u00e9par\u00e9ment deux heures plus tard\u00a0: \"Who is the guy you have set me up with?\" (HOUSE_OVERSIGHT_026028-1). Epstein r\u00e9pondit par un briefing complet\u00a0: \"Karim Wade. is the son of the president of Senegal. ( they just found GAS offshore ). He is well educated and one of the most important figures in west africa. however full disclosure, he was put in jail to remove him from running against the current president He is in qatar awaiting his political return to power which is almost guaranteed. He is the most charismatic ,and rational of all the africans and has theire respect\" (HOUSE_OVERSIGHT_026028-3).",
+      "La r\u00e9ponse de Summers arriva le soir m\u00eame\u00a0: \"Always quiet advice to anybody who can use it. Try always discreet. If u become associated publicly w something the reputations converge. Looking fwd to meeting Karim\" (HOUSE_OVERSIGHT_026028-4). Le m\u00eame email, envoy\u00e9 depuis son iPad, incluait son identifiant Twitter et une ligne renvoyant toute demande de rendez-vous \u00e0 son bureau.",
+      "Epstein tentait cette pr\u00e9sentation depuis cinq ans. En septembre 2011, un membre de son \u00e9quipe \u00e9crivit\u00a0: \"le just said Karim will be coming Friday and has me asking Larry Summers if he can come as well..this could become an initimate dinner!\" (EFTA02182743-0). En novembre 2016, la rencontre eut enfin lieu, \u00e0 Doha.",
+    ],
   },
   {
     slug: "rwanda-clinton-kagame",
