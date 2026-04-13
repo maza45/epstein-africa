@@ -2100,6 +2100,15 @@ export const STORIES = [
         source: "France 24",
       },
     ],
+    title_fr: "Epstein dit \u00e0 Bannon qu'il \u00e9tait avec Mobutu dans les ann\u00e9es 1980, puis lui offrit Moubarak et Sissi",
+    summary_fr:
+      "En f\u00e9vrier 2018, Epstein dit \u00e0 Steve Bannon qu'il avait \u00e9t\u00e9 \u00ab\u00a0with Mabutu Seko, dictator of Zaire\u00a0\u00bb au milieu des ann\u00e9es 1980, puis lui envoya une photo de Mobutu. Bannon r\u00e9pondit\u00a0: \u00ab\u00a0we r on the cusp of real power.\u00a0\u00bb Epstein le corrigea\u00a0: \u00ab\u00a0You not we.\u00a0\u00bb Cinq mois plus tard, Epstein offrit \u00e0 Bannon un acc\u00e8s priv\u00e9 \u00e0 Moubarak et Sissi au Caire.",
+    body_fr: [
+      "Le 19 f\u00e9vrier 2018, Epstein et Bannon discutaient de cryptomonnaie et de financement politique. Epstein \u00e9crivit\u00a0: \"HAHA when i was with Mabutu Seko, dictator of Zaire. mid 80s He also wanted a coin called 'citizen.' in fact He required all african names to be changed and prefaced with the word 'Citizen.' in stead of monsieur and madam and required only african names as a poplulist binder. so . monsieur epstein\" (EFTA02524739-0). Epstein envoya ensuite \u00e0 Bannon une photo de Mobutu (vol00009-efta00881560-pdf-0).",
+      "Bannon r\u00e9pondit au sujet de la construction d'une infrastructure politique\u00a0: \"u add this potential grassroots (ie retail) financial muscle in back of a grassroots army u disintermediate mcconnel's corporatist apparatus\" (vol00009-efta00881551-pdf-0). Puis\u00a0: \"we r on the cusp of real power\" (vol00009-efta00881717-pdf-0). La r\u00e9ponse d'Epstein tint en deux mots\u00a0: \"You not we\" (vol00009-efta00881743-pdf-0).",
+      "Epstein avait tent\u00e9 de r\u00e9unir Bannon et Sultan Bin Sulayem. En mars 2018, Epstein dit \u00e0 Sultan\u00a0: \"thurs night bannon ok.\" Sultan r\u00e9pondit\u00a0: \"Unfortunately I will cancel my New York trip. President of Congo insisting to sign the port concession with me on Friday\" (vol00009-efta00856042-pdf-0). Le d\u00eener avec Bannon fut annul\u00e9 parce que Sultan devait s'envoler pour le Congo pour signer un accord portuaire.",
+      "Cinq mois plus tard, le 24 juillet 2018, Epstein offrit \u00e0 Bannon un acc\u00e8s aux dirigeants \u00e9gyptiens\u00a0: \"btw, you and i can see mubarak/sisi as well. just need to schedule.\" Bannon\u00a0: \"In cairo???\" Epstein\u00a0: \"definitely not in palm beach :)\" (vol00009-efta01006183-pdf-0, vol00009-efta01006185-pdf-0). Le m\u00eame fil incluait Epstein \u00e9num\u00e9rant des pays\u00a0: \"kazaks, mongolians senegaleze. ivory coast, dubai, qatar saudi, kuwait. yemen eritrea. ethiopia. kenya. tunisia.\"",
+    ],
   },
   {
     slug: "equatorial-guinea-trip-plan",
