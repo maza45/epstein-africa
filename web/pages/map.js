@@ -96,7 +96,7 @@ function CountryPanel({ country, data, onClose, locale, copy }) {
       )}
 
       <div className="map-panel-section">
-        <Link href={`/?country=${encodeURIComponent(country)}`} locale={false} className="map-panel-link">
+        <Link href={`/?country=${encodeURIComponent(country)}`} locale={locale} className="map-panel-link">
           {copy.viewAll.replace("{country}", countryLabel)} &rarr;
         </Link>
       </div>

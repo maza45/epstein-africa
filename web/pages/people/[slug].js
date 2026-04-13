@@ -258,7 +258,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                                 `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
                                 ,
                                 undefined,
-                                { locale: false }
+                                { locale }
                               )
                             }
                           >
@@ -338,7 +338,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                               router.push(
                                 `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`,
                                 undefined,
-                                { locale: false }
+                                { locale }
                               )
                             }
                           >

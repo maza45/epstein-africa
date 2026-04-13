@@ -8,7 +8,14 @@ import ShareButtons from "../../components/ShareButtons";
 import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
 import { formatDateTime, splitCountries } from "../../lib/format";
-import { BASE, getCanonicalUrl, normalizeLocale } from "../../lib/i18n";
+import {
+  BASE,
+  EMAIL_COPY,
+  getCanonicalUrl,
+  getLocalizedCountryLabel,
+  getOgLocale,
+  normalizeLocale,
+} from "../../lib/i18n";
 
 function parseParticipants(raw) {
   if (!raw) return [];
@@ -29,17 +36,9 @@ function findSenderSlug(sender) {
 }
 
 export async function getServerSideProps({ params, locale }) {
-  if (normalizeLocale(locale) === "fr") {
-    return {
-      redirect: {
-        destination: `/emails/${encodeURIComponent(params.id)}`,
-        permanent: false,
-      },
-    };
-  }
-
   const db = getDb();
   const requestedId = params.id;
+  const normalizedLocale = normalizeLocale(locale);
   const email = db
     .prepare(
       `SELECT id, doc_id, sender, subject, to_recipients, sent_at,
@@ -78,6 +77,7 @@ export async function getServerSideProps({ params, locale }) {
           senderProfileSlug: null,
           siblingChoices: siblings,
           requestedId,
+          locale: normalizedLocale,
         },
       };
     }
@@ -85,7 +85,15 @@ export async function getServerSideProps({ params, locale }) {
     return { notFound: true };
   }
   const senderProfileSlug = findSenderSlug(email.sender);
-  return { props: { ssrEmail: email, senderProfileSlug, siblingChoices: [], requestedId } };
+  return {
+    props: {
+      ssrEmail: email,
+      senderProfileSlug,
+      siblingChoices: [],
+      requestedId,
+      locale: normalizedLocale,
+    },
+  };
 }
 
 function Field({ label, value, mono }) {
@@ -98,8 +106,9 @@ function Field({ label, value, mono }) {
   );
 }
 
-export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoices = [], requestedId }) {
+export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoices = [], requestedId, locale }) {
   const router = useRouter();
+  const copy = EMAIL_COPY[locale] || EMAIL_COPY.en;
   const [email] = useState(ssrEmail);
   const error = null;
   const isChooser = !email && siblingChoices.length > 1;
@@ -107,14 +116,14 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
   const participants = email ? parseParticipants(email.all_participants) : [];
 
   const title = isChooser
-    ? `Multiple Email Records — Epstein Africa`
+    ? copy.chooserTitle
     : email
-      ? `${email.subject || "(no subject)"} — Epstein Africa`
+      ? `${email.subject || copy.noSubject} ${copy.pageTitleSuffix}`
       : "Epstein Africa";
   const description = email
-    ? `Email from ${email.sender || "Unknown"} — ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : "undated"}${email.countries ? ` — ${email.countries}` : ""}`
+    ? `${copy.descriptionPrefix} ${email.sender || copy.unknown} — ${email.sent_at ? new Date(email.sent_at).toLocaleDateString("en-GB") : copy.undated}${email.countries ? ` — ${email.countries}` : ""}`
     : isChooser
-      ? `The pasted email link "${requestedId}" matches multiple records. Choose the correct email record.`
+      ? copy.chooserDescription.replace("{requestedId}", requestedId)
       : "";
   const pageUrl = email ? `/emails/${encodeURIComponent(email.id)}` : `/emails/${encodeURIComponent(requestedId || "")}`;
 
@@ -123,22 +132,29 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        {!isChooser && <link rel="canonical" href={getCanonicalUrl(pageUrl, "en")} />}
+        {!isChooser && <link rel="canonical" href={getCanonicalUrl(pageUrl, locale)} />}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        {!isChooser && <meta property="og:url" content={getCanonicalUrl(pageUrl, "en")} />}
+        {!isChooser && <meta property="og:url" content={getCanonicalUrl(pageUrl, locale)} />}
         <meta property="og:type" content="article" />
+        <meta property="og:locale" content={getOgLocale(locale)} />
         {!isChooser && (
           <meta
             property="og:image"
-            content={`${BASE}/api/og?title=${encodeURIComponent(email?.subject || "Email")}&subtitle=${encodeURIComponent(description)}`}
+            content={`${BASE}/api/og?title=${encodeURIComponent(email?.subject || copy.titleFallback)}&subtitle=${encodeURIComponent(description)}`}
           />
+        )}
+        {!isChooser && locale === "en" && (
+          <link rel="alternate" hrefLang="fr" href={getCanonicalUrl(pageUrl, "fr")} />
+        )}
+        {!isChooser && locale === "fr" && (
+          <link rel="alternate" hrefLang="en" href={getCanonicalUrl(pageUrl, "en")} />
         )}
         {isChooser && <meta name="robots" content="noindex" />}
       </Head>
 
       <div className="container">
-        <Nav pagePath={pageUrl} frAvailable={false} />
+        <Nav pagePath={pageUrl} frAvailable={true} />
         <a
           className="back-btn"
           href={(() => {
@@ -150,35 +166,35 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
             return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
           })()}
         >
-          ← Back
+          ← {copy.back}
         </a>
 
         {error && <p className="error-msg">{error}</p>}
 
-        {!email && !error && !isChooser && <p className="loading-msg">Loading…</p>}
+        {!email && !error && !isChooser && <p className="loading-msg">{copy.loading}</p>}
 
         {email && (
           <article className="email-detail">
             <header className="detail-header">
               <h1 className="detail-subject">
-                {email.subject || "(no subject)"}
+                {email.subject || copy.noSubject}
               </h1>
               <div className="detail-meta">
                 <span className="date">{formatDateTime(email.sent_at)}</span>
                 {email.epstein_is_sender === 1 && (
-                  <span className="badge-epstein">Epstein sender</span>
+                  <span className="badge-epstein">{copy.epsteinSender}</span>
                 )}
               </div>
-              <ShareButtons path={pageUrl} title={email.subject || "Email"} summary={description} locale="en" />
+              <ShareButtons path={pageUrl} title={email.subject || copy.titleFallback} summary={description} locale={locale} />
             </header>
 
             <div className="detail-fields">
               {email.sender && (
                 <div className="field">
-                  <div className="field-label">From</div>
+                  <div className="field-label">{copy.from}</div>
                   <div className="field-value">
                     {senderProfileSlug ? (
-                      <Link href={`/people/${senderProfileSlug}`} locale="en">
+                      <Link href={`/people/${senderProfileSlug}`} locale={locale}>
                         {email.sender}
                       </Link>
                     ) : (
@@ -187,11 +203,11 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                   </div>
                 </div>
               )}
-              <Field label="To" value={email.to_recipients} />
+              <Field label={copy.to} value={email.to_recipients} />
 
               {participants.length > 0 && (
                 <div className="field">
-                  <div className="field-label">All participants</div>
+                  <div className="field-label">{copy.allParticipants}</div>
                   <div className="field-value participants">
                     {participants.map((p) => (
                       <span key={p} className="participant-tag">{p}</span>
@@ -202,10 +218,10 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
 
               {email.countries && (
                 <div className="field">
-                  <div className="field-label">Countries mentioned</div>
+                  <div className="field-label">{copy.countriesMentioned}</div>
                   <div className="field-value">
                     {splitCountries(email.countries).map((c) => (
-                      <span key={c} className="tag">{c}</span>
+                      <span key={c} className="tag">{getLocalizedCountryLabel(c, locale)}</span>
                     ))}
                   </div>
                 </div>
@@ -213,25 +229,25 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
 
               {email.body && (
                 <div className="field">
-                  <div className="field-label">Body</div>
+                  <div className="field-label">{copy.body}</div>
                   <pre className="email-body">{email.body}</pre>
                 </div>
               )}
 
-              <Field label="Release batch" value={email.release_batch} />
-              <Field label="Document ID" value={email.doc_id} mono />
-              <Field label="Record ID" value={email.id} mono />
+              <Field label={copy.releaseBatch} value={email.release_batch} />
+              <Field label={copy.documentId} value={email.doc_id} mono />
+              <Field label={copy.recordId} value={email.id} mono />
 
               {email.doc_id && (
                 <div className="field">
-                  <div className="field-label">Source</div>
+                  <div className="field-label">{copy.source}</div>
                   <div className="field-value">
                     <a
                       href={`https://jmail.world/thread/${email.doc_id}`}
                       target="_blank"
                       rel="noreferrer"
                     >
-                      View on Jmail ↗
+                      {copy.viewOnJmail}
                     </a>
                   </div>
                 </div>
@@ -243,10 +259,10 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
         {isChooser && (
           <article className="email-detail">
             <header className="detail-header">
-              <h1 className="detail-subject">Multiple Email Records</h1>
+              <h1 className="detail-subject">{copy.chooserHeading}</h1>
               <p className="story-lede">
-                The link you opened matches multiple email records for document <span className="mono">{requestedId}</span>.
-                Choose the record you want to view.
+                {copy.chooserLeadPrefix} <span className="mono">{requestedId}</span>.{" "}
+                {copy.chooserLeadSuffix}
               </p>
             </header>
 
@@ -255,10 +271,10 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                 <table className="email-table">
                   <thead>
                     <tr>
-                      <th className="col-date">Date</th>
-                      <th className="col-sender">Sender</th>
-                      <th className="col-subject">Subject</th>
-                      <th className="col-countries">Countries</th>
+                      <th className="col-date">{copy.thDate}</th>
+                      <th className="col-sender">{copy.thSender}</th>
+                      <th className="col-subject">{copy.thSubject}</th>
+                      <th className="col-countries">{copy.thCountries}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -270,20 +286,20 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                           router.push(
                             `/emails/${encodeURIComponent(choice.id)}?back=${encodeURIComponent(router.asPath)}`,
                             undefined,
-                            { locale: false }
+                            { locale }
                           )
                         }
                       >
                         <td className="col-date">{formatDateTime(choice.sent_at)}</td>
-                        <td className="col-sender">{choice.sender || "Unknown"}</td>
+                        <td className="col-sender">{choice.sender || copy.unknown}</td>
                         <td className="col-subject">
-                          <div>{choice.subject || "(no subject)"}</div>
+                          <div>{choice.subject || copy.noSubject}</div>
                           {choice.preview && <div className="chooser-preview">{choice.preview}</div>}
                         </td>
                         <td className="col-countries">
                           {choice.countries
                             ? splitCountries(choice.countries).map((c) => (
-                                <span key={c} className="tag">{c}</span>
+                                <span key={c} className="tag">{getLocalizedCountryLabel(c, locale)}</span>
                               ))
                             : "—"}
                         </td>
@@ -296,7 +312,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
           </article>
         )}
 
-        <Footer locale="en" />
+        <Footer locale={locale} />
       </div>
     </>
   );

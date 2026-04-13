@@ -253,7 +253,7 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
                       router.push(
                         `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`,
                         undefined,
-                        { locale: false }
+                        { locale }
                       )
                     }
                   >

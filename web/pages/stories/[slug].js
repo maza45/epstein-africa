@@ -22,7 +22,7 @@ import {
 // Turn inline email IDs like (EFTA01841982-0) into clickable links
 const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?))\b/g;
 
-function linkifyCitations(text) {
+function linkifyCitations(text, locale) {
   const parts = [];
   let lastIndex = 0;
   let match;
@@ -33,7 +33,7 @@ function linkifyCitations(text) {
     }
     const id = match[1];
     parts.push(
-      <Link key={`${id}-${match.index}`} href={`/emails/${encodeURIComponent(id)}`} locale={false} className="citation-link">
+      <Link key={`${id}-${match.index}`} href={`/emails/${encodeURIComponent(id)}`} locale={locale} className="citation-link">
         {id}
       </Link>
     );
@@ -152,7 +152,7 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
           {story.body.length > 0 && (
             <div className="story-body">
               {story.body.map((para, i) => (
-                <p key={i}>{linkifyCitations(para)}</p>
+                    <p key={i}>{linkifyCitations(para, locale)}</p>
               ))}
             </div>
           )}
@@ -180,7 +180,7 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
                             `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
                             ,
                             undefined,
-                            { locale: false }
+                            { locale }
                           )
                         }
                       >
