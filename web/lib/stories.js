@@ -2049,6 +2049,16 @@ export const STORIES = [
       "EFTA02418828-4",
     ],
     news_links: [],
+    title_fr: "Comment Epstein ouvrit au num\u00e9ro 2 de JPMorgan des rencontres priv\u00e9es avec des chefs d'\u00c9tat",
+    summary_fr:
+      "Quand Jes Staley fut promu num\u00e9ro deux de JPMorgan en septembre 2009, Sultan Bin Sulayem dit \u00e0 Epstein\u00a0: \u00ab\u00a0Did you see your friend Jes Staley just got promoted.\u00a0\u00bb Epstein r\u00e9pondit\u00a0: \u00ab\u00a0it was not an accident.\u00a0\u00bb En quelques mois, Epstein avait organis\u00e9 un d\u00eener priv\u00e9 Sultan-Staley, Staley \u00e9tait invit\u00e9 \u00e0 rencontrer 14 ministres des Affaires \u00e9trang\u00e8res, et Peter Mandelson lui proposait des mines au Congo.",
+    body_fr: [
+      "Le 30 septembre 2009, Sultan Bin Sulayem \u00e9crivit \u00e0 Epstein\u00a0: \"Did you see your friend Jes Staley just got promoted to #2 at JP Morgan\" (EFTA02526370-0). Epstein r\u00e9pondit\u00a0: \"it was not an accident..\" (vol00009-efta00740105-pdf-0).",
+      "Deux mois plus tard, Epstein coordonnait le voyage de Staley\u00a0: \"Jes is re arranging his schedule to make a trip to the middle east// saudi etc. call me\" (vol00009-efta00742801-pdf-0). Le 9 d\u00e9cembre, il organisa un d\u00eener priv\u00e9 entre les deux hommes\u00a0: \"sultan , jes is free thurs, from 5-10 p.m. where and when, only the two of you please\" (vol00009-efta00743331-pdf-0).",
+      "La pr\u00e9sentation d\u00e9boucha sur une relation bancaire. Le 15 avril 2010, Sultan \u00e9crivit directement \u00e0 Staley chez JPMorgan\u00a0: \"Dear Jes, DUKES HOTEL LIMITED \u2014 REFINANCING REQUIREMENTS \u2014 We have a requirement of refinancing the loan\" (EFTA02426003-0). Le pr\u00e9sident de DP World demandait un pr\u00eat au num\u00e9ro deux de JPMorgan, par un canal qu'Epstein avait construit.",
+      "En octobre 2010, Epstein envoya \u00e0 Staley une invitation \u00e0 une rencontre avec quatorze ministres des Affaires \u00e9trang\u00e8res et chefs d'\u00c9tat. \"jeffrey , please come. you may have private time with each . you security clearance is approved.\" La liste comprenait le Nig\u00e9rian Henry Odein Ajumogobia, le Marocain Taieb Fassi-Fihri, le Qatari Sheikh Hamad bin Jassim bin Jabor Al-Thani, le Premier ministre libanais Saad Harari, le Pakistanais Makhdoom Shah Mahmood Qureshi et l'\u00c9mirati Sheikh Abdullah bin Zayed Al Nahyan (vol00009-efta00755193-pdf-0).",
+      "La m\u00eame semaine, Peter Mandelson \u00e9crivit \u00e0 Staley\u00a0: \"In Congo Brazzaville last week, I talked at length with President Sassou Ntuesso, including about the above new mine.\" Staley r\u00e9pondit\u00a0: \"I will find out. Sounds interesting\" (EFTA02418828-3, EFTA02418828-4). Mandelson proposait des mines congolaises au num\u00e9ro deux de JPMorgan via le r\u00e9seau Epstein.",
+    ],
   },
   {
     slug: "bannon-mobutu-cairo",
