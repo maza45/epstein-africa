@@ -1027,6 +1027,16 @@ export const STORIES = [
       "EFTA01930885-0",
     ],
     news_links: [],
+    title_fr: "\u00c9thiopie\u00a0: Brunel voulait des \u00ab\u00a0interesting girls\u00a0\u00bb, Epstein voulait le monopole du tabac",
+    summary_fr:
+      "En juillet 2012, Epstein informa son partenaire commercial y\u00e9m\u00e9nite que son ami qui \u00ab\u00a0owns a modeling agency\u00a0\u00bb souhaitait se rendre en \u00c9thiopie parce qu'il pensait y trouver des \u00ab\u00a0interesting girls.\u00a0\u00bb Quatre jours plus tard, Jean-Luc Brunel confirma. Trois ans apr\u00e8s, le m\u00eame partenaire proposa \u00e0 Epstein un pr\u00eat de 20 millions de dollars adoss\u00e9 \u00e0 l'unique monopole cigarettier \u00e9thiopien.",
+    body_fr: [
+      "Le 2 juillet 2012, Epstein \u00e9crivit \u00e0 Shaher Abdulhak. Il ajouta\u00a0: \"if you go to ethiopia. my very good friend that owns a modeling agency would love to go. as he thinks there are interesting girls there\" (EFTA01873908-0).",
+      "Quatre jours plus tard, Jean-Luc Brunel \u00e9crivit \u00e0 Epstein depuis Paris. Il \u00e9num\u00e9ra son emploi du temps, puis\u00a0: \"NY except if I can go to Ethiopia with you\" (EFTA01768711-2).",
+      "Shaher avait ses propres op\u00e9rations en \u00c9thiopie. Il d\u00e9tenait 60 pour cent de National Tobacco Enterprise Ethiopia, l'unique usine de cigarettes du pays, un monopole constitu\u00e9 en 1946 sous le nom d'Imperial Tobacco Factory. En avril 2015, il sollicita Epstein directement\u00a0: \"Need 20 $ mill we are short to pay for my ethiopian cigarettes for 360 days\" (EFTA01744617-4). Shaher d\u00e9tailla la structure\u00a0: une soci\u00e9t\u00e9 ca\u00efmanaise appel\u00e9e Sheba Investment d\u00e9tenait les parts, le gouvernement \u00e9thiopien les 40 pour cent restants, la production atteignait cinq milliards de cigarettes par an avec un objectif de doublement, et l'entreprise commercialisait Marlboro sous licence exclusive. Il \u00e9valuait sa participation \u00e0 270 millions de dollars (EFTA01744617-5).",
+      "Epstein s'int\u00e9ressa. \"i would very much like to be helpful. what is the cash flow, income and balance sheet look like\" (EFTA01744617-10). Shaher indiqua un b\u00e9n\u00e9fice net de 12 millions de dollars l'ann\u00e9e pr\u00e9c\u00e9dente et projetait une valorisation de 500 \u00e0 600 millions de dollars fin 2017. Il expliqua la difficult\u00e9\u00a0: les pr\u00eateurs du Golfe consid\u00e9raient le financement du tabac comme \"Makrooh\" (religieusement d\u00e9courag\u00e9), \"though they all smoke (hypocrisy)\" (EFTA01744617-9). Aucun email des archives ne confirme qu'Epstein ait accord\u00e9 le pr\u00eat.",
+      "Shaher se rendait r\u00e9guli\u00e8rement \u00e0 Addis-Abeba. En juin 2012, il \u00e9crivit depuis la capitale\u00a0: \"Sheraton they did not have Wifi and their Internet very bad\" (EFTA01882115-1). Epstein le mit en garde\u00a0: \"fewer. don't trust anyone.\" En mars 2014, Shaher \u00e9tait de nouveau \u00e0 Addis-Abeba, puis repartit pour le Soudan en \u00e9crivant\u00a0: \"brother cousin enjoying with Beautiful faces sun and blue skies. Poor me\" (EFTA01930885-0). En octobre 2014, Sultan envoya \u00e0 Epstein une photo l\u00e9gend\u00e9e \"WITH PRESIDENT IF ETHIOPIA\" (EFTA01801857-0).",
+    ],
   },
   {
     slug: "barak-security-machine",
