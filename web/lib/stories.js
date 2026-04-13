@@ -831,6 +831,14 @@ export const STORIES = [
       "EFTA01874244-0",
     ],
     news_links: [],
+    title_fr: "Epstein, la Fondation Clinton et les \u00e9tudiants rwandais qu'il utilisa pour atteindre Kagame",
+    summary_fr:
+      "En 2006, le bureau de politique \u00e9trang\u00e8re de la Fondation Clinton organisa des rencontres entre deux \u00e9tudiants rwandais parrain\u00e9s par Epstein \u00e0 City College et Epstein lui-m\u00eame. Quatre ans plus tard, Epstein cita ces \u00e9tudiants, transf\u00e9r\u00e9s \u00e0 Columbia dans sa version des faits, comme carte de visite pour approcher Paul Kagame.",
+    body_fr: [
+      "En janvier 2006, Tascha Alvarez von Gustedt \u00e9crivit \u00e0 Darren Indyke, l'avocat d'Epstein. Elle \u00e9tait directrice adjointe de la politique \u00e9trang\u00e8re au bureau du pr\u00e9sident William J. Clinton, et souhaitait organiser une rencontre entre Epstein et deux \u00e9tudiants rwandais qu'il parrainait \u00e0 City College. Les \u00e9tudiants \u00e9taient \"so grateful to Mr. Epstein,\" \u00e9crivit-elle, \"and would very much like to meet him and thank him in person for his support\" (75143e89879e72055fc93a9d2cbccf03-0). Elle r\u00e9\u00e9crivit en f\u00e9vrier. Puis en mars, s'excusant de sa \"persistance.\" \u00c0 chaque fois, Epstein r\u00e9pondit en une ligne via Indyke, repoussant la date\u00a0: \"feb,\" puis \"check again next week,\" puis \"march 14\" (056bf630dbae823c73c1d7976617fc11-0, c3bb0bb4c3c2a2f3308b47f1d8375be0-0). La Fondation coordonnait une rencontre de remerciement entre \u00e9tudiants et leur bienfaiteur.",
+      "Quatre ans plus tard, Epstein mobilisa la connexion rwandaise autrement. En septembre 2010, un contact lui transf\u00e9ra une invitation de Francine Lefrak \u00e0 un \u00e9v\u00e9nement avec des chefs d'\u00c9tat africains. Epstein r\u00e9pondit\u00a0: \"she can tell kagami that I was the one that went with clinton and funded the rwandan students at columbia\" (EFTA01984007-0). En 2006, les \u00e9tudiants \u00e9taient \u00e0 City College. Dans son message au cercle de Kagame, ils \u00e9taient \u00e0 Columbia.",
+      "En juillet 2012, Jonathan Farkas \u00e9crivit \u00e0 Epstein\u00a0: \"i ran into Francine lefrak last night are you in rwanda with Clinton give president Kigame my best\" (EFTA01874244-0).",
+    ],
   },
   {
     slug: "gabon-bongo",
