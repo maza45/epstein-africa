@@ -2130,6 +2130,15 @@ export const STORIES = [
       "EFTA02519820-0",
     ],
     news_links: [],
+    title_fr: "Malabo ou Bata\u00a0: le plan de voyage d'Epstein en Guin\u00e9e \u00e9quatoriale",
+    summary_fr:
+      "En septembre 2011, Epstein demanda \u00e0 son \u00e9quipe a\u00e9rienne de planifier un voyage de 14 \u00e9tapes avec la Guin\u00e9e \u00e9quatoriale comme pivot africain avant de rejoindre son \u00eele cara\u00efb\u00e9enne. Quand le service des vols demanda quelle ville de Guin\u00e9e \u00e9quatoriale, le correcteur automatique de son iPhone d\u00e9forma la r\u00e9ponse. Deux ans plus tard, Larry Summers lui demanda depuis un forum \u00e9conomique africain s'il connaissait le pr\u00e9sident de Guin\u00e9e \u00e9quatoriale, sur une liste de six chefs d'\u00c9tat africains.",
+    body_fr: [
+      "26 septembre 2011. Epstein \u00e9crivit \u00e0 son \u00e9quipe a\u00e9rienne\u00a0: \"It would be helpful if you both created a flight plan and approx cost breakdown for following itinerary and do it both in g2 and 727. paris, marrakesh, dakar senegal, abijan ivory coast. equatorial guinea, djibouti, dubai, baku, astana kazakhstan, moscow minsk vilnius, riga, new york\" (EFTA01857576-0). Une seconde version suivit\u00a0: \"2. same as above but after equatorial guinea, fly straight to virgin islands\" (EFTA01857576-0). La Guin\u00e9e \u00e9quatoriale \u00e9tait la porte africaine vers son \u00eele cara\u00efb\u00e9enne.",
+      "Le service des vols avait besoin d'une r\u00e9ponse plus pr\u00e9cise. Le lendemain, ils r\u00e9pondirent\u00a0: \"Which city in Equatorial Guinea do you need\" (EFTA01774115-0). La r\u00e9ponse iPhone d'Epstein fut \"Batavia\" (EFTA01774115-0). Le service insista\u00a0: \"That does not come up in any searches\", puis \"do you mean Bata?\" (EFTA01775072-0). Epstein\u00a0: \"Yes\". Bata est la deuxi\u00e8me ville de Guin\u00e9e \u00e9quatoriale, sur le continent\u00a0; Malabo, la capitale, se trouve sur l'\u00eele de Bioko. Le choix entre les deux \u00e9tait op\u00e9rationnellement pr\u00e9cis. Epstein voulait le continent.",
+      "Les archives ne disent pas si le voyage eut lieu. Le plan est le document.",
+      "15 juin 2013. Larry Summers \u00e9crivit \u00e0 Epstein depuis un \u00e9v\u00e9nement\u00a0: \"Speaking at an African Econ forum in Gabon\" et demanda\u00a0: \"Do you know president? Or of Senegal Congo cent aft republic Equatorial Guinea Cameroon Angola?\" (EFTA02519820-0). L'ancien secr\u00e9taire au Tr\u00e9sor am\u00e9ricain traitait Epstein comme un r\u00e9pertoire pr\u00e9sidentiel africain \u00e0 guichet unique et nomma six chefs d'\u00c9tat. La Guin\u00e9e \u00e9quatoriale figurait sur la liste.",
+    ],
   },
   {
     slug: "senegal-macky-pivot-dakar-port",
