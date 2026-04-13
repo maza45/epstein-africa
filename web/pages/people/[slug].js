@@ -12,11 +12,13 @@ import {
   BASE,
   getCanonicalUrl,
   getLocalizedCountryLabel,
+  getLocalizedPath,
   getLocalizedPerson,
   getOgLocale,
   hasFrenchPerson,
   normalizeLocale,
   PEOPLE_COPY,
+  resolveBackHref,
 } from "../../lib/i18n";
 
 const LIMIT = 25;
@@ -158,6 +160,8 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
   const total = data?.total ?? 0;
   const totalPages = Math.ceil(total / LIMIT);
   const pageUrl = person ? `/people/${person.slug}` : "/people";
+  const localizedPageUrl = getLocalizedPath(pageUrl, locale);
+  const backHref = resolveBackHref(router.query.back, "/people", locale);
 
   const jsonLd = person ? {
     "@context": "https://schema.org",
@@ -198,7 +202,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
 
       <div className="container">
         <Nav pagePath={pageUrl} frAvailable={frAvailable} />
-        <button className="back-btn" onClick={() => router.back()}>← {t.back}</button>
+        <Link className="back-btn" href={backHref} locale={false}>← {t.back}</Link>
 
         {error && <p className="error-msg">{t.loadFailed}</p>}
         {!data && !error && <p className="loading-msg">{t.loading}</p>}
@@ -255,7 +259,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                             className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
                             onClick={() =>
                               router.push(
-                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
+                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(localizedPageUrl)}`
                                 ,
                                 undefined,
                                 { locale }
@@ -336,7 +340,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                             className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
                             onClick={() =>
                               router.push(
-                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`,
+                                `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(localizedPageUrl)}`,
                                 undefined,
                                 { locale }
                               )

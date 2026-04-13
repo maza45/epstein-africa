@@ -12,17 +12,19 @@ import {
   getCanonicalUrl,
   getLocalizedCountryLabel,
   getLocalizedCountryLabels,
+  getLocalizedPath,
   getOgLocale,
   getLocalizedStory,
   hasFrenchStory,
   normalizeLocale,
+  resolveBackHref,
   STORY_COPY,
 } from "../../lib/i18n";
 
 // Turn inline email IDs like (EFTA01841982-0) into clickable links
 const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?))\b/g;
 
-function linkifyCitations(text, locale) {
+function linkifyCitations(text, locale, backPath) {
   const parts = [];
   let lastIndex = 0;
   let match;
@@ -33,7 +35,12 @@ function linkifyCitations(text, locale) {
     }
     const id = match[1];
     parts.push(
-      <Link key={`${id}-${match.index}`} href={`/emails/${encodeURIComponent(id)}`} locale={locale} className="citation-link">
+      <Link
+        key={`${id}-${match.index}`}
+        href={`/emails/${encodeURIComponent(id)}?back=${encodeURIComponent(backPath)}`}
+        locale={locale}
+        className="citation-link"
+      >
         {id}
       </Link>
     );
@@ -96,6 +103,8 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
   const t = STORY_COPY[locale] || STORY_COPY.en;
 
   const pageUrl = `/stories/${story.slug}`;
+  const localizedPageUrl = getLocalizedPath(pageUrl, locale);
+  const backHref = resolveBackHref(router.query.back, "/stories", locale);
   const localizedCountries = getLocalizedCountryLabels(story.countries, locale);
 
   const jsonLd = {
@@ -134,7 +143,7 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
 
       <div className="container">
         <Nav pagePath={pageUrl} frAvailable={frAvailable} />
-        <button className="back-btn" onClick={() => router.back()}>← {t.back}</button>
+        <Link className="back-btn" href={backHref} locale={false}>← {t.back}</Link>
 
         <article className="story-article">
           <header className="story-header">
@@ -152,7 +161,7 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
           {story.body.length > 0 && (
             <div className="story-body">
               {story.body.map((para, i) => (
-                    <p key={i}>{linkifyCitations(para, locale)}</p>
+                    <p key={i}>{linkifyCitations(para, locale, localizedPageUrl)}</p>
               ))}
             </div>
           )}
@@ -177,7 +186,7 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
                         className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
                         onClick={() =>
                           router.push(
-                            `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
+                            `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(localizedPageUrl)}`
                             ,
                             undefined,
                             { locale }

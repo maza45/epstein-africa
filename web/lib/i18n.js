@@ -550,6 +550,32 @@ export function getCanonicalUrl(path = "/", locale = DEFAULT_LOCALE) {
   return `${BASE}${getLocalizedPath(path, locale)}`;
 }
 
+export function resolveBackHref(rawBack, fallbackPath = "/", locale = DEFAULT_LOCALE) {
+  const fallback = getLocalizedPath(fallbackPath, locale);
+  const input = Array.isArray(rawBack) ? rawBack[0] : rawBack;
+  if (!input || typeof input !== "string") return fallback;
+
+  let decoded = input;
+  try {
+    decoded = decodeURIComponent(input);
+  } catch {
+    decoded = input;
+  }
+
+  try {
+    const url = new URL(decoded, BASE);
+    if (url.origin !== BASE) return fallback;
+    const internalPath = `${url.pathname}${url.search}${url.hash}`;
+    return internalPath.startsWith("/") && !internalPath.startsWith("//")
+      ? getLocalizedPath(internalPath, locale)
+      : fallback;
+  } catch {
+    return decoded.startsWith("/") && !decoded.startsWith("//")
+      ? getLocalizedPath(decoded, locale)
+      : fallback;
+  }
+}
+
 export function getLocalizedCountryLabel(country, locale = DEFAULT_LOCALE) {
   const normalizedLocale = normalizeLocale(locale);
   return COUNTRY_LABELS[country]?.[normalizedLocale] || country;

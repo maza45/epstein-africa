@@ -9,6 +9,7 @@ import {
   MAP_COPY,
   getCanonicalUrl,
   getLocalizedCountryLabel,
+  getLocalizedPath,
   getOgLocale,
   hasFrenchStaticPage,
   normalizeLocale,
@@ -31,6 +32,7 @@ export function getStaticProps({ locale }) {
 function CountryPanel({ country, data, onClose, locale, copy }) {
   if (!country) return null;
   const countryLabel = getLocalizedCountryLabel(country, locale);
+  const backPath = getLocalizedPath("/map", locale);
 
   return (
     <div className="map-panel">
@@ -60,7 +62,7 @@ function CountryPanel({ country, data, onClose, locale, copy }) {
           <ul>
             {data.stories.map((s) => (
               <li key={s.slug}>
-                <Link href={`/stories/${s.slug}`} locale={locale}>{s.title}</Link>
+                <Link href={`/stories/${s.slug}?back=${encodeURIComponent(backPath)}`} locale={locale}>{s.title}</Link>
                 <span className="map-panel-meta">{s.date_range}</span>
               </li>
             ))}
@@ -74,7 +76,7 @@ function CountryPanel({ country, data, onClose, locale, copy }) {
           <ul>
             {data.people.map((p) => (
               <li key={p.slug}>
-                <Link href={`/people/${p.slug}`} locale={locale}>{p.name}</Link>
+                <Link href={`/people/${p.slug}?back=${encodeURIComponent(backPath)}`} locale={locale}>{p.name}</Link>
                 <span className="map-panel-meta">{p.title}</span>
               </li>
             ))}

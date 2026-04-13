@@ -15,6 +15,7 @@ import {
   getLocalizedCountryLabel,
   getOgLocale,
   normalizeLocale,
+  resolveBackHref,
 } from "../../lib/i18n";
 
 function parseParticipants(raw) {
@@ -127,6 +128,8 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
       ? copy.chooserDescription.replace("{requestedId}", requestedId)
       : "";
   const pageUrl = email ? `/emails/${encodeURIComponent(email.id)}` : `/emails/${encodeURIComponent(requestedId || "")}`;
+  const localizedPageUrl = resolveBackHref(pageUrl, "/", locale);
+  const backHref = resolveBackHref(router.query.back, "/", locale);
 
   return (
     <>
@@ -156,17 +159,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
 
       <div className="container">
         <Nav pagePath={pageUrl} frAvailable={true} />
-        <a
-          className="back-btn"
-          href={(() => {
-            const raw = router.query.back ? decodeURIComponent(router.query.back) : "/";
-            try {
-              const url = new URL(raw, "https://www.epsteinafrica.com");
-              if (url.origin !== "https://www.epsteinafrica.com") return "/";
-            } catch { /* relative paths are fine */ }
-            return raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
-          })()}
-        >
+        <a className="back-btn" href={backHref}>
           ← {copy.back}
         </a>
 
@@ -195,7 +188,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                   <div className="field-label">{copy.from}</div>
                   <div className="field-value">
                     {senderProfileSlug ? (
-                      <Link href={`/people/${senderProfileSlug}`} locale={locale}>
+                      <Link href={`/people/${senderProfileSlug}?back=${encodeURIComponent(localizedPageUrl)}`} locale={locale}>
                         {email.sender}
                       </Link>
                     ) : (
@@ -285,7 +278,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                         className="clickable-row"
                         onClick={() =>
                           router.push(
-                            `/emails/${encodeURIComponent(choice.id)}?back=${encodeURIComponent(router.asPath)}`,
+                            `/emails/${encodeURIComponent(choice.id)}?back=${encodeURIComponent(localizedPageUrl)}`,
                             undefined,
                             { locale }
                           )

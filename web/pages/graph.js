@@ -8,6 +8,7 @@ import {
   BASE,
   GRAPH_COPY,
   getCanonicalUrl,
+  getLocalizedPath,
   getOgLocale,
   hasFrenchStaticPage,
   normalizeLocale,
@@ -227,7 +228,8 @@ export default function GraphPage({ precomputedGraph, locale, frAvailable }) {
           highlightedId = null;
           resetHighlight();
           if (d.type === "person" && d.slug) {
-            routerRef.current.push(`/people/${d.slug}`, undefined, {
+            const backPath = getLocalizedPath("/graph", routerRef.current.locale);
+            routerRef.current.push(`/people/${d.slug}?back=${encodeURIComponent(backPath)}`, undefined, {
               locale: routerRef.current.locale,
             });
           } else if (d.type === "country") {

@@ -10,6 +10,7 @@ import {
   HOME_COPY,
   getCanonicalUrl,
   getLocalizedCountryLabel,
+  getLocalizedPath,
   getOgLocale,
   hasFrenchStaticPage,
   normalizeLocale,
@@ -60,6 +61,7 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
   const [loading, setLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
+  const localizedAsPath = getLocalizedPath(router.asPath || "/", locale);
 
   // All filter state derived from URL
   const currentPage = parseInt(router.query.page) || 1;
@@ -251,7 +253,7 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
                     className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
                     onClick={() =>
                       router.push(
-                        `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`,
+                        `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(localizedAsPath)}`,
                         undefined,
                         { locale }
                       )
