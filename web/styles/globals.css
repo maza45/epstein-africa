@@ -1185,9 +1185,15 @@ a:hover {
   }
 
   .map-panel {
-    width: 100%;
-    max-height: 45dvh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 85dvh;
+    z-index: 10;
     border-left: none;
-    border-top: 1px solid #222;
+    border-top: none;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
   }
 }
