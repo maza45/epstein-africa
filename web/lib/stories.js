@@ -977,6 +977,17 @@ export const STORIES = [
       "EFTA02624197-0",
     ],
     news_links: [],
+    title_fr: "Djibouti\u00a0: comment Epstein joua sur les deux tableaux d'une lutte de pouvoir",
+    summary_fr:
+      "Sultan pr\u00e9senta Epstein au pr\u00e9sident de Djibouti au Waldorf Astoria. Le m\u00eame mois, Epstein fr\u00e9quentait Abdourahman Boreh, le rival du pr\u00e9sident. Sultan pr\u00e9vint\u00a0: \u00ab\u00a0Plz don't mention to Boreh you met Djibouti president as they both hate each other.\u00a0\u00bb Epstein entretint les deux relations pendant sept ans.",
+    body_fr: [
+      "D\u00e9but septembre 2011, Epstein fr\u00e9quentait d\u00e9j\u00e0 Abdourahman Boreh \u00e0 New York. Apr\u00e8s un d\u00eener avec Michael Wolff, Epstein envoya \u00e0 Wolff le site djiboutiplan.com sur Boreh. Wolff r\u00e9pondit\u00a0: \"Well that was great fun. I loved that guy. And Victoria loved you\" (EFTA01854877-0). Le lendemain, Epstein \u00e9crivit \u00e0 Sultan\u00a0: \"our djibouti friend was a lot of fun, he canceled the girls he had coming, im not sure why?\" (EFTA01853867-0). Cinq jours plus tard, Epstein demanda \u00e0 Sultan l'email de Boreh. Sultan le fournit le jour m\u00eame (EFTA01856749-0, EFTA01775683-0).",
+      "Le 24 septembre, Sultan proposa quelque chose de plus gros. \"I am meeting Djibouti president tomorrow at 12:15 at his suit at Waldorf Astoria I told him I will bring a friend it will be interesting for you to meet him\" (EFTA01775224-1). Epstein r\u00e9pondit\u00a0: \"great\" (EFTA01855135-0).",
+      "Cinq jours plus tard, Sultan envoya l'avertissement\u00a0: \"Plz don't mention to Bomb you met Djibouti president as they both hate each other.\" Epstein\u00a0: \"i know , but thanks for the reminder\" (EFTA01851941-0).",
+      "Sultan avait son propre pass\u00e9 avec Djibouti. Quand Epstein demanda \"Do you still have the port there?\", Sultan r\u00e9pondit\u00a0: \"No we don't have the port any more there was so much corruption that we with drew from the budding process\" (EFTA01881965-0). DP World avait perdu la concession de Doraleh dans un litige qui allait occuper les tribunaux londoniens pendant une d\u00e9cennie.",
+      "L'associ\u00e9 d'Epstein David Stern devint l'avocat de Boreh. En octobre 2015, Stern rapporta\u00a0: \"helping Boreh win his case. Got this done, quite funky and happy it worked!\" et partagea un article du Daily Mail d\u00e9non\u00e7ant Lord Falconer repr\u00e9sentant Djibouti (EFTA01793405-0). En mars 2016\u00a0: \"Boreh won his case 100%.\" Epstein\u00a0: \"give him my congrats\" (EFTA02469402-1). En octobre, Epstein dit \u00e0 Sultan\u00a0: \"I had tea today with boreh fun\" (EFTA02450169-0). En 2017, Stern demanda \u00e0 Epstein de \"check Rothschild for Boreh\" (EFTA02655444-0).",
+      "Le fil se poursuivit jusqu'\u00e0 l'arrestation d'Epstein. En d\u00e9cembre 2018, Stern \u00e9crivit\u00a0: \"Saw Boreh and discussed waterholes\" (EFTA02611122-0). Trois mois plus t\u00f4t, Jide Zeitlin avait envoy\u00e9 \u00e0 Epstein l'article du Financial Times sur la nationalisation par Djibouti des parts du port de la mer Rouge, ajoutant\u00a0: \"I hope your pal's sojourn in Tel Aviv this summer with his daughter was more effective than his efforts on the African continent. The arrogance with which he dealt with me is remarkable given his track record, or lack thereof\" (EFTA02624197-0).",
+    ],
   },
   {
     slug: "ethiopia-brunel-tobacco",
