@@ -2,7 +2,14 @@ import Head from "next/head";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
-import { BASE, getCanonicalUrl, hasFrenchStaticPage, normalizeLocale } from "../lib/i18n";
+import {
+  ABOUT_COPY,
+  BASE,
+  getCanonicalUrl,
+  getOgLocale,
+  hasFrenchStaticPage,
+  normalizeLocale,
+} from "../lib/i18n";
 
 export async function getStaticProps({ locale }) {
   const normalizedLocale = normalizeLocale(locale);
@@ -26,33 +33,37 @@ export async function getStaticProps({ locale }) {
 }
 
 export default function About({ emailCount, countryCount, locale, frAvailable }) {
+  const copy = ABOUT_COPY[locale] || ABOUT_COPY.en;
+  const formatSectionBody = (body) =>
+    body
+      .replaceAll("{emailCount}", emailCount.toLocaleString())
+      .replaceAll("{countryCount}", countryCount.toLocaleString());
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: "About Epstein Africa",
+    name: copy.ogTitle,
     url: getCanonicalUrl("/about", locale),
     mainEntity: {
       "@type": "WebSite",
       name: "Epstein Africa",
       url: BASE,
-      description: "Searchable database of Jeffrey Epstein's documented connections to Africa.",
+      description: copy.description,
     },
   };
 
   return (
     <>
       <Head>
-        <title>About — Epstein Africa</title>
-        <meta
-          name="description"
-          content="About the Epstein Africa database — methodology, sources, and caveats."
-        />
+        <title>{copy.title}</title>
+        <meta name="description" content={copy.description} />
         <link rel="canonical" href={getCanonicalUrl("/about", locale)} />
-        <meta property="og:title" content="About — Epstein Africa" />
-        <meta property="og:description" content="About the Epstein Africa database — methodology, sources, and caveats." />
+        <meta property="og:title" content={copy.ogTitle} />
+        <meta property="og:description" content={copy.description} />
         <meta property="og:url" content={getCanonicalUrl("/about", locale)} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("About")}&subtitle=${encodeURIComponent("Methodology, sources, and caveats")}`} />
+        <meta property="og:locale" content={getOgLocale(locale)} />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(copy.heading)}&subtitle=${encodeURIComponent(copy.ogSubtitle)}`} />
         {frAvailable && locale === "en" && (
           <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/about", "fr")} />
         )}
@@ -68,105 +79,49 @@ export default function About({ emailCount, countryCount, locale, frAvailable })
       <div className="container">
         <Nav pagePath="/about" frAvailable={frAvailable} />
         <header className="site-header">
-          <h1>About</h1>
+          <h1>{copy.heading}</h1>
         </header>
 
         <div className="about-body">
-          <h2>What this is</h2>
-          <p>
-            A searchable database of Jeffrey Epstein&apos;s documented
-            connections to the African continent. {emailCount.toLocaleString()}{" "}
-            emails across {countryCount} countries. Every claim on this site
-            links to a specific document ID from the U.S. Department of
-            Justice release.
-          </p>
-
-          <h2>Why it exists</h2>
-          <p>
-            The DOJ released 1.78 million Epstein emails under the Epstein
-            Files Transparency Act, signed November 2025. The Africa
-            connections in those files have received almost no coverage in
-            African media. This site filters, indexes, and contextualizes the
-            Africa-relevant portion of the archive so journalists, researchers,
-            and the public can work with the primary sources directly.
-          </p>
-
-          <h2>What the archive shows</h2>
-          <p>
-            The archive documents a pattern: humanitarian funding as the entry
-            point, intelligence collection as the product, political access as
-            the payoff. The same channel that carried polio field reports from
-            Nigeria carried investment deals worth millions. The same
-            relationships that opened doors to African presidents opened doors
-            to their ministers, their ports, their resources. The documents
-            don&apos;t explain why a convicted sex offender was at the center of
-            this network. They show that he was.
-          </p>
-
-          <h2>Data sources</h2>
-          <p>
-            The email archive comes from{" "}
-            <a href="https://jmail.world" target="_blank" rel="noreferrer">
-              jmail.world
-            </a>
-            , which parsed the DOJ release into structured data. Additional
-            documents come from the House Oversight Committee subpoena releases
-            (September and November 2025). Every email in the database can be
-            verified against the original DOJ files.
-          </p>
-
-          <h2>What you can do here</h2>
-          <p>
-            Search emails by keyword, sender, or country using full-text
-            search. Read investigative stories, each citing specific email
-            document IDs. Browse person profiles showing who communicated
-            with whom. Explore the network graph to see relationships between
-            people and countries. Export the full dataset as CSV or JSON.
-            Subscribe to the RSS feed for new stories.
-          </p>
-
-          <h2>Methodology</h2>
-          <p>
-            The {emailCount.toLocaleString()} emails were filtered from the
-            1.78 million email archive by keyword matching on subjects, senders,
-            participant lists, and body text for African countries, cities, and
-            documented individuals. Stories are written from the emails as
-            primary sources. Every factual claim cites a document ID. Direct
-            quotes preserve the original text, including typos.
-          </p>
-
-          <h2>How stories are built</h2>
-          <p>
-            Every story follows the same process. Emails are identified in the
-            archive by keyword, sender, or participant matching. Each quoted
-            passage is verified verbatim against the original document. Email
-            IDs, senders, dates, and recipients are cross-checked before
-            publication. No claim appears without a document anchor. Direct
-            quotes preserve the original text, including typos and
-            misspellings. External claims — biographical details, news events,
-            public record — are separated from what the emails themselves say.
-            A pre-publication verification process checks every citation
-            against the database before any story goes live.
-          </p>
-
-          <h2>Contact</h2>
-          <p>
-            If you are a journalist or researcher working on a specific lead
-            in this database, you can reach us at{" "}
-            <a href="mailto:epsteinexposedafrica@pm.me">
-              epsteinexposedafrica@pm.me
-            </a>
-            . We can provide document IDs, source context, and data exports
-            for any thread in the archive.
-          </p>
-
-          <h2>Caveats</h2>
-          <p>
-            The archive has gaps, redactions, and missing metadata. Some dates
-            are null. Some senders show as Unknown or Redacted. Some emails
-            appear in both electronic and PDF format, creating duplicate
-            entries for the same exchange. We show the data as it is.
-          </p>
+          {copy.sections.map((section) => {
+            const body = formatSectionBody(section.body);
+            if (body.includes("{jmail}")) {
+              const [before, after] = body.split("{jmail}");
+              return (
+                <div key={section.heading}>
+                  <h2>{section.heading}</h2>
+                  <p>
+                    {before}
+                    <a href="https://jmail.world" target="_blank" rel="noreferrer">
+                      jmail.world
+                    </a>
+                    {after}
+                  </p>
+                </div>
+              );
+            }
+            if (body.includes("{email}")) {
+              const [before, after] = body.split("{email}");
+              return (
+                <div key={section.heading}>
+                  <h2>{section.heading}</h2>
+                  <p>
+                    {before}
+                    <a href="mailto:epsteinexposedafrica@pm.me">
+                      epsteinexposedafrica@pm.me
+                    </a>
+                    {after}
+                  </p>
+                </div>
+              );
+            }
+            return (
+              <div key={section.heading}>
+                <h2>{section.heading}</h2>
+                <p>{body}</p>
+              </div>
+            );
+          })}
         </div>
 
         <Footer locale={locale} />

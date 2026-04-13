@@ -4,7 +4,14 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import { buildGraphData } from "../lib/graph";
-import { BASE, getCanonicalUrl, hasFrenchStaticPage, normalizeLocale } from "../lib/i18n";
+import {
+  BASE,
+  GRAPH_COPY,
+  getCanonicalUrl,
+  getOgLocale,
+  hasFrenchStaticPage,
+  normalizeLocale,
+} from "../lib/i18n";
 
 export async function getStaticProps({ locale }) {
   const normalizedLocale = normalizeLocale(locale);
@@ -18,6 +25,7 @@ export async function getStaticProps({ locale }) {
 }
 
 export default function GraphPage({ precomputedGraph, locale, frAvailable }) {
+  const copy = GRAPH_COPY[locale] || GRAPH_COPY.en;
   const containerRef = useRef(null);
   const svgRef = useRef(null);
   const simulationRef = useRef(null);
@@ -219,9 +227,15 @@ export default function GraphPage({ precomputedGraph, locale, frAvailable }) {
           highlightedId = null;
           resetHighlight();
           if (d.type === "person" && d.slug) {
-            routerRef.current.push(`/people/${d.slug}`);
+            routerRef.current.push(`/people/${d.slug}`, undefined, {
+              locale: routerRef.current.locale,
+            });
           } else if (d.type === "country") {
-            routerRef.current.push(`/?country=${encodeURIComponent(d.label)}`);
+            routerRef.current.push(
+              { pathname: "/", query: { country: d.label } },
+              undefined,
+              { locale: routerRef.current.locale }
+            );
           }
         } else {
           // First click: highlight connections
@@ -280,14 +294,15 @@ export default function GraphPage({ precomputedGraph, locale, frAvailable }) {
   return (
     <>
       <Head>
-        <title>Network Graph — Epstein Africa</title>
-        <meta name="description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
+        <title>{copy.title}</title>
+        <meta name="description" content={copy.description} />
         <link rel="canonical" href={getCanonicalUrl("/graph", locale)} />
-        <meta property="og:title" content="Network Graph — Epstein Africa" />
-        <meta property="og:description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
+        <meta property="og:title" content={copy.ogTitle} />
+        <meta property="og:description" content={copy.description} />
         <meta property="og:url" content={getCanonicalUrl("/graph", locale)} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Network Graph")}&subtitle=${encodeURIComponent("Persons and countries in the email archive")}`} />
+        <meta property="og:locale" content={getOgLocale(locale)} />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(copy.ogTitle)}&subtitle=${encodeURIComponent(copy.ogSubtitle)}`} />
         {frAvailable && locale === "en" && (
           <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/graph", "fr")} />
         )}
@@ -308,7 +323,7 @@ export default function GraphPage({ precomputedGraph, locale, frAvailable }) {
         </div>
 
         {!graphData && (
-          <p className="loading-msg" style={{ padding: "1rem" }}>Loading…</p>
+          <p className="loading-msg" style={{ padding: "1rem" }}>{copy.loading}</p>
         )}
 
         <div className="graph-container" ref={containerRef}>
@@ -319,22 +334,22 @@ export default function GraphPage({ precomputedGraph, locale, frAvailable }) {
               <svg width="16" height="16">
                 <circle cx="8" cy="8" r="6" fill="#2e2e2e" stroke="#777" strokeWidth="1.5" />
               </svg>
-              <span>Person (click → profile)</span>
+              <span>{copy.personLegend}</span>
             </div>
             <div className="legend-item">
               <svg width="16" height="16">
                 <circle cx="8" cy="8" r="7" fill="#c8860a" stroke="#e8a020" strokeWidth="1.5" />
               </svg>
-              <span>Country (click → filter emails)</span>
+              <span>{copy.countryLegend}</span>
             </div>
             <div className="legend-item legend-hint">
-              Scroll to zoom · Drag nodes · Click to highlight · Click again to visit
+              {copy.hint}
             </div>
             <button
               className="graph-mode-toggle"
               onClick={() => setExploreMode((prev) => !prev)}
             >
-              {exploreMode ? "Show profiles only" : "Explore all connections"}
+              {exploreMode ? copy.showProfilesOnly : copy.exploreAll}
             </button>
           </div>
         </div>

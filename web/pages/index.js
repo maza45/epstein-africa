@@ -1,12 +1,19 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../lib/format";
-import { BASE, getCanonicalUrl, getLocalizedCountryLabel, hasFrenchStaticPage, normalizeLocale } from "../lib/i18n";
+import {
+  BASE,
+  HOME_COPY,
+  getCanonicalUrl,
+  getLocalizedCountryLabel,
+  getOgLocale,
+  hasFrenchStaticPage,
+  normalizeLocale,
+} from "../lib/i18n";
 
 export async function getStaticProps({ locale }) {
   const normalizedLocale = normalizeLocale(locale);
@@ -47,6 +54,7 @@ export async function getStaticProps({ locale }) {
 const LIMIT = 25;
 
 export default function Home({ emailCount, countries, locale, frAvailable }) {
+  const copy = HOME_COPY[locale] || HOME_COPY.en;
   const [emails, setEmails] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -106,7 +114,7 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
 
   const totalPages = Math.ceil(total / LIMIT);
 
-  const description = `Searchable database of Jeffrey Epstein's documented connections to Africa, sourced from DOJ Epstein Files Transparency Act releases. ${emailCount.toLocaleString()} verified emails.`;
+  const description = `${copy.description} ${emailCount.toLocaleString()} ${copy.resultCount}.`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -133,14 +141,15 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
   return (
     <>
       <Head>
-        <title>Epstein Africa — Email Database</title>
+        <title>{copy.title}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={getCanonicalUrl("/", locale)} />
-        <meta property="og:title" content="Epstein Africa — Email Database" />
+        <meta property="og:title" content={copy.title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={getCanonicalUrl("/", locale)} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Epstein Africa")}&subtitle=${encodeURIComponent(`${emailCount.toLocaleString()} verified emails from DOJ releases`)}`} />
+        <meta property="og:locale" content={getOgLocale(locale)} />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(copy.heading)}&subtitle=${encodeURIComponent(`${emailCount.toLocaleString()} ${copy.ogSubtitle}`)}`} />
         {frAvailable && locale === "en" && (
           <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/", "fr")} />
         )}
@@ -156,23 +165,15 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
       <div className="container">
         <Nav pagePath="/" frAvailable={frAvailable} />
         <header className="site-header">
-          <h1>Epstein Africa</h1>
+          <h1>{copy.heading}</h1>
           <p className="subtitle">
-            Searchable database of Jeffrey Epstein&apos;s documented connections
-            to Africa — {emailCount.toLocaleString()} verified emails, excluding promotional mail.{" "}
+            {copy.subtitlePrefix} — {emailCount.toLocaleString()} {copy.subtitleSuffix}{" "}
             <span className="source">
-              Source: DOJ Epstein Files Transparency Act.
+              {copy.sourceLabel}
             </span>
           </p>
           <p className="site-statement">
-            The archive documents a pattern: humanitarian funding as the entry
-            point, intelligence collection as the product, political access as
-            the payoff. The same channel that carried polio field reports from
-            Nigeria carried investment deals worth millions. The same
-            relationships that opened doors to African presidents opened doors
-            to their ministers, their ports, their resources. The documents
-            don&apos;t explain why a convicted sex offender was at the center of
-            this network. They show that he was.
+            {copy.statement}
           </p>
         </header>
 
@@ -180,18 +181,18 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
           <input
             type="text"
             className="search-input"
-            placeholder="Search subject, sender…"
+            placeholder={copy.searchPlaceholder}
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            aria-label="Search emails"
+            aria-label={copy.searchAria}
           />
           <select
             className="country-select"
             value={currentCountry}
             onChange={(e) => pushFilters({ page: 1, country: e.target.value })}
-            aria-label="Filter by country"
+            aria-label={copy.filterAria}
           >
-            <option value="">All countries</option>
+            <option value="">{copy.filterAll}</option>
             {countries.map((c) => (
               <option key={c} value={c}>
                 {getLocalizedCountryLabel(c, locale)}
@@ -202,7 +203,7 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
 
         <div className="meta-row">
           <span className="result-count">
-            {loading ? "Loading…" : `${total.toLocaleString()} emails`}
+            {loading ? copy.loading : `${total.toLocaleString()} ${copy.resultCount}`}
           </span>
           {(currentSearch || currentCountry) && (
             <button
@@ -212,11 +213,11 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
                 pushFilters({ page: 1, country: "", search: "" });
               }}
             >
-              Clear filters
+              {copy.clearFilters}
             </button>
           )}
           <a href="/api/export?format=csv" className="download-btn" download>
-            Download CSV
+            {copy.downloadCsv}
           </a>
         </div>
 
@@ -224,23 +225,23 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
           <table className="email-table">
             <thead>
               <tr>
-                <th className="col-date">Date</th>
-                <th className="col-sender">Sender</th>
-                <th className="col-subject">Subject</th>
-                <th className="col-countries">Countries</th>
+                <th className="col-date">{copy.thDate}</th>
+                <th className="col-sender">{copy.thSender}</th>
+                <th className="col-subject">{copy.thSubject}</th>
+                <th className="col-countries">{copy.thCountries}</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
                 <tr>
                   <td colSpan={4} className="loading-cell">
-                    Loading…
+                    {copy.loading}
                   </td>
                 </tr>
               ) : emails.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="loading-cell">
-                    No results.
+                    {copy.noResults}
                   </td>
                 </tr>
               ) : (
@@ -259,7 +260,7 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
                     <td className="col-date">{formatDate(email.sent_at)}</td>
                     <td className="col-sender">{cleanSender(email.sender)}</td>
                     <td className="col-subject">
-                      {email.subject || "(no subject)"}
+                      {email.subject || copy.noSubject}
                     </td>
                     <td className="col-countries">
                       {email.countries
@@ -282,19 +283,19 @@ export default function Home({ emailCount, countries, locale, frAvailable }) {
             <button
               disabled={currentPage === 1}
               onClick={() => pushFilters({ page: currentPage - 1 })}
-              aria-label="Previous page"
+              aria-label={copy.previousPageAria}
             >
-              ← Prev
+              ← {copy.prevPage}
             </button>
             <span>
-              Page {currentPage} / {totalPages}
+              {copy.pageOf} {currentPage} / {totalPages}
             </span>
             <button
               disabled={currentPage >= totalPages}
               onClick={() => pushFilters({ page: currentPage + 1 })}
-              aria-label="Next page"
+              aria-label={copy.nextPageAria}
             >
-              Next →
+              {copy.nextPage} →
             </button>
           </div>
         )}

@@ -3,12 +3,12 @@ export const DEFAULT_LOCALE = "en";
 export const SUPPORTED_LOCALES = ["en", "fr"];
 
 const STATIC_FRENCH_PAGES = {
-  home: false,
+  home: true,
   stories: true,
   people: true,
-  about: false,
+  about: true,
   map: true,
-  graph: false,
+  graph: true,
 };
 
 export const NAV_LABELS = {
@@ -184,6 +184,214 @@ export const MAP_COPY = {
     peopleHeading: "Personnes",
     topSenders: "Principaux expéditeurs",
     viewAll: "Voir tous les emails pour {country}",
+  },
+};
+
+export const HOME_COPY = {
+  en: {
+    title: "Epstein Africa — Email Database",
+    description:
+      "Searchable database of Jeffrey Epstein's documented connections to Africa, sourced from DOJ Epstein Files Transparency Act releases.",
+    ogSubtitle: "verified emails from DOJ releases",
+    heading: "Epstein Africa",
+    subtitlePrefix:
+      "Searchable database of Jeffrey Epstein's documented connections to Africa",
+    subtitleSuffix: "verified emails, excluding promotional mail.",
+    sourceLabel: "Source: DOJ Epstein Files Transparency Act.",
+    statement:
+      "The archive documents a pattern: humanitarian funding as the entry point, intelligence collection as the product, political access as the payoff. The same channel that carried polio field reports from Nigeria carried investment deals worth millions. The same relationships that opened doors to African presidents opened doors to their ministers, their ports, their resources. The documents don't explain why a convicted sex offender was at the center of this network. They show that he was.",
+    searchPlaceholder: "Search subject, sender…",
+    searchAria: "Search emails",
+    filterAria: "Filter by country",
+    filterAll: "All countries",
+    loading: "Loading…",
+    resultCount: "emails",
+    clearFilters: "Clear filters",
+    downloadCsv: "Download CSV",
+    thDate: "Date",
+    thSender: "Sender",
+    thSubject: "Subject",
+    thCountries: "Countries",
+    noResults: "No results.",
+    noSubject: "(no subject)",
+    prevPage: "Prev",
+    nextPage: "Next",
+    previousPageAria: "Previous page",
+    nextPageAria: "Next page",
+    pageOf: "Page",
+  },
+  fr: {
+    title: "Epstein Africa — Base de données emails",
+    description:
+      "Base de données consultable des connexions documentées de Jeffrey Epstein avec l'Afrique, à partir des publications du DOJ au titre de l'Epstein Files Transparency Act.",
+    ogSubtitle: "emails vérifiés issus des publications du DOJ",
+    heading: "Epstein Africa",
+    subtitlePrefix:
+      "Base de données consultable des connexions documentées de Jeffrey Epstein avec l'Afrique",
+    subtitleSuffix: "emails vérifiés, hors courriels promotionnels.",
+    sourceLabel: "Source : Epstein Files Transparency Act du DOJ.",
+    statement:
+      "Les archives documentent un schéma : le financement humanitaire comme point d'entrée, la collecte de renseignement comme produit, l'accès politique comme contrepartie. Le même canal qui faisait remonter des rapports de terrain sur la polio au Nigeria transportait aussi des accords d'investissement valant des millions. Les mêmes relations qui ouvraient les portes des présidents africains ouvraient aussi celles de leurs ministres, de leurs ports et de leurs ressources. Les documents n'expliquent pas pourquoi un délinquant sexuel condamné se trouvait au centre de ce réseau. Ils montrent qu'il y était.",
+    searchPlaceholder: "Rechercher par objet, expéditeur…",
+    searchAria: "Rechercher des emails",
+    filterAria: "Filtrer par pays",
+    filterAll: "Tous les pays",
+    loading: "Chargement…",
+    resultCount: "emails",
+    clearFilters: "Effacer les filtres",
+    downloadCsv: "Télécharger le CSV",
+    thDate: "Date",
+    thSender: "Expéditeur",
+    thSubject: "Objet",
+    thCountries: "Pays",
+    noResults: "Aucun résultat.",
+    noSubject: "(sans objet)",
+    prevPage: "Préc.",
+    nextPage: "Suiv.",
+    previousPageAria: "Page précédente",
+    nextPageAria: "Page suivante",
+    pageOf: "Page",
+  },
+};
+
+export const ABOUT_COPY = {
+  en: {
+    title: "About — Epstein Africa",
+    description: "About the Epstein Africa database — methodology, sources, and caveats.",
+    ogTitle: "About — Epstein Africa",
+    ogSubtitle: "Methodology, sources, and caveats",
+    heading: "About",
+    sections: [
+      {
+        heading: "What this is",
+        body:
+          "A searchable database of Jeffrey Epstein's documented connections to the African continent. {emailCount} emails across {countryCount} countries. Every claim on this site links to a specific document ID from the U.S. Department of Justice release.",
+      },
+      {
+        heading: "Why it exists",
+        body:
+          "The DOJ released 1.78 million Epstein emails under the Epstein Files Transparency Act, signed November 2025. The Africa connections in those files have received almost no coverage in African media. This site filters, indexes, and contextualizes the Africa-relevant portion of the archive so journalists, researchers, and the public can work with the primary sources directly.",
+      },
+      {
+        heading: "What the archive shows",
+        body:
+          "The archive documents a pattern: humanitarian funding as the entry point, intelligence collection as the product, political access as the payoff. The same channel that carried polio field reports from Nigeria carried investment deals worth millions. The same relationships that opened doors to African presidents opened doors to their ministers, their ports, their resources. The documents don't explain why a convicted sex offender was at the center of this network. They show that he was.",
+      },
+      {
+        heading: "Data sources",
+        body:
+          "The email archive comes from {jmail}, which parsed the DOJ release into structured data. Additional documents come from the House Oversight Committee subpoena releases (September and November 2025). Every email in the database can be verified against the original DOJ files.",
+      },
+      {
+        heading: "What you can do here",
+        body:
+          "Search emails by keyword, sender, or country using full-text search. Read investigative stories, each citing specific email document IDs. Browse person profiles showing who communicated with whom. Explore the network graph to see relationships between people and countries. Export the full dataset as CSV or JSON. Subscribe to the RSS feed for new stories.",
+      },
+      {
+        heading: "Methodology",
+        body:
+          "The {emailCount} emails were filtered from the 1.78 million email archive by keyword matching on subjects, senders, participant lists, and body text for African countries, cities, and documented individuals. Stories are written from the emails as primary sources. Every factual claim cites a document ID. Direct quotes preserve the original text, including typos.",
+      },
+      {
+        heading: "How stories are built",
+        body:
+          "Every story follows the same process. Emails are identified in the archive by keyword, sender, or participant matching. Each quoted passage is verified verbatim against the original document. Email IDs, senders, dates, and recipients are cross-checked before publication. No claim appears without a document anchor. Direct quotes preserve the original text, including typos and misspellings. External claims — biographical details, news events, public record — are separated from what the emails themselves say. A pre-publication verification process checks every citation against the database before any story goes live.",
+      },
+      {
+        heading: "Contact",
+        body:
+          "If you are a journalist or researcher working on a specific lead in this database, you can reach us at {email}. We can provide document IDs, source context, and data exports for any thread in the archive.",
+      },
+      {
+        heading: "Caveats",
+        body:
+          "The archive has gaps, redactions, and missing metadata. Some dates are null. Some senders show as Unknown or Redacted. Some emails appear in both electronic and PDF format, creating duplicate entries for the same exchange. We show the data as it is.",
+      },
+    ],
+  },
+  fr: {
+    title: "À propos — Epstein Africa",
+    description:
+      "À propos de la base de données Epstein Africa — méthodologie, sources et limites.",
+    ogTitle: "À propos — Epstein Africa",
+    ogSubtitle: "Méthodologie, sources et limites",
+    heading: "À propos",
+    sections: [
+      {
+        heading: "Ce que c'est",
+        body:
+          "Une base de données consultable des connexions documentées de Jeffrey Epstein avec le continent africain. {emailCount} emails couvrant {countryCount} pays. Chaque affirmation de ce site renvoie à un identifiant documentaire précis issu de la publication du département de la Justice des États-Unis.",
+      },
+      {
+        heading: "Pourquoi ce site existe",
+        body:
+          "Le DOJ a publié 1,78 million d'emails d'Epstein au titre de l'Epstein Files Transparency Act, signé en novembre 2025. Les connexions africaines présentes dans ces dossiers ont reçu très peu de couverture dans les médias africains. Ce site filtre, indexe et contextualise la partie africaine des archives afin que journalistes, chercheurs et public puissent travailler directement à partir des sources primaires.",
+      },
+      {
+        heading: "Ce que montrent les archives",
+        body:
+          "Les archives documentent un schéma : le financement humanitaire comme point d'entrée, la collecte de renseignement comme produit, l'accès politique comme contrepartie. Le même canal qui faisait remonter des rapports de terrain sur la polio au Nigeria transportait aussi des accords d'investissement valant des millions. Les mêmes relations qui ouvraient les portes des présidents africains ouvraient aussi celles de leurs ministres, de leurs ports et de leurs ressources. Les documents n'expliquent pas pourquoi un délinquant sexuel condamné se trouvait au centre de ce réseau. Ils montrent qu'il y était.",
+      },
+      {
+        heading: "Sources de données",
+        body:
+          "Les archives email proviennent de {jmail}, qui a transformé la publication du DOJ en données structurées. Des documents supplémentaires viennent des publications d'assignations de la House Oversight Committee (septembre et novembre 2025). Chaque email de la base peut être vérifié par rapport aux fichiers originaux du DOJ.",
+      },
+      {
+        heading: "Ce que vous pouvez faire ici",
+        body:
+          "Rechercher des emails par mot-clé, expéditeur ou pays grâce à la recherche plein texte. Lire des récits d'enquête, chacun relié à des identifiants de documents email précis. Parcourir des profils de personnes pour voir qui a communiqué avec qui. Explorer le graphe de réseau pour visualiser les relations entre personnes et pays. Exporter l'ensemble des données en CSV ou JSON. S'abonner au flux RSS pour les nouveaux récits.",
+      },
+      {
+        heading: "Méthodologie",
+        body:
+          "Les {emailCount} emails ont été extraits des 1,78 million d'emails par rapprochement de mots-clés dans les objets, les expéditeurs, les listes de participants et le corps des messages pour les pays africains, les villes et les individus documentés. Les récits sont écrits à partir des emails comme sources primaires. Chaque affirmation factuelle cite un identifiant documentaire. Les citations directes conservent le texte original, fautes comprises.",
+      },
+      {
+        heading: "Comment les récits sont construits",
+        body:
+          "Chaque récit suit le même processus. Les emails sont identifiés dans les archives par mots-clés, expéditeur ou correspondance de participants. Chaque passage cité est vérifié mot pour mot par rapport au document original. Les identifiants d'email, expéditeurs, dates et destinataires sont recoupés avant publication. Aucune affirmation n'apparaît sans ancrage documentaire. Les citations directes conservent le texte original, y compris les fautes et coquilles. Les affirmations externes — détails biographiques, événements d'actualité, archives publiques — sont séparées de ce que disent les emails eux-mêmes. Un processus de vérification avant publication contrôle chaque citation par rapport à la base avant qu'un récit soit mis en ligne.",
+      },
+      {
+        heading: "Contact",
+        body:
+          "Si vous êtes journaliste ou chercheur et travaillez sur une piste précise dans cette base, vous pouvez nous écrire à {email}. Nous pouvons fournir des identifiants de documents, le contexte des sources et des exports de données pour toute piste présente dans les archives.",
+      },
+      {
+        heading: "Limites",
+        body:
+          "Les archives comportent des lacunes, des caviardages et des métadonnées manquantes. Certaines dates sont nulles. Certains expéditeurs apparaissent comme Unknown ou Redacted. Certains emails existent à la fois en format électronique et PDF, ce qui crée des doublons pour un même échange. Nous montrons les données telles qu'elles sont.",
+      },
+    ],
+  },
+};
+
+export const GRAPH_COPY = {
+  en: {
+    title: "Network Graph — Epstein Africa",
+    description:
+      "Interactive network graph of persons and countries in Epstein's Africa-related correspondence.",
+    ogTitle: "Network Graph — Epstein Africa",
+    ogSubtitle: "Persons and countries in the email archive",
+    loading: "Loading…",
+    personLegend: "Person (click → profile)",
+    countryLegend: "Country (click → filter emails)",
+    hint: "Scroll to zoom · Drag nodes · Click to highlight · Click again to visit",
+    exploreAll: "Explore all connections",
+    showProfilesOnly: "Show profiles only",
+  },
+  fr: {
+    title: "Graphe du réseau — Epstein Africa",
+    description:
+      "Graphe interactif des personnes et des pays présents dans la correspondance d'Epstein liée à l'Afrique.",
+    ogTitle: "Graphe du réseau — Epstein Africa",
+    ogSubtitle: "Personnes et pays dans les archives email",
+    loading: "Chargement…",
+    personLegend: "Personne (clic → profil)",
+    countryLegend: "Pays (clic → filtrer les emails)",
+    hint: "Molette pour zoomer · Glisser les nœuds · Cliquer pour surligner · Recliquer pour ouvrir",
+    exploreAll: "Explorer toutes les connexions",
+    showProfilesOnly: "Afficher seulement les profils",
   },
 };
 
