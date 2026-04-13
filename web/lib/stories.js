@@ -2014,6 +2014,15 @@ export const STORIES = [
       "EFTA01803261-0",
     ],
     news_links: [],
+    title_fr: "David Stern proposa Epstein comme pont entre le capital chinois et l'Afrique",
+    summary_fr:
+      "Fin 2011, David Stern proposa un \u00ab\u00a0v\u00e9hicule d'investissement africain\u00a0\u00bb avec Epstein comme interm\u00e9diaire entre le capital chinois et les gouvernements africains. Il avait d\u00e9j\u00e0 propos\u00e9 \u00ab\u00a0very confidentially\u00a0\u00bb une soci\u00e9t\u00e9 p\u00e9troli\u00e8re congolaise \u00e0 un contact \u00e9nerg\u00e9tique d'\u00c9tat chinois, et mis en relation un milliardaire chinois avec un magnat immobilier anglo-isra\u00e9lien autour d'une technologie de paiement mobile qu'il qualifiait de \u00ab\u00a0perfect for Africa.\u00a0\u00bb",
+    body_fr: [
+      "Le 2 novembre 2010, David Stern \u00e9crivit \u00e0 un contact nomm\u00e9 Fangzhi. \"As mentioned, please very confidentially have a look at Soco International plc. This is an oil and gas exploration and production company, headquartered in London, traded on the London Stock Exchange with interests in Vietnam, the Republic of Congo (Brazzaville), the Democratic Republic of Congo (Kinshasa) and Angola.\" Il demanda\u00a0: \"Would this be an asset of interest for CNOOC?\" CNOOC est la China National Offshore Oil Corporation. Stern proposait des actifs p\u00e9troliers africains \u00e0 une entreprise \u00e9nerg\u00e9tique d'\u00c9tat chinoise via le r\u00e9seau d'Epstein (EFTA01979689-0).",
+      "Treize mois plus tard, le 21 novembre 2011, Stern exposa la structure explicitement\u00a0: \"For the African investment vehicle we can be the bridge between the Chinese and African side: both get what they want with maximum protection/distance (ie no direct Chinese involvement) through us as intermediary. It can be a deal machine once Chinese capital gets involved. It would fit in perfectly with the other plan of managing Chinese wealth\" (EFTA02522551-0).",
+      "Deux semaines plus tard, il d\u00e9montra le r\u00e9seau en action. \"My Chinese friend Wu Zheng (worth $1 billion) is visiting me in London. I arranged meeting with David Reuben (worth $8.5 billion). The three of us discussed company Luup owned by Reuben: best mobile payment technology, mainly banking without an account.\" Le pitch\u00a0: \"We will do JV for Luup in China (Wu, Reuben, Me). This system is perfect for Africa and Chartered Bank wants to have it for Africa. Something we should do as part of your African initiative?\" (EFTA01848382-0).",
+      "En juillet 2012, Stern transf\u00e9ra \u00e0 Epstein la couverture du discours de Xi Jinping au Forum des peuples Chine-Afrique \u00e0 Suzhou. Son annotation\u00a0: \"Note: Xi will become the next President at the end of the year\" (EFTA01803261-0). Stern suivait les transitions de pouvoir chinoises pour leurs implications sur l'investissement en Afrique.",
+    ],
   },
   {
     slug: "staley-jpmorgan-heads-of-state",
