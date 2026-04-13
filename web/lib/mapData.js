@@ -1,8 +1,16 @@
 import { getDb } from "./db";
 import { STORIES } from "./stories";
 import { PEOPLE } from "./people";
+import {
+  getLocalizedPerson,
+  getLocalizedStory,
+  hasFrenchPerson,
+  hasFrenchStory,
+  normalizeLocale,
+} from "./i18n";
 
-export function buildMapData() {
+export function buildMapData(locale = "en") {
+  const normalizedLocale = normalizeLocale(locale);
   // 1. Email counts per country from production DB
   const db = getDb();
   const rows = db.prepare("SELECT countries FROM emails WHERE countries IS NOT NULL AND countries != ''").all();
@@ -17,8 +25,10 @@ export function buildMapData() {
   }
 
   // 2. Stories per country
+  const sourceStories = normalizedLocale === "fr" ? STORIES.filter(hasFrenchStory) : STORIES;
   const storiesByCountry = {};
-  for (const s of STORIES) {
+  for (const story of sourceStories) {
+    const s = getLocalizedStory(story, normalizedLocale);
     for (const c of s.countries) {
       if (!storiesByCountry[c]) storiesByCountry[c] = [];
       storiesByCountry[c].push({
@@ -31,8 +41,10 @@ export function buildMapData() {
   }
 
   // 3. People per country
+  const sourcePeople = normalizedLocale === "fr" ? PEOPLE.filter(hasFrenchPerson) : PEOPLE;
   const peopleByCountry = {};
-  for (const p of PEOPLE) {
+  for (const person of sourcePeople) {
+    const p = getLocalizedPerson(person, normalizedLocale);
     for (const c of p.countries) {
       if (!peopleByCountry[c]) peopleByCountry[c] = [];
       peopleByCountry[c].push({

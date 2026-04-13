@@ -1,37 +1,52 @@
 import { STORIES } from "../lib/stories";
 import { PEOPLE } from "../lib/people";
 import { getDb } from "../lib/db";
-
-const BASE = "https://www.epsteinafrica.com";
+import {
+  BASE,
+  getLocalizedPath,
+  hasFrenchPerson,
+  hasFrenchStaticPage,
+  hasFrenchStory,
+} from "../lib/i18n";
 
 function generateSitemap(emailIds) {
   const now = new Date().toISOString().split("T")[0];
 
   const staticPages = [
-    { path: "", priority: "1.0" },
-    { path: "/stories", priority: "0.9" },
-    { path: "/people", priority: "0.9" },
-    { path: "/graph", priority: "0.7" },
-    { path: "/map", priority: "0.7" },
-    { path: "/about", priority: "0.6" },
+    { path: "/", priority: "1.0", locales: ["en", ...(hasFrenchStaticPage("home") ? ["fr"] : [])] },
+    { path: "/stories", priority: "0.9", locales: ["en", ...(hasFrenchStaticPage("stories") ? ["fr"] : [])] },
+    { path: "/people", priority: "0.9", locales: ["en", ...(hasFrenchStaticPage("people") ? ["fr"] : [])] },
+    { path: "/graph", priority: "0.7", locales: ["en", ...(hasFrenchStaticPage("graph") ? ["fr"] : [])] },
+    { path: "/map", priority: "0.7", locales: ["en", ...(hasFrenchStaticPage("map") ? ["fr"] : [])] },
+    { path: "/about", priority: "0.6", locales: ["en", ...(hasFrenchStaticPage("about") ? ["fr"] : [])] },
   ];
 
-  const storyPages = STORIES.map((s) => ({
-    path: `/stories/${s.slug}`,
-    priority: "0.8",
-  }));
+  const storyPages = STORIES.flatMap((story) => [
+    { path: `/stories/${story.slug}`, priority: "0.8", locales: ["en"] },
+    ...(hasFrenchStory(story)
+      ? [{ path: `/stories/${story.slug}`, priority: "0.8", locales: ["fr"] }]
+      : []),
+  ]);
 
-  const personPages = PEOPLE.map((p) => ({
-    path: `/people/${p.slug}`,
-    priority: "0.8",
-  }));
+  const personPages = PEOPLE.flatMap((person) => [
+    { path: `/people/${person.slug}`, priority: "0.8", locales: ["en"] },
+    ...(hasFrenchPerson(person)
+      ? [{ path: `/people/${person.slug}`, priority: "0.8", locales: ["fr"] }]
+      : []),
+  ]);
 
   const emailPages = emailIds.map((id) => ({
     path: `/emails/${encodeURIComponent(id)}`,
     priority: "0.5",
+    locales: ["en"],
   }));
 
-  const allPages = [...staticPages, ...storyPages, ...personPages, ...emailPages];
+  const allPages = [...staticPages, ...storyPages, ...personPages, ...emailPages].flatMap((page) =>
+    page.locales.map((locale) => ({
+      path: getLocalizedPath(page.path, locale),
+      priority: page.priority,
+    }))
+  );
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

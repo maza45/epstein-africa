@@ -7,6 +7,7 @@ import { getDb } from "../../lib/db";
 import {
   BASE,
   getCanonicalUrl,
+  getLocalizedCountryLabel,
   getLocalizedPerson,
   getOgLocale,
   hasFrenchPerson,
@@ -99,7 +100,7 @@ export default function PeopleIndex({ people, locale, frAvailable }) {
               <div className="person-countries">
                 {person.countries.slice(0, 4).map((c) => (
                   <span key={c} className="tag">
-                    {c}
+                    {getLocalizedCountryLabel(c, locale)}
                   </span>
                 ))}
                 {person.countries.length > 4 && (

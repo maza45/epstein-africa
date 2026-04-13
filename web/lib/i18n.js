@@ -4,10 +4,10 @@ export const SUPPORTED_LOCALES = ["en", "fr"];
 
 const STATIC_FRENCH_PAGES = {
   home: false,
-  stories: false,
+  stories: true,
   people: true,
   about: false,
-  map: false,
+  map: true,
   graph: false,
 };
 
@@ -65,6 +65,7 @@ export const PEOPLE_COPY = {
     thSubject: "Subject",
     thCountries: "Countries",
     ogSubtitle: "profiles from the email archive",
+    noSubject: "(no subject)",
   },
   fr: {
     indexTitle: "Personnes cl\u00e9s — Epstein Africa",
@@ -87,6 +88,7 @@ export const PEOPLE_COPY = {
     thSubject: "Objet",
     thCountries: "Pays",
     ogSubtitle: "profils issus des archives email",
+    noSubject: "(sans objet)",
   },
 };
 
@@ -111,6 +113,137 @@ export const SHARE_COPY = {
     copied: "Copie",
     link: "Lien",
   },
+};
+
+export const STORY_COPY = {
+  en: {
+    indexTitle: "Stories — Epstein Africa",
+    indexDescription: "Investigative stories sourced from Jeffrey Epstein's Africa-related correspondence.",
+    indexHeading: "Stories",
+    indexSubtitle: "Investigative stories built from documented email records and tied to specific source emails.",
+    ogSubtitle: "investigative stories from the email archive",
+    filterAll: "All countries",
+    startHereHeading: "Start Here",
+    startHereSubtitle: "Core stories that map the main channels of money, access, and intelligence.",
+    storiesLabel: "Stories",
+    allStories: "All stories",
+    back: "Back",
+    sourceEmails: "Source emails",
+    externalCoverage: "External coverage",
+    noSubject: "(no subject)",
+    thDate: "Date",
+    thSender: "Sender",
+    thSubject: "Subject",
+    thCountries: "Countries",
+  },
+  fr: {
+    indexTitle: "Récits — Epstein Africa",
+    indexDescription: "Récits d'enquête tirés de la correspondance d'Epstein liée à l'Afrique.",
+    indexHeading: "Récits",
+    indexSubtitle: "Récits d'enquête construits à partir d'emails documentés et rattachés à des pièces sources précises.",
+    ogSubtitle: "récits d'enquête issus des archives email",
+    filterAll: "Tous les pays",
+    startHereHeading: "Commencer ici",
+    startHereSubtitle: "Les récits de base qui dessinent les principaux circuits d'argent, d'accès et de renseignement.",
+    storiesLabel: "Récits",
+    allStories: "Tous les récits",
+    back: "Retour",
+    sourceEmails: "Emails sources",
+    externalCoverage: "Couverture externe",
+    noSubject: "(sans objet)",
+    thDate: "Date",
+    thSender: "Expéditeur",
+    thSubject: "Objet",
+    thCountries: "Pays",
+  },
+};
+
+export const MAP_COPY = {
+  en: {
+    title: "Africa Map | Epstein Africa",
+    description: "Interactive map of Jeffrey Epstein's documented connections across Africa.",
+    heading: "Documented connections across {count} African countries. Click a country to explore.",
+    closePanel: "Close panel",
+    emails: "emails",
+    stories: "stories",
+    people: "people",
+    storiesHeading: "Stories",
+    peopleHeading: "People",
+    topSenders: "Top senders",
+    viewAll: "View all {country} emails",
+  },
+  fr: {
+    title: "Carte de l'Afrique | Epstein Africa",
+    description: "Carte interactive des connexions documentées de Jeffrey Epstein à travers l'Afrique.",
+    heading: "Connexions documentées dans {count} pays africains. Cliquez sur un pays pour explorer.",
+    closePanel: "Fermer le panneau",
+    emails: "emails",
+    stories: "récits",
+    people: "personnes",
+    storiesHeading: "Récits",
+    peopleHeading: "Personnes",
+    topSenders: "Principaux expéditeurs",
+    viewAll: "Voir tous les emails pour {country}",
+  },
+};
+
+const COUNTRY_LABELS = {
+  "Africa": { en: "Africa", fr: "Afrique" },
+  "Algeria": { en: "Algeria", fr: "Algérie" },
+  "Angola": { en: "Angola", fr: "Angola" },
+  "Benin": { en: "Benin", fr: "Bénin" },
+  "Botswana": { en: "Botswana", fr: "Botswana" },
+  "Burkina Faso": { en: "Burkina Faso", fr: "Burkina Faso" },
+  "Burundi": { en: "Burundi", fr: "Burundi" },
+  "Cameroon": { en: "Cameroon", fr: "Cameroun" },
+  "Cape Verde": { en: "Cape Verde", fr: "Cap-Vert" },
+  "Central African Republic": { en: "Central African Republic", fr: "République centrafricaine" },
+  "Chad": { en: "Chad", fr: "Tchad" },
+  "Comoros": { en: "Comoros", fr: "Comores" },
+  "Congo": { en: "Congo", fr: "Congo" },
+  "Democratic Republic of Congo": { en: "Democratic Republic of Congo", fr: "République démocratique du Congo" },
+  "Djibouti": { en: "Djibouti", fr: "Djibouti" },
+  "Egypt": { en: "Egypt", fr: "Égypte" },
+  "Equatorial Guinea": { en: "Equatorial Guinea", fr: "Guinée équatoriale" },
+  "Eritrea": { en: "Eritrea", fr: "Érythrée" },
+  "Eswatini": { en: "Eswatini", fr: "Eswatini" },
+  "Ethiopia": { en: "Ethiopia", fr: "Éthiopie" },
+  "Gabon": { en: "Gabon", fr: "Gabon" },
+  "Gambia": { en: "Gambia", fr: "Gambie" },
+  "Ghana": { en: "Ghana", fr: "Ghana" },
+  "Guinea": { en: "Guinea", fr: "Guinée" },
+  "Guinea-Bissau": { en: "Guinea-Bissau", fr: "Guinée-Bissau" },
+  "Ivory Coast": { en: "Ivory Coast", fr: "Côte d'Ivoire" },
+  "Kenya": { en: "Kenya", fr: "Kenya" },
+  "Lesotho": { en: "Lesotho", fr: "Lesotho" },
+  "Liberia": { en: "Liberia", fr: "Liberia" },
+  "Libya": { en: "Libya", fr: "Libye" },
+  "Madagascar": { en: "Madagascar", fr: "Madagascar" },
+  "Malawi": { en: "Malawi", fr: "Malawi" },
+  "Mali": { en: "Mali", fr: "Mali" },
+  "Mauritania": { en: "Mauritania", fr: "Mauritanie" },
+  "Mauritius": { en: "Mauritius", fr: "Maurice" },
+  "Morocco": { en: "Morocco", fr: "Maroc" },
+  "Mozambique": { en: "Mozambique", fr: "Mozambique" },
+  "Namibia": { en: "Namibia", fr: "Namibie" },
+  "Niger": { en: "Niger", fr: "Niger" },
+  "Nigeria": { en: "Nigeria", fr: "Nigeria" },
+  "Rwanda": { en: "Rwanda", fr: "Rwanda" },
+  "Sao Tome and Principe": { en: "Sao Tome and Principe", fr: "Sao Tomé-et-Principe" },
+  "Senegal": { en: "Senegal", fr: "Sénégal" },
+  "Seychelles": { en: "Seychelles", fr: "Seychelles" },
+  "Sierra Leone": { en: "Sierra Leone", fr: "Sierra Leone" },
+  "Somalia": { en: "Somalia", fr: "Somalie" },
+  "Somaliland": { en: "Somaliland", fr: "Somaliland" },
+  "South Africa": { en: "South Africa", fr: "Afrique du Sud" },
+  "South Sudan": { en: "South Sudan", fr: "Soudan du Sud" },
+  "Sudan": { en: "Sudan", fr: "Soudan" },
+  "Tanzania": { en: "Tanzania", fr: "Tanzanie" },
+  "Togo": { en: "Togo", fr: "Togo" },
+  "Tunisia": { en: "Tunisia", fr: "Tunisie" },
+  "Uganda": { en: "Uganda", fr: "Ouganda" },
+  "Zambia": { en: "Zambia", fr: "Zambie" },
+  "Zimbabwe": { en: "Zimbabwe", fr: "Zimbabwe" },
 };
 
 export function normalizeLocale(locale) {
@@ -140,6 +273,15 @@ export function getLocalizedPath(path = "/", locale = DEFAULT_LOCALE) {
 
 export function getCanonicalUrl(path = "/", locale = DEFAULT_LOCALE) {
   return `${BASE}${getLocalizedPath(path, locale)}`;
+}
+
+export function getLocalizedCountryLabel(country, locale = DEFAULT_LOCALE) {
+  const normalizedLocale = normalizeLocale(locale);
+  return COUNTRY_LABELS[country]?.[normalizedLocale] || country;
+}
+
+export function getLocalizedCountryLabels(countries = [], locale = DEFAULT_LOCALE) {
+  return countries.map((country) => getLocalizedCountryLabel(country, locale));
 }
 
 export function hasFrenchStaticPage(key) {

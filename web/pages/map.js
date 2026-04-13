@@ -4,49 +4,63 @@ import Script from "next/script";
 import Link from "next/link";
 import Nav from "../components/Nav";
 import { buildMapData } from "../lib/mapData";
+import {
+  BASE,
+  MAP_COPY,
+  getCanonicalUrl,
+  getLocalizedCountryLabel,
+  getOgLocale,
+  hasFrenchStaticPage,
+  normalizeLocale,
+} from "../lib/i18n";
 
-const BASE = "https://www.epsteinafrica.com";
+export function getStaticProps({ locale }) {
+  const normalizedLocale = normalizeLocale(locale);
+  const frAvailable = hasFrenchStaticPage("map");
+  if (normalizedLocale === "fr" && !frAvailable) {
+    return { notFound: true };
+  }
 
-export function getStaticProps() {
-  const { countryData } = buildMapData();
+  const { countryData } = buildMapData(normalizedLocale);
   const countryCount = Object.keys(countryData).filter(
-    (k) => countryData[k].emailCount > 0
+    (k) => countryData[k].emailCount > 0 || countryData[k].storyCount > 0 || countryData[k].peopleCount > 0
   ).length;
-  return { props: { countryData, countryCount } };
+  return { props: { countryData, countryCount, locale: normalizedLocale, frAvailable } };
 }
 
-function CountryPanel({ country, data, onClose }) {
+function CountryPanel({ country, data, onClose, locale, copy }) {
   if (!country) return null;
+  const countryLabel = getLocalizedCountryLabel(country, locale);
 
   return (
     <div className="map-panel">
-      <button className="map-panel-close" onClick={onClose} aria-label="Close panel">
+      <button className="map-panel-close" onClick={onClose} aria-label={copy.closePanel}>
         &times;
       </button>
-      <h2>{country}</h2>
+      <h2>{countryLabel}</h2>
 
       <div className="map-panel-stats">
         <div className="map-stat">
           <span className="map-stat-num">{data.emailCount.toLocaleString()}</span>
-          <span className="map-stat-label">emails</span>
+          <span className="map-stat-label">{copy.emails}</span>
         </div>
         <div className="map-stat">
           <span className="map-stat-num">{data.storyCount}</span>
-          <span className="map-stat-label">stories</span>
+          <span className="map-stat-label">{copy.stories}</span>
         </div>
         <div className="map-stat">
           <span className="map-stat-num">{data.peopleCount}</span>
-          <span className="map-stat-label">people</span>
+          <span className="map-stat-label">{copy.people}</span>
         </div>
       </div>
 
       {data.stories.length > 0 && (
         <div className="map-panel-section">
-          <h3>Stories</h3>
+          <h3>{copy.storiesHeading}</h3>
           <ul>
             {data.stories.map((s) => (
               <li key={s.slug}>
-                <Link href={`/stories/${s.slug}`}>{s.title}</Link>
+                <Link href={`/stories/${s.slug}`} locale={locale}>{s.title}</Link>
                 <span className="map-panel-meta">{s.date_range}</span>
               </li>
             ))}
@@ -56,11 +70,11 @@ function CountryPanel({ country, data, onClose }) {
 
       {data.people.length > 0 && (
         <div className="map-panel-section">
-          <h3>People</h3>
+          <h3>{copy.peopleHeading}</h3>
           <ul>
             {data.people.map((p) => (
               <li key={p.slug}>
-                <Link href={`/people/${p.slug}`}>{p.name}</Link>
+                <Link href={`/people/${p.slug}`} locale={locale}>{p.name}</Link>
                 <span className="map-panel-meta">{p.title}</span>
               </li>
             ))}
@@ -70,7 +84,7 @@ function CountryPanel({ country, data, onClose }) {
 
       {data.topSenders.length > 0 && (
         <div className="map-panel-section">
-          <h3>Top senders</h3>
+          <h3>{copy.topSenders}</h3>
           <ul>
             {data.topSenders.map((s, i) => (
               <li key={i}>
@@ -82,15 +96,16 @@ function CountryPanel({ country, data, onClose }) {
       )}
 
       <div className="map-panel-section">
-        <Link href={`/?country=${encodeURIComponent(country)}`} className="map-panel-link">
-          View all {country} emails &rarr;
+        <Link href={`/?country=${encodeURIComponent(country)}`} locale={false} className="map-panel-link">
+          {copy.viewAll.replace("{country}", countryLabel)} &rarr;
         </Link>
       </div>
     </div>
   );
 }
 
-export default function MapPage({ countryData, countryCount }) {
+export default function MapPage({ countryData, countryCount, locale, frAvailable }) {
+  const copy = MAP_COPY[locale] || MAP_COPY.en;
   const containerRef = useRef(null);
   const svgRef = useRef(null);
   const [d3Ready, setD3Ready] = useState(
@@ -206,7 +221,7 @@ export default function MapPage({ countryData, countryCount }) {
             d3.select(this).attr("stroke", "#c9a227").attr("stroke-width", 1.5);
             tooltip
               .style("display", "block")
-              .html(`<strong>${name}</strong><br>${data.emailCount} emails, ${data.storyCount} stories`);
+              .html(`<strong>${getLocalizedCountryLabel(name, locale)}</strong><br>${data.emailCount} ${copy.emails}, ${data.storyCount} ${copy.stories}`);
           }
         })
         .on("mousemove", (event) => {
@@ -263,7 +278,7 @@ export default function MapPage({ countryData, countryCount }) {
           const data = countryData[d.name];
           tooltip
             .style("display", "block")
-            .html(`<strong>${d.name}</strong><br>${data.emailCount} emails, ${data.storyCount} stories`);
+            .html(`<strong>${getLocalizedCountryLabel(d.name, locale)}</strong><br>${data.emailCount} ${copy.emails}, ${data.storyCount} ${copy.stories}`);
         })
         .on("mousemove", (event) => {
           tooltip
@@ -288,30 +303,31 @@ export default function MapPage({ countryData, countryCount }) {
     return () => {
       tooltip.remove();
     };
-  }, [d3Ready, geoData, countryData, handleSelect]);
+  }, [copy.emails, copy.stories, countryData, d3Ready, geoData, handleSelect, locale]);
 
   const selectedData = selected ? countryData[selected] : null;
 
   return (
     <>
       <Head>
-        <title>Africa Map | Epstein Africa</title>
-        <meta
-          name="description"
-          content="Interactive map of Jeffrey Epstein's documented connections across Africa."
-        />
-        <link rel="canonical" href={`${BASE}/map`} />
-        <meta property="og:title" content="Africa Map | Epstein Africa" />
-        <meta
-          property="og:description"
-          content="Interactive map of Jeffrey Epstein's documented connections across Africa."
-        />
-        <meta property="og:url" content={`${BASE}/map`} />
+        <title>{copy.title}</title>
+        <meta name="description" content={copy.description} />
+        <link rel="canonical" href={getCanonicalUrl("/map", locale)} />
+        <meta property="og:title" content={copy.title} />
+        <meta property="og:description" content={copy.description} />
+        <meta property="og:url" content={getCanonicalUrl("/map", locale)} />
+        <meta property="og:locale" content={getOgLocale(locale)} />
         <meta
           property="og:image"
-          content={`${BASE}/api/og?title=${encodeURIComponent("Africa Map")}`}
+          content={`${BASE}/api/og?title=${encodeURIComponent(copy.title)}`}
         />
         <meta property="og:type" content="website" />
+        {frAvailable && locale === "en" && (
+          <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/map", "fr")} />
+        )}
+        {frAvailable && locale === "fr" && (
+          <link rel="alternate" hrefLang="en" href={getCanonicalUrl("/map", "en")} />
+        )}
       </Head>
 
       <Script
@@ -320,11 +336,11 @@ export default function MapPage({ countryData, countryCount }) {
         onLoad={() => setD3Ready(true)}
       />
 
-      <Nav />
+      <Nav pagePath="/map" frAvailable={frAvailable} />
 
       <main className="map-page">
         <div className="map-header">
-          Documented connections across {countryCount} African countries.<br />Click a country to explore.
+          {copy.heading.replace("{count}", countryCount.toLocaleString())}
         </div>
         <div className="map-body">
           <div className="map-container" ref={containerRef}>
@@ -334,22 +350,24 @@ export default function MapPage({ countryData, countryCount }) {
             />
           </div>
           <CountryPanel
-          country={selected}
-          data={selectedData}
-          onClose={() => {
-            setSelected(null);
-            selectedRef.current = null;
-            if (svgRef.current) {
-              const d3 = window.d3;
-              if (d3) {
-                d3.select(svgRef.current)
-                  .selectAll("path")
-                  .attr("stroke", "#2a3a4a")
-                  .attr("stroke-width", 0.5);
+            country={selected}
+            data={selectedData}
+            locale={locale}
+            copy={copy}
+            onClose={() => {
+              setSelected(null);
+              selectedRef.current = null;
+              if (svgRef.current) {
+                const d3 = window.d3;
+                if (d3) {
+                  d3.select(svgRef.current)
+                    .selectAll("path")
+                    .attr("stroke", "#2a3a4a")
+                    .attr("stroke-width", 0.5);
+                }
               }
-            }
-          }}
-        />
+            }}
+          />
         </div>
       </main>
 

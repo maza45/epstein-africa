@@ -2,10 +2,15 @@ import Head from "next/head";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
+import { BASE, getCanonicalUrl, hasFrenchStaticPage, normalizeLocale } from "../lib/i18n";
 
-const BASE = "https://www.epsteinafrica.com";
+export async function getStaticProps({ locale }) {
+  const normalizedLocale = normalizeLocale(locale);
+  const frAvailable = hasFrenchStaticPage("about");
+  if (normalizedLocale === "fr" && !frAvailable) {
+    return { notFound: true };
+  }
 
-export async function getStaticProps() {
   const db = getDb();
   const emailCount = db
     .prepare("SELECT COUNT(*) AS n FROM emails WHERE COALESCE(is_promotional, 0) = 0")
@@ -17,15 +22,15 @@ export async function getStaticProps() {
   for (const r of rows) {
     r.countries.split(",").map((c) => c.trim()).filter((c) => c && c !== "Africa").forEach((c) => countrySet.add(c));
   }
-  return { props: { emailCount, countryCount: countrySet.size } };
+  return { props: { emailCount, countryCount: countrySet.size, locale: normalizedLocale, frAvailable } };
 }
 
-export default function About({ emailCount, countryCount }) {
+export default function About({ emailCount, countryCount, locale, frAvailable }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About Epstein Africa",
-    url: `${BASE}/about`,
+    url: getCanonicalUrl("/about", locale),
     mainEntity: {
       "@type": "WebSite",
       name: "Epstein Africa",
@@ -42,12 +47,18 @@ export default function About({ emailCount, countryCount }) {
           name="description"
           content="About the Epstein Africa database — methodology, sources, and caveats."
         />
-        <link rel="canonical" href={`${BASE}/about`} />
+        <link rel="canonical" href={getCanonicalUrl("/about", locale)} />
         <meta property="og:title" content="About — Epstein Africa" />
         <meta property="og:description" content="About the Epstein Africa database — methodology, sources, and caveats." />
-        <meta property="og:url" content={`${BASE}/about`} />
+        <meta property="og:url" content={getCanonicalUrl("/about", locale)} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("About")}&subtitle=${encodeURIComponent("Methodology, sources, and caveats")}`} />
+        {frAvailable && locale === "en" && (
+          <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/about", "fr")} />
+        )}
+        {frAvailable && locale === "fr" && (
+          <link rel="alternate" hrefLang="en" href={getCanonicalUrl("/about", "en")} />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -55,7 +66,7 @@ export default function About({ emailCount, countryCount }) {
       </Head>
 
       <div className="container">
-        <Nav />
+        <Nav pagePath="/about" frAvailable={frAvailable} />
         <header className="site-header">
           <h1>About</h1>
         </header>
@@ -158,7 +169,7 @@ export default function About({ emailCount, countryCount }) {
           </p>
         </div>
 
-        <Footer />
+        <Footer locale={locale} />
       </div>
     </>
   );

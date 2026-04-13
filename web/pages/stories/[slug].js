@@ -7,8 +7,17 @@ import ShareButtons from "../../components/ShareButtons";
 import { STORIES, getStoryBySlug } from "../../lib/stories";
 import { getDb } from "../../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../../lib/format";
-
-const BASE = "https://www.epsteinafrica.com";
+import {
+  BASE,
+  getCanonicalUrl,
+  getLocalizedCountryLabel,
+  getLocalizedCountryLabels,
+  getOgLocale,
+  getLocalizedStory,
+  hasFrenchStory,
+  normalizeLocale,
+  STORY_COPY,
+} from "../../lib/i18n";
 
 // Turn inline email IDs like (EFTA01841982-0) into clickable links
 const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?))\b/g;
@@ -24,7 +33,7 @@ function linkifyCitations(text) {
     }
     const id = match[1];
     parts.push(
-      <Link key={`${id}-${match.index}`} href={`/emails/${encodeURIComponent(id)}`} className="citation-link">
+      <Link key={`${id}-${match.index}`} href={`/emails/${encodeURIComponent(id)}`} locale={false} className="citation-link">
         {id}
       </Link>
     );
@@ -38,19 +47,30 @@ function linkifyCitations(text) {
 
 export async function getStaticPaths() {
   return {
-    paths: STORIES.map((s) => ({ params: { slug: s.slug } })),
+    paths: STORIES.flatMap((story) => {
+      const paths = [{ params: { slug: story.slug }, locale: "en" }];
+      if (hasFrenchStory(story)) {
+        paths.push({ params: { slug: story.slug }, locale: "fr" });
+      }
+      return paths;
+    }),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
+  const normalizedLocale = normalizeLocale(locale);
   const story = getStoryBySlug(params.slug);
   if (!story) return { notFound: true };
+  if (normalizedLocale === "fr" && !hasFrenchStory(story)) {
+    return { notFound: true };
+  }
+  const localizedStory = getLocalizedStory(story, normalizedLocale);
 
   let emails = [];
-  if (story.email_ids.length > 0) {
+  if (localizedStory.email_ids.length > 0) {
     const db = getDb();
-    const placeholders = story.email_ids.map(() => "?").join(",");
+    const placeholders = localizedStory.email_ids.map(() => "?").join(",");
     emails = db
       .prepare(
         `SELECT id, doc_id, sender, subject, sent_at, countries, epstein_is_sender
@@ -58,25 +78,34 @@ export async function getStaticProps({ params }) {
          WHERE id IN (${placeholders})
          ORDER BY COALESCE(sent_at, '9999-99-99') ASC`
       )
-      .all(...story.email_ids);
+      .all(...localizedStory.email_ids);
   }
 
-  return { props: { story, emails } };
+  return {
+    props: {
+      story: localizedStory,
+      emails,
+      locale: normalizedLocale,
+      frAvailable: hasFrenchStory(story),
+    },
+  };
 }
 
-export default function StoryPage({ story, emails }) {
+export default function StoryPage({ story, emails, locale, frAvailable }) {
   const router = useRouter();
+  const t = STORY_COPY[locale] || STORY_COPY.en;
 
   const pageUrl = `/stories/${story.slug}`;
+  const localizedCountries = getLocalizedCountryLabels(story.countries, locale);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: story.title,
     description: story.summary,
-    url: `${BASE}${pageUrl}`,
+    url: getCanonicalUrl(pageUrl, locale),
     publisher: { "@type": "Organization", name: "Epstein Africa", url: BASE },
-    image: `${BASE}/api/og?title=${encodeURIComponent(story.title)}&subtitle=${encodeURIComponent(story.countries.join(", "))}&type=article`,
+    image: `${BASE}/api/og?title=${encodeURIComponent(story.title)}&subtitle=${encodeURIComponent(localizedCountries.join(", "))}&type=article`,
   };
 
   return (
@@ -84,12 +113,19 @@ export default function StoryPage({ story, emails }) {
       <Head>
         <title>{story.title} — Epstein Africa</title>
         <meta name="description" content={story.summary} />
-        <link rel="canonical" href={`${BASE}${pageUrl}`} />
+        <link rel="canonical" href={getCanonicalUrl(pageUrl, locale)} />
         <meta property="og:title" content={story.title} />
         <meta property="og:description" content={story.summary} />
-        <meta property="og:url" content={`${BASE}${pageUrl}`} />
+        <meta property="og:url" content={getCanonicalUrl(pageUrl, locale)} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(story.title)}&subtitle=${encodeURIComponent(story.countries.join(", "))}`} />
+        <meta property="og:locale" content={getOgLocale(locale)} />
+        <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent(story.title)}&subtitle=${encodeURIComponent(localizedCountries.join(", "))}`} />
+        {frAvailable && locale === "en" && (
+          <link rel="alternate" hrefLang="fr" href={getCanonicalUrl(pageUrl, "fr")} />
+        )}
+        {frAvailable && locale === "fr" && (
+          <link rel="alternate" hrefLang="en" href={getCanonicalUrl(pageUrl, "en")} />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -97,20 +133,20 @@ export default function StoryPage({ story, emails }) {
       </Head>
 
       <div className="container">
-        <Nav />
-        <button className="back-btn" onClick={() => router.back()}>← Back</button>
+        <Nav pagePath={pageUrl} frAvailable={frAvailable} />
+        <button className="back-btn" onClick={() => router.back()}>← {t.back}</button>
 
         <article className="story-article">
           <header className="story-header">
             <div className="story-header-meta">
               <span className="story-date-range">{story.date_range}</span>
               {story.countries.map((c) => (
-                <span key={c} className="tag">{c}</span>
+                <span key={c} className="tag">{getLocalizedCountryLabel(c, locale)}</span>
               ))}
             </div>
             <h1 className="story-heading">{story.title}</h1>
             <p className="story-lede">{story.summary}</p>
-            <ShareButtons path={pageUrl} title={story.title} summary={story.summary} />
+            <ShareButtons path={pageUrl} title={story.title} summary={story.summary} locale={locale} />
           </header>
 
           {story.body.length > 0 && (
@@ -123,15 +159,15 @@ export default function StoryPage({ story, emails }) {
 
           {emails.length > 0 && (
             <section className="story-section">
-              <h2 className="section-heading">Source emails</h2>
+              <h2 className="section-heading">{t.sourceEmails}</h2>
               <div className="table-wrap">
                 <table className="email-table">
                   <thead>
                     <tr>
-                      <th className="col-date">Date</th>
-                      <th className="col-sender">Sender</th>
-                      <th className="col-subject">Subject</th>
-                      <th className="col-countries">Countries</th>
+                      <th className="col-date">{t.thDate}</th>
+                      <th className="col-sender">{t.thSender}</th>
+                      <th className="col-subject">{t.thSubject}</th>
+                      <th className="col-countries">{t.thCountries}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -142,16 +178,19 @@ export default function StoryPage({ story, emails }) {
                         onClick={() =>
                           router.push(
                             `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`
+                            ,
+                            undefined,
+                            { locale: false }
                           )
                         }
                       >
                         <td className="col-date">{formatDate(email.sent_at)}</td>
                         <td className="col-sender">{cleanSender(email.sender)}</td>
-                        <td className="col-subject">{email.subject || "(no subject)"}</td>
+                        <td className="col-subject">{email.subject || t.noSubject}</td>
                         <td className="col-countries">
                           {email.countries
                             ? splitCountries(email.countries).map((c) => (
-                                <span key={c} className="tag">{c}</span>
+                                <span key={c} className="tag">{getLocalizedCountryLabel(c, locale)}</span>
                               ))
                             : "—"}
                         </td>
@@ -165,7 +204,7 @@ export default function StoryPage({ story, emails }) {
 
           {story.news_links.length > 0 && (
             <section className="story-section">
-              <h2 className="section-heading">External coverage</h2>
+              <h2 className="section-heading">{t.externalCoverage}</h2>
               <ul className="news-links">
                 {story.news_links.map((link) => (
                   <li key={link.url}>
@@ -180,7 +219,7 @@ export default function StoryPage({ story, emails }) {
           )}
         </article>
 
-        <Footer />
+        <Footer locale={locale} />
       </div>
     </>
   );

@@ -11,6 +11,7 @@ import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 import {
   BASE,
   getCanonicalUrl,
+  getLocalizedCountryLabel,
   getLocalizedPerson,
   getOgLocale,
   hasFrenchPerson,
@@ -219,7 +220,7 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                 <div className="profile-countries">
                   {person.countries.map((c) => (
                     <span key={c} className="tag">
-                      {c}
+                      {getLocalizedCountryLabel(c, locale)}
                     </span>
                   ))}
                 </div>
@@ -268,13 +269,13 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                               {cleanSender(email.sender)}
                             </td>
                             <td className="col-subject">
-                              {email.subject || "(no subject)"}
+                              {email.subject || t.noSubject}
                             </td>
                             <td className="col-countries">
                               {email.countries
                                 ? splitCountries(email.countries).map((c) => (
                                     <span key={c} className="tag">
-                                      {c}
+                                      {getLocalizedCountryLabel(c, locale)}
                                     </span>
                                   ))
                                 : "—"}
@@ -348,13 +349,13 @@ export default function PersonProfile({ person: ssrPerson, emails: ssrEmails, to
                               {cleanSender(email.sender)}
                             </td>
                             <td className="col-subject">
-                              {email.subject || "(no subject)"}
+                              {email.subject || t.noSubject}
                             </td>
                             <td className="col-countries">
                               {email.countries
                                 ? splitCountries(email.countries).map((c) => (
                                     <span key={c} className="tag">
-                                      {c}
+                                      {getLocalizedCountryLabel(c, locale)}
                                     </span>
                                   ))
                                 : "—"}

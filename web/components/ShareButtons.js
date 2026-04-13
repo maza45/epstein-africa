@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { SHARE_COPY, getCanonicalUrl, normalizeLocale } from "../lib/i18n";
 
-const BASE = "https://www.epsteinafrica.com";
-
-export default function ShareButtons({ path, title }) {
+export default function ShareButtons({ path, title, locale = "en" }) {
   const [copied, setCopied] = useState(false);
-  const url = `${BASE}${path}`;
+  const normalizedLocale = normalizeLocale(locale);
+  const url = getCanonicalUrl(path, normalizedLocale);
   const text = `${title} — Epstein Africa`;
+  const copy = SHARE_COPY[normalizedLocale];
 
   const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
   const redditUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(text)}`;
@@ -19,19 +20,19 @@ export default function ShareButtons({ path, title }) {
   }
 
   return (
-    <div className="share-buttons" role="group" aria-label="Share this page">
-      <span className="share-label">Share</span>
-      <a href={twitterUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label="Share on X">
+    <div className="share-buttons" role="group" aria-label={copy.groupLabel}>
+      <span className="share-label">{copy.label}</span>
+      <a href={twitterUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label={copy.x}>
         X
       </a>
-      <a href={bskyUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label="Share on Bluesky">
+      <a href={bskyUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label={copy.bsky}>
         Bsky
       </a>
-      <a href={redditUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label="Share on Reddit">
+      <a href={redditUrl} target="_blank" rel="noreferrer" className="share-btn" aria-label={copy.reddit}>
         Reddit
       </a>
-      <button onClick={copyLink} className="share-btn" aria-label="Copy link to clipboard">
-        {copied ? "Copied" : "Link"}
+      <button onClick={copyLink} className="share-btn" aria-label={copy.copy}>
+        {copied ? copy.copied : copy.link}
       </button>
     </div>
   );

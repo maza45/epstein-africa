@@ -1,5 +1,6 @@
 import { getDb } from "../../../lib/db";
 import { getPersonBySlug } from "../../../lib/people";
+import { getLocalizedPerson, normalizeLocale } from "../../../lib/i18n";
 
 const LIMIT_MAX = 100;
 const LIMIT_DEFAULT = 25;
@@ -14,6 +15,9 @@ export default function handler(req, res) {
   if (!person) {
     return res.status(404).json({ error: "Person not found" });
   }
+
+  const locale = normalizeLocale(req.query.locale);
+  const localizedPerson = getLocalizedPerson(person, locale);
 
   const db = getDb();
 
@@ -89,5 +93,5 @@ export default function handler(req, res) {
   }
 
   res.setHeader("Cache-Control", "public, max-age=3600");
-  res.status(200).json({ person, emails, total, page, limit, mentionEmails, mentionTotal });
+  res.status(200).json({ person: localizedPerson, emails, total, page, limit, mentionEmails, mentionTotal });
 }

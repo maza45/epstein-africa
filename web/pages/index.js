@@ -6,10 +6,15 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { getDb } from "../lib/db";
 import { cleanSender, formatDate, splitCountries } from "../lib/format";
+import { BASE, getCanonicalUrl, getLocalizedCountryLabel, hasFrenchStaticPage, normalizeLocale } from "../lib/i18n";
 
-const BASE = "https://www.epsteinafrica.com";
+export async function getStaticProps({ locale }) {
+  const normalizedLocale = normalizeLocale(locale);
+  const frAvailable = hasFrenchStaticPage("home");
+  if (normalizedLocale === "fr" && !frAvailable) {
+    return { notFound: true };
+  }
 
-export async function getStaticProps() {
   const db = getDb();
 
   const emailCount = db
@@ -36,12 +41,12 @@ export async function getStaticProps() {
       .sort(),
   ];
 
-  return { props: { emailCount, countries } };
+  return { props: { emailCount, countries, locale: normalizedLocale, frAvailable } };
 }
 
 const LIMIT = 25;
 
-export default function Home({ emailCount, countries }) {
+export default function Home({ emailCount, countries, locale, frAvailable }) {
   const [emails, setEmails] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -130,12 +135,18 @@ export default function Home({ emailCount, countries }) {
       <Head>
         <title>Epstein Africa — Email Database</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={BASE} />
+        <link rel="canonical" href={getCanonicalUrl("/", locale)} />
         <meta property="og:title" content="Epstein Africa — Email Database" />
         <meta property="og:description" content={description} />
-        <meta property="og:url" content={BASE} />
+        <meta property="og:url" content={getCanonicalUrl("/", locale)} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Epstein Africa")}&subtitle=${encodeURIComponent(`${emailCount.toLocaleString()} verified emails from DOJ releases`)}`} />
+        {frAvailable && locale === "en" && (
+          <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/", "fr")} />
+        )}
+        {frAvailable && locale === "fr" && (
+          <link rel="alternate" hrefLang="en" href={getCanonicalUrl("/", "en")} />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -143,7 +154,7 @@ export default function Home({ emailCount, countries }) {
       </Head>
 
       <div className="container">
-        <Nav />
+        <Nav pagePath="/" frAvailable={frAvailable} />
         <header className="site-header">
           <h1>Epstein Africa</h1>
           <p className="subtitle">
@@ -183,7 +194,7 @@ export default function Home({ emailCount, countries }) {
             <option value="">All countries</option>
             {countries.map((c) => (
               <option key={c} value={c}>
-                {c}
+                {getLocalizedCountryLabel(c, locale)}
               </option>
             ))}
           </select>
@@ -237,7 +248,13 @@ export default function Home({ emailCount, countries }) {
                   <tr
                     key={email.id}
                     className={`clickable-row${email.epstein_is_sender ? " epstein-row" : ""}`}
-                    onClick={() => router.push(`/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`)}
+                    onClick={() =>
+                      router.push(
+                        `/emails/${encodeURIComponent(email.id)}?back=${encodeURIComponent(router.asPath)}`,
+                        undefined,
+                        { locale: false }
+                      )
+                    }
                   >
                     <td className="col-date">{formatDate(email.sent_at)}</td>
                     <td className="col-sender">{cleanSender(email.sender)}</td>
@@ -248,7 +265,7 @@ export default function Home({ emailCount, countries }) {
                       {email.countries
                         ? splitCountries(email.countries).map((c) => (
                             <span key={c} className="tag">
-                              {c}
+                              {getLocalizedCountryLabel(c, locale)}
                             </span>
                           ))
                         : "—"}
@@ -282,7 +299,7 @@ export default function Home({ emailCount, countries }) {
           </div>
         )}
 
-        <Footer />
+        <Footer locale={locale} />
       </div>
     </>
   );

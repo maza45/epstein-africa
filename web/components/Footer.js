@@ -1,12 +1,16 @@
-export default function Footer() {
+import { FOOTER_COPY, normalizeLocale } from "../lib/i18n";
+
+export default function Footer({ locale = "en" }) {
+  const copy = FOOTER_COPY[normalizeLocale(locale)];
+
   return (
     <footer className="site-footer">
       <p>
-        Public interest journalism. Free, ad-free, open source.
+        {copy.blurb}
       </p>
       <div className="footer-links">
-        <a href="/rss.xml">RSS</a>
-        <a href="/api/export?format=csv">Download CSV</a>
+        <a href="/rss.xml">{copy.rss}</a>
+        <a href="/api/export?format=csv">{copy.exportCsv}</a>
       </div>
     </footer>
   );

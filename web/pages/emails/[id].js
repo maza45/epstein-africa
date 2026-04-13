@@ -8,8 +8,7 @@ import ShareButtons from "../../components/ShareButtons";
 import { PEOPLE } from "../../lib/people";
 import { getDb } from "../../lib/db";
 import { formatDateTime, splitCountries } from "../../lib/format";
-
-const BASE = "https://www.epsteinafrica.com";
+import { BASE, getCanonicalUrl, normalizeLocale } from "../../lib/i18n";
 
 function parseParticipants(raw) {
   if (!raw) return [];
@@ -29,7 +28,16 @@ function findSenderSlug(sender) {
   return null;
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, locale }) {
+  if (normalizeLocale(locale) === "fr") {
+    return {
+      redirect: {
+        destination: `/emails/${encodeURIComponent(params.id)}`,
+        permanent: false,
+      },
+    };
+  }
+
   const db = getDb();
   const requestedId = params.id;
   const email = db
@@ -115,10 +123,10 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        {!isChooser && <link rel="canonical" href={`${BASE}${pageUrl}`} />}
+        {!isChooser && <link rel="canonical" href={getCanonicalUrl(pageUrl, "en")} />}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        {!isChooser && <meta property="og:url" content={`${BASE}${pageUrl}`} />}
+        {!isChooser && <meta property="og:url" content={getCanonicalUrl(pageUrl, "en")} />}
         <meta property="og:type" content="article" />
         {!isChooser && (
           <meta
@@ -130,7 +138,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
       </Head>
 
       <div className="container">
-        <Nav />
+        <Nav pagePath={pageUrl} frAvailable={false} />
         <a
           className="back-btn"
           href={(() => {
@@ -161,7 +169,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                   <span className="badge-epstein">Epstein sender</span>
                 )}
               </div>
-              <ShareButtons path={pageUrl} title={email.subject || "Email"} summary={description} />
+              <ShareButtons path={pageUrl} title={email.subject || "Email"} summary={description} locale="en" />
             </header>
 
             <div className="detail-fields">
@@ -170,7 +178,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                   <div className="field-label">From</div>
                   <div className="field-value">
                     {senderProfileSlug ? (
-                      <Link href={`/people/${senderProfileSlug}`}>
+                      <Link href={`/people/${senderProfileSlug}`} locale="en">
                         {email.sender}
                       </Link>
                     ) : (
@@ -260,7 +268,9 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
                         className="clickable-row"
                         onClick={() =>
                           router.push(
-                            `/emails/${encodeURIComponent(choice.id)}?back=${encodeURIComponent(router.asPath)}`
+                            `/emails/${encodeURIComponent(choice.id)}?back=${encodeURIComponent(router.asPath)}`,
+                            undefined,
+                            { locale: false }
                           )
                         }
                       >
@@ -286,7 +296,7 @@ export default function EmailDetail({ ssrEmail, senderProfileSlug, siblingChoice
           </article>
         )}
 
-        <Footer />
+        <Footer locale="en" />
       </div>
     </>
   );

@@ -296,6 +296,8 @@ a:hover {
 /* ── Site nav ── */
 .site-nav {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
   padding: 0.6rem 0;
   margin-bottom: 1.75rem;
@@ -303,19 +305,43 @@ a:hover {
   font-size: 0.82rem;
 }
 
-.site-nav a {
+.site-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.site-nav a,
+.lang-link {
   color: var(--text-dim);
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.lang-link:hover {
   color: var(--accent-hover);
   text-decoration: none;
 }
 
-.site-nav a.nav-active {
+.site-nav a.nav-active,
+.lang-link.nav-active {
   color: #fff;
   border-bottom: 1px solid var(--accent);
   padding-bottom: 0.15rem;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.lang-link {
+  text-decoration: none;
+}
+
+.lang-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 /* ── Stories index ── */
@@ -935,6 +961,19 @@ a:hover {
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .site-nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-nav-links {
+    gap: 1rem;
+  }
+
+  .lang-switch {
+    margin-top: 0.35rem;
+  }
+
   .col-countries {
     display: none;
   }

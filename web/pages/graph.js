@@ -4,15 +4,20 @@ import Script from "next/script";
 import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import { buildGraphData } from "../lib/graph";
+import { BASE, getCanonicalUrl, hasFrenchStaticPage, normalizeLocale } from "../lib/i18n";
 
-const BASE = "https://www.epsteinafrica.com";
+export async function getStaticProps({ locale }) {
+  const normalizedLocale = normalizeLocale(locale);
+  const frAvailable = hasFrenchStaticPage("graph");
+  if (normalizedLocale === "fr" && !frAvailable) {
+    return { notFound: true };
+  }
 
-export async function getStaticProps() {
   const data = buildGraphData();
-  return { props: { precomputedGraph: data } };
+  return { props: { precomputedGraph: data, locale: normalizedLocale, frAvailable } };
 }
 
-export default function GraphPage({ precomputedGraph }) {
+export default function GraphPage({ precomputedGraph, locale, frAvailable }) {
   const containerRef = useRef(null);
   const svgRef = useRef(null);
   const simulationRef = useRef(null);
@@ -277,12 +282,18 @@ export default function GraphPage({ precomputedGraph }) {
       <Head>
         <title>Network Graph — Epstein Africa</title>
         <meta name="description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
-        <link rel="canonical" href={`${BASE}/graph`} />
+        <link rel="canonical" href={getCanonicalUrl("/graph", locale)} />
         <meta property="og:title" content="Network Graph — Epstein Africa" />
         <meta property="og:description" content="Interactive network graph of persons and countries in Epstein's Africa-related correspondence." />
-        <meta property="og:url" content={`${BASE}/graph`} />
+        <meta property="og:url" content={getCanonicalUrl("/graph", locale)} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={`${BASE}/api/og?title=${encodeURIComponent("Network Graph")}&subtitle=${encodeURIComponent("Persons and countries in the email archive")}`} />
+        {frAvailable && locale === "en" && (
+          <link rel="alternate" hrefLang="fr" href={getCanonicalUrl("/graph", "fr")} />
+        )}
+        {frAvailable && locale === "fr" && (
+          <link rel="alternate" hrefLang="en" href={getCanonicalUrl("/graph", "en")} />
+        )}
       </Head>
 
       <Script
@@ -293,7 +304,7 @@ export default function GraphPage({ precomputedGraph }) {
 
       <div className="graph-page">
         <div className="graph-nav">
-          <Nav />
+          <Nav pagePath="/graph" frAvailable={frAvailable} />
         </div>
 
         {!graphData && (
