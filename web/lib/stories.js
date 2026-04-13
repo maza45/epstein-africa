@@ -1984,6 +1984,15 @@ export const STORIES = [
       "vol00009-efta00578693-pdf-0",
     ],
     news_links: [],
+    title_fr: "La Fondation Clinton envoya \u00e0 Ghislaine Maxwell le manifeste du voyage africain",
+    summary_fr:
+      "En septembre 2002, le bureau de planification de la Fondation Clinton envoya \u00e0 Ghislaine Maxwell le manifeste complet de l'avion pour le voyage africain du pr\u00e9sident Clinton, couvrant le Ghana, le Nigeria, le Rwanda, le Mozambique et l'Afrique du Sud. Le manifeste excluait le \u00ab\u00a0package\u00a0\u00bb de voyageurs de Maxwell. Trois mois plus tard, le directeur de l'initiative sida de Clinton \u00e9crivit directement \u00e0 Maxwell au sujet des progr\u00e8s au Rwanda et au Mozambique.",
+    body_fr: [
+      "Le 11 septembre 2002, David Slade, directeur adjoint de la planification au bureau du pr\u00e9sident William J. Clinton, \u00e9crivit \u00e0 Ghislaine Maxwell. \"Doug asked me to email you the following information for planning purposes as we approach our departure date for Africa. Dan Rather with CBS has requested that he along with 3 crew fly aboard the plane with President Clinton for the Cape Town to Johannesburg, South Africa leg.\" L'email incluait le manifeste complet de l'avion pour chaque \u00e9tape du voyage (vol00009-efta00578629-pdf-0).",
+      "L'itin\u00e9raire\u00a0: New York vers Accra, Ghana. Accra vers Abuja, Nigeria. Abuja vers Kigali, Rwanda. Kigali vers Maputo, Mozambique. Maputo vers Le Cap. Le Cap vers Johannesburg. Johannesburg vers Londres. Le manifeste listait le pr\u00e9sident Clinton, Doug Band, Kevin Spacey, Rodney Slater, Gayle Smith, Casey et Laura Wasserman, et Ira Magaziner rejoignant le groupe au Rwanda. Chaque \u00e9tape comptait cinq \u00e0 sept agents du Secret Service. Slade nota que le manifeste excluait \"your package\" (vol00009-efta00578629-pdf-0).",
+      "Deux jours plus tard, Slade envoya un manifeste r\u00e9vis\u00e9. \"FYI, President Clinton is no longer traveling to Kumasi, Ghana as part of his upcoming Africa trip\" (vol00009-efta00580574-pdf-0).",
+      "Trois mois apr\u00e8s le voyage, le 23 d\u00e9cembre 2002, Ira Magaziner \u00e9crivit directement \u00e0 Maxwell. Magaziner dirigeait l'initiative sida de la Fondation Clinton. Il \u00e9crivit\u00a0: \"Ghislaine: How are you doing? We have been making good progress on the AIDS initiative. I have been back to Rwanda and Mozambique twice since we last talked and we are having good results in both countries. The more time I spend in Africa and in other poor countries, the clearer it becomes that effective investments in health and education are essential before they can advance. I hope you are well. Please give my regards to Jeffrey. I look forward to hearing your thoughts about your next steps whenever you formulate them\" (vol00009-efta00578693-pdf-0).",
+    ],
   },
   {
     slug: "stern-china-africa-bridge",
