@@ -862,6 +862,15 @@ export const STORIES = [
       "EFTA01759560-0",
     ],
     news_links: [],
+    title_fr: "Pister Bongo\u00a0: comment Epstein utilisa Karim Wade pour localiser un chef d'\u00c9tat",
+    summary_fr:
+      "Le 24 juin 2012, Epstein demanda \u00e0 Karim Wade de v\u00e9rifier si le pr\u00e9sident gabonais Ali Bongo venait \u00e0 Paris. Une semaine plus tard, Epstein annon\u00e7a \u00e0 Sultan que Bongo \u00e9tait \u00ab\u00a0here with me.\u00a0\u00bb Sultan se rendit \u00e0 Libreville onze mois apr\u00e8s et fit son rapport.",
+    body_fr: [
+      "Le 24 juin 2012, Epstein envoya un court message \u00e0 Karim Wade\u00a0: \"I understand that ali bongo might be coming to paris. , would be easier to talk\" (vol00009-efta00938513-pdf-0).",
+      "Wade r\u00e9pondit le lendemain\u00a0: \"Will check and get back to u\" (EFTA01877919-0). Une semaine passa. Le 1er juillet, Epstein \u00e9crivit \u00e0 Sultan Bin Sulayem\u00a0: \"where are you? i understand that Ali bongo is in paris , here with me\" (EFTA01881400-0).",
+      "Epstein voulait Sultan sur place aussi. \"Can you come to island?\" demanda-t-il le m\u00eame soir (EFTA01876881-0). Sultan \u00e9tait \u00e0 Londres, en route pour Los Angeles le 4, puis New York le 15. Il r\u00e9pondit le lendemain\u00a0: \"I will try but my family is with me\" (EFTA01877914-0). Il ne vint pas.",
+      "Onze mois plus tard, Sultan \u00e9tait \u00e0 Libreville. Son rapport de voyage en Afrique de mai 2013 informait Epstein qu'il avait \"met my friend Ali Bongo and spoke extensively about my keen interest in Gabon and promised to visit him with you\" (EFTA01759560-0).",
+    ],
   },
   {
     slug: "zimbabwe-petrie-dish",
