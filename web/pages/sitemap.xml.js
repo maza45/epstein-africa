@@ -38,7 +38,7 @@ function generateSitemap(emailIds) {
   const emailPages = emailIds.map((id) => ({
     path: `/emails/${encodeURIComponent(id)}`,
     priority: "0.5",
-    locales: ["en"],
+    locales: ["en", "fr"],
   }));
 
   const allPages = [...staticPages, ...storyPages, ...personPages, ...emailPages].flatMap((page) =>

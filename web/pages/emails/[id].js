@@ -62,9 +62,10 @@ export async function getServerSideProps({ params, locale }) {
       .all(requestedId);
 
     if (siblings.length === 1 && siblings[0].id !== requestedId) {
+      const dest = `/emails/${encodeURIComponent(siblings[0].id)}`;
       return {
         redirect: {
-          destination: `/emails/${encodeURIComponent(siblings[0].id)}`,
+          destination: normalizedLocale === "fr" ? `/fr${dest}` : dest,
           permanent: true,
         },
       };
