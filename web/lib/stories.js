@@ -2298,6 +2298,39 @@ export const STORIES = [
     ],
   },
 
+  {
+    slug: "wyler-walker-mobile-king",
+    title: "Epstein bridged Greg Wyler, the World Bank and the mobile king of Africa",
+    summary:
+      "On the night of September 14, 2014, Greg Wyler, the founder of African satellite-internet venture O3b, asked Epstein for time-sensitive context on a woman who wanted to talk to him that night. Epstein answered the next morning: she worked for the World Bank, knew Africa, and had been with the mobile king. The mobile king is Mo Ibrahim, the Sudanese-British billionaire who built Celtel into Africa's largest mobile operator. The woman was Melanie Walker, a Gates Foundation veteran then at the World Bank, married to former Microsoft Windows president Steve Sinofsky.",
+    countries: ["Sudan", "Africa"],
+    date_range: "2013-2014",
+    body: [
+      "On September 6, 2013, Olivier Colom, who advised Epstein from inside Edmond de Rothschild Group, sent a one-line itinerary update: \"FYI: We'll have dinner with Mo Ibrahim on Sunday 22\" (vol00009-efta00969835-pdf-0). Epstein answered \"great.\" Mo Ibrahim is the Sudanese engineer who built Celtel into the largest mobile operator across sub-Saharan Africa before selling it to Zain in 2005, then founded the Mo Ibrahim Foundation, the Africa-governance prize that bears his name.",
+      "A year later, late on Sunday September 14, 2014, Greg Wyler emailed Epstein. Wyler had founded O3b Networks, the satellite venture aimed at the \"other three billion\" who had no internet, with launches across Africa as the headline use case. Epstein had told him to expect contact from someone: \"melanie husband is steve sinofsky\" (vol00009-efta00625928-pdf-3). Wyler replied within minutes: \"She said she wanted to talk tonight and it was time sensitive.... Do you know the topic?\" (vol00009-efta00625928-pdf-2).",
+      "Epstein answered the next morning. \"she works for the world bank, knows africa , and had the mobile king with her\" (vol00009-efta00625928-pdf-1). The CC line on Epstein's reply read \"adreeson horowitz\" (vol00009-efta00996880-pdf-0), a misspelling of the venture firm Andreessen Horowitz where Steve Sinofsky was a board partner. Wyler answered the same day at 10:44 a.m. \"I have met him a few times...\" (vol00009-efta00625928-pdf-0). He had. Through Colom and Epstein, Wyler had been on a dinner orbit with Mo Ibrahim since at least September 2013.",
+      "The four sides of the thread map cleanly. Mo Ibrahim built African mobile. Wyler was building African satellite internet. Walker, formerly at the Gates Foundation and by 2014 at the World Bank, was the development principal. Andreessen Horowitz was the Silicon Valley capital. Epstein had no role in any of those institutions. Walker came to him to reach Wyler. Wyler came to him to identify Walker. Mo Ibrahim moved between them on Epstein's introductions.",
+    ],
+    email_ids: [
+      "vol00009-efta00969835-pdf-0",
+      "vol00009-efta00625928-pdf-3",
+      "vol00009-efta00625928-pdf-2",
+      "vol00009-efta00625928-pdf-1",
+      "vol00009-efta00625928-pdf-0",
+      "vol00009-efta00996880-pdf-0",
+    ],
+    news_links: [],
+    title_fr: "Epstein servait de pont entre Greg Wyler, la Banque mondiale et le roi du mobile africain",
+    summary_fr:
+      "Dans la nuit du 14 septembre 2014, Greg Wyler, fondateur de la soci\u00e9t\u00e9 de satellite-internet africaine O3b, demanda \u00e0 Epstein du contexte urgent sur une femme qui voulait lui parler ce soir-l\u00e0. Epstein r\u00e9pondit le lendemain\u00a0: elle travaillait \u00e0 la Banque mondiale, connaissait l'Afrique, et venait de passer du temps avec le roi du mobile. Le roi du mobile, c'est Mo Ibrahim, le milliardaire soudano-britannique qui a b\u00e2ti Celtel en plus grand op\u00e9rateur mobile d'Afrique. La femme \u00e9tait Melanie Walker, ancienne de la Fondation Gates devenue conseill\u00e8re \u00e0 la Banque mondiale, mari\u00e9e \u00e0 l'ancien pr\u00e9sident de Microsoft Windows Steve Sinofsky.",
+    body_fr: [
+      "Le 6 septembre 2013, Olivier Colom, conseiller d'Epstein depuis le groupe Edmond de Rothschild, envoya une mise \u00e0 jour d'itin\u00e9raire d'une ligne\u00a0: \"FYI: We'll have dinner with Mo Ibrahim on Sunday 22\" (vol00009-efta00969835-pdf-0). Epstein r\u00e9pondit \"great.\" Mo Ibrahim est l'ing\u00e9nieur soudanais qui a b\u00e2ti Celtel en plus grand op\u00e9rateur mobile d'Afrique subsaharienne avant de la vendre \u00e0 Zain en 2005, puis a fond\u00e9 la Fondation Mo Ibrahim, le prix de gouvernance africaine qui porte son nom.",
+      "Un an plus tard, dans la soir\u00e9e du dimanche 14 septembre 2014, Greg Wyler \u00e9crivit \u00e0 Epstein. Wyler avait fond\u00e9 O3b Networks, la soci\u00e9t\u00e9 de satellite visant les \"trois autres milliards\" sans internet, avec des lancements en Afrique comme cas d'usage phare. Epstein lui avait annonc\u00e9 qu'on le contacterait\u00a0: \"melanie husband is steve sinofsky\" (vol00009-efta00625928-pdf-3). Wyler r\u00e9pondit en quelques minutes\u00a0: \"She said she wanted to talk tonight and it was time sensitive.... Do you know the topic?\" (vol00009-efta00625928-pdf-2).",
+      "Epstein r\u00e9pondit le lendemain matin. \"she works for the world bank, knows africa , and had the mobile king with her\" (vol00009-efta00625928-pdf-1). La ligne CC de la r\u00e9ponse d'Epstein contenait \"adreeson horowitz\" (vol00009-efta00996880-pdf-0), une faute de frappe pour le fonds Andreessen Horowitz o\u00f9 Steve Sinofsky si\u00e9geait comme board partner. Wyler r\u00e9pondit le m\u00eame jour \u00e0 10h44\u00a0: \"I have met him a few times...\" (vol00009-efta00625928-pdf-0). Effectivement. Via Colom et Epstein, Wyler \u00e9tait dans l'orbite des d\u00eeners avec Mo Ibrahim depuis au moins septembre 2013.",
+      "Les quatre c\u00f4t\u00e9s du fil s'alignent proprement. Mo Ibrahim a b\u00e2ti le mobile africain. Wyler construisait l'internet satellite africain. Walker, ancienne de la Fondation Gates puis conseill\u00e8re \u00e0 la Banque mondiale en 2014, \u00e9tait la principale en d\u00e9veloppement. Andreessen Horowitz \u00e9tait le capital de la Silicon Valley. Epstein n'avait aucun r\u00f4le dans aucune de ces institutions. Walker passait par lui pour joindre Wyler. Wyler passait par lui pour identifier Walker. Mo Ibrahim circulait entre eux sur les pr\u00e9sentations d'Epstein.",
+    ],
+  },
+
 ];
 
 export function getStoryBySlug(slug) {
