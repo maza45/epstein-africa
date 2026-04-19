@@ -602,6 +602,29 @@ export const PEOPLE = [
     searchTerms: ["adnan mahmood"],
     bodySearchTerms: ["adnan mahmood"],
   },
+  {
+    slug: "abdourahmane-cisse",
+    name: "Abdourahmane Ciss\u00e9",
+    title: "Minister in charge of Budget, C\u00f4te d'Ivoire (2012-2018); later Secretary General of the Presidency",
+    title_fr: "Ministre en charge du Budget, C\u00f4te d'Ivoire (2012-2018)\u00a0; plus tard Secr\u00e9taire g\u00e9n\u00e9ral de la Pr\u00e9sidence",
+    countries: ["Ivory Coast"],
+    bio: "Abdourahmane Ciss\u00e9 served as Minister in charge of Budget for C\u00f4te d'Ivoire under President Alassane Ouattara from 2012 to 2018, then as Minister of Petroleum, Energy and Renewable Energies. He later became Secretary General of the Presidency of the Republic of C\u00f4te d'Ivoire, equivalent to chief of staff. A former Goldman Sachs banker before entering Ivorian politics, he was pitched by Epstein to former US Treasury Secretary Larry Summers in October 2014 as 'very close to outarra the president former goldman sachs guy.' Nina Keita brokered the meeting in New York. Ciss\u00e9 wrote back to Epstein on October 15, 2014: 'Thanks very much for arranging, with Nina, the meeting with Larry Summers... I look forward to seeing you in Abidjan so please do not hesitate to stop by.'",
+    bio_fr: "Abdourahmane Ciss\u00e9 fut Ministre en charge du Budget de la C\u00f4te d'Ivoire sous Alassane Ouattara de 2012 \u00e0 2018, puis Ministre du P\u00e9trole, de l'\u00c9nergie et des \u00c9nergies renouvelables. Il devint ensuite Secr\u00e9taire g\u00e9n\u00e9ral de la Pr\u00e9sidence de la R\u00e9publique de C\u00f4te d'Ivoire, \u00e9quivalent du chef de cabinet. Ancien banquier Goldman Sachs avant son entr\u00e9e en politique, il fut pr\u00e9sent\u00e9 par Epstein \u00e0 l'ancien secr\u00e9taire au Tr\u00e9sor am\u00e9ricain Larry Summers en octobre 2014, d\u00e9crit comme \"very close to outarra the president former goldman sachs guy.\" Nina Keita organisa la rencontre \u00e0 New York. Ciss\u00e9 \u00e9crivit \u00e0 Epstein le 15 octobre 2014\u00a0: \"Thanks very much for arranging, with Nina, the meeting with Larry Summers... I look forward to seeing you in Abidjan so please do not hesitate to stop by.\"",
+    searchTerms: ["abdourahmane cisse", "abdourahmane ciss\u00e9"],
+    bodySearchTerms: ["abdourahmane"],
+  },
+  {
+    slug: "ramsey-elkholy",
+    name: "Ramsey Elkholy",
+    title: "Recurring Africa-traveling Epstein contact",
+    title_fr: "Contact d'Epstein voyageant r\u00e9guli\u00e8rement en Afrique",
+    countries: ["South Africa", "Egypt"],
+    bio: "Ramsey Elkholy was a recurring traveler in Epstein's network across a decade of correspondence. In September 2009 he forwarded Epstein 1930s footage of African Pygmies. In December 2010 he wrote from Egypt: 'here are a few...took a holiday last week in the sinai/egypt, same time as the shark attacks!' In April 2013 he reported he had spent the winter in Cape Town: 'I'm in Slovakia now, came from Prague yesterday....was in Cape Town for winter.' In January 2019, six months before Epstein's arrest, he reactivated a dormant 'dubai' subject thread to write: 'All good, on my way to Cape Town, will extend Dubai for another week, so much talent here not enough time!' His Cape Town routing pattern overlaps with the period covered by the published siad-cape-town-models story.",
+    bio_fr: "Ramsey Elkholy fut un voyageur r\u00e9current dans le r\u00e9seau d'Epstein sur une d\u00e9cennie de correspondance. En septembre 2009, il transmit \u00e0 Epstein des images des ann\u00e9es 1930 de Pygm\u00e9es africains. En d\u00e9cembre 2010, il \u00e9crivit depuis l'\u00c9gypte\u00a0: \"here are a few...took a holiday last week in the sinai/egypt, same time as the shark attacks!\" En avril 2013, il indiqua avoir pass\u00e9 l'hiver au Cap\u00a0: \"I'm in Slovakia now, came from Prague yesterday....was in Cape Town for winter.\" En janvier 2019, six mois avant l'arrestation d'Epstein, il r\u00e9activa un fil \"dubai\" dormant pour \u00e9crire\u00a0: \"All good, on my way to Cape Town, will extend Dubai for another week, so much talent here not enough time!\" Son sch\u00e9ma de routage par Le Cap recoupe la p\u00e9riode couverte par l'enqu\u00eate siad-cape-town-models.",
+    searchTerms: ["ramsey elkholy", "elkholy"],
+    bodySearchTerms: ["elkholy"],
+  },
+
 ];
 
 export function getPersonBySlug(slug) {
