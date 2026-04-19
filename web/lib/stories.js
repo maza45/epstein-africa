@@ -2206,6 +2206,63 @@ export const STORIES = [
       "Trois mois plus tard, le 6 mars 2012, Conover \u00e9crivit \u00e0 nouveau. Il avait mont\u00e9 en gamme. \"We're dealing with the Saad-Al Otaiba group on some potential deals in Libya,\" dit-il \u00e0 Epstein. Les Al Otaiba avaient \"helped start the NTC of Libya and were principal financial sponsors of the rebellion.\" Ils avaient d\u00e9j\u00e0 \"placed approx $1B in a bank they own in Libya,\" prenaient le contr\u00f4le de la compagnie t\u00e9l\u00e9phonique nationale et cherchaient des partenaires pour la distribution automobile (GM, Caterpillar, Mercedes), la production alimentaire et le forage en eau profonde avec la National Oil Company libyenne. \"One of the Al Otaibas is a current ambassador to the US\" (EFTA01840044-0). Les archives n'\u00e9tablissent pas si Epstein donna suite.",
     ],
   },
+  {
+    slug: "sultan-mombasa-logistics-park",
+    title: "Sultan briefs Epstein on Kenyatta's regional logistics park",
+    summary:
+      "DP World chairman Sultan Bin Sulayem attended Uhuru Kenyatta's 2013 inauguration as a personal guest, then returned in October 2014 to brief Epstein in real time on a three-hour Mombasa meeting that produced a multi-country logistics park serving Kenya, South Sudan, Uganda, Central African Republic and Rwanda.",
+    countries: ["Kenya", "Uganda", "South Sudan", "Central African Republic", "Rwanda"],
+    date_range: "2013-2014",
+    body: [
+      "On April 9, 2013, Sultan Bin Sulayem messaged Epstein from Nairobi. \"I am in Nairobi attending the inauguration of Uhuru Kenyatta as a president of Kenya whom I know very well,\" he wrote. Epstein replied within minutes: \"great guy, lets vist there toghetr in june.\" Sultan answered \"Good idea.\"",
+      "Eighteen months later, on October 25, 2014, Sultan was back in Kenya. He emailed Epstein from Mombasa with a single-sentence brief. \"I am in Mombasa had a three hour meeting with president Uhuru Kenyata we are going to build a big logistic park to serve Kenya south Sudan Uganda central African republic and Rawanda Sultan.\"",
+      "The five countries Sultan named match the east and central African transit corridor that Mombasa anchors. The same template Sultan was building in Berbera, Bosaso and Dakar.",
+      "Epstein had no DP World role and no Africa portfolio. Sultan briefed him anyway, in real time, on a three-hour head-of-state meeting closing a multi-country infrastructure deal. The same pattern visible across Senegal, Nigeria, Somaliland and the rest of the DP World map.",
+    ],
+    email_ids: [
+      "EFTA01895934-0",
+      "EFTA01896493-0",
+      "EFTA02339105-0",
+    ],
+    news_links: [],
+    title_fr: "Sultan informe Epstein du parc logistique r\u00e9gional de Kenyatta",
+    summary_fr:
+      "Le pr\u00e9sident de DP World Sultan Bin Sulayem assista \u00e0 l'investiture d'Uhuru Kenyatta en 2013 en tant qu'invit\u00e9 personnel, puis revint en octobre 2014 pour informer Epstein en temps r\u00e9el d'une r\u00e9union de trois heures \u00e0 Mombasa qui aboutit \u00e0 un parc logistique multi-pays desservant le Kenya, le Soudan du Sud, l'Ouganda, la R\u00e9publique centrafricaine et le Rwanda.",
+    body_fr: [
+      "Le 9 avril 2013, Sultan Bin Sulayem \u00e9crivit \u00e0 Epstein depuis Nairobi. \"I am in Nairobi attending the inauguration of Uhuru Kenyatta as a president of Kenya whom I know very well\", \u00e9crivit-il. Epstein r\u00e9pondit en quelques minutes\u00a0: \"great guy, lets vist there toghetr in june.\" Sultan r\u00e9pondit \"Good idea\".",
+      "Dix-huit mois plus tard, le 25 octobre 2014, Sultan \u00e9tait de retour au Kenya. Il \u00e9crivit \u00e0 Epstein depuis Mombasa un message d'une seule phrase. \"I am in Mombasa had a three hour meeting with president Uhuru Kenyata we are going to build a big logistic park to serve Kenya south Sudan Uganda central African republic and Rawanda Sultan.\"",
+      "Les cinq pays cit\u00e9s par Sultan correspondent au corridor de transit d'Afrique de l'Est et centrale dont Mombasa est le port d'ancrage. Le m\u00eame mod\u00e8le que Sultan d\u00e9ployait \u00e0 Berbera, Bosaso et Dakar.",
+      "Epstein n'avait aucun r\u00f4le chez DP World ni aucun portefeuille africain. Sultan le tint n\u00e9anmoins inform\u00e9 en temps r\u00e9el d'une r\u00e9union de trois heures avec un chef d'\u00c9tat finalisant un accord d'infrastructure multi-pays. Le m\u00eame sch\u00e9ma visible au S\u00e9n\u00e9gal, au Nig\u00e9ria, au Somaliland et sur le reste de la carte DP World.",
+    ],
+  },
+  {
+    slug: "sultan-eritrea-saudi-tour-2019",
+    title: "Sultan briefs Epstein on his Eritrea, Saudi and Ethiopia tour, six months before the arrest",
+    summary:
+      "On January 23, 2019, Sultan Bin Sulayem emailed Jeffrey Epstein from Davos with a four-stop itinerary: Dubai, Eritrea, Jeddah for a DP World agreement signing in the presence of the Saudi crown prince, then Uganda and Tanzania. By that evening he reported back: \"Amazing had a great meeting with Ethiopea PM.\" Six months later Epstein was arrested.",
+    countries: ["Eritrea", "Tanzania", "Uganda", "Ethiopia"],
+    date_range: "2019",
+    body: [
+      "On January 22, 2019, Epstein wrote to Sultan Bin Sulayem: \"I am in Paris all week if you have some time.\" Sultan replied the next morning from Davos: \"Have a crazy hectic schedule I leave davos tomorrow stay one night in Dubai fly to Eriteria then Jedda attending a DPW agreement signing in the presence of the crown prince Then fly to Uganda and Tanzania.\"",
+      "Each leg matters. The Eritrea stop paired with Berbera in Somaliland and Bosaso in Puntland that Sultan had been pitching Epstein for years. Jeddah is where the Saudi crown prince, Mohammed bin Salman, had centralized state business in late 2018. Uganda and Tanzania extend the same East African corridor as the Mombasa logistics park Sultan briefed Epstein on in 2014.",
+      "Epstein replied with one line: \"no worry, is davos fun?\" By the evening Sultan was back with: \"Amazing had a great meeting with Ethiopea PM.\" The Ethiopian prime minister at the time was Abiy Ahmed, in office nine months, who had just brokered the formal end of the Ethiopia-Eritrea war. Sultan's Eritrea-Ethiopia routing on a single tour was not coincidence.",
+      "This thread is dated six months and ten days before Epstein was arrested at Teterboro on July 6, 2019. The Miami Herald \"Perversion of Justice\" series had already been running for two months. Sultan was still using Epstein as the standing audience for his private royal-blessed African dealmaking.",
+    ],
+    email_ids: [
+      "vol00009-efta01027677-pdf-0",
+    ],
+    news_links: [],
+    title_fr: "Sultan informe Epstein de sa tourn\u00e9e en \u00c9rythr\u00e9e, Arabie saoudite et \u00c9thiopie, six mois avant l'arrestation",
+    summary_fr:
+      "Le 23 janvier 2019, Sultan Bin Sulayem \u00e9crivit \u00e0 Jeffrey Epstein depuis Davos avec un itin\u00e9raire en quatre \u00e9tapes\u00a0: Duba\u00ef, l'\u00c9rythr\u00e9e, Djeddah pour la signature d'un accord DP World en pr\u00e9sence du prince h\u00e9ritier saoudien, puis l'Ouganda et la Tanzanie. Le soir m\u00eame, il rapporta\u00a0: \"Amazing had a great meeting with Ethiopea PM.\" Six mois plus tard, Epstein \u00e9tait arr\u00eat\u00e9.",
+    body_fr: [
+      "Le 22 janvier 2019, Epstein \u00e9crivit \u00e0 Sultan Bin Sulayem\u00a0: \"I am in Paris all week if you have some time.\" Sultan r\u00e9pondit le lendemain matin depuis Davos\u00a0: \"Have a crazy hectic schedule I leave davos tomorrow stay one night in Dubai fly to Eriteria then Jedda attending a DPW agreement signing in the presence of the crown prince Then fly to Uganda and Tanzania.\"",
+      "Chaque \u00e9tape compte. L'arr\u00eat en \u00c9rythr\u00e9e s'inscrivait dans la suite de Berbera au Somaliland et de Bosaso au Puntland que Sultan vendait \u00e0 Epstein depuis des ann\u00e9es. Djeddah est l'endroit o\u00f9 le prince h\u00e9ritier saoudien, Mohammed ben Salmane, avait centralis\u00e9 les affaires d'\u00c9tat fin 2018. L'Ouganda et la Tanzanie prolongent le m\u00eame corridor d'Afrique de l'Est que le parc logistique de Mombasa dont Sultan avait inform\u00e9 Epstein en 2014.",
+      "Epstein r\u00e9pondit en une ligne\u00a0: \"no worry, is davos fun?\" Le soir m\u00eame, Sultan \u00e9tait de retour avec\u00a0: \"Amazing had a great meeting with Ethiopea PM.\" Le Premier ministre \u00e9thiopien \u00e0 l'\u00e9poque \u00e9tait Abiy Ahmed, en fonction depuis neuf mois, qui venait d'obtenir la fin formelle de la guerre \u00c9thiopie-\u00c9rythr\u00e9e. L'itin\u00e9raire \u00c9rythr\u00e9e-\u00c9thiopie de Sultan sur une seule tourn\u00e9e n'\u00e9tait pas un hasard.",
+      "Ce fil est dat\u00e9 de six mois et dix jours avant l'arrestation d'Epstein \u00e0 Teterboro le 6 juillet 2019. La s\u00e9rie \"Perversion of Justice\" du Miami Herald paraissait d\u00e9j\u00e0 depuis deux mois. Sultan continuait d'utiliser Epstein comme auditoire permanent pour ses transactions africaines priv\u00e9es b\u00e9nies par la couronne.",
+    ],
+  },
+
 ];
 
 export function getStoryBySlug(slug) {
