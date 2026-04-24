@@ -5,7 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "verify:citations": "node scripts/test-citations.js",
+    "verify:content": "node ../scripts/verify-stories.js",
+    "verify:db": "node scripts/verify-db-manifest.js",
+    "verify:static": "node scripts/verify-static-output.js",
+    "update:db-manifest": "node scripts/verify-db-manifest.js --write",
+    "audit": "npm run verify:citations && npm run verify:content && npm run verify:db && npm run build && npm run verify:static"
   },
   "dependencies": {
     "@vercel/og": "^0.11.1",

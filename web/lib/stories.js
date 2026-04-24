@@ -738,6 +738,7 @@ export const STORIES = [
       "vol00009-efta00756307-pdf-1",
       "EFTA01979393-0",
       "EFTA02418964-0",
+      "vol00009-efta00901993-pdf-0",
       "vol00009-efta00901993-pdf-3",
       "EFTA02010575-0",
       "EFTA01834155-0",
@@ -1648,6 +1649,7 @@ export const STORIES = [
       "EFTA01755599-0",
       "EFTA01755599-1",
       "EFTA01922246-0",
+      "EFTA01924912-1",
       "EFTA01892907-0",
       "EFTA01967855-0",
       "EFTA01952695-0",
@@ -2658,6 +2660,7 @@ export const STORIES = [
     email_ids: [
       "vol00009-efta00633187-pdf-1",
       "EFTA01866037-0",
+      "EFTA01990469-0",
       "EFTA01843946-2",
       "EFTA01844230-1",
       "vol00009-efta00420435-pdf-2",

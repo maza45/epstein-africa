@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import ShareButtons from "../../components/ShareButtons";
 import { STORIES, getStoryBySlug } from "../../lib/stories";
 import { getDb } from "../../lib/db";
+import { createCitationRegex } from "../../lib/citations";
 import { cleanSender, formatDate, splitCountries } from "../../lib/format";
 import {
   BASE,
@@ -21,15 +22,12 @@ import {
   STORY_COPY,
 } from "../../lib/i18n";
 
-// Turn inline email IDs like (EFTA01841982-0) into clickable links
-const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?|[a-f0-9]{32}-\d+))\b/g;
-
 function linkifyCitations(text, locale, backPath) {
   const parts = [];
   let lastIndex = 0;
   let match;
-  CITATION_RE.lastIndex = 0;
-  while ((match = CITATION_RE.exec(text)) !== null) {
+  const citationRe = createCitationRegex();
+  while ((match = citationRe.exec(text)) !== null) {
     if (match.index > lastIndex) {
       parts.push(text.slice(lastIndex, match.index));
     }
@@ -44,7 +42,7 @@ function linkifyCitations(text, locale, backPath) {
         {id}
       </Link>
     );
-    lastIndex = CITATION_RE.lastIndex;
+    lastIndex = citationRe.lastIndex;
   }
   if (lastIndex < text.length) {
     parts.push(text.slice(lastIndex));
