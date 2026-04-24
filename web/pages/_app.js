@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { BASE } from "../lib/i18n";
 
 export default function App({ Component, pageProps }) {

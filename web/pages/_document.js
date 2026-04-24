@@ -17,6 +17,11 @@ export default function Document(props) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap"
         />
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="2df10980-c9d7-4608-bef7-f69ca59db827"
+        />
       </Head>
       <body>
         <Main />
