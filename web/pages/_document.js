@@ -21,6 +21,7 @@ export default function Document(props) {
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id="2df10980-c9d7-4608-bef7-f69ca59db827"
+          data-host-url="https://cloud.umami.is"
         />
       </Head>
       <body>
