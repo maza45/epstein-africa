@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -8,6 +9,7 @@ import { cleanSender, formatDate, splitCountries } from "../lib/format";
 import {
   BASE,
   ARCHIVE_COPY,
+  HOME_COPY,
   getCanonicalUrl,
   getLocalizedCountryLabel,
   getLocalizedPath,
@@ -70,6 +72,7 @@ const LIMIT = 25;
 
 export default function Archive({ emailCount, senderCount, countryCount, countries, locale, frAvailable }) {
   const copy = ARCHIVE_COPY[locale] || ARCHIVE_COPY.en;
+  const brandCopy = HOME_COPY[locale] || HOME_COPY.en;
   const [emails, setEmails] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -149,7 +152,15 @@ export default function Archive({ emailCount, senderCount, countryCount, countri
         )}
       </Head>
 
-      <Nav pagePath="/archive" frAvailable={frAvailable} />
+      <header className="site-masthead">
+        <div className="site-masthead-inner">
+          <Link href="/" locale={locale} className="mast-brand">
+            <span className="mast-logo">{brandCopy.brand}</span>
+            <span className="mast-tagline">{brandCopy.tagline}</span>
+          </Link>
+          <Nav pagePath="/archive" frAvailable={frAvailable} />
+        </div>
+      </header>
 
       <div className="container">
         <header className="archive-header">

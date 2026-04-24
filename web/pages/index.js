@@ -9,7 +9,6 @@ import {
   BASE,
   HOME_COPY,
   getCanonicalUrl,
-  getLocalizedCountryLabel,
   getLocalizedStory,
   getOgLocale,
   hasFrenchStaticPage,
@@ -159,13 +158,6 @@ export async function getStaticProps({ locale }) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 6);
 
-  const exhibitRow = db
-    .prepare("SELECT id, sender, sent_at FROM emails WHERE id = ?")
-    .get("EFTA01844230-1");
-  const exhibit = exhibitRow
-    ? { id: exhibitRow.id, sender: exhibitRow.sender, sent_at: exhibitRow.sent_at }
-    : null;
-
   return {
     props: {
       emailCount,
@@ -175,7 +167,6 @@ export async function getStaticProps({ locale }) {
       longreads,
       atomicsRecent,
       figures,
-      exhibit,
       locale: normalizedLocale,
       frAvailable,
     },

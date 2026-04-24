@@ -245,7 +245,7 @@ export const HOME_COPY = {
     headline: "Africa was not a sideshow.",
     headlineEm: "It was the itinerary.",
     subhead:
-      "Six investigations reconstructed from emails released under the DOJ Epstein Files Transparency Act. Surveillance deals, sovereign wealth, back channels to heads of state — every claim anchored to a document ID, verifiable against jmail.world.",
+      "Six investigations reconstructed from emails released under the DOJ Epstein Files Transparency Act. Surveillance deals, sovereign wealth, back channels to heads of state. Every claim is anchored to a document ID, verifiable against jmail.world.",
     statEmailsLabel: "Emails indexed",
     statStoriesLabel: "Stories filed",
     statCountriesLabel: "Countries",
@@ -273,7 +273,7 @@ export const HOME_COPY = {
     headline: "L'Afrique n'était pas un à-côté.",
     headlineEm: "C'était l'itinéraire.",
     subhead:
-      "Six enquêtes reconstruites à partir d'emails publiés au titre de l'Epstein Files Transparency Act. Contrats de surveillance, fonds souverains, canaux privés vers des chefs d'État — chaque affirmation est ancrée à un identifiant de document vérifiable sur jmail.world.",
+      "Six enquêtes reconstruites à partir d'emails publiés au titre de l'Epstein Files Transparency Act. Contrats de surveillance, fonds souverains, canaux privés vers des chefs d'État. Chaque affirmation est ancrée à un identifiant de document vérifiable sur jmail.world.",
     statEmailsLabel: "Emails indexés",
     statStoriesLabel: "Récits publiés",
     statCountriesLabel: "Pays",
