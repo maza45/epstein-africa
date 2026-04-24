@@ -9,10 +9,13 @@ const STATIC_FRENCH_PAGES = {
   about: true,
   map: true,
   graph: true,
+  archive: true,
 };
 
 export const NAV_LABELS = {
   en: {
+    home: "Longreads",
+    archive: "Archive",
     emails: "Emails",
     people: "Persons",
     stories: "Stories",
@@ -21,6 +24,8 @@ export const NAV_LABELS = {
     about: "About",
   },
   fr: {
+    home: "Récits de fond",
+    archive: "Archives",
     emails: "Emails",
     people: "Personnes",
     stories: "Récits",
@@ -33,11 +38,47 @@ export const NAV_LABELS = {
 export const FOOTER_COPY = {
   en: {
     blurb: "Public interest journalism. Free, ad-free, open source.",
+    brand: "Epstein Africa",
+    about:
+      "is a public-interest archive documenting Jeffrey Epstein's connections to the African continent, built from the 1.78 million documents released under the DOJ Epstein Files Transparency Act. Every claim is anchored to a specific document ID.",
+    readHead: "Read",
+    dataHead: "Data",
+    followHead: "Follow",
+    readStories: "Stories",
+    readLongreads: "Long reads",
+    readPeople: "People",
+    readAbout: "About & method",
+    dataArchive: "Email archive",
+    dataMap: "Africa map",
+    dataGraph: "Network graph",
+    dataCsv: "CSV export",
+    followRss: "RSS",
+    followGithub: "GitHub",
+    license: "© 2026 Epstein Africa · MIT · editorial CC BY 4.0",
+    source: "Sourced from the DOJ Epstein Files Transparency Act",
     rss: "RSS",
     exportCsv: "Download CSV",
   },
   fr: {
     blurb: "Journalisme d'intérêt public. Gratuit, sans publicité, open source.",
+    brand: "Epstein Africa",
+    about:
+      "est une archive d'intérêt public documentant les liens de Jeffrey Epstein avec le continent africain, bâtie à partir des 1,78 million de documents publiés au titre de l'Epstein Files Transparency Act du DOJ. Chaque affirmation est ancrée à un identifiant de document.",
+    readHead: "Lire",
+    dataHead: "Données",
+    followHead: "Suivre",
+    readStories: "Récits",
+    readLongreads: "Récits de fond",
+    readPeople: "Personnes",
+    readAbout: "À propos & méthode",
+    dataArchive: "Archives emails",
+    dataMap: "Carte d'Afrique",
+    dataGraph: "Graphe du réseau",
+    dataCsv: "Export CSV",
+    followRss: "RSS",
+    followGithub: "GitHub",
+    license: "© 2026 Epstein Africa · MIT · éditorial CC BY 4.0",
+    source: "Issu du DOJ Epstein Files Transparency Act",
     rss: "RSS",
     exportCsv: "Télécharger le CSV",
   },
@@ -193,17 +234,76 @@ export const MAP_COPY = {
 
 export const HOME_COPY = {
   en: {
-    title: "Epstein Africa — Email Database",
+    title: "Epstein Africa — Investigative Archive",
     description:
-      "Searchable database of Jeffrey Epstein's documented connections to Africa, sourced from DOJ Epstein Files Transparency Act releases.",
+      "Six synthesis monographs reconstructing Jeffrey Epstein's African network, sourced from the 1.78M DOJ Epstein Files Transparency Act release.",
+    ogSubtitle: "six synthesis monographs from the DOJ release",
+    brand: "Epstein Africa",
+    tagline: "Primary-source archive",
+    metaLeft: "Sourced from 1.78M DOJ documents",
+    metaRight: "Six synthesis monographs · Permanent archive",
+    headline: "Africa was not a sideshow.",
+    headlineEm: "It was the itinerary.",
+    subhead:
+      "Six investigations reconstructed from emails released under the DOJ Epstein Files Transparency Act. Surveillance deals, sovereign wealth, back channels to heads of state — every claim anchored to a document ID, verifiable against jmail.world.",
+    statEmailsLabel: "Emails indexed",
+    statStoriesLabel: "Stories filed",
+    statCountriesLabel: "Countries",
+    leadKicker: "The Lead Investigation",
+    sectionHeadLongreads: "Six Synthesis Monographs",
+    sectionHeadAtomics: "Atomic Stories — Recent Filings",
+    sectionHeadAtomicsLink: "View all {count} →",
+    sectionHeadFigures: "Key Figures",
+    exhibitLabel: "Exhibit · EFTA01844230-1",
+    exhibitFrom: "From: Jeffrey Epstein",
+    exhibitDate: "Jan 11, 2012",
+    methodLabel: "Method",
+    methodBody:
+      "Every claim links to a document ID verifiable against jmail.world. Names appear only where the evidence is unambiguous and the person is a public figure. The archive is fully searchable and exportable as CSV or JSON.",
+  },
+  fr: {
+    title: "Epstein Africa — Archives d'enquête",
+    description:
+      "Six monographies de synthèse reconstruisant le réseau africain de Jeffrey Epstein, issues des 1,78 million de documents publiés par le DOJ.",
+    ogSubtitle: "six monographies de synthèse issues de la publication DOJ",
+    brand: "Epstein Africa",
+    tagline: "Archives primaires",
+    metaLeft: "Issu de 1,78 million de documents du DOJ",
+    metaRight: "Six monographies de synthèse · Archive permanente",
+    headline: "L'Afrique n'était pas un à-côté.",
+    headlineEm: "C'était l'itinéraire.",
+    subhead:
+      "Six enquêtes reconstruites à partir d'emails publiés au titre de l'Epstein Files Transparency Act. Contrats de surveillance, fonds souverains, canaux privés vers des chefs d'État — chaque affirmation est ancrée à un identifiant de document vérifiable sur jmail.world.",
+    statEmailsLabel: "Emails indexés",
+    statStoriesLabel: "Récits publiés",
+    statCountriesLabel: "Pays",
+    leadKicker: "L'enquête principale",
+    sectionHeadLongreads: "Six monographies de synthèse",
+    sectionHeadAtomics: "Récits atomiques — Dernières pièces",
+    sectionHeadAtomicsLink: "Voir les {count} →",
+    sectionHeadFigures: "Figures clés",
+    exhibitLabel: "Pièce · EFTA01844230-1",
+    exhibitFrom: "De : Jeffrey Epstein",
+    exhibitDate: "11 jan. 2012",
+    methodLabel: "Méthode",
+    methodBody:
+      "Chaque affirmation est liée à un identifiant de document vérifiable sur jmail.world. Les noms n'apparaissent que lorsque la preuve est sans ambiguïté et que la personne est une figure publique. Les archives sont entièrement consultables et exportables en CSV ou JSON.",
+  },
+};
+
+export const ARCHIVE_COPY = {
+  en: {
+    title: "The Email Archive — Epstein Africa",
+    description:
+      "Every email referenced in an Epstein Africa investigation, fully searchable and citable.",
     ogSubtitle: "verified emails from DOJ releases",
-    heading: "Epstein Africa",
-    subtitlePrefix:
-      "Searchable database of Jeffrey Epstein's documented connections to Africa",
-    subtitleSuffix: "verified emails, excluding promotional mail.",
-    sourceLabel: "Source: DOJ Epstein Files Transparency Act.",
-    statement:
-      "The archive documents a pattern: humanitarian funding as the entry point, intelligence collection as the product, political access as the payoff. The same channel that carried polio field reports from Nigeria carried investment deals worth millions. The same relationships that opened doors to African presidents opened doors to their ministers, their ports, their resources. The documents don't explain why a convicted sex offender was at the center of this network. They show that he was.",
+    kicker: "Primary-source archive · DOJ Transparency Act release",
+    heading: "The Email Archive",
+    subtitle:
+      "Every email referenced in an Epstein Africa investigation. Fully searchable, citable, and cross-referenced to jmail.world. Sourced from the 1.78 million documents released by the U.S. Department of Justice.",
+    statEmails: " emails",
+    statSenders: " senders",
+    statCountries: " countries",
     searchPlaceholder: "Search subject, sender…",
     searchAria: "Search emails",
     filterAria: "Filter by country",
@@ -225,18 +325,18 @@ export const HOME_COPY = {
     pageOf: "Page",
   },
   fr: {
-    title: "Epstein Africa — Base de données emails",
+    title: "Les archives d'emails — Epstein Africa",
     description:
-      "Base de données consultable des connexions documentées de Jeffrey Epstein avec l'Afrique, à partir des publications du DOJ au titre de l'Epstein Files Transparency Act.",
+      "Chaque email cité dans une enquête Epstein Africa, consultable et citable.",
     ogSubtitle: "emails vérifiés issus des publications du DOJ",
-    heading: "Epstein Africa",
-    subtitlePrefix:
-      "Base de données consultable des connexions documentées de Jeffrey Epstein avec l'Afrique",
-    subtitleSuffix: "emails vérifiés, hors courriels promotionnels.",
-    sourceLabel: "Source : Epstein Files Transparency Act du DOJ.",
-    statement:
-      "Les archives documentent un schéma : le financement humanitaire comme point d'entrée, la collecte de renseignement comme produit, l'accès politique comme contrepartie. Le même canal qui faisait remonter des rapports de terrain sur la polio au Nigeria transportait aussi des accords d'investissement valant des millions. Les mêmes relations qui ouvraient les portes des présidents africains ouvraient aussi celles de leurs ministres, de leurs ports et de leurs ressources. Les documents n'expliquent pas pourquoi un délinquant sexuel condamné se trouvait au centre de ce réseau. Ils montrent qu'il y était.",
-    searchPlaceholder: "Rechercher par objet, expéditeur…",
+    kicker: "Archives primaires · Publication Epstein Files Transparency Act",
+    heading: "Les archives d'emails",
+    subtitle:
+      "Chaque email cité dans une enquête Epstein Africa. Consultable, citable et recoupé avec jmail.world. Extrait des 1,78 million de documents publiés par le Department of Justice.",
+    statEmails: " emails",
+    statSenders: " expéditeurs",
+    statCountries: " pays",
+    searchPlaceholder: "Rechercher un objet, un expéditeur…",
     searchAria: "Rechercher des emails",
     filterAria: "Filtrer par pays",
     filterAll: "Tous les pays",

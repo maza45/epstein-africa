@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import { DEFAULT_LOCALE, NAV_LABELS, getLocalizedPath, normalizeLocale, stripLocalePrefix } from "../lib/i18n";
 
 const LINKS = [
-  { href: "/", key: "emails" },
-  { href: "/people", key: "people" },
+  { href: "/", key: "home" },
   { href: "/stories", key: "stories" },
+  { href: "/archive", key: "archive" },
+  { href: "/people", key: "people" },
   { href: "/graph", key: "graph" },
   { href: "/map", key: "map" },
   { href: "/about", key: "about" },

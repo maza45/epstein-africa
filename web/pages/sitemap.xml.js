@@ -14,6 +14,7 @@ function generateSitemap(emailIds) {
 
   const staticPages = [
     { path: "/", priority: "1.0", locales: ["en", ...(hasFrenchStaticPage("home") ? ["fr"] : [])] },
+    { path: "/archive", priority: "0.9", locales: ["en", ...(hasFrenchStaticPage("archive") ? ["fr"] : [])] },
     { path: "/stories", priority: "0.9", locales: ["en", ...(hasFrenchStaticPage("stories") ? ["fr"] : [])] },
     { path: "/people", priority: "0.9", locales: ["en", ...(hasFrenchStaticPage("people") ? ["fr"] : [])] },
     { path: "/graph", priority: "0.7", locales: ["en", ...(hasFrenchStaticPage("graph") ? ["fr"] : [])] },
