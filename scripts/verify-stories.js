@@ -9,12 +9,15 @@
  *
  * Checks (reporter only — no auto-fix, no source mutation):
  *   1. Every email_id in email_ids array exists in the DB.
- *   2. Every quoted passage in body prose ("..." (EMAIL_ID)) appears in the
- *      cited email's body.
- *   3. Every news_links[].url that points to /emails/<id> resolves via the
+ *   2. Every inline citation in body/summary EN+FR exists and is listed in
+ *      email_ids.
+ *   3. Every adjacent quoted passage ("..." (EMAIL_ID)) in body/summary EN+FR
+ *      appears in the cited email body.
+ *   4. Every news_links[].url that points to /emails/<id> resolves via the
  *      single canonical id lookup.
- *   4. Every country in story `countries` array is African (Africa-only rule).
- *   5. Profile entries have a slug and name.
+ *   5. Every country in story `countries` array is African (Africa-only rule).
+ *   6. Optional source_only_ids and external_sources entries are well formed.
+ *   7. Profile entries have a slug and name.
  *
  * Exit code 0 = all pass, 1 = failures found.
  *
@@ -31,6 +34,7 @@ const Database = require(path.join(__dirname, "..", "web", "node_modules", "bett
 const DB_PATH = path.join(__dirname, "..", "web", "data", "epstein_africa.db");
 const STORIES_PATH = path.join(__dirname, "..", "web", "lib", "stories.js");
 const PEOPLE_PATH = path.join(__dirname, "..", "web", "lib", "people.js");
+const CITATIONS_PATH = path.join(__dirname, "..", "web", "lib", "citations.js");
 
 // Africa-only rule: story `countries` arrays must contain only African
 // values (or the generic "Africa" tag). Non-African mentions in body prose
@@ -67,6 +71,26 @@ function loadArray(filePath, exportName) {
   return sandbox.globalThis[exportName];
 }
 
+function loadExports(filePath, exportNames) {
+  const src = fs.readFileSync(filePath, "utf8");
+  const wrapped = src
+    .replace(/^export\s+const\s+(\w+)/gm, "const $1")
+    .replace(/^export\s+function\s+(\w+)/gm, "function $1");
+  const vm = require("vm");
+  const sandbox = { globalThis: {} };
+  vm.createContext(sandbox);
+  vm.runInContext(
+    `${wrapped}\n${exportNames.map((name) => `globalThis.${name} = ${name};`).join("\n")}`,
+    sandbox
+  );
+  return Object.fromEntries(exportNames.map((name) => [name, sandbox.globalThis[name]]));
+}
+
+const { extractCitationIds, isSupportedCitationId } = loadExports(CITATIONS_PATH, [
+  "extractCitationIds",
+  "isSupportedCitationId",
+]);
+
 // ---------------------------------------------------------------------------
 // DB helpers
 // ---------------------------------------------------------------------------
@@ -87,17 +111,31 @@ function getEmail(emailId) {
 // Quote extraction and fuzzy match
 // ---------------------------------------------------------------------------
 
-function extractCitations(paragraph) {
-  // Match: "quoted text" (EMAIL_ID) — handles single or comma-separated ids.
+function extractQuotedCitations(text) {
+  // Match adjacent: "quoted text" (EMAIL_ID) — handles comma-separated ids.
   const results = [];
   const re = /\\?"([^"]*?)\\?"\s*\(([^)]+)\)/g;
   let m;
-  while ((m = re.exec(paragraph)) !== null) {
+  while ((m = re.exec(text || "")) !== null) {
     const quote = m[1];
-    const ids = m[2].split(/,\s*/).map((s) => s.trim());
+    const ids = m[2]
+      .split(/,\s*/)
+      .map((s) => s.trim())
+      .filter((id) => isSupportedCitationId(id));
     results.push({ quote, ids });
   }
   return results;
+}
+
+function storyTextFields(story) {
+  const fields = [];
+  for (const field of ["summary", "summary_fr"]) {
+    if (story[field]) fields.push({ label: field, values: [story[field]] });
+  }
+  for (const field of ["body", "body_fr"]) {
+    if (Array.isArray(story[field])) fields.push({ label: field, values: story[field] });
+  }
+  return fields;
 }
 
 function normalise(s) {
@@ -139,6 +177,7 @@ function bodyContains(body, quote) {
 
 function verifyStory(story) {
   const errors = [];
+  const emailIds = new Set(story.email_ids || []);
 
   // 1. email_ids array entries must exist.
   for (const eid of story.email_ids || []) {
@@ -147,7 +186,67 @@ function verifyStory(story) {
     }
   }
 
-  // 2. news_links URLs that point at /emails/<id> must resolve.
+  // 2. Inline citations must be supported, resolvable, and listed in email_ids.
+  for (const { label, values } of storyTextFields(story)) {
+    values.forEach((text, index) => {
+      for (const cid of extractCitationIds(text)) {
+        if (!isSupportedCitationId(cid)) {
+          errors.push(`UNSUPPORTED CITATION [${label} ${index + 1}]: ${cid}`);
+        } else if (!getEmail(cid)) {
+          errors.push(`MISSING INLINE EMAIL [${label} ${index + 1}]: ${cid} not found in DB`);
+        } else if (!emailIds.has(cid)) {
+          errors.push(`INLINE CITATION NOT IN email_ids [${label} ${index + 1}]: ${cid}`);
+        }
+      }
+    });
+  }
+
+  // 3. Optional source_only_ids must be documented escape hatches.
+  for (const entry of story.source_only_ids || []) {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      errors.push("BAD source_only_ids ENTRY: entries must be objects with id and reason");
+      continue;
+    }
+    if (!entry.id || typeof entry.id !== "string") {
+      errors.push("BAD source_only_ids ENTRY: missing id");
+      continue;
+    }
+    if (!entry.reason || typeof entry.reason !== "string" || entry.reason.trim().length < 10) {
+      errors.push(`BAD source_only_ids ENTRY: ${entry.id} needs a specific reason`);
+    }
+    if (!emailIds.has(entry.id)) {
+      errors.push(`source_only_ids ENTRY NOT IN email_ids: ${entry.id}`);
+    }
+    if (!getEmail(entry.id)) {
+      errors.push(`MISSING source_only_ids EMAIL: ${entry.id} not found in DB`);
+    }
+  }
+
+  // 4. Optional external_sources must point to text that exists in story prose.
+  const allStoryText = storyTextFields(story)
+    .flatMap(({ values }) => values)
+    .join("\n");
+  for (const [i, source] of (story.external_sources || []).entries()) {
+    if (!source || typeof source !== "object" || Array.isArray(source)) {
+      errors.push(`BAD external_sources[${i}]: entries must be objects`);
+      continue;
+    }
+    if (!source.text || typeof source.text !== "string") {
+      errors.push(`BAD external_sources[${i}]: missing text`);
+    } else if (!allStoryText.includes(source.text)) {
+      errors.push(`external_sources[${i}] TEXT NOT FOUND IN STORY: "${source.text.slice(0, 80)}"`);
+    }
+    try {
+      const url = new URL(source.url);
+      if (!["http:", "https:"].includes(url.protocol)) {
+        errors.push(`BAD external_sources[${i}] URL PROTOCOL: ${source.url}`);
+      }
+    } catch {
+      errors.push(`BAD external_sources[${i}] URL: ${source.url || "(missing)"}`);
+    }
+  }
+
+  // 5. news_links URLs that point at /emails/<id> must resolve.
   for (const link of story.news_links || []) {
     if (!link || !link.url) continue;
     const m = link.url.match(/^\/emails\/([^/?#]+)/);
@@ -158,31 +257,32 @@ function verifyStory(story) {
     }
   }
 
-  // 3. Body quotes must appear in the cited email.
-  for (let i = 0; i < (story.body || []).length; i++) {
-    const para = story.body[i];
-    for (const { quote, ids } of extractCitations(para)) {
-      if (quote.length <= 10) continue;
-      let foundIn = false;
-      const checked = [];
-      for (const eid of ids) {
-        const row = getEmail(eid);
-        if (!row) continue;
-        checked.push(eid);
-        if (bodyContains(row.body, quote)) {
-          foundIn = true;
-          break;
+  // 6. Adjacent body/summary quotes must appear in the cited email.
+  for (const { label, values } of storyTextFields(story)) {
+    values.forEach((text, index) => {
+      for (const { quote, ids } of extractQuotedCitations(text)) {
+        if (quote.length <= 10) continue;
+        let foundIn = false;
+        const checked = [];
+        for (const eid of ids) {
+          const row = getEmail(eid);
+          if (!row) continue;
+          checked.push(eid);
+          if (bodyContains(row.body, quote)) {
+            foundIn = true;
+            break;
+          }
+        }
+        if (!foundIn && checked.length > 0) {
+          errors.push(
+            `QUOTE MISMATCH [${label} ${index + 1}]: "${quote.slice(0, 60)}..." not found in ${checked.join(", ")}`
+          );
         }
       }
-      if (!foundIn && checked.length > 0) {
-        errors.push(
-          `QUOTE MISMATCH [p${i + 1}]: "${quote.slice(0, 60)}..." not found in ${checked.join(", ")}`
-        );
-      }
-    }
+    });
   }
 
-  // 4. Country tags must be African (Africa-only rule).
+  // 7. Country tags must be African (Africa-only rule).
   for (const country of story.countries || []) {
     if (!AFRICAN_COUNTRIES.has(country)) {
       errors.push(
@@ -191,19 +291,18 @@ function verifyStory(story) {
     }
   }
 
-  // 5. Summary quotes (same rule as body quotes).
-  if (story.summary) {
-    for (const { quote, ids } of extractCitations(story.summary)) {
-      if (quote.length <= 10) continue;
-      for (const eid of ids) {
-        const row = getEmail(eid);
-        if (!row) continue;
-        if (!bodyContains(row.body, quote)) {
-          errors.push(
-            `QUOTE MISMATCH [summary]: "${quote.slice(0, 60)}..." not found in ${eid}`
-          );
-        }
-      }
+  // 8. i18n parity: if any FR field is present, all three must be, and
+  //    body_fr paragraph count must equal body paragraph count.
+  const hasAnyFr = Boolean(story.title_fr || story.summary_fr || story.body_fr);
+  if (hasAnyFr) {
+    if (!story.title_fr) errors.push("FR PARITY: missing title_fr");
+    if (!story.summary_fr) errors.push("FR PARITY: missing summary_fr");
+    if (!Array.isArray(story.body_fr) || story.body_fr.length === 0) {
+      errors.push("FR PARITY: missing body_fr");
+    } else if (Array.isArray(story.body) && story.body.length !== story.body_fr.length) {
+      errors.push(
+        `FR PARITY: body has ${story.body.length} paragraph(s), body_fr has ${story.body_fr.length}`
+      );
     }
   }
 
