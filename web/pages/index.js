@@ -158,6 +158,13 @@ export async function getStaticProps({ locale }) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 6);
 
+  const nikolicStory = longreadsRaw.find((s) => s.slug === "nikolic-gates-polio-backchannel");
+  let nikolicMap = [];
+  if (nikolicStory) {
+    const { buildAfricaMapData } = await import("../lib/africaMap");
+    nikolicMap = buildAfricaMapData(nikolicStory.countries, 280, 210);
+  }
+
   return {
     props: {
       emailCount,
@@ -167,6 +174,7 @@ export async function getStaticProps({ locale }) {
       longreads,
       atomicsRecent,
       figures,
+      nikolicMap,
       locale: normalizedLocale,
       frAvailable,
     },
@@ -181,6 +189,7 @@ export default function Home({
   longreads,
   atomicsRecent,
   figures,
+  nikolicMap,
   locale,
   frAvailable,
 }) {
@@ -264,7 +273,33 @@ export default function Home({
         {hero && (
           <section className="feature-grid">
             <Link href={`/stories/${hero.slug}`} locale={locale} className="feat-hero">
-              <div className="feat-hero-img">
+              <div className="feat-hero-img has-doc-scan">
+                <div className="doc-scan" aria-hidden="true">
+                  <dl className="doc-scan-header">
+                    <dt>From</dt>
+                    <dd>Sultan Bin Sulayem &lt;<span className="r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&gt;</dd>
+                    <dt>To</dt>
+                    <dd>Jeffrey Epstein &lt;jeevacation@gmail.com&gt;</dd>
+                    <dt>Date</dt>
+                    <dd>Sat, 11 May 2013 09:33:22 +0000</dd>
+                    <dt>Subject</dt>
+                    <dd>Re: Africa trip</dd>
+                  </dl>
+                  <div className="doc-scan-body">
+                    <p>
+                      I am now in a helicopter flying from aktao Khazakistan to
+                      Ashgabat turkomanistan accompanying <span className="r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{" "}
+                      to inaugurate the new rail connection between china and cis
+                      countries we have signed a deal to manage the logistics
+                    </p>
+                    <p>
+                      China is investing $400 B to build a new industrial city on the
+                      border of khargus in Khazakistan and china
+                    </p>
+                    <p style={{ color: "#6b635a" }}>Sent from my iPhone</p>
+                  </div>
+                  <div className="doc-scan-stamp">EFTA01975989-0</div>
+                </div>
                 <div className="feat-hero-img-inner">
                   <span className="feat-hero-img-label">◉ {hero.dateRange}</span>
                 </div>
@@ -294,7 +329,13 @@ export default function Home({
                   locale={locale}
                   className="feat-second"
                 >
-                  <div className="feat-second-img feat-second-img--grid" aria-hidden="true" />
+                  <div
+                    className="feat-second-img feat-second-img--grid feat-second-img--overlay"
+                    aria-hidden="true"
+                  >
+                    <span className="feat-second-img-kicker">{second.dateRange}</span>
+                    <span className="feat-second-img-caption">{second.title}</span>
+                  </div>
                   <div className="feat-kicker">{second.dateRange}</div>
                   <h3 className="feat-second-title">{second.title}</h3>
                   <p className="feat-second-dek">{second.summary}</p>
@@ -342,26 +383,50 @@ export default function Home({
         </div>
 
         <section className="longreads-grid-magazine">
-          {longreads.map((lr) => (
-            <Link
-              key={lr.slug}
-              href={`/stories/${lr.slug}`}
-              locale={locale}
-              className="mag-lr-card"
-            >
-              <div className={`mag-lr-card-img ${lr.imgClass}`} aria-hidden="true" />
-              <div className="mag-lr-card-label">{lr.dateRange}</div>
-              <div className="mag-lr-card-title">{lr.title}</div>
-              <div className="mag-lr-card-dek">{lr.summary}</div>
-              <div className="mag-lr-card-meta">
-                <span>
-                  {lr.countries.slice(0, 3).join(", ")}
-                  {lr.countries.length > 3 ? "…" : ""}
-                </span>
-                <span>{lr.emailCount} emails</span>
-              </div>
-            </Link>
-          ))}
+          {longreads.map((lr) => {
+            const isNikolic = lr.slug === "nikolic-gates-polio-backchannel";
+            return (
+              <Link
+                key={lr.slug}
+                href={`/stories/${lr.slug}`}
+                locale={locale}
+                className="mag-lr-card"
+              >
+                {isNikolic ? (
+                  <div
+                    className="mag-lr-card-img mini-map"
+                    aria-hidden="true"
+                    style={{ position: "relative" }}
+                  >
+                    <svg viewBox="0 0 280 210" preserveAspectRatio="xMidYMid meet">
+                      {nikolicMap.map((f, i) => (
+                        <path
+                          key={i}
+                          d={f.d}
+                          className={`country${f.active ? " active" : ""}`}
+                        />
+                      ))}
+                    </svg>
+                    <span className="mini-map-label">
+                      {nikolicMap.filter((f) => f.active).length} countries
+                    </span>
+                  </div>
+                ) : (
+                  <div className={`mag-lr-card-img ${lr.imgClass}`} aria-hidden="true" />
+                )}
+                <div className="mag-lr-card-label">{lr.dateRange}</div>
+                <div className="mag-lr-card-title">{lr.title}</div>
+                <div className="mag-lr-card-dek">{lr.summary}</div>
+                <div className="mag-lr-card-meta">
+                  <span>
+                    {lr.countries.slice(0, 3).join(", ")}
+                    {lr.countries.length > 3 ? "…" : ""}
+                  </span>
+                  <span>{lr.emailCount} emails</span>
+                </div>
+              </Link>
+            );
+          })}
         </section>
 
         <section className="dual-col">

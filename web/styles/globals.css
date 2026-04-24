@@ -2042,3 +2042,137 @@ a:hover {
   font-weight: 500;
   margin-right: 0.4rem;
 }
+
+/* ── Variant D: Sultan hero document render ── */
+.doc-scan {
+  position: absolute;
+  inset: 8% 6%;
+  background: #f2ede3;
+  color: #2a2520;
+  padding: 1.4rem 1.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.55;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.35);
+  transform: rotate(-0.8deg);
+  overflow: hidden;
+}
+.doc-scan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(0,0,0,0.12), transparent 50%),
+    repeating-linear-gradient(0deg, transparent 0, transparent 3px, rgba(0,0,0,0.02) 3px, rgba(0,0,0,0.02) 4px);
+  pointer-events: none;
+}
+.doc-scan-header {
+  font-size: 0.64rem;
+  color: #6b635a;
+  border-bottom: 1px solid #c9beaf;
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.75rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.6rem;
+  row-gap: 0.15rem;
+}
+.doc-scan-header dt {
+  color: #8b7f72;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+.doc-scan-header dd { color: #2a2520; margin: 0; }
+.doc-scan-body {
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: #1f1a15;
+}
+.doc-scan-body p { margin: 0 0 0.6rem; }
+.doc-scan .r {
+  display: inline-block;
+  background: #1f1a15;
+  color: #1f1a15;
+  padding: 0 0.2rem;
+  user-select: none;
+}
+.doc-scan-stamp {
+  position: absolute;
+  bottom: 0.9rem;
+  right: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.2rem 0.5rem;
+  transform: rotate(-4deg);
+  background: rgba(242, 237, 227, 0.7);
+}
+.feat-hero-img.has-doc-scan::before { opacity: 0.35; }
+
+/* ── Variant A: Wade secondary overlay ── */
+.feat-second-img.feat-second-img--overlay { aspect-ratio: 16/10; }
+.feat-second-img--overlay::before {
+  opacity: 1;
+  background-image:
+    linear-gradient(rgba(42,42,42,0.65) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,42,42,0.65) 1px, transparent 1px) !important;
+  background-size: 22px 22px !important;
+}
+.feat-second-img--overlay::after {
+  inset: 0 !important;
+  background: linear-gradient(180deg,
+    transparent 0,
+    transparent 45%,
+    rgba(12, 12, 12, 0.2) 65%,
+    rgba(12, 12, 12, 0.85) 100%) !important;
+}
+.feat-second-img--overlay .feat-second-img-caption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.9rem;
+  z-index: 1;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.feat-second-img--overlay .feat-second-img-kicker {
+  position: absolute;
+  top: 0.75rem;
+  left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  z-index: 1;
+  background: rgba(12,12,12,0.7);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+}
+
+/* ── Variant B: Nikolic mini Africa map ── */
+.mag-lr-card-img.mini-map { background: #0d0d0d; }
+.mag-lr-card-img.mini-map svg { display: block; width: 100%; height: 100%; }
+.mini-map .country { fill: #1a1a1a; stroke: #2a2a2a; stroke-width: 0.5; }
+.mini-map .country.active { fill: var(--accent); stroke: var(--accent-hover); }
+.mag-lr-card:hover .mini-map .country.active { fill: var(--accent-hover); }
+.mini-map-label {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  background: rgba(12,12,12,0.8);
+  padding: 0.2rem 0.45rem;
+}
