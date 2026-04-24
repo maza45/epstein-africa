@@ -423,15 +423,27 @@ a:hover {
 
 .longreads-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
 }
 
 .longread-card {
-  border-left: 2px solid var(--accent);
+  border-left: 3px solid var(--accent);
+  padding: 1.4rem 1.5rem;
+  transition: border-color 0.15s, border-left-color 0.15s;
+}
+
+.longread-card:hover {
+  border-left-color: var(--accent-hover);
 }
 
 .longread-card .story-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.longread-card .story-summary {
+  -webkit-line-clamp: 6;
   font-size: 0.85rem;
 }
 
@@ -982,9 +994,6 @@ a:hover {
   .search-input {
     min-width: 0;
     width: 100%;
-  }
-  .longreads-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
