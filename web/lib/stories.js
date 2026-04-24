@@ -2362,7 +2362,7 @@ export const STORIES = [
     kind: "longread",
     title: "Sultan Bin Sulayem: Ten Years of African Ports",
     summary:
-      "From 2010 to 2019, Sultan Bin Sulayem, chairman of Dubai ports operator DP World, used Jeffrey Epstein as a private audience for his African dealmaking. Over nine years Sultan briefed him from Kazakhstan helicopters, a Nairobi inauguration, a Dakar airport, and a Davos hotel room. The method was consistent: Sultan scouted presidents, Epstein opened rooms, the numbers rarely closed. Six months before Epstein was arrested, Sultan was still sending him itineraries signed off by the Saudi crown prince. He resigned as DP World chairman on February 13, 2026, five days after the Epstein files became public.",
+      "From 2010 to 2019, Sultan Bin Sulayem, chairman of Dubai ports operator DP World, used Jeffrey Epstein as a private audience for his African dealmaking. Across the decade Sultan briefed him from Kazakhstan helicopters, a Nairobi inauguration, a Dakar airport, and a Davos hotel room. The method was consistent: Sultan scouted presidents, Epstein opened rooms, the numbers rarely closed. Six months before Epstein was arrested, Sultan was still sending him itineraries signed off by the Saudi crown prince. He resigned as DP World chairman on February 13, 2026, five days after the Epstein files became public.",
     countries: [
       "South Africa",
       "Ivory Coast",
@@ -2419,7 +2419,7 @@ export const STORIES = [
     ],
     title_fr: "Sultan Bin Sulayem : dix ans de ports africains",
     summary_fr:
-      "De 2010 à 2019, Sultan Bin Sulayem, président de l'opérateur portuaire dubaïote DP World, s'est servi de Jeffrey Epstein comme auditoire privé pour ses affaires africaines. Pendant neuf ans, Sultan l'a informé depuis des hélicoptères au Kazakhstan, une investiture à Nairobi, un aéroport à Dakar et une chambre d'hôtel à Davos. La méthode était constante : Sultan repérait les présidents, Epstein ouvrait les portes, les chiffres se concluaient rarement. Six mois avant l'arrestation d'Epstein, Sultan lui envoyait encore des itinéraires signés par le prince héritier saoudien. Il a démissionné de la présidence de DP World le 13 février 2026, cinq jours après la publication des fichiers Epstein.",
+      "De 2010 à 2019, Sultan Bin Sulayem, président de l'opérateur portuaire dubaïote DP World, s'est servi de Jeffrey Epstein comme auditoire privé pour ses affaires africaines. Au fil de la décennie, Sultan l'a informé depuis des hélicoptères au Kazakhstan, une investiture à Nairobi, un aéroport à Dakar et une chambre d'hôtel à Davos. La méthode était constante : Sultan repérait les présidents, Epstein ouvrait les portes, les chiffres se concluaient rarement. Six mois avant l'arrestation d'Epstein, Sultan lui envoyait encore des itinéraires signés par le prince héritier saoudien. Il a démissionné de la présidence de DP World le 13 février 2026, cinq jours après la publication des fichiers Epstein.",
     body_fr: [
       "Le 25 juin 2010, le bureau de Sol Kerzner écrivit à Jeffrey Epstein. Le roi des casinos d'Afrique du Sud voulait une rencontre (EFTA02411125-0). Le contact venait sur instruction de Sultan Bin Sulayem.",
       "Kerzner ne communiqua jamais les chiffres que Sultan avait promis. Le 21 juillet 2010, Epstein transféra le rappel de la réunion avec une seule annotation : \"nevergot any numbers\" (EFTA01814737-0). Sultan envoya un texto le même jour : \"I think sol will give the instruction to release the numbers after he meets you\" (EFTA02409279-0).",
@@ -2658,7 +2658,6 @@ export const STORIES = [
     email_ids: [
       "vol00009-efta00633187-pdf-1",
       "EFTA01866037-0",
-      "EFTA01990469-0",
       "EFTA01843946-2",
       "EFTA01844230-1",
       "vol00009-efta00420435-pdf-2",
@@ -2758,7 +2757,7 @@ export const STORIES = [
     kind: "longread",
     title: "Daniel Siad and the Brunel Trafficking Network",
     summary:
-      "From 2005 to 2018, Daniel Siad scouted women for Jeffrey Epstein across four continents. Introduced by Jean-Luc Brunel, the French modeling agent later charged with sex trafficking, Siad sent photos and bank details from Paris, Stockholm, Bangkok, Ibiza, and by 2013 Cape Town. The trafficking infrastructure ran alongside Epstein's Africa business: Brunel wanted to fly to Ethiopia with Shaher Abdulhak, who held the country's tobacco monopoly. SDNY prosecutors flagged Siad's contact file in December 2018. Two months after Epstein's arrest the FBI traced a victim to South Africa, recruited there and flown to his Florida, New York and Virgin Islands residences.",
+      "From 2005 to 2019, Daniel Siad scouted women for Jeffrey Epstein across four continents. Introduced by Jean-Luc Brunel, the French modeling agent later charged with sex trafficking, Siad sent photos and bank details from Paris, Stockholm, Bangkok, Ibiza, and by 2013 Cape Town. The trafficking infrastructure ran alongside Epstein's Africa business: Brunel wanted to fly to Ethiopia with Shaher Abdulhak, who held the country's tobacco monopoly. SDNY prosecutors flagged Siad's contact file in December 2018. Two months after Epstein's arrest the FBI traced a victim to South Africa, recruited there and flown to his Florida, New York and Virgin Islands residences.",
     countries: ["South Africa", "Ethiopia"],
     date_range: "2005–2019",
     body: [
@@ -2777,7 +2776,7 @@ export const STORIES = [
     ],
     title_fr: "Daniel Siad et le réseau de traite Brunel",
     summary_fr:
-      "De 2005 à 2018, Daniel Siad repéra des femmes pour Jeffrey Epstein sur quatre continents. Introduit par Jean-Luc Brunel, l'agent de mannequins français inculpé par la suite de trafic sexuel, Siad envoyait photos et coordonnées bancaires depuis Paris, Stockholm, Bangkok, Ibiza, et à partir de 2013 Le Cap. L'infrastructure de traite fonctionnait en parallèle des affaires africaines d'Epstein : Brunel voulait se rendre en Éthiopie avec Shaher Abdulhak, détenteur du monopole du tabac dans le pays. Les procureurs du SDNY signalèrent la fiche de contact de Siad en décembre 2018. Deux mois après l'arrestation d'Epstein, le FBI retrouva une victime en Afrique du Sud, recrutée là-bas et emmenée dans les résidences d'Epstein en Floride, à New York et aux îles Vierges.",
+      "De 2005 à 2019, Daniel Siad repéra des femmes pour Jeffrey Epstein sur quatre continents. Introduit par Jean-Luc Brunel, l'agent de mannequins français inculpé par la suite de trafic sexuel, Siad envoyait photos et coordonnées bancaires depuis Paris, Stockholm, Bangkok, Ibiza, et à partir de 2013 Le Cap. L'infrastructure de traite fonctionnait en parallèle des affaires africaines d'Epstein : Brunel voulait se rendre en Éthiopie avec Shaher Abdulhak, détenteur du monopole du tabac dans le pays. Les procureurs du SDNY signalèrent la fiche de contact de Siad en décembre 2018. Deux mois après l'arrestation d'Epstein, le FBI retrouva une victime en Afrique du Sud, recrutée là-bas et emmenée dans les résidences d'Epstein en Floride, à New York et aux îles Vierges.",
     body_fr: [
       "En juillet 2005, Daniel Amar Siad écrivit à Jeffrey Epstein depuis São Paulo avec pour objet \"hello from Sao-Paulo.\" Plus tôt dans le mois, il avait écrit depuis Stockholm. Au cours des treize années suivantes, Siad enverrait des centaines d'emails depuis Paris, Bruxelles, Bangkok, Ibiza, Sofia, le Costa Rica, Dubaï et Le Cap. Les objets racontent l'histoire : \"other pics,\" \"Fwd: pictures,\" \"latest pictures done last week,\" \"Here is one of the girls\" (vol00009-efta00774129-pdf-0).",
       "La connexion de Siad à Epstein passait par Jean-Luc Brunel, l'agent de mannequins français inculpé par la suite de trafic sexuel. En janvier 2010, Siad envoya à Brunel un relevé bancaire SWIFT (EFTA02430885-0). Trois jours plus tard, il écrivit à Brunel et Epstein au sujet des \"Scouting fees.\" Brunel répondit aux deux : la structure de paiement était explicite, Siad repérait, Brunel plaçait, Epstein finançait (EFTA02431781-0). En octobre 2011, Siad écrivit directement à Brunel avec pour objet \"Commition de mes 2 filles Chez toi.\" Quelqu'un transféra la chaîne à Epstein (EFTA01986452-0).",
