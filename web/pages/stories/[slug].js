@@ -88,17 +88,39 @@ export async function getStaticProps({ params, locale }) {
       .all(...localizedStory.email_ids);
   }
 
+  const kind = story.kind || "atomic";
+  const parents = (story.parents || [])
+    .map((parentSlug) => {
+      const p = getStoryBySlug(parentSlug);
+      if (!p) return null;
+      const loc = getLocalizedStory(p, normalizedLocale);
+      return { slug: loc.slug, title: loc.title };
+    })
+    .filter(Boolean);
+  const children =
+    kind === "longread"
+      ? STORIES
+          .filter((s) => s.slug !== story.slug && (s.parents || []).includes(story.slug))
+          .map((s) => {
+            const loc = getLocalizedStory(s, normalizedLocale);
+            return { slug: loc.slug, title: loc.title, date_range: loc.date_range };
+          })
+      : [];
+
   return {
     props: {
       story: localizedStory,
       emails,
+      kind,
+      parents,
+      children,
       locale: normalizedLocale,
       frAvailable: hasFrenchStory(story),
     },
   };
 }
 
-export default function StoryPage({ story, emails, locale, frAvailable }) {
+export default function StoryPage({ story, emails, kind, parents, children, locale, frAvailable }) {
   const router = useRouter();
   const t = STORY_COPY[locale] || STORY_COPY.en;
 
@@ -145,7 +167,17 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
         <Nav pagePath={pageUrl} frAvailable={frAvailable} />
         <Link className="back-btn" href={backHref} locale={false}>← {t.back}</Link>
 
-        <article className="story-article">
+        <article className={`story-article${kind === "longread" ? " story-article--longread" : ""}`}>
+          {parents.length > 0 && (
+            <div className="part-of-banner">
+              <span className="part-of-label">{t.partOf}:</span>
+              {parents.map((p) => (
+                <Link key={p.slug} href={`/stories/${p.slug}`} locale={locale}>
+                  {p.title}
+                </Link>
+              ))}
+            </div>
+          )}
           <header className="story-header">
             <div className="story-header-meta">
               <span className="story-date-range">{story.date_range}</span>
@@ -164,6 +196,22 @@ export default function StoryPage({ story, emails, locale, frAvailable }) {
                     <p key={i}>{linkifyCitations(para, locale, localizedPageUrl)}</p>
               ))}
             </div>
+          )}
+
+          {children.length > 0 && (
+            <section className="story-section source-stories">
+              <h2 className="section-heading">{t.sourceStories}</h2>
+              <ul className="source-stories-list">
+                {children.map((child) => (
+                  <li key={child.slug}>
+                    <Link href={`/stories/${child.slug}`} locale={locale}>
+                      <span className="source-story-date">{child.date_range}</span>
+                      <h3 className="source-story-title">{child.title}</h3>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
 
           {emails.length > 0 && (
