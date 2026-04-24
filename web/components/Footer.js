@@ -67,15 +67,6 @@ export default function Footer({ locale = "en" }) {
             <li>
               <a href="/rss.xml">{copy.followRss}</a>
             </li>
-            <li>
-              <a
-                href="https://github.com/Iskanenani/epstein-africa"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {copy.followGithub}
-              </a>
-            </li>
           </ul>
         </div>
       </div>
