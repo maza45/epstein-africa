@@ -67,6 +67,15 @@ export default function Footer({ locale = "en" }) {
             <li>
               <a href="/rss.xml">{copy.followRss}</a>
             </li>
+            <li>
+              <Link
+                href="/about#contact"
+                locale={loc}
+                data-umami-event="footer_contact_click"
+              >
+                {copy.followContact}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

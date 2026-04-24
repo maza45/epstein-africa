@@ -103,7 +103,7 @@ export default function About({ emailCount, countryCount, locale, frAvailable })
             if (body.includes("{email}")) {
               const [before, after] = body.split("{email}");
               return (
-                <div key={section.heading}>
+                <div key={section.heading} id="contact">
                   <h2>{section.heading}</h2>
                   <p>
                     {before}
