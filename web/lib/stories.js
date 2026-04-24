@@ -487,6 +487,7 @@ export const STORIES = [
       "11 mai 2013. Sultan \u00e9crit \u00e0 Epstein depuis un h\u00e9licopt\u00e8re : \"I am now in a helicopter flying from aktao Khazakistan to Ashgabat turkomanistan accompanying the president to inaugurate the new rail connection between china and cis countries we have signed a deal to manage the logistics China is investing $400 B to build a new industrial city on the border\" (EFTA01975989-0). Epstein avait r\u00e9pondu plus t\u00f4t dans la matin\u00e9e : \"I will be with bill gates Paris , 9-10 June then free\" (EFTA01975812-0).",
     ],
     news_links: [],
+    parents: ["sultan-africa-ports-decade"],
   },
   {
     slug: "nigeria-ports-deal",
@@ -544,6 +545,7 @@ export const STORIES = [
         source: "News Peddlers",
       },
     ],
+    parents: ["sultan-africa-ports-decade"],
   },
   {
     slug: "kenya-safari-2009",
@@ -1243,6 +1245,7 @@ export const STORIES = [
       "Le 25 juin 2010, Ian Douglas, un cadre du bureau du pr\u00e9sident de Sol Kerzner, \u00e9crivit \u00e0 Jeffrey Epstein. \"Following your discussions with Sultan bin Sulayem, Mr Sol Kerzner has asked that I get in touch with you,\" \u00e9crivit Douglas. Il proposa une rencontre le 21 juillet dans les bureaux new-yorkais de Kerzner au Crown Building sur la Cinqui\u00e8me Avenue (EFTA02411125-0). L'\u00e9quipe d'Epstein r\u00e9pondit qu'il ne serait pas \u00e0 New York le 21 et sugg\u00e9ra un appel pour fixer une nouvelle date. La r\u00e9ponse pr\u00e9cisait aussi que \"Jeffrey ,and Ghislaine Maxwell, have met sol\" et demandait \u00e0 Douglas de \"remind sol that their first contact was with David and Cathy Luri , in the eighties\" (vol00009-efta00736051-pdf-0). Douglas relanca le 29 juin. L'assistante d'Epstein Sarah K. transf\u00e9ra le message en interne\u00a0: \"I told him I would speak with you about this.. should I tell him we will need to wait till the date gets closer? Do you want to meet him?\" Epstein r\u00e9pondit\u00a0: \"he is supposed to send info first, I spoke to sol on the phone\" (vol00009-efta00736244-pdf-0).",
       "Le 14 juillet, Lesley Groff envoya un rappel\u00a0: \"Sol Kerzner would like to meet with you on July 21\" (EFTA02409524-0). Le 21 juillet, Epstein transf\u00e9ra le rappel avec une seule annotation\u00a0: \"nevergot any numbers\" (EFTA01814737-0). Le m\u00eame jour, Sultan Bin Sulayem envoya un texto \u00e0 Epstein\u00a0: \"I think sol will give the instruction to release the numbers after he meets you\" (EFTA02409279-0). Les archives ne contiennent aucun suivi apr\u00e8s la rencontre.",
     ],
+    parents: ["sultan-africa-ports-decade"],
   },
   {
     slug: "lloyd-fixer-borrower",
@@ -2180,6 +2183,7 @@ export const STORIES = [
       "Un an plus t\u00f4t, Epstein avait construit un pitch bancaire s\u00e9n\u00e9galais avec Karim Wade comme v\u00e9hicule politique, JPMorgan comme consultant commercial et la Fondation Gates comme couverture d\u00e9veloppement. La version 2012 rempla\u00e7ait Wade par Macky Sall et JPMorgan par DP World. La banque restait.",
       "En novembre, Sultan transf\u00e9ra \u00e0 Epstein une note interne de DP World de Hussain Ishaq Hassan Ibrahim \u00e0 Joost Kruijning, CC Anil Wats\u00a0: \"Former president's son summoned by military police over corruption claims\" (EFTA01977019-0). C'\u00e9tait la m\u00eame \u00e9quipe DP World Afrique qui avait re\u00e7u Cheikh Kante \u00e0 Duba\u00ef plus t\u00f4t dans l'ann\u00e9e. Karim Wade fut arr\u00eat\u00e9 cinq mois plus tard.",
     ],
+    parents: ["sultan-africa-ports-decade"],
   },
   {
     slug: "conover-libya-access",
@@ -2239,6 +2243,7 @@ export const STORIES = [
       "Les cinq pays cit\u00e9s par Sultan correspondent au corridor de transit d'Afrique de l'Est et centrale dont Mombasa est le port d'ancrage. Le m\u00eame mod\u00e8le que Sultan d\u00e9ployait \u00e0 Berbera, Bosaso et Dakar.",
       "Epstein n'avait aucun r\u00f4le chez DP World ni aucun portefeuille africain. Sultan le tint n\u00e9anmoins inform\u00e9 en temps r\u00e9el d'une r\u00e9union de trois heures avec un chef d'\u00c9tat finalisant un accord d'infrastructure multi-pays. Le m\u00eame sch\u00e9ma visible au S\u00e9n\u00e9gal, au Nig\u00e9ria, au Somaliland et sur le reste de la carte DP World.",
     ],
+    parents: ["sultan-africa-ports-decade"],
   },
   {
     slug: "sultan-eritrea-saudi-tour-2019",
@@ -2266,6 +2271,7 @@ export const STORIES = [
       "Epstein r\u00e9pondit en une ligne\u00a0: \"no worry, is davos fun?\" Le soir m\u00eame, Sultan \u00e9tait de retour avec\u00a0: \"Amazing had a great meeting with Ethiopea PM.\" Le Premier ministre \u00e9thiopien \u00e0 l'\u00e9poque \u00e9tait Abiy Ahmed, en fonction depuis neuf mois, qui venait d'obtenir la fin formelle de la guerre \u00c9thiopie-\u00c9rythr\u00e9e. L'itin\u00e9raire \u00c9rythr\u00e9e-\u00c9thiopie de Sultan sur une seule tourn\u00e9e n'\u00e9tait pas un hasard.",
       "Ce fil est dat\u00e9 de six mois et dix jours avant l'arrestation d'Epstein \u00e0 Teterboro le 6 juillet 2019. La s\u00e9rie \"Perversion of Justice\" du Miami Herald paraissait d\u00e9j\u00e0 depuis deux mois. Sultan continuait d'utiliser Epstein comme auditoire permanent pour ses transactions africaines priv\u00e9es b\u00e9nies par la couronne.",
     ],
+    parents: ["sultan-africa-ports-decade"],
   },
 
   {
