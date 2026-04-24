@@ -9,6 +9,7 @@ import {
   BASE,
   HOME_COPY,
   getCanonicalUrl,
+  getLocalizedPath,
   getLocalizedStory,
   getOgLocale,
   hasFrenchStaticPage,
@@ -158,12 +159,40 @@ export async function getStaticProps({ locale }) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 6);
 
-  const nikolicStory = longreadsRaw.find((s) => s.slug === "nikolic-gates-polio-backchannel");
-  let nikolicMap = [];
-  if (nikolicStory) {
-    const { buildAfricaMapData } = await import("../lib/africaMap");
-    nikolicMap = buildAfricaMapData(nikolicStory.countries, 280, 210);
+  const { buildAfricaMapData } = await import("../lib/africaMap");
+  function mapFor(slug) {
+    const s = longreadsRaw.find((l) => l.slug === slug);
+    return s ? buildAfricaMapData(s.countries, 280, 210) : [];
   }
+  const mapsByLongread = {
+    "sultan-africa-ports-decade": mapFor("sultan-africa-ports-decade"),
+    "nikolic-gates-polio-backchannel": mapFor("nikolic-gates-polio-backchannel"),
+    "ivory-coast-ouattara-bridge": mapFor("ivory-coast-ouattara-bridge"),
+  };
+
+  function formatDateShort(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    return d.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  }
+  function fetchEmail(id) {
+    const row = db
+      .prepare("SELECT id, sender, sent_at, subject FROM emails WHERE id = ?")
+      .get(id);
+    return row ? { id: row.id, sender: row.sender, date: formatDateShort(row.sent_at), subject: row.subject } : null;
+  }
+
+  const docs = {
+    heroSultan: fetchEmail("EFTA01975989-0"),
+    secondaryWade: fetchEmail("vol00009-efta00825493-pdf-0"),
+    gridWade: fetchEmail("vol00009-efta00559607-pdf-0"),
+    gridLibya: fetchEmail("EFTA02421931-0"),
+    gridSiad: fetchEmail("EFTA02431781-0"),
+  };
 
   return {
     props: {
@@ -174,11 +203,44 @@ export async function getStaticProps({ locale }) {
       longreads,
       atomicsRecent,
       figures,
-      nikolicMap,
+      mapsByLongread,
+      docs,
       locale: normalizedLocale,
       frAvailable,
     },
   };
+}
+
+function DocScanHeader({ doc, toSender }) {
+  return (
+    <dl className="doc-scan-header">
+      <dt>From</dt>
+      <dd>
+        {doc.sender || "Unknown"} &lt;
+        <span className="r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        &gt;
+      </dd>
+      <dt>To</dt>
+      <dd>{toSender || "Jeffrey Epstein <jeevacation@gmail.com>"}</dd>
+      <dt>Date</dt>
+      <dd>{doc.date}</dd>
+      <dt>Subject</dt>
+      <dd>{doc.subject || "(no subject)"}</dd>
+    </dl>
+  );
+}
+
+function MiniMap({ features, label }) {
+  return (
+    <div className="mag-lr-card-img mini-map" aria-hidden="true" style={{ position: "relative" }}>
+      <svg viewBox="0 0 280 210" preserveAspectRatio="xMidYMid meet">
+        {features.map((f, i) => (
+          <path key={i} d={f.d} className={`country${f.active ? " active" : ""}`} />
+        ))}
+      </svg>
+      {label && <span className="mini-map-label">{label}</span>}
+    </div>
+  );
 }
 
 export default function Home({
@@ -189,7 +251,8 @@ export default function Home({
   longreads,
   atomicsRecent,
   figures,
-  nikolicMap,
+  mapsByLongread,
+  docs,
   locale,
   frAvailable,
 }) {
@@ -197,6 +260,7 @@ export default function Home({
   const hero = longreads[0];
   const second = longreads[1];
   const rest = longreads.slice(2);
+  const homeBackPath = getLocalizedPath("/", locale);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -272,7 +336,11 @@ export default function Home({
 
         {hero && (
           <section className="feature-grid">
-            <Link href={`/stories/${hero.slug}`} locale={locale} className="feat-hero">
+            <Link
+              href={`/stories/${hero.slug}?back=${encodeURIComponent(homeBackPath)}`}
+              locale={locale}
+              className="feat-hero"
+            >
               <div className="feat-hero-img has-doc-scan">
                 <div className="doc-scan" aria-hidden="true">
                   <dl className="doc-scan-header">
@@ -325,16 +393,25 @@ export default function Home({
             {second && (
               <div className="feat-side">
                 <Link
-                  href={`/stories/${second.slug}`}
+                  href={`/stories/${second.slug}?back=${encodeURIComponent(homeBackPath)}`}
                   locale={locale}
                   className="feat-second"
                 >
-                  <div
-                    className="feat-second-img feat-second-img--grid feat-second-img--overlay"
-                    aria-hidden="true"
-                  >
-                    <span className="feat-second-img-kicker">{second.dateRange}</span>
-                    <span className="feat-second-img-caption">{second.title}</span>
+                  <div className="feat-second-img feat-second-img--doc" aria-hidden="true">
+                    {docs.secondaryWade && (
+                      <div className="doc-scan doc-scan--mini">
+                        <DocScanHeader doc={docs.secondaryWade} />
+                        <div className="doc-scan-body">
+                          <p>Forwarded message from Bob Crowe, Nelson Mullins.</p>
+                          <p style={{ fontWeight: 500 }}>
+                            &ldquo;He has told my friends high up at State that he was
+                            going to do it. They have been putting pressure on{" "}
+                            <span className="r">&nbsp;&nbsp;&nbsp;</span>!&rdquo;
+                          </p>
+                        </div>
+                        <div className="doc-scan-stamp">{docs.secondaryWade.id}</div>
+                      </div>
+                    )}
                   </div>
                   <div className="feat-kicker">{second.dateRange}</div>
                   <h3 className="feat-second-title">{second.title}</h3>
@@ -384,36 +461,77 @@ export default function Home({
 
         <section className="longreads-grid-magazine">
           {longreads.map((lr) => {
-            const isNikolic = lr.slug === "nikolic-gates-polio-backchannel";
+            let visual = null;
+            if (mapsByLongread[lr.slug]) {
+              const features = mapsByLongread[lr.slug];
+              const active = features.filter((f) => f.active).length;
+              visual = <MiniMap features={features} label={`${active} ${active === 1 ? "country" : "countries"}`} />;
+            } else if (lr.slug === "wade-senegal-laboratory" && docs.gridWade) {
+              visual = (
+                <div className="mag-lr-card-img mag-lr-card-img--doc" aria-hidden="true">
+                  <div className="doc-scan doc-scan--card">
+                    <DocScanHeader
+                      doc={docs.gridWade}
+                      toSender="Jeffrey Epstein's staff"
+                    />
+                    <div className="doc-scan-body">
+                      <p>
+                        &ldquo;I tried to call you at the request of{" "}
+                        <span className="r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{" "}
+                        of Dubai World to meet with Jeffrey{" "}
+                        <span className="r">&nbsp;&nbsp;&nbsp;</span>.&rdquo;
+                      </p>
+                    </div>
+                    <div className="doc-scan-stamp">{docs.gridWade.id}</div>
+                  </div>
+                </div>
+              );
+            } else if (lr.slug === "libya-access-pipeline" && docs.gridLibya) {
+              visual = (
+                <div className="mag-lr-card-img mag-lr-card-img--doc" aria-hidden="true">
+                  <div className="doc-scan doc-scan--card">
+                    <DocScanHeader doc={docs.gridLibya} toSender="royal aide" />
+                    <div className="doc-scan-body">
+                      <p style={{ fontSize: "0.85rem" }}>
+                        &ldquo;i want to go to tripoli lets organize with{" "}
+                        <span className="r">&nbsp;&nbsp;&nbsp;</span>&rdquo;
+                      </p>
+                    </div>
+                    <div className="doc-scan-stamp">{docs.gridLibya.id}</div>
+                  </div>
+                </div>
+              );
+            } else if (lr.slug === "siad-trafficking-scouts" && docs.gridSiad) {
+              visual = (
+                <div className="mag-lr-card-img mag-lr-card-img--doc" aria-hidden="true">
+                  <div className="doc-scan doc-scan--card">
+                    <DocScanHeader doc={docs.gridSiad} toSender="Jean-Luc Brunel" />
+                    <div className="doc-scan-body">
+                      <p>
+                        <span className="r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      </p>
+                      <p>
+                        <span className="r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      </p>
+                      <p>
+                        <span className="r">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      </p>
+                    </div>
+                    <div className="doc-scan-stamp">{docs.gridSiad.id}</div>
+                  </div>
+                </div>
+              );
+            } else {
+              visual = <div className={`mag-lr-card-img ${lr.imgClass}`} aria-hidden="true" />;
+            }
             return (
               <Link
                 key={lr.slug}
-                href={`/stories/${lr.slug}`}
+                href={`/stories/${lr.slug}?back=${encodeURIComponent(homeBackPath)}`}
                 locale={locale}
                 className="mag-lr-card"
               >
-                {isNikolic ? (
-                  <div
-                    className="mag-lr-card-img mini-map"
-                    aria-hidden="true"
-                    style={{ position: "relative" }}
-                  >
-                    <svg viewBox="0 0 280 210" preserveAspectRatio="xMidYMid meet">
-                      {nikolicMap.map((f, i) => (
-                        <path
-                          key={i}
-                          d={f.d}
-                          className={`country${f.active ? " active" : ""}`}
-                        />
-                      ))}
-                    </svg>
-                    <span className="mini-map-label">
-                      {nikolicMap.filter((f) => f.active).length} countries
-                    </span>
-                  </div>
-                ) : (
-                  <div className={`mag-lr-card-img ${lr.imgClass}`} aria-hidden="true" />
-                )}
+                {visual}
                 <div className="mag-lr-card-label">{lr.dateRange}</div>
                 <div className="mag-lr-card-title">{lr.title}</div>
                 <div className="mag-lr-card-dek">{lr.summary}</div>
@@ -445,7 +563,7 @@ export default function Home({
               {atomicsRecent.map((a) => (
                 <Link
                   key={a.slug}
-                  href={`/stories/${a.slug}`}
+                  href={`/stories/${a.slug}?back=${encodeURIComponent(homeBackPath)}`}
                   locale={locale}
                   className="dossier-row"
                 >
@@ -473,7 +591,7 @@ export default function Home({
             {figures.map((f) => (
               <Link
                 key={f.slug}
-                href={`/people/${f.slug}`}
+                href={`/people/${f.slug}?back=${encodeURIComponent(homeBackPath)}`}
                 locale={locale}
                 className="figure-row"
               >

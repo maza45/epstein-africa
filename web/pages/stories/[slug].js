@@ -127,6 +127,7 @@ export default function StoryPage({ story, emails, kind, parents, children, loca
   const pageUrl = `/stories/${story.slug}`;
   const localizedPageUrl = getLocalizedPath(pageUrl, locale);
   const backHref = resolveBackHref(router.query.back, "/stories", locale);
+  const storyBackQuery = encodeURIComponent(localizedPageUrl);
   const localizedCountries = getLocalizedCountryLabels(story.countries, locale);
 
   const jsonLd = {
@@ -172,7 +173,11 @@ export default function StoryPage({ story, emails, kind, parents, children, loca
             <div className="part-of-banner">
               <span className="part-of-label">{t.partOf}:</span>
               {parents.map((p) => (
-                <Link key={p.slug} href={`/stories/${p.slug}`} locale={locale}>
+                <Link
+                  key={p.slug}
+                  href={`/stories/${p.slug}?back=${storyBackQuery}`}
+                  locale={locale}
+                >
                   {p.title}
                 </Link>
               ))}
@@ -204,7 +209,10 @@ export default function StoryPage({ story, emails, kind, parents, children, loca
               <ul className="source-stories-list">
                 {children.map((child) => (
                   <li key={child.slug}>
-                    <Link href={`/stories/${child.slug}`} locale={locale}>
+                    <Link
+                      href={`/stories/${child.slug}?back=${storyBackQuery}`}
+                      locale={locale}
+                    >
                       <span className="source-story-date">{child.date_range}</span>
                       <h3 className="source-story-title">{child.title}</h3>
                     </Link>

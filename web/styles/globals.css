@@ -2176,3 +2176,59 @@ a:hover {
   background: rgba(12,12,12,0.8);
   padding: 0.2rem 0.45rem;
 }
+
+/* ── Doc-scan sizing variants ── */
+.feat-second-img.feat-second-img--doc {
+  aspect-ratio: 3/2;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.doc-scan--mini {
+  inset: 6% 5%;
+  padding: 0.85rem 1rem;
+  transform: rotate(-0.5deg);
+}
+.doc-scan--mini .doc-scan-header {
+  font-size: 0.58rem;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  row-gap: 0.1rem;
+}
+.doc-scan--mini .doc-scan-body { font-size: 0.66rem; line-height: 1.55; }
+.doc-scan--mini .doc-scan-body p { margin-bottom: 0.4rem; }
+.doc-scan--mini .doc-scan-stamp {
+  font-size: 0.54rem;
+  padding: 0.15rem 0.4rem;
+  bottom: 0.6rem;
+  right: 0.8rem;
+}
+
+.mag-lr-card-img.mag-lr-card-img--doc {
+  background: var(--surface-2);
+  position: relative;
+  overflow: hidden;
+}
+.doc-scan--card {
+  inset: 8% 8%;
+  padding: 0.75rem 0.9rem;
+  transform: rotate(-0.6deg);
+}
+.doc-scan--card .doc-scan-header {
+  font-size: 0.54rem;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.45rem;
+  row-gap: 0.05rem;
+  grid-template-columns: 42px 1fr;
+  column-gap: 0.4rem;
+}
+.doc-scan--card .doc-scan-body { font-size: 0.62rem; line-height: 1.55; }
+.doc-scan--card .doc-scan-body p { margin-bottom: 0.35rem; }
+.doc-scan--card .doc-scan-stamp {
+  font-size: 0.5rem;
+  padding: 0.12rem 0.35rem;
+  bottom: 0.5rem;
+  right: 0.65rem;
+  letter-spacing: 0.08em;
+}
