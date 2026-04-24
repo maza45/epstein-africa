@@ -22,7 +22,7 @@ import {
 } from "../../lib/i18n";
 
 // Turn inline email IDs like (EFTA01841982-0) into clickable links
-const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?))\b/g;
+const CITATION_RE = /\b((?:EFTA\d{8}(?:-\d+)?|vol00009-efta\d{8}-pdf(?:-\d+)?|HOUSE_OVERSIGHT_\d+(?:-\d+)?|[a-f0-9]{32}-\d+))\b/g;
 
 function linkifyCitations(text, locale, backPath) {
   const parts = [];
