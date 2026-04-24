@@ -400,20 +400,20 @@ a:hover {
   gap: 0.25rem;
 }
 
-/* ── Core stories (Start here) ── */
-.core-stories {
+/* ── Long reads (synthesis monographs) ── */
+.longreads {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.core-stories-heading {
+.longreads-heading {
   font-size: 1.1rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 0.35rem;
 }
 
-.core-stories-subtitle {
+.longreads-subtitle {
   font-size: 0.82rem;
   color: var(--text-dim);
   line-height: 1.5;
@@ -421,22 +421,18 @@ a:hover {
   max-width: 640px;
 }
 
-.core-stories-grid {
+.longreads-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
 }
 
-.core-card {
+.longread-card {
   border-left: 2px solid var(--accent);
 }
 
-.core-card .story-title {
+.longread-card .story-title {
   font-size: 0.85rem;
-}
-
-.core-card .story-summary {
-  display: none;
 }
 
 .all-stories-heading {
@@ -987,7 +983,7 @@ a:hover {
     min-width: 0;
     width: 100%;
   }
-  .core-stories-grid {
+  .longreads-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -1012,7 +1008,7 @@ a:hover {
   .people-grid {
     grid-template-columns: 1fr;
   }
-  .core-stories-grid {
+  .longreads-grid {
     grid-template-columns: 1fr;
   }
 }
