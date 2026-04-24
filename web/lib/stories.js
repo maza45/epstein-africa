@@ -70,6 +70,7 @@ export const STORIES = [
         source: "Pulse Côte d'Ivoire",
       },
     ],
+    parents: ["ivory-coast-ouattara-bridge"],
   },
   {
     slug: "libya-sovereign-wealth",
@@ -1365,6 +1366,7 @@ export const STORIES = [
       "La m\u00eame semaine, un contact nomm\u00e9 Unik \u00e9crivit \u00e0 Groff pour demander les dates de voyage d'Epstein en C\u00f4te d'Ivoire. Unik souhaitait remercier Epstein \"once again for taking the time to meet as well as his advice\" et proposa un d\u00e9tour\u00a0: \"I was just speaking to a dear friend whose father is the Prime Minister of French Guinea and they would like for us to come for a visit if we are in the area.\" Une entr\u00e9e d'agenda l'enregistra comme \"Unik and ivory coast/guinea trip.\" R\u00e9ponse d'Epstein \u00e0 Groff\u00a0: \"lets put him on todays call list\" (EFTA01847908-0, EFTA01841292-0, EFTA02174811-0).",
       "Epstein avait visit\u00e9 Abidjan en janvier 2012. Son programme comprenait des rencontres avec le pr\u00e9sident Ouattara, le ministre de l'\u00e9conomie et des finances, le ministre de l'int\u00e9rieur, le directeur g\u00e9n\u00e9ral du port et le g\u00e9n\u00e9ral Amadou Gon Coulibaly. Quelques semaines apr\u00e8s ce voyage, le bureau de Leon Black chez Apollo Management acheminait une demande de rencontre avec le ministre ivoirien des Mines par l'interm\u00e9diaire de l'assistante d'Epstein. L'identit\u00e9 du ministre, et si une rencontre ult\u00e9rieure eut lieu, ne sont pas document\u00e9es dans les archives.",
     ],
+    parents: ["ivory-coast-ouattara-bridge"],
   },
   {
     slug: "gregory-brown-libya-gold-rush",
@@ -2313,6 +2315,7 @@ export const STORIES = [
       "Le 15 octobre, Ciss\u00e9 \u00e9crivit \u00e0 Epstein depuis son adresse minist\u00e9rielle officielle. \"Dear Jeffrey, Thanks very much for arranging, with Nina, the meeting with Larry Summers. I've honestly been impressed by his humbleness. Let's keep in touch and please do not hesitate to contact me if I could be of any help. I look forward to seeing you in Abidjan so please do not hesitate to stop by\" (vol00009-efta00998827-pdf-0). La signature\u00a0: \"Abdou Cisse / Abdourahmane Cisse / Minister in charge of Budget, C\u00f4te d'Ivoire.\"",
       "Nina Keita est la m\u00eame ni\u00e8ce d'Ouattara qui avait courtis\u00e9 pour Ehud Barak l'accord de surveillance ivoirien en 2011. Elle organisait d\u00e9sormais un acc\u00e8s au niveau ministre des Finances en cabinet pour un ancien secr\u00e9taire au Tr\u00e9sor am\u00e9ricain. L'asym\u00e9trie de l'\u00e9change est le sujet\u00a0: Epstein n'avait aucun portefeuille africain ni r\u00f4le gouvernemental, mais il occupait le centre d'une demande \u00e9manant d'un ministre des Finances ouest-africain en exercice vers un ancien secr\u00e9taire au Tr\u00e9sor am\u00e9ricain. Ciss\u00e9 est devenu plus tard Secr\u00e9taire g\u00e9n\u00e9ral de la Pr\u00e9sidence de la R\u00e9publique de C\u00f4te d'Ivoire, \u00e9quivalent du chef de cabinet d'Ouattara.",
     ],
+    parents: ["ivory-coast-ouattara-bridge"],
   },
 
   {
@@ -2605,6 +2608,80 @@ export const STORIES = [
       "vol00009-efta01000473-pdf-0",
     ],
     news_links: [],
+  },
+
+  {
+    slug: "ivory-coast-ouattara-bridge",
+    kind: "longread",
+    title: "Ouattara's Abidjan: Four Years of Epstein's Ivory Coast Access",
+    summary:
+      "From December 2010 to October 2014, Jeffrey Epstein ran a private channel into the presidency of Côte d'Ivoire through Alassane Ouattara's niece Nina Keita. After Ouattara won the post-election war, Epstein landed in Abidjan for two days with the president and his ministers. Within weeks Leon Black's office at Apollo was routing requests to the mining minister through Epstein's assistant. The Gates Foundation's Ivory Coast contact ran through him. Ehud Barak closed a 2014 mass-surveillance contract with the government. Epstein pitched Ouattara's Goldman alum budget minister to Larry Summers.",
+    countries: ["Ivory Coast"],
+    date_range: "2010–2014",
+    body: [
+      "December 2010. Ivory Coast was mid-civil war. Laurent Gbagbo had refused to concede after losing the election to Alassane Ouattara, and fighting was spreading across Abidjan. Karim Wade, son of Senegal's president, wrote to Epstein to explain why he had gone quiet: \"I am on the crisis on Ivory Coast.\" Epstein wrote back: \"I m with Prince Andrew at my house in New York, call if you get a chance... We are talking about the opportuites in Africa\" (vol00009-efta00633187-pdf-1). Prince Andrew was in the room.",
+      "Ouattara won the war in April 2011. UN and French forces arrested Gbagbo. Epstein was already booking the trip. His pilot's proposed routing listed the stops: Newark, Azores, Dakar, Bamako, Niamey, Benin City, Libreville, Abidjan (EFTA01866037-0). The same month Nina Keita, Ouattara's niece, a former model who had been on Epstein's jet since at least 2002, wrote asking for \"more details concerning your trip to Abidjan.\"",
+      "January 2012. Epstein landed in Abidjan. A forwarded email described his schedule: \"He is scheduled with the president at 4pm then minister of economy and finance at 6:30pm. Dinner at 8:30 with minister of interior. Wednesday he meets with the director of bureau of commerce and industry at 10, then CEO of the port at 12 with a tour of the port. Lunch with General Coulibaly around 2pm.\" Amadou Gon Coulibaly would later become Prime Minister.",
+      "The Gates Foundation connection had started before he left. On January 11, Epstein hosted Jenna Brereton at his Manhattan home. Brereton worked at Geneva Global, a consulting firm that had administered a PEPFAR grant in Ivory Coast, and was seconded to the Gates Foundation's Global Health Policy & Advocacy division. Boris Nikolic had flagged her interest in Africa. After the meeting Epstein wrote: \"I am going to see the president of the Ivory coast , in abdigan and spend a couple of days with him and his top ministers.. I wanted to know if there was something i could do to help you there\" (EFTA01843946-2). He followed up the same evening: \"I am good friends with Outarra as well as many of the more normal leaders. Boris told me of your interest in africa\" (EFTA01844230-1).",
+      "February 6, 2012. Lesley Groff relayed a request: \"Leon Black's guy, Ali Rasheed, says he would like to meet with the minister of the ivory coast today, Monday Feb 6th. Ali just needs to know where and what time.\" The signature read \"leon Black's office.\" Melanie Spinella, assistant to Leon D. Black at Apollo Management, had emailed Groff that morning. Epstein forwarded Spinella's email with a one-line instruction: \"Please advise how to respond.\" The meeting never happened. Spinella wrote back hours later: \"Never mind - just spoke to Lean - apparently they spoke and the Minister has left!\" (vol00009-efta00420435-pdf-2).",
+      "Two days after the Apollo thread went cold, Nina Keita wrote to Epstein apologising on Ouattara's behalf. The president was \"really unhappy and annoyed.\" Epstein had tried to introduce a minister to an investor without clearing it through the presidential chain. Nina relayed the protocol: all contacts had to go through Ouattara personally, or through Marcel Amon Tanoh, his director of staff, or Amadou Gon Coulibaly. \"The ministers execute but all the orders come from him and the 2 other people\" (EFTA01841982-0).",
+      "Epstein routed the next introduction through the correct channel. He connected Brereton and Nina directly: \"jenna, nina is the niece of the president of the ivory coast. i am making this my introduction of two extraordinary women to each other\" (EFTA01838954-1). Nina wrote back, relaying that Epstein had called Brereton \"in charge of the Ivory Coast at the Gates Foundation.\" She had already taken the request to Marcel Amon Tanoh, who was \"very interested in discussing opportunities for the Gates Foundation to fund health and education initiatives in the Ivory Coast\" (EFTA01838954-0). Brereton replied that program officers at the Foundation worked by strategy, not geography, and asked Nina to have Tanoh identify a specific topic (vol00009-efta00708736-pdf-0).",
+      "In June 2012, Ouattara flew to Jerusalem and met Ehud Barak, then Israel's Defence Minister, and Netanyahu. Epstein had been seeing Barak regularly for years. In September 2013 Epstein sent Barak the personal email address of Sidi Tiémoko Touré, Ouattara's chief of staff: \"chief of staff of outara, he arrives tomorw, try to coordianate, i am flexible\" (b06cfc4532695383b7fb74ed77baf90a-0). Keita had made the connection.",
+      "October 5, 2014. Epstein wrote to Larry Summers: \"can you make some small time to meet with the finance minister from ivory coast. hes very close to outarra the president former goldman sachs guy Minister Abdourahmane Cisse\" (EFTA02590489-0). Summers had served as US Treasury Secretary under Clinton and as President of Harvard. Summers replied the next day: \"Sure I know Outtara. What does he want to talk about? How corrupt is he?\" (vol00009-efta00997980-pdf-0). Epstein in the same chain: \"this is the finance minister, outarra is trying hard. not sure of subject. but very well regarded in west africa. Ill tell you all about it wed\" (vol00009-efta00997980-pdf-0).",
+      "October 15. Cissé wrote to Epstein from his official Côte d'Ivoire ministerial address: \"Dear Jeffrey, Thanks very much for arranging, with Nina, the meeting with Larry Summers. I've honestly been impressed by his humbleness. Let's keep in touch and please do not hesitate to contact me if I could be of any help\" (vol00009-efta00998827-pdf-0). The signature: \"Abdou Cisse / Abdourahmane Cisse / Minister in charge of Budget, Côte d'Ivoire.\"",
+      "A mass surveillance contract was formalised the same year: Ivory Coast's phone and internet communications, built by former Israeli intelligence officials.",
+      "Cissé later became Secretary General of the Presidency of Côte d'Ivoire, the equivalent of chief of staff to Ouattara. Ouattara has since banned protests and imprisoned opponents. The emails do not establish a link between the surveillance system and those crackdowns.",
+    ],
+    title_fr: "L'Abidjan d'Ouattara : quatre ans d'accès d'Epstein à la Côte d'Ivoire",
+    summary_fr:
+      "De décembre 2010 à octobre 2014, Jeffrey Epstein exploita un canal privé vers la présidence de Côte d'Ivoire par la nièce d'Alassane Ouattara, Nina Keita. Après la victoire d'Ouattara dans la guerre post-électorale, Epstein passa deux jours à Abidjan avec le président et ses ministres. Quelques semaines plus tard, le bureau de Leon Black chez Apollo acheminait des demandes au ministre des Mines par l'assistante d'Epstein. Le contact Côte d'Ivoire de la Fondation Gates passait par lui. Ehud Barak finalisa en 2014 un contrat de surveillance de masse avec le gouvernement. Epstein présenta à Larry Summers le ministre du Budget d'Ouattara, ancien Goldman Sachs.",
+    body_fr: [
+      "Décembre 2010. La Côte d'Ivoire est en pleine guerre civile. Laurent Gbagbo refuse de céder le pouvoir après sa défaite face à Alassane Ouattara, et les combats s'étendent dans Abidjan. Karim Wade, fils du président du Sénégal, explique à Epstein son silence : \"I am on the crisis on Ivory Coast.\" Epstein répond : \"I m with Prince Andrew at my house in New York, call if you get a chance... We are talking about the opportuites in Africa\" (vol00009-efta00633187-pdf-1). Le Prince Andrew était dans la pièce.",
+      "Ouattara remporte la guerre en avril 2011. Les forces de l'ONU et de la France arrêtent Gbagbo. Epstein prépare déjà son voyage. Un email de son pilote propose l'itinéraire : Newark, Açores, Dakar, Bamako, Niamey, Benin City, Libreville, Abidjan (EFTA01866037-0). Le même mois, Nina Keita, nièce d'Ouattara, ancienne mannequin présente sur le jet d'Epstein depuis au moins 2002, demande \"more details concerning your trip to Abidjan.\"",
+      "Janvier 2012. Epstein atterrit à Abidjan. Un email transmis décrit son programme : \"He is scheduled with the president at 4pm then minister of economy and finance at 6:30pm. Dinner at 8:30 with minister of interior. Wednesday he meets with the director of bureau of commerce and industry at 10, then CEO of the port at 12 with a tour of the port. Lunch with General Coulibaly around 2pm.\" Amadou Gon Coulibaly deviendra plus tard Premier Ministre.",
+      "Le lien avec la Fondation Gates avait commencé avant le départ. Le 11 janvier, Epstein reçoit Jenna Brereton chez lui à Manhattan. Brereton travaillait chez Geneva Global, cabinet de conseil qui avait géré une subvention PEPFAR en Côte d'Ivoire, et était détachée auprès de la division Global Health Policy & Advocacy de la Fondation Gates. Boris Nikolic avait signalé son intérêt pour l'Afrique. Après la rencontre, Epstein écrit : \"I am going to see the president of the Ivory coast , in abdigan and spend a couple of days with him and his top ministers.. I wanted to know if there was something i could do to help you there\" (EFTA01843946-2). Il poursuit le soir même : \"I am good friends with Outarra as well as many of the more normal leaders. Boris told me of your interest in africa\" (EFTA01844230-1).",
+      "6 février 2012. Lesley Groff transmit une demande : \"Leon Black's guy, Ali Rasheed, says he would like to meet with the minister of the ivory coast today, Monday Feb 6th. Ali just needs to know where and what time.\" La signature indiquait \"leon Black's office.\" Melanie Spinella, assistante de Leon D. Black chez Apollo Management, avait écrit à Groff ce matin-là. Epstein transmit l'email de Spinella avec une instruction d'une ligne : \"Please advise how to respond.\" La rencontre n'eut jamais lieu. Spinella répondit quelques heures plus tard : \"Never mind - just spoke to Lean - apparently they spoke and the Minister has left!\" (vol00009-efta00420435-pdf-2).",
+      "Deux jours après la fin de l'échange Apollo, Nina Keita écrit à Epstein pour s'excuser au nom d'Ouattara. Le président était \"really unhappy and annoyed.\" Epstein avait tenté de présenter un ministre à un investisseur sans passer par la chaîne présidentielle. Nina transmet le protocole : tout contact devait passer par Ouattara en personne, ou par Marcel Amon Tanoh, son directeur de cabinet, ou Amadou Gon Coulibaly. \"The ministers execute but all the orders come from him and the 2 other people\" (EFTA01841982-0).",
+      "Epstein passe par le canal officiel pour la présentation suivante. Il met Brereton et Nina en contact directement : \"jenna, nina is the niece of the president of the ivory coast. i am making this my introduction of two extraordinary women to each other\" (EFTA01838954-1). Nina répond, rapportant qu'Epstein avait présenté Brereton comme \"in charge of the Ivory Coast at the Gates Foundation.\" Elle avait déjà transmis la demande à Marcel Amon Tanoh, qui était \"very interested in discussing opportunities for the Gates Foundation to fund health and education initiatives in the Ivory Coast\" (EFTA01838954-0). Brereton répond que les responsables de programmes à la Fondation travaillaient par stratégie, non par géographie, et demande à Nina que Tanoh identifie un sujet précis (vol00009-efta00708736-pdf-0).",
+      "En juin 2012, Ouattara se rend à Jérusalem et rencontre Ehud Barak, alors ministre de la Défense d'Israël, et Netanyahu. Epstein voyait Barak régulièrement depuis des années. En septembre 2013, Epstein envoie à Barak l'adresse email personnelle de Sidi Tiémoko Touré, chef de cabinet d'Ouattara : \"chief of staff of outara, he arrives tomorw, try to coordianate, i am flexible\" (b06cfc4532695383b7fb74ed77baf90a-0). Keita avait établi le contact.",
+      "5 octobre 2014. Epstein écrit à Larry Summers : \"can you make some small time to meet with the finance minister from ivory coast. hes very close to outarra the president former goldman sachs guy Minister Abdourahmane Cisse\" (EFTA02590489-0). Summers avait été secrétaire au Trésor sous Clinton et président de Harvard. Summers répond le lendemain : \"Sure I know Outtara. What does he want to talk about? How corrupt is he?\" (vol00009-efta00997980-pdf-0). Epstein dans le même fil : \"this is the finance minister, outarra is trying hard. not sure of subject. but very well regarded in west africa. Ill tell you all about it wed\" (vol00009-efta00997980-pdf-0).",
+      "15 octobre. Cissé écrit à Epstein depuis son adresse ministérielle officielle : \"Dear Jeffrey, Thanks very much for arranging, with Nina, the meeting with Larry Summers. I've honestly been impressed by his humbleness. Let's keep in touch and please do not hesitate to contact me if I could be of any help\" (vol00009-efta00998827-pdf-0). La signature : \"Abdou Cisse / Abdourahmane Cisse / Minister in charge of Budget, Côte d'Ivoire.\"",
+      "Un contrat de surveillance de masse fut formalisé la même année : les communications téléphoniques et internet de la Côte d'Ivoire, conçues par d'anciens responsables du renseignement israélien.",
+      "Cissé est devenu plus tard Secrétaire général de la Présidence de Côte d'Ivoire, équivalent du chef de cabinet d'Ouattara. Ouattara a depuis interdit les manifestations et emprisonné des opposants. Les emails n'établissent pas de lien entre le système de surveillance et ces répressions.",
+    ],
+    email_ids: [
+      "vol00009-efta00633187-pdf-1",
+      "EFTA01866037-0",
+      "EFTA01990469-0",
+      "EFTA01843946-2",
+      "EFTA01844230-1",
+      "vol00009-efta00420435-pdf-2",
+      "EFTA01841982-0",
+      "EFTA01838954-1",
+      "EFTA01838954-0",
+      "vol00009-efta00708736-pdf-0",
+      "b06cfc4532695383b7fb74ed77baf90a-0",
+      "EFTA02590489-0",
+      "vol00009-efta00997980-pdf-0",
+      "vol00009-efta00998827-pdf-0",
+    ],
+    news_links: [
+      {
+        title: "Did Epstein help Israel push for a security deal with Ivory Coast?",
+        url: "https://www.aljazeera.com/news/2026/2/27/did-epstein-help-israel-push-for-a-security-deal-with-ivory-coast",
+        source: "Al Jazeera",
+      },
+      {
+        title: "Jeffrey Epstein Helped Israel Sell a Surveillance State to Côte d'Ivoire",
+        url: "https://www.dropsitenews.com/p/jeffrey-epstein-israel-surveillance-state-cote-d-ivoire-ehud-barak-leaked-emails",
+        source: "Drop Site News",
+      },
+      {
+        title: "Affaire Epstein : le PDCI-RDA demande des explications au gouvernement ivoirien",
+        url: "https://www.pulse.ci/article/affaire-epstein-le-pdci-rda-demande-des-explications-au-gouvernement-ivoirien-et-exige-la-transparence-2026021801422117419",
+        source: "Pulse Côte d'Ivoire",
+      },
+    ],
   },
 
 ];
